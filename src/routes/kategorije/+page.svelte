@@ -1,0 +1,162 @@
+<script lang="ts">
+	import { i18n } from '$lib/i18n.svelte';
+	import { domesticFirms } from '$lib/data';
+
+	const categoryStats = $derived.by(() => {
+		const map = new Map<string, { name_sr: string; name_en: string; count: number }>();
+		for (const firm of domesticFirms) {
+			const key = firm.category_sr;
+			const entry = map.get(key);
+			if (entry) {
+				entry.count++;
+			} else {
+				map.set(key, { name_sr: firm.category_sr, name_en: firm.category_en, count: 1 });
+			}
+		}
+		return [...map.values()].sort((a, b) => b.count - a.count);
+	});
+</script>
+
+<svelte:head>
+	<title>{i18n.t.nav.companies} — Semberija.app</title>
+</svelte:head>
+
+<div class="page-top">
+	<div class="container">
+		<p class="page-label">{i18n.t.nav.companies}</p>
+		<h1>{i18n.t.ui.categories}</h1>
+		<p class="page-sub">{i18n.t.ui.categoriesSub}</p>
+	</div>
+</div>
+
+<div class="cat-body">
+	<div class="container">
+		<div class="cat-grid">
+			{#each categoryStats as cat}
+				<a
+					href="/firme?cat={encodeURIComponent(i18n.lang === 'sr' ? cat.name_sr : cat.name_en)}"
+					class="cat-card"
+				>
+					<div class="cat-initial">{(i18n.lang === 'sr' ? cat.name_sr : cat.name_en).charAt(0)}</div>
+					<div class="cat-info">
+						<h3>{i18n.lang === 'sr' ? cat.name_sr : cat.name_en}</h3>
+						<span class="cat-count">
+							{cat.count}
+							{i18n.lang === 'sr'
+								? cat.count === 1
+									? 'firma'
+									: cat.count < 5
+										? 'firme'
+										: 'firmi'
+								: cat.count === 1
+									? 'company'
+									: 'companies'}
+						</span>
+					</div>
+					<svg class="cat-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M5 12h14M12 5l7 7-7 7"/>
+					</svg>
+				</a>
+			{/each}
+		</div>
+	</div>
+</div>
+
+<style>
+	.page-top {
+		background: var(--emerald);
+		color: white;
+		padding: 8rem var(--section-px) 4rem;
+	}
+	.container {
+		max-width: var(--max-w);
+		margin: 0 auto;
+	}
+	.page-label {
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--gold);
+		margin-bottom: 0.75rem;
+	}
+	.page-top h1 {
+		font-family: var(--font-serif);
+		font-size: clamp(2rem, 5vw, 3.5rem);
+		font-weight: 700;
+		margin-bottom: 0.75rem;
+	}
+	.page-sub {
+		font-size: 1rem;
+		color: rgba(255, 255, 255, 0.7);
+	}
+	.cat-body {
+		background: var(--beige);
+		padding: 3rem var(--section-px) 6rem;
+	}
+	.cat-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+	}
+	.cat-card {
+		background: white;
+		border-radius: var(--radius-lg);
+		padding: 1.5rem 1.75rem;
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		text-decoration: none;
+		box-shadow: var(--shadow-sm);
+		border: 1px solid rgba(0, 0, 0, 0.06);
+		transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+	}
+	.cat-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+		border-color: rgba(200, 169, 106, 0.4);
+	}
+	.cat-initial {
+		width: 48px;
+		height: 48px;
+		background: rgba(15, 61, 62, 0.08);
+		border-radius: var(--radius);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-serif);
+		font-size: 1.3rem;
+		font-weight: 700;
+		color: var(--emerald);
+		flex-shrink: 0;
+	}
+	.cat-info {
+		flex: 1;
+	}
+	.cat-info h3 {
+		font-family: var(--font-serif);
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--dark);
+		margin-bottom: 0.2rem;
+	}
+	.cat-count {
+		font-size: 0.78rem;
+		color: var(--muted);
+	}
+	.cat-arrow {
+		color: var(--muted);
+		flex-shrink: 0;
+		transition: color 0.2s, transform 0.2s;
+	}
+	.cat-card:hover .cat-arrow {
+		color: var(--emerald);
+		transform: translateX(3px);
+	}
+
+	@media (max-width: 768px) {
+		.cat-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
