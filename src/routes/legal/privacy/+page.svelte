@@ -1,8 +1,12 @@
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+</script>
+
 <svelte:head>
 	<title>Privacy Policy — Semberija.app</title>
 </svelte:head>
 
-<div class="legal-top">
+<div class="legal-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="breadcrumb"><a href="/">Semberija.app</a> / Privacy Policy</p>
 		<h1>Privacy Policy</h1>
@@ -10,7 +14,7 @@
 	</div>
 </div>
 
-<div class="legal-body">
+<div class="legal-body reveal-card" use:reveal>
 	<div class="container">
 		<article class="legal-content">
 
@@ -91,7 +95,7 @@
 
 			<h2>8. Contact for Privacy Requests</h2>
 			<p>For privacy related questions please contact:</p>
-			<p><a href="mailto:info@semberija.app">info@semberija.app</a></p>
+			<p><a href="mailto:info@zoemilano.com">info@zoemilano.com</a></p>
 
 		</article>
 

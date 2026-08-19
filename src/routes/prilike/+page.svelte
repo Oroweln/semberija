@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
+	import { reveal } from '$lib/actions/reveal';
 </script>
 
 <svelte:head>
 	<title>{i18n.t.investments.heading} — Semberija.app</title>
 </svelte:head>
 
-<div class="page-top">
+<div class="page-wrap">
+<div class="page-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="page-label">{i18n.t.investments.label}</p>
 		<h1>{i18n.t.investments.heading}</h1>
@@ -14,7 +16,7 @@
 	</div>
 </div>
 
-<div class="opp-body">
+<div class="opp-body reveal-card" use:reveal>
 	<div class="container">
 		<div class="opp-grid">
 			{#each ([
@@ -59,12 +61,29 @@
 		</div>
 	</div>
 </div>
+</div>
 
 <style>
+	.page-wrap {
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1rem, 2.5vw, 1.5rem);
+	}
+
 	.page-top {
-		background: var(--emerald);
+		background: var(--card-blue);
 		color: white;
-		padding: 8rem var(--section-px) 4rem;
+		padding: var(--section-py) var(--section-px);
+		border-radius: var(--radius-bento);
+		box-shadow:
+		inset 0 8px 20px -4px rgba(0,0,0,0.4),
+		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
+		inset 8px 0 20px -10px rgba(0,0,0,0.25),
+		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		border: 1px solid rgba(255,255,255,0.05);
 		position: relative;
 		overflow: hidden;
 	}
@@ -77,7 +96,7 @@
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--gold);
+		color: var(--silver);
 		margin-bottom: 0.75rem;
 	}
 	.page-top h1 {
@@ -91,28 +110,30 @@
 		color: rgba(255, 255, 255, 0.7);
 	}
 	.opp-body {
-		background: var(--beige);
-		padding: 3rem var(--section-px) 6rem;
+		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		padding: var(--section-py) var(--section-px);
+		border-radius: var(--radius-bento);
+		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		border: 1px solid rgba(255,255,255,0.4);
 	}
 	.opp-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr;
 		gap: 1.5rem;
 		margin-bottom: 4rem;
 	}
 	.opp-card {
-		background: white;
+		background: var(--soft-white);
 		border-radius: var(--radius-lg);
 		padding: 2rem;
-		box-shadow: var(--shadow-sm);
-		border: 1px solid rgba(0, 0, 0, 0.06);
+		border: 1px solid rgba(8, 14, 26, 0.05);
 		display: flex;
 		flex-direction: column;
-		transition: transform 0.2s, box-shadow 0.2s;
+		transition: transform 0.2s, background 0.2s;
 	}
 	.opp-card:hover {
 		transform: translateY(-3px);
-		box-shadow: var(--shadow-md);
+		background: white;
 	}
 	.opp-header {
 		display: flex;
@@ -125,12 +146,12 @@
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--emerald);
+		color: var(--navy-mid);
 	}
 	.opp-range {
 		font-size: 0.78rem;
 		font-weight: 600;
-		color: var(--gold);
+		color: var(--silver);
 	}
 	.opp-card h3 {
 		font-family: var(--font-serif);
@@ -152,7 +173,7 @@
 		font-size: 0.85rem;
 		font-weight: 600;
 		color: white;
-		background: var(--emerald);
+		background: var(--card-blue);
 		text-decoration: none;
 		padding: 0.65rem 1rem;
 		border-radius: var(--radius-sm);
@@ -160,32 +181,32 @@
 		transition: background 0.2s;
 	}
 	.opp-btn:hover {
-		background: var(--emerald-light);
+		background: var(--card-blue-light);
 	}
 	.post-opp {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		gap: 4rem;
 		align-items: center;
-		background: white;
+		background: var(--soft-white);
 		border-radius: var(--radius-xl);
 		overflow: hidden;
-		box-shadow: var(--shadow);
+		border: 1px solid rgba(8,14,26,0.05);
 	}
 	.post-img img {
 		width: 100%;
-		height: 360px;
+		height: 220px;
 		object-fit: cover;
 	}
 	.post-text {
-		padding: 3rem;
+		padding: 2rem;
 	}
 	.post-label {
 		font-size: 0.75rem;
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--gold);
+		color: var(--silver);
 		margin-bottom: 0.75rem;
 	}
 	.post-text h2 {
@@ -207,23 +228,28 @@
 		font-size: 0.9rem;
 		font-weight: 600;
 		color: white;
-		background: var(--emerald);
+		background: var(--card-blue);
 		text-decoration: none;
 		padding: 0.75rem 1.75rem;
 		border-radius: var(--radius);
 	}
-	@media (max-width: 768px) {
+	@media (min-width: 600px) {
 		.opp-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	@media (min-width: 768px) {
+		.opp-grid {
+			grid-template-columns: repeat(3, 1fr);
 		}
 		.post-opp {
-			grid-template-columns: 1fr;
+			grid-template-columns: 1fr 1fr;
 		}
 		.post-img img {
-			height: 220px;
+			height: 360px;
 		}
 		.post-text {
-			padding: 2rem;
+			padding: 3rem;
 		}
 	}
 </style>

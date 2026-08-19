@@ -1,3 +1,5 @@
+export const visibleFirmSlugs = ['orao', 'rtv-bn', 'mlijekoprodukt'];
+
 export const domesticFirms = [
 	{
 		id: 1,
@@ -2118,6 +2120,34 @@ export const categories = [
 	{ slug: 'transport', name_sr: 'Transport i logistika', name_en: 'Transport & Logistics' },
 	{ slug: 'mediji', name_sr: 'Mediji', name_en: 'Media' }
 ];
+
+export const investmentCategorySlugs = [
+	'logistika',
+	'poljoprivreda',
+	'proizvodnja',
+	'skladista',
+	'nekretnine',
+	'solarna-energija',
+	'autsorsing',
+	'digitalne-usluge'
+] as const;
+
+export const serviceSlugs = [
+	'web-razvoj',
+	'seo-marketing',
+	'ai-automatizacija',
+	'brendiranje-dizajn',
+	'crm-sistemi',
+	'konsalting'
+] as const;
+
+export const b2bItemSlugs = [
+	'pronadjite-partnera',
+	'pronadjite-distributera',
+	'pronadjite-dobavljaca',
+	'pronadjite-investitora',
+	'dijaspora-mreza'
+] as const;
 
 export const networkingPosts = [
 	{

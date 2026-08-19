@@ -38,12 +38,12 @@
 		gap: 0.3rem;
 		background: repeating-linear-gradient(
 			45deg,
-			rgba(200, 169, 106, 0.06),
-			rgba(200, 169, 106, 0.06) 10px,
-			rgba(200, 169, 106, 0.02) 10px,
-			rgba(200, 169, 106, 0.02) 20px
+			rgba(154, 164, 178, 0.07),
+			rgba(154, 164, 178, 0.07) 10px,
+			rgba(154, 164, 178, 0.02) 10px,
+			rgba(154, 164, 178, 0.02) 20px
 		);
-		border: 1.5px dashed rgba(200, 169, 106, 0.4);
+		border: 1.5px dashed rgba(154, 164, 178, 0.4);
 		border-radius: var(--radius, 10px);
 		color: var(--muted, #6b7280);
 		max-width: 100%;
@@ -55,7 +55,7 @@
 		font-weight: 600;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: var(--gold, #c8a96a);
+		color: var(--silver, #9aa4b2);
 	}
 
 	.ad-dims {

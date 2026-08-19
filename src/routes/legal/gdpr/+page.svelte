@@ -1,8 +1,12 @@
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+</script>
+
 <svelte:head>
 	<title>GDPR Compliance — Semberija.app</title>
 </svelte:head>
 
-<div class="legal-top">
+<div class="legal-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="breadcrumb"><a href="/">Semberija.app</a> / GDPR Compliance</p>
 		<h1>GDPR Compliance</h1>
@@ -10,7 +14,7 @@
 	</div>
 </div>
 
-<div class="legal-body">
+<div class="legal-body reveal-card" use:reveal>
 	<div class="container">
 		<article class="legal-content">
 
@@ -52,7 +56,7 @@
 
 			<h2>Submitting a GDPR Request</h2>
 			<p>All GDPR related requests can be sent to:</p>
-			<p><a href="mailto:info@semberija.app">info@semberija.app</a></p>
+			<p><a href="mailto:info@zoemilano.com">info@zoemilano.com</a></p>
 			<p>We will respond to all legitimate requests within 30 days. In some cases, particularly for complex requests, we may take up to two additional months.</p>
 
 		</article>

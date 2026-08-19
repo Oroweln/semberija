@@ -1,8 +1,12 @@
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+</script>
+
 <svelte:head>
 	<title>Disclaimer — Semberija.app</title>
 </svelte:head>
 
-<div class="legal-top">
+<div class="legal-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="breadcrumb"><a href="/">Semberija.app</a> / Disclaimer</p>
 		<h1>Disclaimer</h1>
@@ -10,7 +14,7 @@
 	</div>
 </div>
 
-<div class="legal-body">
+<div class="legal-body reveal-card" use:reveal>
 	<div class="container">
 		<article class="legal-content">
 
@@ -55,7 +59,7 @@
 			<h2>Contact</h2>
 			<p>For questions or concerns please contact:</p>
 			<p>
-				<a href="mailto:info@semberija.app">info@semberija.app</a><br />
+				<a href="mailto:info@zoemilano.com">info@zoemilano.com</a><br />
 				<a href="https://www.semberija.app">www.semberija.app</a>
 			</p>
 

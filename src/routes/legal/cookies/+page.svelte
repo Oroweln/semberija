@@ -1,8 +1,12 @@
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+</script>
+
 <svelte:head>
 	<title>Cookie Policy — Semberija.app</title>
 </svelte:head>
 
-<div class="legal-top">
+<div class="legal-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="breadcrumb"><a href="/">Semberija.app</a> / Cookie Policy</p>
 		<h1>Cookie Policy</h1>
@@ -10,7 +14,7 @@
 	</div>
 </div>
 
-<div class="legal-body">
+<div class="legal-body reveal-card" use:reveal>
 	<div class="container">
 		<article class="legal-content">
 
@@ -42,7 +46,7 @@
 
 			<h2>Contact</h2>
 			<p>For questions about our use of cookies, please contact:</p>
-			<p><a href="mailto:info@semberija.app">info@semberija.app</a></p>
+			<p><a href="mailto:info@zoemilano.com">info@zoemilano.com</a></p>
 
 		</article>
 

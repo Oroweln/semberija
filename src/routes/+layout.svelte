@@ -26,32 +26,30 @@
 	}
 
 	:global(:root) {
-		/* ── Core palette ── */
-		--navy:        #0a0f1e;
-		--navy-mid:    #0d1526;
-		--navy-light:  #111d35;
-		--blue:        #1a56db;
-		--blue-light:  #2563eb;
-		--cyan:        #06b6d4;
-		--cyan-glow:   rgba(6, 182, 212, 0.18);
-		--graphite:    #1e2535;
-		--graphite-mid:#2a3347;
-		--silver:      #94a3b8;
-		--platinum:    #e2e8f0;
+		/* ── Core palette — deep navy + chrome/silver, drawn from the logo ── */
+		--navy:        #080e1a;
+		--navy-mid:    #0c1526;
+		--navy-light:  #13203a;
+		--navy-deep:   #05090f;
+		--steel:       #24406b;
+		--steel-light: #3a5a8c;
+		--card-blue:       #0d3f7a;
+		--card-blue-light: #1c5aa8;
+		--silver:      #9aa4b2;
+		--silver-glow: rgba(154, 164, 178, 0.16);
+		--graphite:    #1a1f29;
+		--graphite-mid:#242a36;
+		--platinum:    #dde1e7;
 		--white:       #ffffff;
-		--soft-white:  #f8fafc;
-		--gold:        #c8a96a;
-		--gold-light:  #d4ba84;
-		--dark:        #0a0f1e;
-		--dark-mid:    #0d1526;
-		--muted:       #64748b;
-		--success:     #10b981;
+		--soft-white:  #f7f8fa;
+		--canvas:      #40434a;
+		--dark:        #0c1119;
+		--muted:       #626b78;
+		--success:     #3f8f74;
 
-		/* Legacy aliases kept so existing pages don't break */
-		--emerald:       #0d1526;
-		--emerald-light: #111d35;
-		--beige:         #f1f5f9;
-		--beige-dark:    #e2e8f0;
+		/* ── Bento cards ── */
+		--radius-bento: 28px;
+		--shadow-bento: 0 24px 70px rgba(0,0,0,0.35), 0 4px 18px rgba(0,0,0,0.22);
 
 		/* ── Typography ── */
 		--font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -59,20 +57,20 @@
 		--font-serif:   'Plus Jakarta Sans', system-ui, sans-serif;
 
 		/* ── Shape ── */
-		--radius-sm: 6px;
-		--radius:    10px;
-		--radius-lg: 16px;
-		--radius-xl: 24px;
-		--radius-2xl:32px;
+		--radius-sm: 4px;
+		--radius:    8px;
+		--radius-lg: 12px;
+		--radius-xl: 18px;
+		--radius-2xl:24px;
 
 		/* ── Shadow ── */
-		--shadow-sm: 0 1px 4px rgba(0,0,0,0.12);
-		--shadow:    0 2px 12px rgba(0,0,0,0.16);
-		--shadow-md: 0 4px 24px rgba(0,0,0,0.2);
-		--shadow-lg: 0 8px 40px rgba(0,0,0,0.25);
-		--shadow-xl: 0 16px 64px rgba(0,0,0,0.3);
-		--glow-blue: 0 0 24px rgba(26,86,219,0.35);
-		--glow-cyan: 0 0 20px rgba(6,182,212,0.3);
+		--shadow-sm: 0 1px 4px rgba(5,9,15,0.1);
+		--shadow:    0 2px 14px rgba(5,9,15,0.12);
+		--shadow-md: 0 6px 28px rgba(5,9,15,0.14);
+		--shadow-lg: 0 10px 44px rgba(5,9,15,0.18);
+		--shadow-xl: 0 18px 68px rgba(5,9,15,0.22);
+		--glow-blue: 0 4px 24px rgba(8,14,26,0.3);
+		--glow-cyan: 0 0 18px rgba(154,164,178,0.22);
 
 		/* ── Layout ── */
 		--max-w:        1280px;
@@ -89,7 +87,7 @@
 		font-size: 16px;
 		line-height: 1.6;
 		color: var(--dark);
-		background: var(--soft-white);
+		background: var(--canvas);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
@@ -115,5 +113,23 @@
 
 	main {
 		min-height: 100vh;
+	}
+
+	/* ── Scroll-reveal for bento cards ── */
+	:global(.reveal-card) {
+		opacity: 0;
+		transform: translateY(36px) scale(0.98);
+		transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	:global(.reveal-card.reveal-visible) {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		:global(.reveal-card) {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
 	}
 </style>

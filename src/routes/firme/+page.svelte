@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
-	import { domesticFirms, investors, categories } from '$lib/data';
+	import { domesticFirms, investors, categories, visibleFirmSlugs } from '$lib/data';
 	import { page } from '$app/stores';
+	import { reveal } from '$lib/actions/reveal';
+	import AdPlaceholder from '$lib/components/AdPlaceholder.svelte';
 
 	let search = $state('');
 	let activeCategory = $state('');
@@ -23,7 +25,7 @@
 	);
 
 	const filteredLocal = $derived(
-		domesticFirms.filter((c) => {
+		domesticFirms.filter((c) => visibleFirmSlugs.includes(c.slug)).filter((c) => {
 			const name = c.name.toLowerCase();
 			const cat = i18n.lang === 'sr' ? c.category_sr : c.category_en;
 			const matchSearch = !search || name.includes(search.toLowerCase()) || cat.toLowerCase().includes(search.toLowerCase());
@@ -50,7 +52,8 @@
 	<title>{i18n.t.nav.companies} — Semberija.app</title>
 </svelte:head>
 
-<div class="page-top">
+<div class="page-wrap">
+<div class="page-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="page-label">{i18n.t.nav.companies}</p>
 		<h1>
@@ -89,42 +92,38 @@
 					class="search-input"
 				/>
 			</div>
+
+			<div class="cat-select-wrap">
+				<svg class="cat-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<polyline points="6 9 12 15 18 9"/>
+				</svg>
+				<select class="cat-select" bind:value={activeCategory} aria-label={i18n.t.ui.categories}>
+					<option value="">{i18n.t.ui.categories}</option>
+					{#if activeTab === 'local' && activeCats}
+						{#each activeCats as cat}
+							<option value={i18n.lang === 'sr' ? cat.name_sr : cat.name_en}>
+								{i18n.lang === 'sr' ? cat.name_sr : cat.name_en}
+							</option>
+						{/each}
+					{:else}
+						{#each investorCategories as cat}
+							<option value={cat}>{cat}</option>
+						{/each}
+					{/if}
+				</select>
+			</div>
 		</div>
 
-		<div class="cat-filters">
-			<button
-				class="cat-btn"
-				class:active={!activeCategory}
-				onclick={() => (activeCategory = '')}
-			>
-				{i18n.t.ui.all}
-			</button>
-			{#if activeTab === 'local' && activeCats}
-				{#each activeCats as cat}
-					<button
-						class="cat-btn"
-						class:active={activeCategory === (i18n.lang === 'sr' ? cat.name_sr : cat.name_en)}
-						onclick={() => (activeCategory = i18n.lang === 'sr' ? cat.name_sr : cat.name_en)}
-					>
-						{i18n.lang === 'sr' ? cat.name_sr : cat.name_en}
-					</button>
-				{/each}
-			{:else}
-				{#each investorCategories as cat}
-					<button
-						class="cat-btn"
-						class:active={activeCategory === cat}
-						onclick={() => (activeCategory = cat)}
-					>
-						{cat}
-					</button>
-				{/each}
-			{/if}
-		</div>
 	</div>
 </div>
 
-<div class="companies-body">
+<div class="ad-section reveal-card" use:reveal>
+	<div class="container">
+		<AdPlaceholder variant="leaderboard" label="Your advertisement here" />
+	</div>
+</div>
+
+<div class="companies-body reveal-card" use:reveal>
 	<div class="container">
 		{#if filtered.length === 0}
 			<div class="empty">
@@ -157,14 +156,37 @@
 				{/each}
 			</div>
 		{/if}
+
+		<div class="visibility-box">
+			<h2>{i18n.t.companies.visibilityHeading}</h2>
+			<p>{i18n.t.companies.visibilitySub}</p>
+			<a href="/kontakt" class="btn-primary">{i18n.t.ui.contactUs}</a>
+		</div>
 	</div>
+</div>
 </div>
 
 <style>
+	.page-wrap {
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1rem, 2.5vw, 1.5rem);
+	}
+
 	.page-top {
-		background: var(--emerald);
+		background: var(--card-blue);
 		color: white;
-		padding: 8rem var(--section-px) 3rem;
+		padding: var(--section-py) var(--section-px);
+		border-radius: var(--radius-bento);
+		box-shadow:
+		inset 0 8px 20px -4px rgba(0,0,0,0.4),
+		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
+		inset 8px 0 20px -10px rgba(0,0,0,0.25),
+		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		border: 1px solid rgba(255,255,255,0.05);
 	}
 
 	.container {
@@ -177,7 +199,7 @@
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--gold);
+		color: var(--silver);
 		margin-bottom: 0.75rem;
 	}
 
@@ -198,6 +220,7 @@
 	/* ─── TABS ─── */
 	.tabs {
 		display: flex;
+		flex-direction: column;
 		gap: 0.5rem;
 		margin-bottom: 2rem;
 	}
@@ -206,6 +229,7 @@
 		font-family: var(--font-sans);
 		font-size: 0.88rem;
 		font-weight: 600;
+		text-align: center;
 		color: rgba(255, 255, 255, 0.7);
 		background: rgba(255, 255, 255, 0.08);
 		border: 1.5px solid rgba(255, 255, 255, 0.2);
@@ -222,18 +246,22 @@
 	}
 
 	.tab-btn.active {
-		background: var(--gold);
+		background: var(--silver);
 		color: var(--dark);
-		border-color: var(--gold);
+		border-color: var(--silver);
 	}
 
 	/* ─── SEARCH ─── */
 	.search-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
 		margin-bottom: 1.5rem;
 	}
 
 	.search-wrap {
 		position: relative;
+		flex: 1 1 320px;
 		max-width: 480px;
 	}
 
@@ -264,67 +292,106 @@
 
 	.search-input:focus {
 		background: rgba(255, 255, 255, 0.15);
-		border-color: rgba(200, 169, 106, 0.6);
+		border-color: rgba(154,164,178, 0.6);
 	}
 
 	/* ─── CATEGORY FILTER ─── */
-	.cat-filters {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
+	.cat-select-wrap {
+		position: relative;
+		flex: 1 1 220px;
+		max-width: 280px;
 	}
 
-	.cat-btn {
+	.cat-select-icon {
+		position: absolute;
+		right: 0.9rem;
+		top: 50%;
+		transform: translateY(-50%);
+		color: rgba(255, 255, 255, 0.5);
+		pointer-events: none;
+	}
+
+	.cat-select {
+		width: 100%;
+		appearance: none;
+		-webkit-appearance: none;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: var(--radius);
+		color: white;
 		font-family: var(--font-sans);
-		font-size: 0.8rem;
-		font-weight: 500;
-		color: rgba(255, 255, 255, 0.65);
-		background: rgba(255, 255, 255, 0.08);
-		border: 1px solid rgba(255, 255, 255, 0.14);
-		border-radius: 50px;
-		padding: 0.35rem 0.9rem;
+		font-size: 0.95rem;
+		padding: 0.8rem 2.5rem 0.8rem 1rem;
+		outline: none;
 		cursor: pointer;
-		transition: all 0.2s;
+		transition: border-color 0.2s, background 0.2s;
 	}
 
-	.cat-btn:hover,
-	.cat-btn.active {
-		background: var(--gold);
-		color: var(--dark);
-		border-color: var(--gold);
+	.cat-select:hover,
+	.cat-select:focus {
+		background: rgba(255, 255, 255, 0.15);
+		border-color: rgba(154,164,178, 0.6);
+	}
+
+	.cat-select option {
+		background: var(--card-blue);
+		color: white;
+	}
+
+	/* ─── AD ─── */
+	.ad-section {
+		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		padding: 2rem var(--section-px);
+		border-radius: var(--radius-bento);
+		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		border: 1px solid rgba(255,255,255,0.4);
+		display: flex;
+		justify-content: center;
+	}
+
+	.ad-section .container {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.ad-section :global(.ad-placeholder) {
+		max-width: 960px;
 	}
 
 	/* ─── GRID ─── */
 	.companies-body {
-		background: var(--beige);
-		padding: 3rem var(--section-px) 5rem;
+		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		padding: var(--section-py) var(--section-px);
+		border-radius: var(--radius-bento);
+		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		border: 1px solid rgba(255,255,255,0.4);
 	}
 
 	.companies-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr;
 		gap: 1.25rem;
 	}
 
 	.company-card {
-		background: white;
+		background: var(--soft-white);
 		border-radius: var(--radius-lg);
 		padding: 1.75rem;
-		box-shadow: var(--shadow-sm);
-		border: 1px solid rgba(0, 0, 0, 0.06);
+		border: 1px solid rgba(8, 14, 26, 0.05);
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		transition: transform 0.25s, box-shadow 0.25s;
+		transition: transform 0.25s, background 0.25s;
 	}
 
 	.company-card:hover {
 		transform: translateY(-3px);
-		box-shadow: var(--shadow-md);
+		background: white;
 	}
 
 	.company-card.featured {
-		border-color: rgba(200, 169, 106, 0.3);
+		border-color: rgba(154,164,178, 0.3);
 	}
 
 	.featured-badge {
@@ -336,7 +403,7 @@
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--dark);
-		background: var(--gold);
+		background: var(--silver);
 		padding: 0.2rem 0.55rem;
 		border-radius: 4px;
 	}
@@ -371,7 +438,7 @@
 	.company-category {
 		font-size: 0.72rem;
 		font-weight: 600;
-		color: var(--emerald);
+		color: var(--navy-mid);
 	}
 
 	.company-city {
@@ -399,7 +466,7 @@
 		display: block;
 		font-size: 0.8rem;
 		font-weight: 600;
-		color: var(--emerald);
+		color: var(--navy-mid);
 		background: rgba(15, 61, 62, 0.06);
 		text-decoration: none;
 		padding: 0.5rem 1rem;
@@ -418,21 +485,74 @@
 		color: var(--muted);
 	}
 
-	@media (max-width: 1024px) {
+	.visibility-box {
+		text-align: center;
+		background: var(--card-blue);
+		border-radius: var(--radius-xl);
+		padding: 3.5rem 2rem;
+		margin-top: 3rem;
+		color: white;
+		box-shadow:
+			inset 0 8px 20px -4px rgba(0,0,0,0.4),
+			inset 0 -2px 6px -2px rgba(255,255,255,0.05),
+			inset 8px 0 20px -10px rgba(0,0,0,0.25),
+			inset -8px 0 20px -10px rgba(0,0,0,0.25);
+	}
+
+	.visibility-box h2 {
+		font-family: var(--font-serif);
+		font-size: clamp(1.4rem, 3vw, 2rem);
+		font-weight: 700;
+		margin-bottom: 0.75rem;
+	}
+
+	.visibility-box p {
+		font-size: 0.95rem;
+		color: rgba(255,255,255,0.6);
+		margin-bottom: 2rem;
+		max-width: 480px;
+		margin-left: auto;
+		margin-right: auto;
+		line-height: 1.6;
+	}
+
+	.visibility-box .btn-primary {
+		display: inline-flex;
+		font-family: var(--font-sans);
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--navy);
+		background: linear-gradient(135deg, var(--platinum), var(--silver));
+		text-decoration: none;
+		padding: 0.75rem 1.75rem;
+		border-radius: 10px;
+		transition: opacity 0.2s, transform 0.2s;
+		box-shadow: 0 5px 20px rgba(5,9,15,0.24);
+	}
+
+	.visibility-box .btn-primary:hover {
+		opacity: 0.9;
+		transform: translateY(-2px);
+	}
+
+	@media (min-width: 480px) {
+		.tabs {
+			flex-direction: row;
+		}
+		.tab-btn {
+			text-align: left;
+		}
+	}
+
+	@media (min-width: 600px) {
 		.companies-grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
-	@media (max-width: 600px) {
+	@media (min-width: 1024px) {
 		.companies-grid {
-			grid-template-columns: 1fr;
-		}
-		.tabs {
-			flex-direction: column;
-		}
-		.tab-btn {
-			text-align: center;
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 </style>

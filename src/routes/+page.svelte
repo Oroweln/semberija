@@ -1,149 +1,71 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
-	import { domesticFirms as companies } from '$lib/data';
-	import { onMount, onDestroy } from 'svelte';
+	import { domesticFirms as companies, visibleFirmSlugs } from '$lib/data';
+	import { onMount } from 'svelte';
+	import { reveal } from '$lib/actions/reveal';
+	import AdPlaceholder from '$lib/components/AdPlaceholder.svelte';
+	import { investmentCategorySlugs, b2bItemSlugs } from '$lib/data';
 
-	let heroCanvas: HTMLCanvasElement;
-	let renderer: import('three').WebGLRenderer | null = null;
-	let animId: number;
+	const investCats = $derived(
+		i18n.t.investments.categories.map((cat, i) => ({ ...cat, slug: investmentCategorySlugs[i] }))
+	);
+
+	const b2bItems = $derived(
+		i18n.t.b2b.items.map((item, i) => ({ ...item, slug: b2bItemSlugs[i] }))
+	);
+
+	const visibleCompanies = $derived(companies.filter(c => visibleFirmSlugs.includes(c.slug)));
+
+	let companiesSection: HTMLElement;
+	let companiesRevealed = $state(false);
 
 	onMount(() => {
-		let onResize: () => void;
-
-		(async () => {
-		const THREE = await import('three');
-		const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
-		const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
-		const { RoomEnvironment } = await import('three/examples/jsm/environments/RoomEnvironment.js');
-
-		const scene = new THREE.Scene();
-		scene.background = new THREE.Color(0x040c2e);
-
-		const getCameraZ = () => window.innerWidth < 700 ? 30 : 18;
-
-		const camera = new THREE.PerspectiveCamera(55, heroCanvas.offsetWidth / heroCanvas.offsetHeight, 0.1, 1000);
-		camera.position.set(0, 4, getCameraZ());
-		camera.lookAt(0, 0, 0);
-
-		renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true });
-		renderer.setSize(heroCanvas.offsetWidth, heroCanvas.offsetHeight);
-		renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-		renderer.toneMapping = THREE.ACESFilmicToneMapping;
-		renderer.toneMappingExposure = 1.2;
-
-		// Bake a basic room environment so metalness has something to reflect
-		const pmrem = new THREE.PMREMGenerator(renderer);
-		scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-		pmrem.dispose();
-
-		const controls = new OrbitControls(camera, heroCanvas);
-		controls.enableDamping = true;
-		controls.dampingFactor = 0.06;
-		controls.minDistance = 5;
-		controls.maxDistance = 40;
-		controls.enableZoom = true;
-		controls.zoomSpeed = 0.8;
-
-		scene.add(new THREE.AmbientLight(0xffffff, 2));
-		const keyLight = new THREE.PointLight(0xfff5e0, 3, 200);
-		keyLight.position.set(12, 8, 10);
-		scene.add(keyLight);
-		const fillLight = new THREE.PointLight(0x3a7bd5, 0.6, 200);
-		fillLight.position.set(-10, -4, 6);
-		scene.add(fillLight);
-
-		const starGeo = new THREE.BufferGeometry();
-		const starPositions = new Float32Array(3600);
-		for (let i = 0; i < 3600; i++) starPositions[i] = (Math.random() - 0.5) * 400;
-		starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-		scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.18, sizeAttenuation: true })));
-
-		const loader = new GLTFLoader();
-		const loadModel = (url: string) =>
-			new Promise<import('three').Group>((resolve, reject) => loader.load(url, g => resolve(g.scene), undefined, reject));
-
-		const [mapGltf, grbGltf] = await Promise.all([
-			loadModel('/semberijamap.glb'),
-			loadModel('/semberijagrb.glb')
-		]);
-
-		const planet = mapGltf;
-		const planetMat = new THREE.MeshPhysicalMaterial({
-    color: 0xe0e0e0,      // Svetlo siva
-    metalness: 1.0,       // Puna metalnost
-    roughness: 0.15,      // Mala hrapavost za blagi sjaj
-    envMapIntensity: 1.0, // Jačina refleksije okruženja
-    clearcoat: 0.5        // Dodaje "lak" preko metala za dublji sjaj
-});
-		planet.traverse(obj => {
-			if ((obj as import('three').Mesh).isMesh) (obj as import('three').Mesh).material = planetMat;
-		});
-		const planetBox = new THREE.Box3().setFromObject(planet);
-		const planetSize = new THREE.Vector3();
-		planetBox.getSize(planetSize);
-		planet.scale.setScalar(4.4 / Math.max(planetSize.x, planetSize.y, planetSize.z));
-		const planetPivot = new THREE.Group();
-		const planetCenter = new THREE.Vector3();
-		new THREE.Box3().setFromObject(planet).getCenter(planetCenter);
-		planet.position.set(-planetCenter.x, -planetCenter.y, -planetCenter.z);
-		planetPivot.add(planet);
-		scene.add(planetPivot);
-
-		const ORBIT_RADIUS = 8.5;
-		const orbitPivot = new THREE.Object3D();
-		orbitPivot.rotation.x = 0.28;
-		scene.add(orbitPivot);
-
-		const moon = grbGltf;
-		const moonBox = new THREE.Box3().setFromObject(moon);
-		const moonSize = new THREE.Vector3();
-		moonBox.getSize(moonSize);
-		moon.scale.setScalar(1.0 / Math.max(moonSize.x, moonSize.y, moonSize.z));
-		const moonWrapper = new THREE.Group();
-		const moonCenter = new THREE.Vector3();
-		new THREE.Box3().setFromObject(moon).getCenter(moonCenter);
-		moon.position.set(-moonCenter.x, -moonCenter.y, -moonCenter.z);
-		moonWrapper.add(moon);
-		moonWrapper.position.set(ORBIT_RADIUS, 0, 0);
-		orbitPivot.add(moonWrapper);
-
-		const ring = new THREE.Mesh(
-			new THREE.RingGeometry(ORBIT_RADIUS - 0.05, ORBIT_RADIUS + 0.05, 128),
-			new THREE.MeshBasicMaterial({ color: 0x06b6d4, side: THREE.DoubleSide, transparent: true, opacity: 0.15 })
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting) {
+					companiesRevealed = true;
+					observer.disconnect();
+				}
+			},
+			{ threshold: 0.15 }
 		);
-		ring.rotation.x = Math.PI / 2;
-		orbitPivot.add(ring);
-
-		function animate() {
-			animId = requestAnimationFrame(animate);
-			planetPivot.rotation.y += 0.0018;
-			orbitPivot.rotation.y += 0.006;
-			moonWrapper.rotation.y += 0.008;
-			controls.update();
-			renderer!.render(scene, camera);
-		}
-		animate();
-
-		onResize = () => {
-			if (!renderer) return;
-			camera.aspect = heroCanvas.offsetWidth / heroCanvas.offsetHeight;
-			camera.position.z = getCameraZ();
-			camera.updateProjectionMatrix();
-			renderer.setSize(heroCanvas.offsetWidth, heroCanvas.offsetHeight);
-		};
-		window.addEventListener('resize', onResize);
-		})();
-
-		return () => { if (onResize) window.removeEventListener('resize', onResize); };
+		observer.observe(companiesSection);
+		return () => observer.disconnect();
 	});
 
-	onDestroy(() => {
-		if (typeof window === 'undefined') return;
-		cancelAnimationFrame(animId);
-		renderer?.dispose();
-	});
+	function parseStatValue(v: string) {
+		const m = v.match(/^(\d+)(.*)$/);
+		return m ? { num: parseInt(m[1], 10), suffix: m[2] } : null;
+	}
 
-	const featuredCompanies = $derived(companies.filter(c => c.featured).slice(0, 6));
+	const statsParsed = $derived(i18n.t.stats.map((s) => parseStatValue(s.value)));
+
+	let statsSection: HTMLElement;
+	let statsCounts = $state<number[]>([0, 0, 0, 0]);
+
+	onMount(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (!entries[0].isIntersecting) return;
+				observer.disconnect();
+
+				const duration = 1600;
+				const startTime = performance.now();
+				const targets = i18n.t.stats.map((s) => parseStatValue(s.value)?.num ?? 0);
+
+				function tick(now: number) {
+					const progress = Math.min((now - startTime) / duration, 1);
+					const eased = 1 - Math.pow(1 - progress, 3);
+					statsCounts = targets.map((t) => Math.round(t * eased));
+					if (progress < 1) requestAnimationFrame(tick);
+				}
+				requestAnimationFrame(tick);
+			},
+			{ threshold: 0.4 }
+		);
+		observer.observe(statsSection);
+		return () => observer.disconnect();
+	});
 </script>
 
 <svelte:head>
@@ -151,231 +73,306 @@
 	<meta name="description" content={i18n.t.hero.sub} />
 </svelte:head>
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-	<canvas bind:this={heroCanvas} class="hero-canvas"></canvas>
-	<div class="hero-overlay"></div>
+<div class="home-wrap">
 
-	<div class="hero-content">
-		<span class="hero-tag">{i18n.t.hero.tag}</span>
-		<h1 class="hero-headline">{i18n.t.hero.headline}</h1>
-		<p class="hero-sub">{i18n.t.hero.sub}</p>
-		<div class="hero-btns">
-			<a href="/mreza" class="btn-primary">{i18n.t.hero.ctaNetwork}</a>
-			<a href="/firme" class="btn-ghost">{i18n.t.hero.ctaCompanies}</a>
-			<a href="/investicije" class="btn-ghost">{i18n.t.hero.ctaInvest}</a>
-		</div>
-	</div>
+	<!-- ─── HERO BENTO ─── -->
+	<section class="bento hero-bento reveal-card" use:reveal>
+		<video class="hero-video" src="/hero-video.mp4" autoplay muted loop playsinline></video>
+		<div class="hero-blur"></div>
+		<div class="hero-overlay"></div>
 
-	<button
-		class="hero-scroll"
-		onclick={() => document.getElementById('below-hero')?.scrollIntoView({ behavior: 'smooth' })}
-	>
-		<span class="hero-scroll-label">{i18n.t.ui.explore}</span>
-		<span class="hero-scroll-line"></span>
-	</button>
-</section>
-
-<!-- ─── STATS ─── -->
-<section class="stats-bar" id="below-hero">
-	{#each i18n.t.stats as stat}
-		<div class="stat-item">
-			<span class="stat-value">{stat.value}</span>
-			<span class="stat-label">{stat.label}</span>
-		</div>
-	{/each}
-</section>
-
-<!-- ─── WHY SEMBERIJA ─── -->
-<section class="section section-light">
-	<div class="container">
-		<div class="section-header">
-			<span class="section-tag">{i18n.t.why.label}</span>
-			<h2>{i18n.t.why.heading}</h2>
-		</div>
-		<div class="why-grid">
-			{#each i18n.t.why.items as item}
-				<div class="why-card">
-					<div class="why-icon">
-						{#if item.icon === 'location'}
-							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-						{:else if item.icon === 'growth'}
-							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-						{:else if item.icon === 'agriculture'}
-							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-						{:else if item.icon === 'diaspora'}
-							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-						{:else}
-							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-						{/if}
-					</div>
-					<h3>{item.title}</h3>
-					<p>{item.desc}</p>
-				</div>
-			{/each}
-		</div>
-	</div>
-</section>
-
-<!-- ─── NETWORK ─── -->
-<section class="section section-dark">
-	<div class="container">
-		<div class="section-header section-header-light">
-			<span class="section-tag-light">{i18n.t.network.label}</span>
-			<h2>{i18n.t.network.heading}</h2>
-			<p class="section-sub-light">{i18n.t.network.sub}</p>
-		</div>
-		<div class="network-grid">
-			{#each i18n.t.network.items as item, i}
-				<div class="network-card">
-					<div class="network-num">0{i + 1}</div>
-					<h3>{item.title}</h3>
-					<p>{item.desc}</p>
-				</div>
-			{/each}
-		</div>
-		<div class="section-cta">
-			<a href="/mreza" class="btn-primary">{i18n.t.hero.ctaNetwork}</a>
-		</div>
-	</div>
-</section>
-
-<!-- ─── FEATURED COMPANIES ─── -->
-<section class="section section-light">
-	<div class="container">
-		<div class="section-header">
-			<span class="section-tag">{i18n.t.companies.heading}</span>
-			<h2>{i18n.t.companies.heading}</h2>
-			<p class="section-sub">{i18n.t.companies.sub}</p>
-		</div>
-		<div class="companies-grid">
-			{#each featuredCompanies as company}
-				<article class="company-card">
-					<div class="company-top">
-						<div class="company-avatar" style="background: {company.color}">
-							{company.initials}
-						</div>
-						<div class="company-meta">
-							<span class="company-category">{i18n.lang === 'sr' ? company.category_sr : company.category_en}</span>
-							<span class="company-city">{company.city}</span>
-						</div>
-					</div>
-					<h3 class="company-name">{company.name}</h3>
-					<p class="company-desc">{i18n.lang === 'sr' ? company.desc_sr : company.desc_en}</p>
-					<a href="/kontakt" class="company-btn">{i18n.t.companies.inquire}</a>
-				</article>
-			{/each}
-		</div>
-		<div class="section-cta">
-			<a href="/firme" class="btn-outline">{i18n.t.companies.viewAll}</a>
-		</div>
-	</div>
-</section>
-
-<!-- ─── INVESTMENTS ─── -->
-<section class="section section-navy">
-	<div class="container">
-		<div class="section-header section-header-light">
-			<span class="section-tag-light">{i18n.t.investments.label}</span>
-			<h2>{i18n.t.investments.heading}</h2>
-			<p class="section-sub-light">{i18n.t.investments.sub}</p>
-		</div>
-		<div class="invest-grid">
-			{#each i18n.t.investments.categories as cat}
-				<a href="/investicije" class="invest-chip">{cat}</a>
-			{/each}
-		</div>
-		<div class="section-cta">
-			<a href="/investicije" class="btn-primary">{i18n.t.investments.cta}</a>
-		</div>
-	</div>
-</section>
-
-<!-- ─── DIASPORA ─── -->
-<section class="section section-light">
-	<div class="container diaspora-layout">
-		<div class="diaspora-text">
-			<span class="section-tag">{i18n.t.diaspora.label}</span>
-			<h2>{i18n.t.diaspora.heading}</h2>
-			<p class="section-sub">{i18n.t.diaspora.sub}</p>
-			<ul class="diaspora-list">
-				{#each i18n.t.diaspora.items as item}
-					<li>
-						<span class="diaspora-dot"></span>
-						{item}
-					</li>
-				{/each}
-			</ul>
-			<a href="/dijaspora" class="btn-primary">{i18n.t.diaspora.cta}</a>
-		</div>
-		<div class="diaspora-visual">
-			<div class="diaspora-globe">
-				<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="100" cy="100" r="90" stroke="rgba(6,182,212,0.2)" stroke-width="1"/>
-					<circle cx="100" cy="100" r="70" stroke="rgba(6,182,212,0.15)" stroke-width="1"/>
-					<circle cx="100" cy="100" r="50" stroke="rgba(6,182,212,0.1)" stroke-width="1"/>
-					<ellipse cx="100" cy="100" rx="90" ry="35" stroke="rgba(6,182,212,0.15)" stroke-width="1"/>
-					<ellipse cx="100" cy="100" rx="90" ry="65" stroke="rgba(6,182,212,0.1)" stroke-width="1"/>
-					<line x1="100" y1="10" x2="100" y2="190" stroke="rgba(6,182,212,0.12)" stroke-width="1"/>
-					{#each [30, 60, 120, 150] as x}
-						<line x1={x} y1="10" x2={x} y2="190" stroke="rgba(6,182,212,0.08)" stroke-width="1"/>
-					{/each}
-					<circle cx="100" cy="100" r="6" fill="var(--cyan)" opacity="0.8"/>
-					<circle cx="60" cy="70" r="4" fill="var(--blue-light)" opacity="0.6"/>
-					<circle cx="145" cy="65" r="4" fill="var(--blue-light)" opacity="0.6"/>
-					<circle cx="130" cy="135" r="4" fill="var(--blue-light)" opacity="0.6"/>
-					<circle cx="55" cy="140" r="4" fill="var(--blue-light)" opacity="0.6"/>
-					<line x1="100" y1="100" x2="60" y2="70" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
-					<line x1="100" y1="100" x2="145" y2="65" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
-					<line x1="100" y1="100" x2="130" y2="135" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
-					<line x1="100" y1="100" x2="55" y2="140" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
-				</svg>
+		<div class="hero-content">
+			<span class="hero-tag">{i18n.t.hero.tag}</span>
+			<h1 class="hero-headline">{i18n.t.hero.headline}</h1>
+			<p class="hero-sub">{i18n.t.hero.sub}</p>
+			<div class="hero-btns">
+				<a href="/mreza" class="btn-primary">{i18n.t.hero.ctaNetwork}</a>
+				<a href="/firme" class="btn-ghost">{i18n.t.hero.ctaCompanies}</a>
+				<a href="/investicije" class="btn-ghost">{i18n.t.hero.ctaInvest}</a>
 			</div>
 		</div>
-	</div>
-</section>
 
-<!-- ─── DIGITAL SERVICES ─── -->
-<section class="section section-dark">
-	<div class="container">
-		<div class="section-header section-header-light">
-			<span class="section-tag-light">{i18n.t.services.label}</span>
-			<h2>{i18n.t.services.heading}</h2>
-			<p class="section-sub-light">{i18n.t.services.sub}</p>
+		<button
+			class="hero-scroll"
+			onclick={() => document.getElementById('below-hero')?.scrollIntoView({ behavior: 'smooth' })}
+		>
+			<span class="hero-scroll-label">{i18n.t.ui.explore}</span>
+			<span class="hero-scroll-line"></span>
+		</button>
+	</section>
+
+	<!-- ─── STATS ─── -->
+	<div class="stats-bento" id="below-hero" bind:this={statsSection}>
+		{#each i18n.t.stats as stat, i}
+			<div class="stat-tile reveal-card" use:reveal={{ delay: i * 90 }}>
+				<span class="stat-value">
+					{#if statsParsed[i]}
+						{statsCounts[i]}{statsParsed[i]?.suffix}
+					{:else}
+						{stat.value}
+					{/if}
+				</span>
+				<span class="stat-label">{stat.label}</span>
+			</div>
+		{/each}
+	</div>
+
+	<!-- ─── AD: LEADERBOARD ─── -->
+	<section class="bento bento-light ad-section reveal-card" use:reveal>
+		<div class="container">
+			<AdPlaceholder variant="leaderboard" label="Your advertisement here" />
 		</div>
-		<div class="services-grid">
-			{#each i18n.t.services.items as svc, i}
-				<div class="service-card">
-					<div class="service-num">0{i + 1}</div>
-					<h3>{svc.title}</h3>
-					<p>{svc.desc}</p>
+	</section>
+
+	<!-- ─── WHY SEMBERIJA ─── -->
+	<section class="bento bento-light reveal-card" use:reveal>
+		<div class="container">
+			<div class="section-header">
+				<span class="section-tag">{i18n.t.why.label}</span>
+				<h2>{i18n.t.why.heading}</h2>
+			</div>
+			<div class="why-grid">
+				{#each i18n.t.why.items as item}
+					<div class="why-card">
+						<div class="why-icon">
+							{#if item.icon === 'location'}
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+							{:else if item.icon === 'growth'}
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+							{:else if item.icon === 'agriculture'}
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+							{:else if item.icon === 'diaspora'}
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+							{:else}
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+							{/if}
+						</div>
+						<h3>{item.title}</h3>
+						<p>{item.desc}</p>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── NETWORK ─── -->
+	<section class="bento bento-dark reveal-card" use:reveal>
+		<div class="container">
+			<div class="section-header section-header-light">
+				<span class="section-tag-light">{i18n.t.network.label}</span>
+				<h2>{i18n.t.network.heading}</h2>
+				<p class="section-sub-light">{i18n.t.network.sub}</p>
+			</div>
+			<div class="network-grid">
+				{#each i18n.t.network.items as item, i}
+					<div class="network-card">
+						<div class="network-num">0{i + 1}</div>
+						<h3>{item.title}</h3>
+						<p>{item.desc}</p>
+					</div>
+				{/each}
+			</div>
+			<div class="section-cta">
+				<a href="/mreza" class="btn-primary">{i18n.t.hero.ctaNetwork}</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── FEATURED COMPANIES ─── -->
+	<section class="bento bento-light companies-section reveal-card" use:reveal bind:this={companiesSection} class:revealed={companiesRevealed}>
+		<div class="container">
+			<div class="section-header">
+				<span class="section-tag">{i18n.t.companies.label}</span>
+				<h2>{i18n.t.companies.heading}</h2>
+				<p class="section-sub">{i18n.t.companies.sub}</p>
+			</div>
+			<div class="companies-grid">
+				{#each visibleCompanies as company}
+					<article class="company-card">
+						<div class="company-top">
+							<div class="company-avatar" style="background: {company.color}">
+								{company.initials}
+							</div>
+							<div class="company-meta">
+								<span class="company-category">{i18n.lang === 'sr' ? company.category_sr : company.category_en}</span>
+								<span class="company-city">{company.city}</span>
+							</div>
+						</div>
+						<h3 class="company-name">{company.name}</h3>
+						<p class="company-desc">{i18n.lang === 'sr' ? company.desc_sr : company.desc_en}</p>
+						<a href="/kontakt" class="company-btn">
+							{i18n.t.companies.inquire}
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+						</a>
+					</article>
+				{/each}
+			</div>
+			<div class="section-cta">
+				<a href="/firme" class="btn-outline">{i18n.t.companies.viewAll}</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── AD: BANNER ─── -->
+	<section class="bento bento-dark ad-section reveal-card" use:reveal>
+		<div class="container">
+			<AdPlaceholder variant="banner" label="Your advertisement here" />
+		</div>
+	</section>
+
+	<!-- ─── INVESTMENTS ─── -->
+	<section class="bento bento-dark investments-section reveal-card" use:reveal>
+		<div class="investments-glow"></div>
+		<div class="container">
+			<div class="section-header section-header-light">
+				<span class="section-tag-light">{i18n.t.investments.label}</span>
+				<h2>{i18n.t.investments.heading}</h2>
+				<p class="section-sub-light">{i18n.t.investments.sub}</p>
+			</div>
+			<div class="invest-marquee">
+				<div class="invest-track">
+					{#each [...investCats, ...investCats] as cat}
+						<a href="/investicije/{cat.slug}" class="invest-chip">
+							<span class="invest-chip-dot"></span>
+							{cat.name}
+							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M7 7h10v10"/></svg>
+						</a>
+					{/each}
 				</div>
-			{/each}
+			</div>
+			<div class="section-cta">
+				<a href="/investicije" class="btn-primary">{i18n.t.investments.cta}</a>
+			</div>
 		</div>
-		<div class="section-cta">
-			<a href="/usluge" class="btn-primary">{i18n.t.services.label}</a>
-		</div>
-	</div>
-</section>
+	</section>
 
-<!-- ─── FINAL CTA ─── -->
-<section class="cta-section">
-	<div class="cta-glow"></div>
-	<div class="container cta-inner">
-		<h2>{i18n.t.cta.heading}</h2>
-		<p>{i18n.t.cta.sub}</p>
-		<a href="/kontakt" class="btn-primary btn-lg">{i18n.t.cta.btn}</a>
-	</div>
-</section>
+	<!-- ─── DIASPORA ─── -->
+	<section class="bento bento-light reveal-card" use:reveal>
+		<div class="container diaspora-layout">
+			<div class="diaspora-text">
+				<span class="section-tag">{i18n.t.b2b.label}</span>
+				<h2>{i18n.t.b2b.heading}</h2>
+				<p class="section-sub">{i18n.t.b2b.sub}</p>
+				<ul class="diaspora-list">
+					{#each b2bItems as item}
+						<li>
+							<a href="/b2b/{item.slug}">
+								<span class="diaspora-dot"></span>
+								{item.title}
+							</a>
+						</li>
+					{/each}
+				</ul>
+				<a href="/b2b" class="btn-primary">{i18n.t.b2b.cta}</a>
+			</div>
+			<div class="diaspora-visual">
+				<div class="diaspora-globe">
+					<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="100" cy="100" r="90" stroke="rgba(154,164,178,0.2)" stroke-width="1"/>
+						<circle cx="100" cy="100" r="70" stroke="rgba(154,164,178,0.15)" stroke-width="1"/>
+						<circle cx="100" cy="100" r="50" stroke="rgba(154,164,178,0.1)" stroke-width="1"/>
+						<ellipse cx="100" cy="100" rx="90" ry="35" stroke="rgba(154,164,178,0.15)" stroke-width="1"/>
+						<ellipse cx="100" cy="100" rx="90" ry="65" stroke="rgba(154,164,178,0.1)" stroke-width="1"/>
+						<line x1="100" y1="10" x2="100" y2="190" stroke="rgba(154,164,178,0.12)" stroke-width="1"/>
+						{#each [30, 60, 120, 150] as x}
+							<line x1={x} y1="10" x2={x} y2="190" stroke="rgba(154,164,178,0.08)" stroke-width="1"/>
+						{/each}
+						<circle cx="100" cy="100" r="6" fill="var(--steel)" opacity="0.8"/>
+						<circle cx="60" cy="70" r="4" fill="var(--steel-light)" opacity="0.6"/>
+						<circle cx="145" cy="65" r="4" fill="var(--steel-light)" opacity="0.6"/>
+						<circle cx="130" cy="135" r="4" fill="var(--steel-light)" opacity="0.6"/>
+						<circle cx="55" cy="140" r="4" fill="var(--steel-light)" opacity="0.6"/>
+						<line x1="100" y1="100" x2="60" y2="70" stroke="rgba(36,64,107,0.4)" stroke-width="1.5"/>
+						<line x1="100" y1="100" x2="145" y2="65" stroke="rgba(36,64,107,0.4)" stroke-width="1.5"/>
+						<line x1="100" y1="100" x2="130" y2="135" stroke="rgba(36,64,107,0.4)" stroke-width="1.5"/>
+						<line x1="100" y1="100" x2="55" y2="140" stroke="rgba(36,64,107,0.4)" stroke-width="1.5"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── AD: SQUARE PAIR ─── -->
+	<section class="bento bento-light ad-section ad-section-split reveal-card" use:reveal>
+		<div class="container ad-split-grid">
+			<AdPlaceholder variant="square" label="Your advertisement here" />
+			<AdPlaceholder variant="square" label="Your advertisement here" />
+		</div>
+	</section>
+
+	<!-- ─── DIGITAL SERVICES ─── -->
+	<section class="bento bento-dark reveal-card" use:reveal>
+		<div class="container">
+			<div class="section-header section-header-light">
+				<span class="section-tag-light">{i18n.t.services.label}</span>
+				<h2>{i18n.t.services.heading}</h2>
+				<p class="section-sub-light">{i18n.t.services.sub}</p>
+			</div>
+			<div class="services-grid">
+				{#each i18n.t.services.items as svc, i}
+					<div class="service-card">
+						<div class="service-num"><span>0{i + 1}</span></div>
+						<h3>{svc.title}</h3>
+						<p>{svc.desc}</p>
+					</div>
+				{/each}
+			</div>
+			<div class="section-cta">
+				<a href="/usluge" class="btn-primary">{i18n.t.services.cta}</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── FINAL CTA ─── -->
+	<section class="bento bento-dark cta-bento reveal-card" use:reveal>
+		<div class="cta-glow"></div>
+		<div class="cta-inner">
+			<h2>{i18n.t.cta.heading}</h2>
+			<p>{i18n.t.cta.sub}</p>
+			<a href="/kontakt" class="btn-primary btn-lg">{i18n.t.cta.btn}</a>
+		</div>
+	</section>
+
+</div>
 
 <style>
-	/* ── Shared ── */
-	.container { max-width: var(--max-w); margin: 0 auto; }
+	/* ── Page canvas ── */
+	.home-wrap {
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1rem, 2.5vw, 1.5rem);
+	}
 
-	.section { padding: var(--section-py) var(--section-px); }
-	.section-light { background: var(--soft-white); }
-	.section-dark  { background: var(--navy-mid); color: white; }
-	.section-navy  { background: var(--navy); color: white; }
+	/* ── Bento card base ── */
+	.bento {
+		position: relative;
+		border-radius: var(--radius-bento);
+		overflow: hidden;
+		box-shadow: var(--shadow-bento);
+	}
+	.bento-light {
+		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		color: var(--dark);
+		padding: var(--section-py) var(--section-px);
+		border: 1px solid rgba(255,255,255,0.4);
+		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+	}
+	.bento-dark {
+		background: var(--card-blue);
+		color: white;
+		padding: var(--section-py) var(--section-px);
+		border: 1px solid rgba(255,255,255,0.05);
+		box-shadow:
+			inset 0 8px 20px -4px rgba(0,0,0,0.4),
+			inset 0 -2px 6px -2px rgba(255,255,255,0.05),
+			inset 8px 0 20px -10px rgba(0,0,0,0.25),
+			inset -8px 0 20px -10px rgba(0,0,0,0.25);
+	}
+
+	.container { max-width: var(--max-w); margin: 0 auto; }
 
 	.section-header {
 		text-align: center;
@@ -390,9 +387,9 @@
 		font-weight: 700;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--blue);
-		background: rgba(26,86,219,0.08);
-		border: 1px solid rgba(26,86,219,0.2);
+		color: var(--steel);
+		background: rgba(36,64,107,0.08);
+		border: 1px solid rgba(36,64,107,0.2);
 		padding: 0.25rem 0.75rem;
 		border-radius: 50px;
 		margin-bottom: 1rem;
@@ -403,9 +400,9 @@
 		font-weight: 700;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--cyan);
-		background: rgba(6,182,212,0.1);
-		border: 1px solid rgba(6,182,212,0.25);
+		color: var(--silver);
+		background: rgba(154,164,178,0.1);
+		border: 1px solid rgba(154,164,178,0.25);
 		padding: 0.25rem 0.75rem;
 		border-radius: 50px;
 		margin-bottom: 1rem;
@@ -431,27 +428,29 @@
 	.btn-primary {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
 		font-family: var(--font-sans);
 		font-size: 0.9rem;
 		font-weight: 600;
 		color: var(--navy);
-		background: linear-gradient(135deg, var(--cyan), var(--blue-light));
+		background: linear-gradient(135deg, var(--platinum), var(--silver));
 		text-decoration: none;
 		padding: 0.75rem 1.75rem;
 		border-radius: 10px;
 		transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-		box-shadow: 0 0 20px rgba(6,182,212,0.25);
+		box-shadow: 0 4px 20px rgba(5,9,15,0.22);
 	}
 	.btn-primary:hover {
 		opacity: 0.92;
 		transform: translateY(-2px);
-		box-shadow: 0 0 32px rgba(6,182,212,0.5);
+		box-shadow: 0 8px 28px rgba(5,9,15,0.3);
 	}
 	.btn-primary.btn-lg { padding: 1rem 2.5rem; font-size: 1rem; }
 
 	.btn-ghost {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
 		font-family: var(--font-sans);
 		font-size: 0.9rem;
 		font-weight: 500;
@@ -475,47 +474,53 @@
 		font-family: var(--font-sans);
 		font-size: 0.9rem;
 		font-weight: 600;
-		color: var(--blue);
+		color: var(--steel);
 		background: transparent;
-		border: 1.5px solid var(--blue);
+		border: 1.5px solid var(--steel);
 		text-decoration: none;
 		padding: 0.75rem 1.75rem;
 		border-radius: 10px;
 		transition: all 0.2s;
 	}
 	.btn-outline:hover {
-		background: var(--blue);
+		background: var(--steel);
 		color: white;
 	}
 
-	/* ── HERO ── */
-	.hero {
-		position: relative;
-		min-height: 100vh;
+	/* ── HERO BENTO ── */
+	.hero-bento {
+		min-height: 74vh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		overflow: hidden;
+		border: 1px solid rgba(255,255,255,0.08);
 	}
 
-	.hero-canvas {
+	.hero-video {
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
+		object-fit: cover;
 		display: block;
-		cursor: grab;
 	}
-	.hero-canvas:active { cursor: grabbing; }
+
+	.hero-blur {
+		position: absolute;
+		inset: 0;
+		backdrop-filter: blur(2px);
+		-webkit-backdrop-filter: blur(2px);
+		pointer-events: none;
+	}
 
 	.hero-overlay {
 		position: absolute;
 		inset: 0;
 		background: linear-gradient(
 			to bottom,
-			rgba(4,12,46,0.45) 0%,
-			rgba(4,12,46,0.25) 50%,
-			rgba(4,12,46,0.75) 100%
+			rgba(5,9,15,0.6) 0%,
+			rgba(5,9,15,0.4) 50%,
+			rgba(5,9,15,0.82) 100%
 		);
 		pointer-events: none;
 	}
@@ -525,7 +530,7 @@
 		z-index: 1;
 		text-align: center;
 		max-width: 820px;
-		padding: 8rem var(--section-px) 4rem;
+		padding: 3rem var(--section-px);
 		color: white;
 		pointer-events: none;
 	}
@@ -536,14 +541,14 @@
 		font-weight: 600;
 		letter-spacing: 0.2em;
 		text-transform: uppercase;
-		color: var(--cyan);
+		color: var(--silver);
 		margin-bottom: 1.5rem;
 		opacity: 0.85;
 	}
 
 	.hero-headline {
 		font-family: var(--font-heading);
-		font-size: clamp(3rem, 7vw, 6rem);
+		font-size: clamp(2.6rem, 6.5vw, 5.5rem);
 		font-weight: 800;
 		line-height: 1.0;
 		letter-spacing: -0.04em;
@@ -562,15 +567,16 @@
 
 	.hero-btns {
 		display: flex;
-		gap: 0.75rem;
+		flex-direction: column;
+		gap: 0.65rem;
 		justify-content: center;
-		flex-wrap: wrap;
+		align-items: stretch;
 		pointer-events: all;
 	}
 
 	.hero-scroll {
 		position: absolute;
-		bottom: 2.5rem;
+		bottom: 1.25rem;
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 2;
@@ -586,7 +592,7 @@
 	}
 
 	.hero-scroll:hover .hero-scroll-label { opacity: 1; letter-spacing: 0.22em; }
-	.hero-scroll:hover .hero-scroll-line { height: 56px; opacity: 0.9; }
+	.hero-scroll:hover .hero-scroll-line { height: 40px; opacity: 0.9; }
 
 	.hero-scroll-label {
 		font-family: var(--font-sans);
@@ -601,8 +607,8 @@
 	.hero-scroll-line {
 		display: block;
 		width: 1px;
-		height: 44px;
-		background: linear-gradient(to bottom, rgba(6,182,212,0.7), transparent);
+		height: 28px;
+		background: linear-gradient(to bottom, rgba(154,164,178,0.7), transparent);
 		transition: height 0.3s, opacity 0.3s;
 	}
 
@@ -612,30 +618,33 @@
 	}
 
 	/* ── STATS ── */
-	.stats-bar {
-		background: var(--graphite);
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		gap: 0;
-		border-top: 1px solid rgba(255,255,255,0.06);
-		border-bottom: 1px solid rgba(255,255,255,0.06);
+	.stats-bento {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
-	.stat-item {
+	.stat-tile {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 2rem 3.5rem;
-		border-right: 1px solid rgba(255,255,255,0.06);
+		justify-content: center;
+		padding: 2rem 1rem;
+		background: var(--card-blue);
+		border-radius: var(--radius-xl);
+		box-shadow:
+			inset 0 5px 12px -2px rgba(0,0,0,0.4),
+			inset 0 -1px 3px -1px rgba(255,255,255,0.05),
+			inset 5px 0 10px -6px rgba(0,0,0,0.25),
+			inset -5px 0 10px -6px rgba(0,0,0,0.25);
+		border: 1px solid rgba(255,255,255,0.05);
 	}
-	.stat-item:last-child { border-right: none; }
 
 	.stat-value {
 		font-family: var(--font-heading);
 		font-size: 2.4rem;
 		font-weight: 800;
-		color: var(--cyan);
+		color: var(--silver);
 		line-height: 1;
 		margin-bottom: 0.35rem;
 		letter-spacing: -0.04em;
@@ -647,143 +656,267 @@
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
 		color: rgba(255,255,255,0.4);
+		text-align: center;
 	}
+
+	/* ── ADS ── */
+	.ad-section {
+		padding: 2rem var(--section-px);
+		display: flex;
+		justify-content: center;
+	}
+	.ad-section .container {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+	.ad-section :global(.ad-placeholder) {
+		max-width: 960px;
+	}
+	.ad-split-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+		justify-content: center;
+	}
+	.bento-dark.ad-section :global(.ad-placeholder) {
+		border-color: rgba(255,255,255,0.25);
+		background: repeating-linear-gradient(
+			45deg,
+			rgba(255,255,255,0.06),
+			rgba(255,255,255,0.06) 10px,
+			rgba(255,255,255,0.02) 10px,
+			rgba(255,255,255,0.02) 20px
+		);
+	}
+	.bento-dark.ad-section :global(.ad-dims) { color: rgba(255,255,255,0.45); }
 
 	/* ── WHY ── */
 	.why-grid {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: 1fr;
 		gap: 1.25rem;
 	}
 
 	.why-card {
-		background: white;
-		border-radius: var(--radius-lg);
-		padding: 2rem 1.5rem;
-		box-shadow: var(--shadow-sm);
-		border: 1px solid rgba(0,0,0,0.05);
-		transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+		position: relative;
+		background: var(--soft-white);
+		border-radius: var(--radius-xl);
+		padding: 2rem 1.75rem;
+		border: 1px solid rgba(8,14,26,0.06);
+		overflow: hidden;
+		transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+	}
+	.why-card::before {
+		content: '';
+		position: absolute;
+		top: 0; left: 0; right: 0;
+		height: 3px;
+		background: linear-gradient(90deg, var(--steel), var(--silver));
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.35s ease;
 	}
 	.why-card:hover {
-		transform: translateY(-4px);
-		box-shadow: var(--shadow-md);
-		border-color: rgba(6,182,212,0.2);
+		transform: translateY(-6px);
+		background: white;
+		border-color: rgba(36,64,107,0.15);
+		box-shadow: 0 20px 36px -16px rgba(15,23,42,0.2);
 	}
+	.why-card:hover::before { transform: scaleX(1); }
 
 	.why-icon {
-		width: 48px;
-		height: 48px;
-		background: rgba(26,86,219,0.07);
-		border-radius: 12px;
+		width: 52px;
+		height: 52px;
+		background: linear-gradient(135deg, var(--steel), var(--steel-light));
+		border-radius: 14px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--blue);
-		margin-bottom: 1rem;
+		color: white;
+		margin-bottom: 1.25rem;
+		box-shadow: 0 10px 20px -8px rgba(36,64,107,0.45);
+		transition: transform 0.3s ease;
+	}
+	.why-card:hover .why-icon {
+		transform: scale(1.08) rotate(-4deg);
 	}
 
 	.why-card h3 {
 		font-family: var(--font-heading);
-		font-size: 0.95rem;
+		font-size: 1rem;
 		font-weight: 700;
+		letter-spacing: -0.01em;
 		color: var(--navy);
 		margin-bottom: 0.5rem;
 	}
-	.why-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+	.why-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
 	/* ── NETWORK ── */
 	.network-grid {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: 1fr;
 		gap: 1.25rem;
 	}
 
 	.network-card {
-		background: rgba(255,255,255,0.04);
-		border: 1px solid rgba(255,255,255,0.08);
-		border-radius: var(--radius-lg);
+		position: relative;
+		background: rgba(255,255,255,0.05);
+		border: 1px solid rgba(255,255,255,0.1);
+		border-radius: var(--radius-xl);
 		padding: 2rem 1.75rem;
-		transition: background 0.25s, border-color 0.25s;
+		overflow: hidden;
+		transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+	}
+	.network-card::before {
+		content: '';
+		position: absolute;
+		top: 0; left: 0; right: 0;
+		height: 3px;
+		background: linear-gradient(90deg, var(--silver), var(--platinum));
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.35s ease;
 	}
 	.network-card:hover {
-		background: rgba(6,182,212,0.06);
-		border-color: rgba(6,182,212,0.25);
+		transform: translateY(-6px);
+		background: rgba(255,255,255,0.08);
+		border-color: rgba(154,164,178,0.35);
+		box-shadow: 0 20px 36px -18px rgba(0,0,0,0.5);
 	}
+	.network-card:hover::before { transform: scaleX(1); }
 
 	.network-num {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
 		font-family: var(--font-heading);
-		font-size: 2rem;
+		font-size: 0.95rem;
 		font-weight: 800;
-		color: rgba(6,182,212,0.2);
+		color: var(--silver);
+		background: rgba(154,164,178,0.12);
+		border: 1px solid rgba(154,164,178,0.25);
+		border-radius: 10px;
 		line-height: 1;
-		margin-bottom: 0.75rem;
+		margin-bottom: 1.25rem;
 	}
 
 	.network-card h3 {
 		font-family: var(--font-heading);
-		font-size: 1rem;
+		font-size: 1.05rem;
 		font-weight: 700;
+		letter-spacing: -0.01em;
 		color: white;
 		margin-bottom: 0.5rem;
 	}
-	.network-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+	.network-card p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
 
 	/* ── COMPANIES ── */
 	.companies-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr;
 		gap: 1.25rem;
 	}
 
+	/* Scroll-triggered reveal */
+	.companies-section .companies-grid > .company-card {
+		opacity: 0;
+		transform: translateY(28px);
+		transition: opacity 0.6s ease, transform 0.6s ease;
+	}
+	.companies-section.revealed .companies-grid > .company-card {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	.companies-section .companies-grid > .company-card:nth-child(1) { transition-delay: 0.05s; }
+	.companies-section .companies-grid > .company-card:nth-child(2) { transition-delay: 0.12s; }
+	.companies-section .companies-grid > .company-card:nth-child(3) { transition-delay: 0.19s; }
+	.companies-section .companies-grid > .company-card:nth-child(4) { transition-delay: 0.26s; }
+	.companies-section .companies-grid > .company-card:nth-child(5) { transition-delay: 0.33s; }
+	.companies-section .companies-grid > .company-card:nth-child(6) { transition-delay: 0.4s; }
+
+	.companies-section .section-cta {
+		opacity: 0;
+		transform: translateY(16px);
+		transition: opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s;
+	}
+	.companies-section.revealed .section-cta {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
 	.company-card {
-		background: white;
-		border-radius: var(--radius-lg);
-		padding: 1.75rem;
-		box-shadow: var(--shadow-sm);
-		border: 1px solid rgba(0,0,0,0.05);
+		position: relative;
+		background: var(--soft-white);
+		border-radius: var(--radius-xl);
+		padding: 1.85rem;
+		border: 1px solid rgba(8,14,26,0.06);
 		display: flex;
 		flex-direction: column;
-		transition: transform 0.25s, box-shadow 0.25s;
+		overflow: hidden;
+		transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 	}
-	.company-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+	.company-card::before {
+		content: '';
+		position: absolute;
+		top: 0; left: 0; right: 0;
+		height: 3px;
+		background: linear-gradient(90deg, var(--steel), var(--silver));
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.35s ease;
+	}
+	.company-card:hover {
+		transform: translateY(-6px);
+		background: white;
+		border-color: rgba(36,64,107,0.15);
+		box-shadow: 0 20px 36px -18px rgba(15,23,42,0.18);
+	}
+	.company-card:hover::before { transform: scaleX(1); }
 
-	.company-top { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
+	.company-top { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.25rem; }
 
 	.company-avatar {
-		width: 44px; height: 44px;
-		border-radius: 10px;
+		width: 46px; height: 46px;
+		border-radius: 12px;
 		display: flex; align-items: center; justify-content: center;
 		font-family: var(--font-heading);
 		font-size: 0.85rem; font-weight: 700;
 		color: white; flex-shrink: 0;
+		box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+		transition: transform 0.3s ease;
 	}
+	.company-card:hover .company-avatar { transform: scale(1.08); }
 
 	.company-meta { display: flex; flex-direction: column; gap: 0.15rem; }
 
 	.company-category {
-		font-size: 0.7rem;
+		font-size: 0.68rem;
 		font-weight: 700;
-		color: var(--blue);
+		color: var(--steel);
 		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		letter-spacing: 0.06em;
 	}
 
 	.company-city { font-size: 0.75rem; color: var(--muted); }
 
 	.company-name {
 		font-family: var(--font-heading);
-		font-size: 1rem;
+		font-size: 1.05rem;
 		font-weight: 700;
+		letter-spacing: -0.01em;
 		color: var(--navy);
 		margin-bottom: 0.5rem;
 	}
 
 	.company-desc {
-		font-size: 0.82rem;
+		font-size: 0.83rem;
 		color: var(--muted);
-		line-height: 1.6;
+		line-height: 1.65;
 		flex: 1;
-		margin-bottom: 1.25rem;
+		margin-bottom: 1.4rem;
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
 		line-clamp: 3;
@@ -792,53 +925,122 @@
 	}
 
 	.company-btn {
-		display: block;
-		font-size: 0.78rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.4rem;
+		font-size: 0.8rem;
 		font-weight: 600;
-		color: var(--blue);
-		background: rgba(26,86,219,0.06);
+		color: var(--steel);
+		background: rgba(36,64,107,0.06);
 		text-decoration: none;
-		padding: 0.5rem 1rem;
-		border-radius: 8px;
+		padding: 0.65rem 1rem;
+		border-radius: 9px;
 		text-align: center;
-		transition: background 0.2s;
+		transition: background 0.2s ease, color 0.2s ease, gap 0.2s ease;
 	}
-	.company-btn:hover { background: rgba(26,86,219,0.12); }
+	.company-btn svg { transition: transform 0.2s ease; }
+	.company-btn:hover {
+		background: var(--steel);
+		color: white;
+		gap: 0.6rem;
+	}
+	.company-btn:hover svg { transform: translateX(2px); }
 
 	/* ── INVESTMENTS ── */
-	.invest-grid {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		justify-content: center;
+	.investments-section {
+		position: relative;
+	}
+	.investments-glow {
+		position: absolute;
+		top: -20%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 700px;
+		height: 400px;
+		background: radial-gradient(ellipse at center, rgba(154,164,178,0.14) 0%, transparent 70%);
+		pointer-events: none;
+		z-index: 0;
+	}
+	.investments-section .container {
+		position: relative;
+		z-index: 1;
+	}
+
+	.invest-marquee {
+		position: relative;
+		z-index: 1;
+		overflow: hidden;
 		margin-bottom: 0.5rem;
+		-webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+		mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+	}
+
+	.invest-track {
+		display: flex;
+		width: max-content;
+		gap: 0.85rem;
+		animation: invest-scroll 26s linear infinite;
+	}
+
+	.invest-marquee:hover .invest-track {
+		animation-play-state: paused;
+	}
+
+	@keyframes invest-scroll {
+		from { transform: translateX(0); }
+		to { transform: translateX(-50%); }
 	}
 
 	.invest-chip {
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+		white-space: nowrap;
+		gap: 0.55rem;
 		font-family: var(--font-sans);
 		font-size: 0.85rem;
-		font-weight: 500;
-		color: rgba(255,255,255,0.7);
-		background: rgba(255,255,255,0.05);
-		border: 1px solid rgba(255,255,255,0.1);
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		color: rgba(255,255,255,0.85);
+		background: rgba(255,255,255,0.07);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		border: 1px solid rgba(255,255,255,0.16);
 		border-radius: 50px;
-		padding: 0.5rem 1.25rem;
+		padding: 0.7rem 1.5rem;
 		text-decoration: none;
-		transition: all 0.2s;
+		box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 8px 16px -12px rgba(0,0,0,0.5);
+		transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+	}
+	.invest-chip-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--silver);
+		flex-shrink: 0;
+		transition: background 0.25s ease;
+	}
+	.invest-chip svg {
+		opacity: 0.5;
+		transition: opacity 0.25s ease, transform 0.25s ease;
 	}
 	.invest-chip:hover {
-		background: rgba(6,182,212,0.12);
-		border-color: rgba(6,182,212,0.4);
-		color: var(--cyan);
+		transform: translateY(-3px) scale(1.03);
+		background: linear-gradient(135deg, var(--platinum), var(--silver));
+		border-color: transparent;
+		color: var(--navy);
+		box-shadow: 0 14px 26px -12px rgba(0,0,0,0.45);
 	}
+	.invest-chip:hover .invest-chip-dot { background: var(--navy); }
+	.invest-chip:hover svg { opacity: 1; transform: translate(1px, -1px); }
 
 	/* ── DIASPORA ── */
 	.diaspora-layout {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 6rem;
+		grid-template-columns: 1fr;
+		gap: 3rem;
 		align-items: center;
-		padding: 0 var(--section-px);
 	}
 
 	.diaspora-text .section-tag { margin-bottom: 1rem; }
@@ -862,23 +1064,29 @@
 		margin-bottom: 2rem;
 	}
 
-	.diaspora-list li {
+	.diaspora-list li a {
 		display: flex;
 		align-items: center;
 		gap: 0.65rem;
 		font-size: 0.9rem;
 		color: var(--navy);
 		font-weight: 500;
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	.diaspora-list li a:hover {
+		color: var(--steel);
 	}
 
 	.diaspora-dot {
 		width: 7px; height: 7px;
-		background: var(--cyan);
+		background: var(--steel);
 		border-radius: 50%;
 		flex-shrink: 0;
 	}
 
-	.diaspora-visual { display: flex; align-items: center; justify-content: center; }
+	.diaspora-visual { display: none; align-items: center; justify-content: center; }
 
 	.diaspora-globe {
 		width: clamp(200px, 30vw, 340px);
@@ -888,48 +1096,86 @@
 	/* ── SERVICES ── */
 	.services-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr;
 		gap: 1.25rem;
 	}
 
 	.service-card {
-		background: rgba(255,255,255,0.04);
-		border: 1px solid rgba(255,255,255,0.08);
-		border-radius: var(--radius-lg);
+		position: relative;
+		background: rgba(255,255,255,0.05);
+		border: 1px solid rgba(255,255,255,0.1);
+		border-radius: var(--radius-xl);
 		padding: 2rem 1.75rem;
-		transition: background 0.25s, border-color 0.25s;
+		overflow: hidden;
+		transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+	}
+	.service-card::after {
+		content: '';
+		position: absolute;
+		top: -40%;
+		right: -20%;
+		width: 160px;
+		height: 160px;
+		background: radial-gradient(circle, rgba(154,164,178,0.16) 0%, transparent 70%);
+		opacity: 0;
+		transition: opacity 0.35s ease;
 	}
 	.service-card:hover {
-		background: rgba(6,182,212,0.06);
-		border-color: rgba(6,182,212,0.25);
+		transform: translateY(-6px);
+		background: rgba(255,255,255,0.08);
+		border-color: rgba(154,164,178,0.3);
+		box-shadow: 0 20px 36px -18px rgba(0,0,0,0.5);
 	}
+	.service-card:hover::after { opacity: 1; }
 
 	.service-num {
-		font-family: var(--font-heading);
-		font-size: 2.2rem;
-		font-weight: 800;
-		color: rgba(6,182,212,0.18);
-		line-height: 1;
-		margin-bottom: 0.75rem;
+		position: relative;
+		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 46px;
+		height: 46px;
+		border-radius: 50%;
+		background: rgba(154,164,178,0.1);
+		border: 1.5px solid rgba(154,164,178,0.35);
+		margin-bottom: 1.25rem;
+		transition: border-color 0.3s ease, background 0.3s ease;
 	}
+	.service-num span {
+		font-family: var(--font-heading);
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: var(--silver);
+	}
+	.service-card:hover .service-num {
+		background: linear-gradient(135deg, var(--silver), var(--platinum));
+		border-color: transparent;
+	}
+	.service-card:hover .service-num span { color: var(--navy); }
 
 	.service-card h3 {
+		position: relative;
+		z-index: 1;
 		font-family: var(--font-heading);
 		font-size: 1.05rem;
 		font-weight: 700;
+		letter-spacing: -0.01em;
 		color: white;
 		margin-bottom: 0.5rem;
 	}
-	.service-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+	.service-card p {
+		position: relative;
+		z-index: 1;
+		font-size: 0.85rem;
+		color: rgba(255,255,255,0.55);
+		line-height: 1.65;
+	}
 
 	/* ── FINAL CTA ── */
-	.cta-section {
-		position: relative;
-		background: var(--navy-mid);
-		padding: clamp(80px, 12vw, 140px) var(--section-px);
+	.cta-bento {
+		padding: clamp(64px, 10vw, 120px) var(--section-px);
 		text-align: center;
-		overflow: hidden;
-		border-top: 1px solid rgba(255,255,255,0.06);
 	}
 
 	.cta-glow {
@@ -939,14 +1185,13 @@
 		transform: translate(-50%, -50%);
 		width: 600px;
 		height: 300px;
-		background: radial-gradient(ellipse at center, rgba(6,182,212,0.12) 0%, transparent 70%);
+		background: radial-gradient(ellipse at center, rgba(154,164,178,0.12) 0%, transparent 70%);
 		pointer-events: none;
 	}
 
 	.cta-inner {
 		position: relative;
 		z-index: 1;
-		padding: 0 var(--section-px);
 	}
 
 	.cta-inner h2 {
@@ -967,27 +1212,30 @@
 		margin-right: auto;
 	}
 
-	/* ── Responsive ── */
-	@media (max-width: 1200px) {
-		.why-grid { grid-template-columns: repeat(3, 1fr); }
+	/* ── Responsive (mobile-first) ── */
+	@media (min-width: 480px) {
+		.hero-btns { flex-direction: row; flex-wrap: wrap; align-items: normal; }
 	}
-	@media (max-width: 1024px) {
+	@media (min-width: 600px) {
+		.why-grid { grid-template-columns: repeat(2, 1fr); }
 		.network-grid { grid-template-columns: repeat(2, 1fr); }
 		.companies-grid { grid-template-columns: repeat(2, 1fr); }
 		.services-grid { grid-template-columns: repeat(2, 1fr); }
-		.diaspora-layout { grid-template-columns: 1fr; gap: 3rem; }
-		.diaspora-visual { display: none; }
+		.hero-scroll { bottom: 2rem; }
 	}
-	@media (max-width: 768px) {
-		.why-grid { grid-template-columns: repeat(2, 1fr); }
-		.stat-item { padding: 1.5rem 2rem; }
+	@media (min-width: 768px) {
+		.why-grid { grid-template-columns: repeat(3, 1fr); }
+		.hero-bento { min-height: 82vh; }
 	}
-	@media (max-width: 600px) {
-		.why-grid { grid-template-columns: 1fr; }
-		.network-grid { grid-template-columns: 1fr; }
-		.companies-grid { grid-template-columns: 1fr; }
-		.services-grid { grid-template-columns: 1fr; }
-		.hero-btns { display: none; }
-		.hero-scroll { bottom: 5rem; }
+	@media (min-width: 1024px) {
+		.stats-bento { grid-template-columns: repeat(4, 1fr); }
+		.network-grid { grid-template-columns: repeat(4, 1fr); }
+		.companies-grid { grid-template-columns: repeat(3, 1fr); }
+		.services-grid { grid-template-columns: repeat(3, 1fr); }
+		.diaspora-layout { grid-template-columns: 1fr 1fr; gap: 6rem; }
+		.diaspora-visual { display: flex; }
+	}
+	@media (min-width: 1200px) {
+		.why-grid { grid-template-columns: repeat(5, 1fr); }
 	}
 </style>

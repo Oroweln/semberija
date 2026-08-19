@@ -6,10 +6,13 @@ const sr = {
 		companies: 'Firme',
 		investments: 'Investicije',
 		network: 'Mreža',
-		diaspora: 'Dijaspora',
+		diaspora: 'B2B',
 		services: 'Digitalne usluge',
 		news: 'Vijesti',
+		events: 'Događaji',
+		about: 'O nama',
 		contact: 'Kontakt',
+		businessNetwork: 'Poslovna mreža',
 		listCta: 'Pridruži se mreži'
 	},
 	hero: {
@@ -27,7 +30,7 @@ const sr = {
 		{ value: 'EU', label: 'Izvozna tržišta' }
 	],
 	why: {
-		label: 'Zašto Semberija',
+		label: 'Prednosti',
 		heading: 'Zašto Semberija',
 		items: [
 			{
@@ -58,7 +61,7 @@ const sr = {
 		]
 	},
 	network: {
-		label: 'Poslovna mreža',
+		label: 'Ekosistem',
 		heading: 'Poslovna mreža regije',
 		sub: 'Mjesto gdje se kompanije, investitori, dijaspora i partneri susreću, sarađuju i rastu.',
 		items: [
@@ -72,28 +75,138 @@ const sr = {
 		label: 'Investicije',
 		heading: 'Investiraj u Semberiju',
 		sub: 'Istražite regionalni poslovni potencijal u logistici, poljoprivredi, proizvodnji, nekretninama i digitalnim uslugama.',
-		categories: ['Logistika', 'Poljoprivreda', 'Proizvodnja', 'Skladišta', 'Nekretnine', 'Solarna energija', 'Outsourcing', 'Digitalne usluge'],
-		cta: 'Istražite investicije'
+		cta: 'Istražite investicije',
+		categories: [
+			{
+				name: 'Logistika',
+				desc: 'Regija je logistički čvor između Beograda, Sarajeva i Zagreba, sa pristupom koridoru Vc i rijeci Savi.',
+				highlights: ['Pristup koridoru Vc i riječnoj luci', 'Rastuća potražnja za skladišnim i distributivnim centrima', 'Kvalifikovana radna snaga za transport i logistiku']
+			},
+			{
+				name: 'Poljoprivreda',
+				desc: 'Semberija je jedna od najplodnijih poljoprivrednih regija u BiH, poznata po žitaricama, povrću i voćarstvu.',
+				highlights: ['Preko 40.000 ha obradivog zemljišta', 'Tradicija u ratarstvu, povrtlarstvu i stočarstvu', 'Blizina prerađivačke industrije i izvoznih tržišta']
+			},
+			{
+				name: 'Proizvodnja',
+				desc: 'Industrijska tradicija i dostupna radna snaga čine regiju atraktivnom za proizvodne pogone i prerađivačku industriju.',
+				highlights: ['Niži troškovi radne snage u odnosu na EU', 'Razvijena industrijska infrastruktura', 'Podsticaji za nova proizvodna postrojenja']
+			},
+			{
+				name: 'Skladišta',
+				desc: 'Strateška pozicija na raskrsnici regionalnih puteva čini Semberiju idealnom lokacijom za skladišne i distributivne centre.',
+				highlights: ['Blizina glavnih transportnih pravaca', 'Dostupno zemljište za izgradnju skladišnih kapaciteta', 'Rastuća potreba za distribucijom u regionu']
+			},
+			{
+				name: 'Nekretnine',
+				desc: 'Tržište nekretnina u razvoju, sa prilikama u stambenoj, poslovnoj i industrijskoj gradnji.',
+				highlights: ['Pristupačne cijene zemljišta u odnosu na region', 'Rastuća potražnja za poslovnim prostorom', 'Prilike u stambenoj i turističkoj izgradnji']
+			},
+			{
+				name: 'Solarna energija',
+				desc: 'Povoljni klimatski uslovi i neiskorišteno zemljište otvaraju prostor za investicije u solarne elektrane.',
+				highlights: ['Visok broj sunčanih dana godišnje', 'Dostupno zemljište za solarne parkove', 'Podsticaji za obnovljive izvore energije']
+			},
+			{
+				name: 'Outsourcing',
+				desc: 'Konkurentni troškovi poslovanja i obrazovana radna snaga čine regiju privlačnom za autsorsing centre.',
+				highlights: ['Konkurentni troškovi u odnosu na EU', 'Rastuća baza obrazovane radne snage', 'Vremenska zona pogodna za saradnju sa Evropom']
+			},
+			{
+				name: 'Digitalne usluge',
+				desc: 'Rastući digitalni sektor sa potencijalom za IT kompanije, startupe i pružaoce digitalnih usluga.',
+				highlights: ['Sve veći broj IT stručnjaka u regiji', 'Niži operativni troškovi u odnosu na zapadnu Evropu', 'Podrška lokalnoj digitalnoj transformaciji']
+			}
+		],
+		detailTag: 'Investiciona prilika',
+		detailHighlights: 'Ključne prednosti',
+		detailBack: 'Sve investicione kategorije',
+		detailInquireHeading: 'Pošaljite upit',
+		detailInquireSub: 'Ispunite formular ispod i naš tim će vas kontaktirati u vezi sa ovom investicionom prilikom.',
+		detailPrefill: 'Zainteresovan/a sam za investicionu priliku: '
 	},
-	diaspora: {
-		label: 'Dijaspora',
-		heading: 'Dijaspora i regionalne veze',
-		sub: 'Povezujemo dijasporu sa lokalnim poslovanjem, investicionim prilikama i regionalnim razvojem.',
-		items: ['Investiraj kod kuće', 'Poslovno umrežavanje', 'Dijaspora biznis klub', 'Regionalni događaji', 'Investor Matching'],
-		cta: 'Pridruži se dijaspora mreži'
+	b2b: {
+		label: 'B2B Matchmaking',
+		heading: 'Pronađite pravog poslovnog partnera',
+		sub: 'Naša usluga poslovnog povezivanja spaja kompanije iz Semberije sa partnerima, dobavljačima, distributerima i investitorima — u regiji i dijaspori.',
+		cta: 'Zatražite povezivanje',
+		items: [
+			{
+				title: 'Pronađite partnera',
+				desc: 'Tražite strateškog poslovnog partnera za zajednički projekat, širenje ili novo tržište? Povezujemo vas sa provjerenim kompanijama.',
+				highlights: ['Provjereni poslovni partneri iz regije', 'Podrška u pregovorima i uspostavljanju saradnje', 'Fokus na dugoročna partnerstva']
+			},
+			{
+				title: 'Pronađite distributera',
+				desc: 'Pomažemo proizvođačima i brendovima da pronađu pouzdane distributere za nova tržišta u regiji i inostranstvu.',
+				highlights: ['Mreža distributera u regiji i dijaspori', 'Podrška pri izlasku na nova tržišta', 'Provjera pouzdanosti potencijalnih partnera']
+			},
+			{
+				title: 'Pronađite dobavljača',
+				desc: 'Povezujemo kompanije sa pouzdanim dobavljačima sirovina, materijala i usluga u Semberiji i regionu.',
+				highlights: ['Pristup provjerenoj bazi dobavljača', 'Poređenje ponuda i uslova', 'Podrška u pregovaranju cijena i rokova']
+			},
+			{
+				title: 'Pronađite investitora',
+				desc: 'Predstavljamo vaš poslovni projekat investitorima iz regije i dijaspore koji traže prilike za ulaganje.',
+				highlights: ['Direktan pristup zainteresovanim investitorima', 'Pomoć u pripremi investicione prezentacije', 'Diskretnost i profesionalna podrška']
+			},
+			{
+				title: 'Dijaspora mreža',
+				desc: 'Povezujemo domaće kompanije sa preduzetnicima iz dijaspore radi saradnje, izvoza i zajedničkih poslovnih prilika.',
+				highlights: ['Pristup mreži poslovnih ljudi iz dijaspore', 'Prilike za izvoz i međunarodnu saradnju', 'Podrška u komunikaciji i organizaciji sastanaka']
+			}
+		],
+		detailTag: 'Matchmaking usluga',
+		detailHighlights: 'Kako vam pomažemo',
+		detailBack: 'Sve matchmaking usluge',
+		detailInquireHeading: 'Zatražite povezivanje',
+		detailInquireSub: 'Opišite šta tražite i naš tim će vam pronaći odgovarajuće poslovne kontakte.',
+		detailPrefill: 'Zainteresovan/a sam za: '
 	},
 	services: {
 		label: 'Digitalne usluge',
 		heading: 'Digitalna rješenja za moderno poslovanje',
 		sub: 'Pomažemo kompanijama da rastu kroz moderne digitalne alate, brendiranje, automatizaciju i online vidljivost.',
+		cta: 'Pogledaj usluge',
 		items: [
-			{ title: 'Web razvoj', desc: 'Moderne web stranice, platforme i poslovni sistemi.' },
-			{ title: 'SEO & Marketing', desc: 'Digitalna vidljivost, rast i online pozicioniranje.' },
-			{ title: 'AI automatizacija', desc: 'Pametna rješenja za automatizaciju poslovnih procesa.' },
-			{ title: 'Brendiranje & dizajn', desc: 'Premium vizualni identitet i digitalna prezentacija.' },
-			{ title: 'CRM & sistemi', desc: 'Alati za bolje prodaje, komunikaciju i poslovnu organizaciju.' },
-			{ title: 'Konsalting', desc: 'Strateško savjetovanje za digitalnu transformaciju i rast.' }
-		]
+			{
+				title: 'Web razvoj',
+				desc: 'Moderne web stranice, platforme i poslovni sistemi.',
+				highlights: ['Responzivan dizajn prilagođen svim uređajima', 'Brzo učitavanje i optimizovana izrada', 'Skalabilna rješenja za rast poslovanja']
+			},
+			{
+				title: 'SEO & Marketing',
+				desc: 'Digitalna vidljivost, rast i online pozicioniranje.',
+				highlights: ['Optimizacija za pretraživače (SEO)', 'Ciljane digitalne kampanje', 'Praćenje i analiza rezultata']
+			},
+			{
+				title: 'AI automatizacija',
+				desc: 'Pametna rješenja za automatizaciju poslovnih procesa.',
+				highlights: ['Automatizacija ponavljajućih zadataka', 'Chatbotovi i AI podrška korisnicima', 'Integracija sa postojećim sistemima']
+			},
+			{
+				title: 'Brendiranje & dizajn',
+				desc: 'Premium vizualni identitet i digitalna prezentacija.',
+				highlights: ['Kompletan vizuelni identitet i logo', 'Konzistentan brend na svim kanalima', 'Prezentacije i marketinški materijali']
+			},
+			{
+				title: 'CRM & sistemi',
+				desc: 'Alati za bolje prodaje, komunikaciju i poslovnu organizaciju.',
+				highlights: ['Centralizovano upravljanje klijentima', 'Automatizacija prodajnog procesa', 'Bolja interna komunikacija i organizacija']
+			},
+			{
+				title: 'Konsalting',
+				desc: 'Strateško savjetovanje za digitalnu transformaciju i rast.',
+				highlights: ['Analiza trenutnog poslovanja i procesa', 'Strateški plan digitalne transformacije', 'Podrška u implementaciji i praćenju rezultata']
+			}
+		],
+		detailTag: 'Digitalna usluga',
+		detailHighlights: 'Šta dobijate',
+		detailBack: 'Sve digitalne usluge',
+		detailInquireHeading: 'Zatražite ponudu',
+		detailInquireSub: 'Ispunite formular ispod i naš tim će vas kontaktirati sa ponudom za ovu uslugu.',
+		detailPrefill: 'Zainteresovan/a sam za uslugu: '
 	},
 	news: {
 		label: 'Vijesti',
@@ -101,21 +214,49 @@ const sr = {
 		sub: 'Fokusirani isključivo na biznis, ekonomiju, investicije, tehnologiju, dijasporu i regionalni razvoj.',
 		categories: ['Biznis', 'Investicije', 'Tehnologija', 'Dijaspora', 'Logistika', 'Poljoprivreda', 'Nekretnine', 'Startup scena']
 	},
+	events: {
+		label: 'Događaji',
+		heading: 'Poslovni događaji i okupljanja',
+		sub: 'Konferencije, sajmovi i poslovna okupljanja u Bijeljini, Semberiji i regionu.'
+	},
 	companies: {
+		label: 'Direktorijum',
 		heading: 'Istaknute firme',
 		sub: 'Profesionalni profili kompanija iz različitih sektora privrede',
-		viewAll: 'Sve firme',
+		showMore: 'Prikaži više',
+		viewAll: 'Prikaži sve',
 		inquire: 'Pošalji upit',
 		featured: 'Istaknuto',
 		localTab: 'Domaće firme',
 		investorsTab: 'Investitori i partneri',
 		localSub: 'Kompanije registrovane u Bijeljini i Semberiji',
-		investorsSub: 'Kompanije van regije otvorene za B2B saradnju'
+		investorsSub: 'Kompanije van regije otvorene za B2B saradnju',
+		visibilityHeading: 'Učinite svoju firmu vidljivom',
+		visibilitySub: 'Registrujte svoju firmu na platformi i budite vidljivi lokalnim i regionalnim partnerima.'
 	},
 	cta: {
 		heading: 'Pridruži se poslovnoj mreži',
 		sub: 'Postanite dio rastućeg ekosistema koji povezuje kompanije, investitore i dijasporu',
 		btn: 'Počni danas'
+	},
+	about: {
+		label: 'O nama',
+		heading: 'O platformi Semberija.app',
+		sub: 'Regionalni poslovni ekosistem koji povezuje kompanije, investitore i dijasporu Bijeljine i Semberije.',
+		storyHeading: 'Naša priča',
+		story: [
+			'Semberija.app je nastala sa ciljem da poslovnoj zajednici Bijeljine i Semberije pruži jedinstven digitalni prostor za predstavljanje, povezivanje i rast.',
+			'Vjerujemo da regija ima ogroman potencijal — u poljoprivredi, proizvodnji, logistici i digitalnim uslugama — i da taj potencijal zaslužuje platformu koja ga čini vidljivim lokalno i globalno.'
+		],
+		values: [
+			{ title: 'Regionalni fokus', desc: 'Posvećeni smo isključivo poslovnoj zajednici Bijeljine i Semberije.' },
+			{ title: 'Transparentnost', desc: 'Jasne informacije o firmama, prilikama i investicijama, bez posrednika.' },
+			{ title: 'Povezivanje', desc: 'Spajamo lokalne kompanije, investitore i dijasporu na jednom mjestu.' },
+			{ title: 'Digitalni rast', desc: 'Podstičemo modernizaciju i digitalnu transformaciju regionalnog biznisa.' }
+		],
+		ctaHeading: 'Postanite dio naše mreže',
+		ctaSub: 'Registrujte svoju firmu ili nas kontaktirajte za više informacija o saradnji.',
+		ctaBtn: 'Kontaktirajte nas'
 	},
 	footer: {
 		tagline: 'Regionalna poslovna mreža.',
@@ -124,7 +265,7 @@ const sr = {
 		colCompany: 'Kompanija',
 		colContact: 'Kontakt',
 		address: 'Bijeljina, Republika Srpska, BiH',
-		email: 'info@semberija.app',
+		email: 'info@zoemilano.com',
 		copyright: '© 2026 Semberija.app. Sva prava zadržana.',
 		newsletter: 'Pratite poslovne vijesti'
 	},
@@ -151,8 +292,10 @@ const sr = {
 		investSoonDesc: 'Radimo na prikupljanju investicionih projekata iz regije. Kontaktirajte nas ako imate projekat.',
 		newsSoon: 'Vijesti uskoro',
 		newsSoonDesc: 'Radimo na prikupljanju poslovnih vijesti i regionalnih informacija. Pratite nas za najnovije.',
-		joinDiaspora: 'Pridruži se dijaspora mreži',
-		joinDiasporaDesc: 'Povežite se sa regionalnim kompanijama, investicionim prilikama i poslovnom zajednicom dijaspore.',
+		eventsSoon: 'Događaji uskoro',
+		eventsSoonDesc: 'Radimo na prikupljanju poslovnih konferencija, sajmova i regionalnih okupljanja. Kontaktirajte nas ako organizujete događaj koji želite da predstavimo.',
+		joinB2b: 'Zatražite poslovno povezivanje',
+		joinB2bDesc: 'Recite nam šta vam je potrebno — partnera, dobavljača, distributera ili investitora — i mi ćemo vas povezati sa pravim kontaktima.',
 		contact: {
 			heading: 'Kontaktirajte nas',
 			sub: 'Registrujte firmu, zatražite uslugu ili nam pošaljite poruku',
@@ -189,10 +332,13 @@ const en = {
 		companies: 'Companies',
 		investments: 'Investments',
 		network: 'Network',
-		diaspora: 'Diaspora',
+		diaspora: 'B2B',
 		services: 'Digital Services',
 		news: 'News',
+		events: 'Events',
+		about: 'About',
 		contact: 'Contact',
+		businessNetwork: 'Business Network',
 		listCta: 'Join the Network'
 	},
 	hero: {
@@ -210,7 +356,7 @@ const en = {
 		{ value: 'EU', label: 'Export Markets' }
 	],
 	why: {
-		label: 'Why Semberija',
+		label: 'Advantages',
 		heading: 'Why Semberija',
 		items: [
 			{
@@ -241,7 +387,7 @@ const en = {
 		]
 	},
 	network: {
-		label: 'Business Network',
+		label: 'Ecosystem',
 		heading: 'Business Network of the Region',
 		sub: 'A place for companies, investors, diaspora and partners to connect, collaborate and grow.',
 		items: [
@@ -255,28 +401,138 @@ const en = {
 		label: 'Investments',
 		heading: 'Invest in Semberija',
 		sub: 'Explore regional business potential in logistics, agriculture, production, real estate and digital services.',
-		categories: ['Logistics', 'Agriculture', 'Production', 'Warehousing', 'Real Estate', 'Solar Energy', 'Outsourcing', 'Digital Services'],
-		cta: 'Explore Investments'
+		cta: 'Explore Investments',
+		categories: [
+			{
+				name: 'Logistics',
+				desc: 'The region is a logistics hub between Belgrade, Sarajevo and Zagreb, with access to Corridor Vc and the Sava River.',
+				highlights: ['Access to Corridor Vc and the river port', 'Growing demand for warehousing and distribution centers', 'Skilled workforce in transport and logistics']
+			},
+			{
+				name: 'Agriculture',
+				desc: 'Semberija is one of the most fertile agricultural regions in Bosnia and Herzegovina, known for grain, vegetables and fruit production.',
+				highlights: ['Over 40,000 hectares of arable land', 'Strong tradition in crop farming, vegetables and livestock', 'Proximity to processing industry and export markets']
+			},
+			{
+				name: 'Production',
+				desc: 'An industrial tradition and available workforce make the region attractive for manufacturing plants and processing industries.',
+				highlights: ['Lower labor costs compared to the EU', 'Developed industrial infrastructure', 'Incentives for new production facilities']
+			},
+			{
+				name: 'Warehousing',
+				desc: 'A strategic position at the crossroads of regional routes makes Semberija an ideal location for warehousing and distribution centers.',
+				highlights: ['Proximity to major transport routes', 'Available land for warehouse development', 'Growing demand for regional distribution']
+			},
+			{
+				name: 'Real Estate',
+				desc: 'A developing real estate market, with opportunities in residential, commercial and industrial construction.',
+				highlights: ['Affordable land prices compared to the region', 'Growing demand for commercial space', 'Opportunities in residential and tourism development']
+			},
+			{
+				name: 'Solar Energy',
+				desc: 'Favorable climate conditions and unused land open opportunities for investment in solar power plants.',
+				highlights: ['High number of sunny days per year', 'Available land for solar parks', 'Incentives for renewable energy']
+			},
+			{
+				name: 'Outsourcing',
+				desc: 'Competitive operating costs and an educated workforce make the region attractive for outsourcing centers.',
+				highlights: ['Competitive costs compared to the EU', 'Growing pool of educated talent', 'Time zone convenient for collaboration with Europe']
+			},
+			{
+				name: 'Digital Services',
+				desc: 'A growing digital sector with potential for IT companies, startups and digital service providers.',
+				highlights: ['A growing number of IT professionals in the region', 'Lower operating costs compared to Western Europe', 'Support for local digital transformation']
+			}
+		],
+		detailTag: 'Investment Opportunity',
+		detailHighlights: 'Key Advantages',
+		detailBack: 'All Investment Categories',
+		detailInquireHeading: 'Send an Inquiry',
+		detailInquireSub: 'Fill in the form below and our team will contact you about this investment opportunity.',
+		detailPrefill: 'I am interested in the investment opportunity: '
 	},
-	diaspora: {
-		label: 'Diaspora',
-		heading: 'Diaspora & Regional Connections',
-		sub: 'Connecting diaspora with local business, investment opportunities and regional development.',
-		items: ['Invest Back Home', 'Business Networking', 'Diaspora Business Club', 'Regional Events', 'Investor Matching'],
-		cta: 'Join Diaspora Network'
+	b2b: {
+		label: 'B2B Matchmaking',
+		heading: 'Find the Right Business Partner',
+		sub: 'Our B2B matchmaking service connects companies from Semberija with partners, suppliers, distributors and investors — across the region and the diaspora.',
+		cta: 'Request a Match',
+		items: [
+			{
+				title: 'Find a Partner',
+				desc: 'Looking for a strategic business partner for a joint project, expansion or new market? We connect you with vetted companies.',
+				highlights: ['Vetted business partners from the region', 'Support in negotiations and setting up cooperation', 'Focus on long-term partnerships']
+			},
+			{
+				title: 'Find a Distributor',
+				desc: 'We help manufacturers and brands find reliable distributors for new markets in the region and abroad.',
+				highlights: ['Distributor network across the region and diaspora', 'Support entering new markets', 'Reliability checks on potential partners']
+			},
+			{
+				title: 'Find a Supplier',
+				desc: 'We connect companies with reliable suppliers of raw materials, components and services in Semberija and the region.',
+				highlights: ['Access to a vetted supplier base', 'Comparison of offers and terms', 'Support negotiating prices and deadlines']
+			},
+			{
+				title: 'Find an Investor',
+				desc: 'We present your business project to investors from the region and diaspora looking for investment opportunities.',
+				highlights: ['Direct access to interested investors', 'Help preparing your investment pitch', 'Discretion and professional support']
+			},
+			{
+				title: 'Diaspora Network',
+				desc: 'We connect local companies with diaspora entrepreneurs for cooperation, exports and joint business opportunities.',
+				highlights: ['Access to a network of diaspora business people', 'Opportunities for exports and international cooperation', 'Support with communication and setting up meetings']
+			}
+		],
+		detailTag: 'Matchmaking Service',
+		detailHighlights: 'How We Help',
+		detailBack: 'All Matchmaking Services',
+		detailInquireHeading: 'Request a Match',
+		detailInquireSub: 'Describe what you\'re looking for and our team will find you the right business contacts.',
+		detailPrefill: 'I am interested in: '
 	},
 	services: {
 		label: 'Digital Services',
 		heading: 'Digital Solutions for Modern Business',
 		sub: 'Helping companies grow through modern digital tools, branding, automation and online visibility.',
+		cta: 'View Services',
 		items: [
-			{ title: 'Web Development', desc: 'Modern websites, platforms and business systems.' },
-			{ title: 'SEO & Marketing', desc: 'Digital visibility, growth and online positioning.' },
-			{ title: 'AI Automation', desc: 'Smart solutions for business process automation.' },
-			{ title: 'Branding & Design', desc: 'Premium visual identity and digital presentation.' },
-			{ title: 'CRM & Systems', desc: 'Tools for better sales, communication and business organization.' },
-			{ title: 'Consulting', desc: 'Strategic advisory for digital transformation and growth.' }
-		]
+			{
+				title: 'Web Development',
+				desc: 'Modern websites, platforms and business systems.',
+				highlights: ['Responsive design across all devices', 'Fast loading and optimized builds', 'Scalable solutions that grow with your business']
+			},
+			{
+				title: 'SEO & Marketing',
+				desc: 'Digital visibility, growth and online positioning.',
+				highlights: ['Search engine optimization (SEO)', 'Targeted digital campaigns', 'Performance tracking and analytics']
+			},
+			{
+				title: 'AI Automation',
+				desc: 'Smart solutions for business process automation.',
+				highlights: ['Automation of repetitive tasks', 'Chatbots and AI-powered customer support', 'Integration with existing systems']
+			},
+			{
+				title: 'Branding & Design',
+				desc: 'Premium visual identity and digital presentation.',
+				highlights: ['Complete visual identity and logo design', 'Consistent brand across all channels', 'Presentations and marketing materials']
+			},
+			{
+				title: 'CRM & Systems',
+				desc: 'Tools for better sales, communication and business organization.',
+				highlights: ['Centralized customer management', 'Sales process automation', 'Improved internal communication and organization']
+			},
+			{
+				title: 'Consulting',
+				desc: 'Strategic advisory for digital transformation and growth.',
+				highlights: ['Analysis of current operations and processes', 'Strategic digital transformation plan', 'Support with implementation and results tracking']
+			}
+		],
+		detailTag: 'Digital Service',
+		detailHighlights: 'What You Get',
+		detailBack: 'All Digital Services',
+		detailInquireHeading: 'Request a Quote',
+		detailInquireSub: 'Fill in the form below and our team will get back to you with a quote for this service.',
+		detailPrefill: 'I am interested in the service: '
 	},
 	news: {
 		label: 'News',
@@ -284,21 +540,49 @@ const en = {
 		sub: 'Focused exclusively on business, economy, investments, technology, diaspora and regional development.',
 		categories: ['Business', 'Investments', 'Technology', 'Diaspora', 'Logistics', 'Agriculture', 'Real Estate', 'Startup Scene']
 	},
+	events: {
+		label: 'Events',
+		heading: 'Business Events & Gatherings',
+		sub: 'Conferences, fairs and business gatherings in Bijeljina, Semberija and the region.'
+	},
 	companies: {
+		label: 'Directory',
 		heading: 'Featured Companies',
 		sub: 'Professional company profiles from across the regional economy',
-		viewAll: 'All Companies',
+		showMore: 'Show More',
+		viewAll: 'Show All',
 		inquire: 'Send Inquiry',
 		featured: 'Featured',
 		localTab: 'Local Businesses',
 		investorsTab: 'Investors & Partners',
 		localSub: 'Companies registered in Bijeljina and Semberija',
-		investorsSub: 'Companies outside the region open to B2B cooperation'
+		investorsSub: 'Companies outside the region open to B2B cooperation',
+		visibilityHeading: 'Make Your Company Visible',
+		visibilitySub: 'Register your company on the platform and get discovered by local and regional partners.'
 	},
 	cta: {
 		heading: 'Join the Business Network',
 		sub: 'Become part of a growing ecosystem connecting companies, investors and diaspora',
 		btn: 'Get Started'
+	},
+	about: {
+		label: 'About Us',
+		heading: 'About Semberija.app',
+		sub: 'A regional business ecosystem connecting companies, investors and diaspora across Bijeljina and Semberija.',
+		storyHeading: 'Our Story',
+		story: [
+			'Semberija.app was created to give the business community of Bijeljina and Semberija a single digital space to present themselves, connect and grow.',
+			'We believe the region holds enormous potential — in agriculture, production, logistics and digital services — and that potential deserves a platform that makes it visible both locally and globally.'
+		],
+		values: [
+			{ title: 'Regional Focus', desc: 'We are dedicated exclusively to the business community of Bijeljina and Semberija.' },
+			{ title: 'Transparency', desc: 'Clear information about companies, opportunities and investments, without middlemen.' },
+			{ title: 'Connection', desc: 'Bringing local companies, investors and diaspora together in one place.' },
+			{ title: 'Digital Growth', desc: 'Encouraging modernization and digital transformation of regional business.' }
+		],
+		ctaHeading: 'Become Part of Our Network',
+		ctaSub: 'Register your company or contact us to learn more about collaboration.',
+		ctaBtn: 'Contact Us'
 	},
 	footer: {
 		tagline: 'Regional Business Network.',
@@ -307,7 +591,7 @@ const en = {
 		colCompany: 'Company',
 		colContact: 'Contact',
 		address: 'Bijeljina, Republika Srpska, BiH',
-		email: 'info@semberija.app',
+		email: 'info@zoemilano.com',
 		copyright: '© 2026 Semberija.app. All rights reserved.',
 		newsletter: 'Follow business news'
 	},
@@ -334,8 +618,10 @@ const en = {
 		investSoonDesc: 'We are collecting investment projects from the region. Contact us if you have a project.',
 		newsSoon: 'News Coming Soon',
 		newsSoonDesc: 'We are building a curated business news feed focused on economy, investments and regional development. Stay tuned.',
-		joinDiaspora: 'Join the Diaspora Network',
-		joinDiasporaDesc: 'Connect with regional companies, investment opportunities and the diaspora business community.',
+		eventsSoon: 'Events Coming Soon',
+		eventsSoonDesc: 'We are building a curated list of business conferences, fairs and regional gatherings. Contact us if you are organizing an event you would like featured.',
+		joinB2b: 'Request Business Matchmaking',
+		joinB2bDesc: 'Tell us what you need — a partner, supplier, distributor or investor — and we\'ll connect you with the right contacts.',
 		contact: {
 			heading: 'Get in Touch',
 			sub: 'Register your company, request a service, or send us a message',
@@ -372,10 +658,13 @@ const it = {
 		companies: 'Aziende',
 		investments: 'Investimenti',
 		network: 'Rete',
-		diaspora: 'Diaspora',
+		diaspora: 'B2B',
 		services: 'Servizi Digitali',
 		news: 'News',
+		events: 'Eventi',
+		about: 'Chi siamo',
 		contact: 'Contatti',
+		businessNetwork: 'Rete Business',
 		listCta: 'Unisciti alla rete'
 	},
 	hero: {
@@ -393,7 +682,7 @@ const it = {
 		{ value: 'UE', label: 'Mercati di esportazione' }
 	],
 	why: {
-		label: 'Perché Semberija',
+		label: 'Vantaggi',
 		heading: 'Perché Semberija',
 		items: [
 			{ icon: 'location', title: 'Posizione strategica', desc: 'Una regione posizionata tra i principali mercati balcanici e le rotte commerciali europee.' },
@@ -404,7 +693,7 @@ const it = {
 		]
 	},
 	network: {
-		label: 'Rete aziendale',
+		label: 'Ecosistema',
 		heading: 'Rete aziendale della regione',
 		sub: 'Un luogo per aziende, investitori, diaspora e partner per connettersi, collaborare e crescere.',
 		items: [
@@ -418,28 +707,138 @@ const it = {
 		label: 'Investimenti',
 		heading: 'Investi in Semberija',
 		sub: 'Esplora il potenziale commerciale regionale in logistica, agricoltura, produzione, immobiliare e servizi digitali.',
-		categories: ['Logistica', 'Agricoltura', 'Produzione', 'Magazzinaggio', 'Immobiliare', 'Energia solare', 'Outsourcing', 'Servizi digitali'],
-		cta: 'Esplora investimenti'
+		cta: 'Esplora investimenti',
+		categories: [
+			{
+				name: 'Logistica',
+				desc: 'La regione è un polo logistico tra Belgrado, Sarajevo e Zagabria, con accesso al Corridoio Vc e al fiume Sava.',
+				highlights: ['Accesso al Corridoio Vc e al porto fluviale', 'Domanda crescente di magazzini e centri di distribuzione', 'Manodopera qualificata nel trasporto e nella logistica']
+			},
+			{
+				name: 'Agricoltura',
+				desc: 'Semberija è una delle regioni agricole più fertili della Bosnia ed Erzegovina, nota per cereali, ortaggi e frutta.',
+				highlights: ['Oltre 40.000 ettari di terreno coltivabile', 'Forte tradizione in agricoltura, orticoltura e allevamento', 'Vicinanza all\'industria di trasformazione e ai mercati di esportazione']
+			},
+			{
+				name: 'Produzione',
+				desc: 'Una tradizione industriale e manodopera disponibile rendono la regione attraente per impianti produttivi e industrie di trasformazione.',
+				highlights: ['Costi del lavoro inferiori rispetto alla UE', 'Infrastruttura industriale sviluppata', 'Incentivi per nuovi impianti produttivi']
+			},
+			{
+				name: 'Magazzinaggio',
+				desc: 'Una posizione strategica all\'incrocio di rotte regionali rende Semberija una location ideale per magazzini e centri di distribuzione.',
+				highlights: ['Vicinanza alle principali rotte di trasporto', 'Terreni disponibili per lo sviluppo di magazzini', 'Domanda crescente di distribuzione regionale']
+			},
+			{
+				name: 'Immobiliare',
+				desc: 'Un mercato immobiliare in sviluppo, con opportunità nella costruzione residenziale, commerciale e industriale.',
+				highlights: ['Prezzi dei terreni accessibili rispetto alla regione', 'Domanda crescente di spazi commerciali', 'Opportunità nello sviluppo residenziale e turistico']
+			},
+			{
+				name: 'Energia solare',
+				desc: 'Condizioni climatiche favorevoli e terreni inutilizzati aprono opportunità di investimento in impianti solari.',
+				highlights: ['Alto numero di giornate di sole all\'anno', 'Terreni disponibili per parchi solari', 'Incentivi per le energie rinnovabili']
+			},
+			{
+				name: 'Outsourcing',
+				desc: 'Costi operativi competitivi e manodopera qualificata rendono la regione attraente per i centri di outsourcing.',
+				highlights: ['Costi competitivi rispetto alla UE', 'Bacino crescente di talenti qualificati', 'Fuso orario comodo per collaborare con l\'Europa']
+			},
+			{
+				name: 'Servizi digitali',
+				desc: 'Un settore digitale in crescita con potenziale per aziende IT, startup e fornitori di servizi digitali.',
+				highlights: ['Numero crescente di professionisti IT nella regione', 'Costi operativi inferiori rispetto all\'Europa occidentale', 'Supporto alla trasformazione digitale locale']
+			}
+		],
+		detailTag: 'Opportunità di investimento',
+		detailHighlights: 'Vantaggi principali',
+		detailBack: 'Tutte le categorie di investimento',
+		detailInquireHeading: 'Invia una richiesta',
+		detailInquireSub: 'Compila il modulo qui sotto e il nostro team ti contatterà in merito a questa opportunità di investimento.',
+		detailPrefill: 'Sono interessato/a all\'opportunità di investimento: '
 	},
-	diaspora: {
-		label: 'Diaspora',
-		heading: 'Diaspora e connessioni regionali',
-		sub: 'Connettere la diaspora con il business locale, le opportunità di investimento e lo sviluppo regionale.',
-		items: ['Investi a casa', 'Networking aziendale', 'Diaspora Business Club', 'Eventi regionali', 'Investor Matching'],
-		cta: 'Unisciti alla rete diaspora'
+	b2b: {
+		label: 'B2B Matchmaking',
+		heading: 'Trova il partner commerciale giusto',
+		sub: 'Il nostro servizio di B2B matchmaking collega le aziende di Semberija con partner, fornitori, distributori e investitori — nella regione e nella diaspora.',
+		cta: 'Richiedi un abbinamento',
+		items: [
+			{
+				title: 'Trova un partner',
+				desc: 'Cerchi un partner commerciale strategico per un progetto congiunto, un\'espansione o un nuovo mercato? Ti mettiamo in contatto con aziende verificate.',
+				highlights: ['Partner commerciali verificati nella regione', 'Supporto nelle trattative e nell\'avvio della collaborazione', 'Focus su partnership di lungo termine']
+			},
+			{
+				title: 'Trova un distributore',
+				desc: 'Aiutiamo produttori e brand a trovare distributori affidabili per nuovi mercati nella regione e all\'estero.',
+				highlights: ['Rete di distributori nella regione e nella diaspora', 'Supporto nell\'ingresso in nuovi mercati', 'Verifica dell\'affidabilità dei potenziali partner']
+			},
+			{
+				title: 'Trova un fornitore',
+				desc: 'Colleghiamo le aziende con fornitori affidabili di materie prime, componenti e servizi a Semberija e nella regione.',
+				highlights: ['Accesso a una base di fornitori verificati', 'Confronto di offerte e condizioni', 'Supporto nella negoziazione di prezzi e tempistiche']
+			},
+			{
+				title: 'Trova un investitore',
+				desc: 'Presentiamo il tuo progetto imprenditoriale a investitori della regione e della diaspora in cerca di opportunità di investimento.',
+				highlights: ['Accesso diretto a investitori interessati', 'Aiuto nella preparazione della presentazione di investimento', 'Discrezione e supporto professionale']
+			},
+			{
+				title: 'Rete della diaspora',
+				desc: 'Colleghiamo le aziende locali con imprenditori della diaspora per collaborazioni, esportazioni e opportunità commerciali congiunte.',
+				highlights: ['Accesso a una rete di imprenditori della diaspora', 'Opportunità di esportazione e collaborazione internazionale', 'Supporto nella comunicazione e nell\'organizzazione degli incontri']
+			}
+		],
+		detailTag: 'Servizio di matchmaking',
+		detailHighlights: 'Come ti aiutiamo',
+		detailBack: 'Tutti i servizi di matchmaking',
+		detailInquireHeading: 'Richiedi un abbinamento',
+		detailInquireSub: 'Descrivi cosa stai cercando e il nostro team troverà i contatti commerciali giusti per te.',
+		detailPrefill: 'Sono interessato/a a: '
 	},
 	services: {
 		label: 'Servizi digitali',
 		heading: 'Soluzioni digitali per il business moderno',
 		sub: 'Aiutare le aziende a crescere attraverso strumenti digitali moderni, branding, automazione e visibilità online.',
+		cta: 'Scopri i servizi',
 		items: [
-			{ title: 'Sviluppo web', desc: 'Siti web moderni, piattaforme e sistemi aziendali.' },
-			{ title: 'SEO & Marketing', desc: 'Visibilità digitale, crescita e posizionamento online.' },
-			{ title: 'Automazione AI', desc: 'Soluzioni intelligenti per l\'automazione dei processi aziendali.' },
-			{ title: 'Branding & Design', desc: 'Identità visiva premium e presentazione digitale.' },
-			{ title: 'CRM & Sistemi', desc: 'Strumenti per vendite migliori, comunicazione e organizzazione aziendale.' },
-			{ title: 'Consulenza', desc: 'Consulenza strategica per la trasformazione digitale e la crescita.' }
-		]
+			{
+				title: 'Sviluppo web',
+				desc: 'Siti web moderni, piattaforme e sistemi aziendali.',
+				highlights: ['Design responsive su tutti i dispositivi', 'Caricamento veloce e sviluppo ottimizzato', 'Soluzioni scalabili che crescono con il business']
+			},
+			{
+				title: 'SEO & Marketing',
+				desc: 'Visibilità digitale, crescita e posizionamento online.',
+				highlights: ['Ottimizzazione per i motori di ricerca (SEO)', 'Campagne digitali mirate', 'Monitoraggio e analisi dei risultati']
+			},
+			{
+				title: 'Automazione AI',
+				desc: 'Soluzioni intelligenti per l\'automazione dei processi aziendali.',
+				highlights: ['Automazione delle attività ripetitive', 'Chatbot e assistenza clienti basata su AI', 'Integrazione con i sistemi esistenti']
+			},
+			{
+				title: 'Branding & Design',
+				desc: 'Identità visiva premium e presentazione digitale.',
+				highlights: ['Identità visiva completa e logo', 'Brand coerente su tutti i canali', 'Presentazioni e materiali di marketing']
+			},
+			{
+				title: 'CRM & Sistemi',
+				desc: 'Strumenti per vendite migliori, comunicazione e organizzazione aziendale.',
+				highlights: ['Gestione centralizzata dei clienti', 'Automazione del processo di vendita', 'Migliore comunicazione e organizzazione interna']
+			},
+			{
+				title: 'Consulenza',
+				desc: 'Consulenza strategica per la trasformazione digitale e la crescita.',
+				highlights: ['Analisi delle operazioni e dei processi attuali', 'Piano strategico di trasformazione digitale', 'Supporto nell\'implementazione e nel monitoraggio dei risultati']
+			}
+		],
+		detailTag: 'Servizio digitale',
+		detailHighlights: 'Cosa ottieni',
+		detailBack: 'Tutti i servizi digitali',
+		detailInquireHeading: 'Richiedi un preventivo',
+		detailInquireSub: 'Compila il modulo qui sotto e il nostro team ti contatterà con un preventivo per questo servizio.',
+		detailPrefill: 'Sono interessato/a al servizio: '
 	},
 	news: {
 		label: 'News',
@@ -447,21 +846,49 @@ const it = {
 		sub: 'Focalizzati esclusivamente su business, economia, investimenti, tecnologia, diaspora e sviluppo regionale.',
 		categories: ['Business', 'Investimenti', 'Tecnologia', 'Diaspora', 'Logistica', 'Agricoltura', 'Immobiliare', 'Startup']
 	},
+	events: {
+		label: 'Eventi',
+		heading: 'Eventi e incontri di business',
+		sub: 'Conferenze, fiere e incontri aziendali a Bijeljina, Semberija e nella regione.'
+	},
 	companies: {
+		label: 'Elenco',
 		heading: 'Aziende in evidenza',
 		sub: 'Profili aziendali professionali dall\'economia regionale',
-		viewAll: 'Tutte le aziende',
+		showMore: 'Mostra di più',
+		viewAll: 'Mostra tutte',
 		inquire: 'Invia richiesta',
 		featured: 'In evidenza',
 		localTab: 'Aziende locali',
 		investorsTab: 'Investitori e partner',
 		localSub: 'Aziende registrate a Bijeljina e Semberija',
-		investorsSub: 'Aziende esterne alla regione aperte alla cooperazione B2B'
+		investorsSub: 'Aziende esterne alla regione aperte alla cooperazione B2B',
+		visibilityHeading: 'Rendi visibile la tua azienda',
+		visibilitySub: 'Registra la tua azienda sulla piattaforma e fatti scoprire da partner locali e regionali.'
 	},
 	cta: {
 		heading: 'Unisciti alla rete aziendale',
 		sub: 'Diventa parte di un ecosistema in crescita che collega aziende, investitori e diaspora',
 		btn: 'Inizia ora'
+	},
+	about: {
+		label: 'Chi siamo',
+		heading: 'Chi è Semberija.app',
+		sub: 'Un ecosistema commerciale regionale che collega aziende, investitori e la diaspora di Bijeljina e Semberija.',
+		storyHeading: 'La nostra storia',
+		story: [
+			'Semberija.app è nata per offrire alla comunità imprenditoriale di Bijeljina e Semberija uno spazio digitale unico per presentarsi, connettersi e crescere.',
+			'Crediamo che la regione abbia un enorme potenziale — nell\'agricoltura, nella produzione, nella logistica e nei servizi digitali — un potenziale che merita una piattaforma capace di renderlo visibile a livello locale e globale.'
+		],
+		values: [
+			{ title: 'Focus regionale', desc: 'Ci dedichiamo esclusivamente alla comunità imprenditoriale di Bijeljina e Semberija.' },
+			{ title: 'Trasparenza', desc: 'Informazioni chiare su aziende, opportunità e investimenti, senza intermediari.' },
+			{ title: 'Connessione', desc: 'Uniamo aziende locali, investitori e diaspora in un unico luogo.' },
+			{ title: 'Crescita digitale', desc: 'Promuoviamo la modernizzazione e la trasformazione digitale del business regionale.' }
+		],
+		ctaHeading: 'Entra a far parte della nostra rete',
+		ctaSub: 'Registra la tua azienda o contattaci per saperne di più sulla collaborazione.',
+		ctaBtn: 'Contattaci'
 	},
 	footer: {
 		tagline: 'Rete Business Regionale.',
@@ -470,7 +897,7 @@ const it = {
 		colCompany: 'Azienda',
 		colContact: 'Contatto',
 		address: 'Bijeljina, Republika Srpska, BiH',
-		email: 'info@semberija.app',
+		email: 'info@zoemilano.com',
 		copyright: '© 2026 Semberija.app. Tutti i diritti riservati.',
 		newsletter: 'Segui le news aziendali'
 	},
@@ -497,8 +924,10 @@ const it = {
 		investSoonDesc: 'Stiamo raccogliendo progetti di investimento dalla regione. Contattaci se hai un progetto.',
 		newsSoon: 'News in arrivo',
 		newsSoonDesc: 'Stiamo costruendo un feed di news aziendali curato su economia, investimenti e sviluppo regionale. Restate sintonizzati.',
-		joinDiaspora: 'Unisciti alla rete diaspora',
-		joinDiasporaDesc: 'Connettiti con aziende regionali, opportunità di investimento e la comunità aziendale della diaspora.',
+		eventsSoon: 'Eventi in arrivo',
+		eventsSoonDesc: 'Stiamo raccogliendo conferenze aziendali, fiere e incontri regionali. Contattaci se organizzi un evento che vorresti fosse presentato.',
+		joinB2b: 'Richiedi un abbinamento commerciale',
+		joinB2bDesc: 'Dicci di cosa hai bisogno — un partner, un fornitore, un distributore o un investitore — e ti metteremo in contatto con i contatti giusti.',
 		contact: {
 			heading: 'Contattaci',
 			sub: 'Registra la tua azienda, richiedi un servizio o inviaci un messaggio',
@@ -535,10 +964,13 @@ const ru = {
 		companies: 'Компании',
 		investments: 'Инвестиции',
 		network: 'Сеть',
-		diaspora: 'Диаспора',
+		diaspora: 'B2B',
 		services: 'Цифровые услуги',
 		news: 'Новости',
+		events: 'События',
+		about: 'О нас',
 		contact: 'Контакт',
+		businessNetwork: 'Бизнес-сеть',
 		listCta: 'Присоединиться к сети'
 	},
 	hero: {
@@ -556,7 +988,7 @@ const ru = {
 		{ value: 'ЕС', label: 'Экспортные рынки' }
 	],
 	why: {
-		label: 'Почему Семберия',
+		label: 'Преимущества',
 		heading: 'Почему Семберия',
 		items: [
 			{ icon: 'location', title: 'Стратегическое расположение', desc: 'Регион между ключевыми балканскими рынками и европейскими деловыми маршрутами.' },
@@ -567,7 +999,7 @@ const ru = {
 		]
 	},
 	network: {
-		label: 'Бизнес-сеть',
+		label: 'Экосистема',
 		heading: 'Бизнес-сеть региона',
 		sub: 'Место, где компании, инвесторы, диаспора и партнёры встречаются, сотрудничают и растут.',
 		items: [
@@ -581,28 +1013,138 @@ const ru = {
 		label: 'Инвестиции',
 		heading: 'Инвестируйте в Семберию',
 		sub: 'Исследуйте региональный бизнес-потенциал в логистике, сельском хозяйстве, производстве, недвижимости и цифровых услугах.',
-		categories: ['Логистика', 'Сельское хозяйство', 'Производство', 'Складирование', 'Недвижимость', 'Солнечная энергия', 'Аутсорсинг', 'Цифровые услуги'],
-		cta: 'Исследовать инвестиции'
+		cta: 'Исследовать инвестиции',
+		categories: [
+			{
+				name: 'Логистика',
+				desc: 'Регион является логистическим узлом между Белградом, Сараево и Загребом, с доступом к коридору Vc и реке Сава.',
+				highlights: ['Доступ к коридору Vc и речному порту', 'Растущий спрос на складские и распределительные центры', 'Квалифицированная рабочая сила в сфере транспорта и логистики']
+			},
+			{
+				name: 'Сельское хозяйство',
+				desc: 'Семберия — один из самых плодородных сельскохозяйственных регионов Боснии и Герцеговины, известный зерновыми, овощами и фруктами.',
+				highlights: ['Более 40 000 га пахотных земель', 'Сильные традиции земледелия, овощеводства и животноводства', 'Близость к перерабатывающей промышленности и экспортным рынкам']
+			},
+			{
+				name: 'Производство',
+				desc: 'Промышленные традиции и доступная рабочая сила делают регион привлекательным для производственных и перерабатывающих предприятий.',
+				highlights: ['Более низкие затраты на рабочую силу по сравнению с ЕС', 'Развитая промышленная инфраструктура', 'Льготы для новых производственных объектов']
+			},
+			{
+				name: 'Складирование',
+				desc: 'Стратегическое положение на пересечении региональных маршрутов делает Семберию идеальным местом для складских и распределительных центров.',
+				highlights: ['Близость к основным транспортным маршрутам', 'Доступные земельные участки для строительства складов', 'Растущий спрос на региональную дистрибуцию']
+			},
+			{
+				name: 'Недвижимость',
+				desc: 'Развивающийся рынок недвижимости с возможностями в жилом, коммерческом и промышленном строительстве.',
+				highlights: ['Доступные цены на землю по сравнению с регионом', 'Растущий спрос на коммерческие площади', 'Возможности в жилом и туристическом строительстве']
+			},
+			{
+				name: 'Солнечная энергия',
+				desc: 'Благоприятные климатические условия и неиспользуемые земли открывают возможности для инвестиций в солнечные электростанции.',
+				highlights: ['Большое количество солнечных дней в году', 'Доступные земли для солнечных парков', 'Льготы для возобновляемых источников энергии']
+			},
+			{
+				name: 'Аутсорсинг',
+				desc: 'Конкурентные операционные расходы и образованная рабочая сила делают регион привлекательным для аутсорсинговых центров.',
+				highlights: ['Конкурентные расходы по сравнению с ЕС', 'Растущий пул образованных специалистов', 'Часовой пояс, удобный для сотрудничества с Европой']
+			},
+			{
+				name: 'Цифровые услуги',
+				desc: 'Растущий цифровой сектор с потенциалом для IT-компаний, стартапов и поставщиков цифровых услуг.',
+				highlights: ['Растущее число IT-специалистов в регионе', 'Более низкие операционные расходы по сравнению с Западной Европой', 'Поддержка локальной цифровой трансформации']
+			}
+		],
+		detailTag: 'Инвестиционная возможность',
+		detailHighlights: 'Ключевые преимущества',
+		detailBack: 'Все инвестиционные категории',
+		detailInquireHeading: 'Отправить запрос',
+		detailInquireSub: 'Заполните форму ниже, и наша команда свяжется с вами по поводу этой инвестиционной возможности.',
+		detailPrefill: 'Меня интересует инвестиционная возможность: '
 	},
-	diaspora: {
-		label: 'Диаспора',
-		heading: 'Диаспора и региональные связи',
-		sub: 'Соединяем диаспору с местным бизнесом, инвестиционными возможностями и региональным развитием.',
-		items: ['Инвестируй на родине', 'Деловой нетворкинг', 'Бизнес-клуб диаспоры', 'Региональные события', 'Подбор инвесторов'],
-		cta: 'Присоединиться к сети диаспоры'
+	b2b: {
+		label: 'B2B Мэтчмейкинг',
+		heading: 'Найдите подходящего бизнес-партнёра',
+		sub: 'Наша услуга B2B-мэтчмейкинга соединяет компании из Семберии с партнёрами, поставщиками, дистрибьюторами и инвесторами — в регионе и диаспоре.',
+		cta: 'Запросить подбор',
+		items: [
+			{
+				title: 'Найти партнёра',
+				desc: 'Ищете стратегического бизнес-партнёра для совместного проекта, расширения или нового рынка? Мы свяжем вас с проверенными компаниями.',
+				highlights: ['Проверенные бизнес-партнёры из региона', 'Поддержка в переговорах и организации сотрудничества', 'Фокус на долгосрочные партнёрства']
+			},
+			{
+				title: 'Найти дистрибьютора',
+				desc: 'Помогаем производителям и брендам найти надёжных дистрибьюторов для новых рынков в регионе и за рубежом.',
+				highlights: ['Сеть дистрибьюторов в регионе и диаспоре', 'Поддержка при выходе на новые рынки', 'Проверка надёжности потенциальных партнёров']
+			},
+			{
+				title: 'Найти поставщика',
+				desc: 'Соединяем компании с надёжными поставщиками сырья, комплектующих и услуг в Семберии и регионе.',
+				highlights: ['Доступ к проверенной базе поставщиков', 'Сравнение предложений и условий', 'Поддержка в переговорах о ценах и сроках']
+			},
+			{
+				title: 'Найти инвестора',
+				desc: 'Представляем ваш бизнес-проект инвесторам из региона и диаспоры, ищущим возможности для вложений.',
+				highlights: ['Прямой доступ к заинтересованным инвесторам', 'Помощь в подготовке инвестиционной презентации', 'Конфиденциальность и профессиональная поддержка']
+			},
+			{
+				title: 'Сеть диаспоры',
+				desc: 'Соединяем местные компании с предпринимателями из диаспоры для сотрудничества, экспорта и совместных бизнес-возможностей.',
+				highlights: ['Доступ к сети бизнесменов диаспоры', 'Возможности для экспорта и международного сотрудничества', 'Поддержка в общении и организации встреч']
+			}
+		],
+		detailTag: 'Услуга мэтчмейкинга',
+		detailHighlights: 'Как мы помогаем',
+		detailBack: 'Все услуги мэтчмейкинга',
+		detailInquireHeading: 'Запросить подбор',
+		detailInquireSub: 'Опишите, что вы ищете, и наша команда найдёт для вас подходящие бизнес-контакты.',
+		detailPrefill: 'Меня интересует: '
 	},
 	services: {
 		label: 'Цифровые услуги',
 		heading: 'Цифровые решения для современного бизнеса',
 		sub: 'Помогаем компаниям расти с помощью современных цифровых инструментов, брендинга, автоматизации и онлайн-видимости.',
+		cta: 'Смотреть услуги',
 		items: [
-			{ title: 'Веб-разработка', desc: 'Современные сайты, платформы и бизнес-системы.' },
-			{ title: 'SEO & Маркетинг', desc: 'Цифровая видимость, рост и онлайн-позиционирование.' },
-			{ title: 'AI автоматизация', desc: 'Умные решения для автоматизации бизнес-процессов.' },
-			{ title: 'Брендинг & Дизайн', desc: 'Премиальный визуальный идентитет и цифровая презентация.' },
-			{ title: 'CRM & Системы', desc: 'Инструменты для лучших продаж, коммуникации и бизнес-организации.' },
-			{ title: 'Консалтинг', desc: 'Стратегическое консультирование по цифровой трансформации и росту.' }
-		]
+			{
+				title: 'Веб-разработка',
+				desc: 'Современные сайты, платформы и бизнес-системы.',
+				highlights: ['Адаптивный дизайн для всех устройств', 'Быстрая загрузка и оптимизированная разработка', 'Масштабируемые решения для роста бизнеса']
+			},
+			{
+				title: 'SEO & Маркетинг',
+				desc: 'Цифровая видимость, рост и онлайн-позиционирование.',
+				highlights: ['Поисковая оптимизация (SEO)', 'Таргетированные digital-кампании', 'Отслеживание и анализ результатов']
+			},
+			{
+				title: 'AI автоматизация',
+				desc: 'Умные решения для автоматизации бизнес-процессов.',
+				highlights: ['Автоматизация повторяющихся задач', 'Чат-боты и AI-поддержка клиентов', 'Интеграция с существующими системами']
+			},
+			{
+				title: 'Брендинг & Дизайн',
+				desc: 'Премиальный визуальный идентитет и цифровая презентация.',
+				highlights: ['Полный визуальный идентитет и логотип', 'Единый бренд на всех каналах', 'Презентации и маркетинговые материалы']
+			},
+			{
+				title: 'CRM & Системы',
+				desc: 'Инструменты для лучших продаж, коммуникации и бизнес-организации.',
+				highlights: ['Централизованное управление клиентами', 'Автоматизация процесса продаж', 'Улучшенная внутренняя коммуникация и организация']
+			},
+			{
+				title: 'Консалтинг',
+				desc: 'Стратегическое консультирование по цифровой трансформации и росту.',
+				highlights: ['Анализ текущих операций и процессов', 'Стратегический план цифровой трансформации', 'Поддержка внедрения и отслеживания результатов']
+			}
+		],
+		detailTag: 'Цифровая услуга',
+		detailHighlights: 'Что вы получаете',
+		detailBack: 'Все цифровые услуги',
+		detailInquireHeading: 'Запросить предложение',
+		detailInquireSub: 'Заполните форму ниже, и наша команда свяжется с вами с предложением по этой услуге.',
+		detailPrefill: 'Меня интересует услуга: '
 	},
 	news: {
 		label: 'Новости',
@@ -610,21 +1152,49 @@ const ru = {
 		sub: 'Фокусируемся исключительно на бизнесе, экономике, инвестициях, технологиях, диаспоре и региональном развитии.',
 		categories: ['Бизнес', 'Инвестиции', 'Технологии', 'Диаспора', 'Логистика', 'Сельское хозяйство', 'Недвижимость', 'Стартапы']
 	},
+	events: {
+		label: 'События',
+		heading: 'Деловые события и встречи',
+		sub: 'Конференции, выставки и деловые встречи в Биелине, Семберии и регионе.'
+	},
 	companies: {
+		label: 'Каталог',
 		heading: 'Избранные компании',
 		sub: 'Профессиональные профили компаний из различных секторов региональной экономики',
-		viewAll: 'Все компании',
+		showMore: 'Показать больше',
+		viewAll: 'Показать все',
 		inquire: 'Отправить запрос',
 		featured: 'Рекомендуем',
 		localTab: 'Местные компании',
 		investorsTab: 'Инвесторы и партнёры',
 		localSub: 'Компании, зарегистрированные в Биелине и Семберии',
-		investorsSub: 'Компании за пределами региона, открытые для B2B-сотрудничества'
+		investorsSub: 'Компании за пределами региона, открытые для B2B-сотрудничества',
+		visibilityHeading: 'Сделайте вашу компанию видимой',
+		visibilitySub: 'Зарегистрируйте свою компанию на платформе, и вас найдут местные и региональные партнёры.'
 	},
 	cta: {
 		heading: 'Присоединяйтесь к бизнес-сети',
 		sub: 'Станьте частью растущей экосистемы, объединяющей компании, инвесторов и диаспору',
 		btn: 'Начать'
+	},
+	about: {
+		label: 'О нас',
+		heading: 'О платформе Semberija.app',
+		sub: 'Региональная бизнес-экосистема, объединяющая компании, инвесторов и диаспору Биелины и Семберии.',
+		storyHeading: 'Наша история',
+		story: [
+			'Semberija.app была создана, чтобы дать деловому сообществу Биелины и Семберии единое цифровое пространство для представления, взаимодействия и роста.',
+			'Мы верим, что регион обладает огромным потенциалом — в сельском хозяйстве, производстве, логистике и цифровых услугах — и этот потенциал заслуживает платформы, которая сделает его видимым как локально, так и на мировом уровне.'
+		],
+		values: [
+			{ title: 'Региональный фокус', desc: 'Мы работаем исключительно с деловым сообществом Биелины и Семберии.' },
+			{ title: 'Прозрачность', desc: 'Понятная информация о компаниях, возможностях и инвестициях без посредников.' },
+			{ title: 'Связь', desc: 'Объединяем местные компании, инвесторов и диаспору в одном месте.' },
+			{ title: 'Цифровой рост', desc: 'Поддерживаем модернизацию и цифровую трансформацию регионального бизнеса.' }
+		],
+		ctaHeading: 'Станьте частью нашей сети',
+		ctaSub: 'Зарегистрируйте свою компанию или свяжитесь с нами, чтобы узнать больше о сотрудничестве.',
+		ctaBtn: 'Связаться с нами'
 	},
 	footer: {
 		tagline: 'Региональная бизнес-сеть.',
@@ -633,7 +1203,7 @@ const ru = {
 		colCompany: 'Компания',
 		colContact: 'Контакт',
 		address: 'Биелина, Republika Srpska, BiH',
-		email: 'info@semberija.app',
+		email: 'info@zoemilano.com',
 		copyright: '© 2026 Semberija.app. Все права защищены.',
 		newsletter: 'Следите за деловыми новостями'
 	},
@@ -660,8 +1230,10 @@ const ru = {
 		investSoonDesc: 'Мы собираем инвестиционные проекты из региона. Свяжитесь с нами, если у вас есть проект.',
 		newsSoon: 'Новости скоро',
 		newsSoonDesc: 'Мы создаём тематический деловой новостной поток, посвящённый экономике, инвестициям и региональному развитию. Следите за обновлениями.',
-		joinDiaspora: 'Присоединиться к сети диаспоры',
-		joinDiasporaDesc: 'Свяжитесь с региональными компаниями, инвестиционными возможностями и деловым сообществом диаспоры.',
+		eventsSoon: 'События скоро появятся',
+		eventsSoonDesc: 'Мы собираем деловые конференции, выставки и региональные встречи. Свяжитесь с нами, если вы организуете мероприятие, которое хотите разместить.',
+		joinB2b: 'Запросить бизнес-подбор',
+		joinB2bDesc: 'Расскажите, что вам нужно — партнёр, поставщик, дистрибьютор или инвестор — и мы свяжем вас с нужными контактами.',
 		contact: {
 			heading: 'Свяжитесь с нами',
 			sub: 'Зарегистрируйте компанию, запросите услугу или отправьте нам сообщение',
@@ -698,10 +1270,13 @@ const de = {
 		companies: 'Unternehmen',
 		investments: 'Investitionen',
 		network: 'Netzwerk',
-		diaspora: 'Diaspora',
+		diaspora: 'B2B',
 		services: 'Digitale Dienste',
 		news: 'News',
+		events: 'Veranstaltungen',
+		about: 'Über uns',
 		contact: 'Kontakt',
+		businessNetwork: 'Business-Netzwerk',
 		listCta: 'Netzwerk beitreten'
 	},
 	hero: {
@@ -719,7 +1294,7 @@ const de = {
 		{ value: 'EU', label: 'Exportmärkte' }
 	],
 	why: {
-		label: 'Warum Semberija',
+		label: 'Vorteile',
 		heading: 'Warum Semberija',
 		items: [
 			{ icon: 'location', title: 'Strategische Lage', desc: 'Eine Region zwischen den wichtigsten Balkanmärkten und europäischen Geschäftsrouten.' },
@@ -730,7 +1305,7 @@ const de = {
 		]
 	},
 	network: {
-		label: 'Business-Netzwerk',
+		label: 'Ökosystem',
 		heading: 'Business-Netzwerk der Region',
 		sub: 'Ein Ort, an dem Unternehmen, Investoren, Diaspora und Partner sich vernetzen, zusammenarbeiten und wachsen.',
 		items: [
@@ -744,28 +1319,138 @@ const de = {
 		label: 'Investitionen',
 		heading: 'Investieren Sie in Semberija',
 		sub: 'Erkunden Sie regionales Geschäftspotenzial in Logistik, Landwirtschaft, Produktion, Immobilien und digitalen Diensten.',
-		categories: ['Logistik', 'Landwirtschaft', 'Produktion', 'Lagerung', 'Immobilien', 'Solarenergie', 'Outsourcing', 'Digitale Dienste'],
-		cta: 'Investitionen erkunden'
+		cta: 'Investitionen erkunden',
+		categories: [
+			{
+				name: 'Logistik',
+				desc: 'Die Region ist ein Logistikknotenpunkt zwischen Belgrad, Sarajevo und Zagreb mit Zugang zum Korridor Vc und dem Fluss Save.',
+				highlights: ['Zugang zum Korridor Vc und zum Flusshafen', 'Wachsende Nachfrage nach Lager- und Distributionszentren', 'Qualifizierte Arbeitskräfte im Transport- und Logistikbereich']
+			},
+			{
+				name: 'Landwirtschaft',
+				desc: 'Semberija ist eine der fruchtbarsten landwirtschaftlichen Regionen Bosnien und Herzegowinas, bekannt für Getreide, Gemüse und Obst.',
+				highlights: ['Über 40.000 Hektar Ackerland', 'Starke Tradition im Ackerbau, Gemüseanbau und in der Viehzucht', 'Nähe zur Verarbeitungsindustrie und zu Exportmärkten']
+			},
+			{
+				name: 'Produktion',
+				desc: 'Eine industrielle Tradition und verfügbare Arbeitskräfte machen die Region attraktiv für Produktionsstätten und die Verarbeitungsindustrie.',
+				highlights: ['Niedrigere Arbeitskosten im Vergleich zur EU', 'Entwickelte industrielle Infrastruktur', 'Anreize für neue Produktionsstätten']
+			},
+			{
+				name: 'Lagerung',
+				desc: 'Eine strategische Lage am Kreuzungspunkt regionaler Routen macht Semberija zu einem idealen Standort für Lager- und Distributionszentren.',
+				highlights: ['Nähe zu wichtigen Transportrouten', 'Verfügbare Flächen für den Bau von Lagerkapazitäten', 'Wachsender Bedarf an regionaler Distribution']
+			},
+			{
+				name: 'Immobilien',
+				desc: 'Ein sich entwickelnder Immobilienmarkt mit Chancen im Wohn-, Gewerbe- und Industriebau.',
+				highlights: ['Erschwingliche Grundstückspreise im regionalen Vergleich', 'Wachsende Nachfrage nach Gewerbeflächen', 'Chancen im Wohnbau und Tourismussektor']
+			},
+			{
+				name: 'Solarenergie',
+				desc: 'Günstige klimatische Bedingungen und ungenutzte Flächen eröffnen Investitionsmöglichkeiten in Solarkraftwerke.',
+				highlights: ['Hohe Anzahl an Sonnentagen pro Jahr', 'Verfügbare Flächen für Solarparks', 'Anreize für erneuerbare Energien']
+			},
+			{
+				name: 'Outsourcing',
+				desc: 'Wettbewerbsfähige Betriebskosten und gut ausgebildete Arbeitskräfte machen die Region attraktiv für Outsourcing-Zentren.',
+				highlights: ['Wettbewerbsfähige Kosten im Vergleich zur EU', 'Wachsender Pool gut ausgebildeter Fachkräfte', 'Zeitzone, die die Zusammenarbeit mit Europa erleichtert']
+			},
+			{
+				name: 'Digitale Dienste',
+				desc: 'Ein wachsender digitaler Sektor mit Potenzial für IT-Unternehmen, Startups und Anbieter digitaler Dienstleistungen.',
+				highlights: ['Wachsende Zahl von IT-Fachkräften in der Region', 'Niedrigere Betriebskosten im Vergleich zu Westeuropa', 'Unterstützung der lokalen digitalen Transformation']
+			}
+		],
+		detailTag: 'Investitionsmöglichkeit',
+		detailHighlights: 'Wichtigste Vorteile',
+		detailBack: 'Alle Investitionskategorien',
+		detailInquireHeading: 'Anfrage senden',
+		detailInquireSub: 'Füllen Sie das Formular unten aus, und unser Team wird sich bezüglich dieser Investitionsmöglichkeit bei Ihnen melden.',
+		detailPrefill: 'Ich interessiere mich für die Investitionsmöglichkeit: '
 	},
-	diaspora: {
-		label: 'Diaspora',
-		heading: 'Diaspora & regionale Verbindungen',
-		sub: 'Verbindung der Diaspora mit lokalem Business, Investitionsmöglichkeiten und regionalem Entwicklung.',
-		items: ['In der Heimat investieren', 'Business-Networking', 'Diaspora Business Club', 'Regionale Events', 'Investor Matching'],
-		cta: 'Diaspora-Netzwerk beitreten'
+	b2b: {
+		label: 'B2B Matchmaking',
+		heading: 'Finden Sie den richtigen Geschäftspartner',
+		sub: 'Unser B2B-Matchmaking-Service verbindet Unternehmen aus Semberija mit Partnern, Lieferanten, Vertriebspartnern und Investoren — in der Region und der Diaspora.',
+		cta: 'Matching anfragen',
+		items: [
+			{
+				title: 'Partner finden',
+				desc: 'Suchen Sie einen strategischen Geschäftspartner für ein gemeinsames Projekt, eine Expansion oder einen neuen Markt? Wir verbinden Sie mit geprüften Unternehmen.',
+				highlights: ['Geprüfte Geschäftspartner aus der Region', 'Unterstützung bei Verhandlungen und beim Aufbau der Zusammenarbeit', 'Fokus auf langfristige Partnerschaften']
+			},
+			{
+				title: 'Vertriebspartner finden',
+				desc: 'Wir helfen Herstellern und Marken, zuverlässige Vertriebspartner für neue Märkte in der Region und im Ausland zu finden.',
+				highlights: ['Vertriebsnetzwerk in der Region und der Diaspora', 'Unterstützung beim Markteintritt', 'Zuverlässigkeitsprüfung potenzieller Partner']
+			},
+			{
+				title: 'Lieferanten finden',
+				desc: 'Wir verbinden Unternehmen mit zuverlässigen Lieferanten für Rohstoffe, Komponenten und Dienstleistungen in Semberija und der Region.',
+				highlights: ['Zugang zu einer geprüften Lieferantenbasis', 'Vergleich von Angeboten und Konditionen', 'Unterstützung bei Preis- und Terminverhandlungen']
+			},
+			{
+				title: 'Investor finden',
+				desc: 'Wir präsentieren Ihr Geschäftsprojekt Investoren aus der Region und der Diaspora, die nach Investitionsmöglichkeiten suchen.',
+				highlights: ['Direkter Zugang zu interessierten Investoren', 'Unterstützung bei der Erstellung Ihres Investment-Pitches', 'Diskretion und professionelle Unterstützung']
+			},
+			{
+				title: 'Diaspora-Netzwerk',
+				desc: 'Wir verbinden lokale Unternehmen mit Unternehmern aus der Diaspora für Zusammenarbeit, Export und gemeinsame Geschäftsmöglichkeiten.',
+				highlights: ['Zugang zu einem Netzwerk von Geschäftsleuten der Diaspora', 'Möglichkeiten für Export und internationale Zusammenarbeit', 'Unterstützung bei Kommunikation und Terminorganisation']
+			}
+		],
+		detailTag: 'Matchmaking-Service',
+		detailHighlights: 'Wie wir helfen',
+		detailBack: 'Alle Matchmaking-Services',
+		detailInquireHeading: 'Matching anfragen',
+		detailInquireSub: 'Beschreiben Sie, wonach Sie suchen, und unser Team findet die passenden Geschäftskontakte für Sie.',
+		detailPrefill: 'Ich interessiere mich für: '
 	},
 	services: {
 		label: 'Digitale Dienste',
 		heading: 'Digitale Lösungen für modernes Business',
 		sub: 'Unternehmen beim Wachstum durch moderne digitale Tools, Branding, Automatisierung und Online-Sichtbarkeit unterstützen.',
+		cta: 'Dienstleistungen ansehen',
 		items: [
-			{ title: 'Webentwicklung', desc: 'Moderne Websites, Plattformen und Geschäftssysteme.' },
-			{ title: 'SEO & Marketing', desc: 'Digitale Sichtbarkeit, Wachstum und Online-Positionierung.' },
-			{ title: 'KI-Automatisierung', desc: 'Intelligente Lösungen zur Automatisierung von Geschäftsprozessen.' },
-			{ title: 'Branding & Design', desc: 'Premium visuelle Identität und digitale Präsentation.' },
-			{ title: 'CRM & Systeme', desc: 'Tools für bessere Verkäufe, Kommunikation und Geschäftsorganisation.' },
-			{ title: 'Beratung', desc: 'Strategische Beratung für digitale Transformation und Wachstum.' }
-		]
+			{
+				title: 'Webentwicklung',
+				desc: 'Moderne Websites, Plattformen und Geschäftssysteme.',
+				highlights: ['Responsives Design für alle Geräte', 'Schnelle Ladezeiten und optimierte Entwicklung', 'Skalierbare Lösungen, die mit Ihrem Unternehmen wachsen']
+			},
+			{
+				title: 'SEO & Marketing',
+				desc: 'Digitale Sichtbarkeit, Wachstum und Online-Positionierung.',
+				highlights: ['Suchmaschinenoptimierung (SEO)', 'Zielgerichtete digitale Kampagnen', 'Erfolgsmessung und Analyse']
+			},
+			{
+				title: 'KI-Automatisierung',
+				desc: 'Intelligente Lösungen zur Automatisierung von Geschäftsprozessen.',
+				highlights: ['Automatisierung wiederkehrender Aufgaben', 'Chatbots und KI-gestützter Kundensupport', 'Integration in bestehende Systeme']
+			},
+			{
+				title: 'Branding & Design',
+				desc: 'Premium visuelle Identität und digitale Präsentation.',
+				highlights: ['Vollständige visuelle Identität und Logo', 'Einheitlicher Markenauftritt über alle Kanäle', 'Präsentationen und Marketingmaterialien']
+			},
+			{
+				title: 'CRM & Systeme',
+				desc: 'Tools für bessere Verkäufe, Kommunikation und Geschäftsorganisation.',
+				highlights: ['Zentrales Kundenmanagement', 'Automatisierung des Vertriebsprozesses', 'Bessere interne Kommunikation und Organisation']
+			},
+			{
+				title: 'Beratung',
+				desc: 'Strategische Beratung für digitale Transformation und Wachstum.',
+				highlights: ['Analyse aktueller Abläufe und Prozesse', 'Strategischer Plan zur digitalen Transformation', 'Unterstützung bei Umsetzung und Erfolgskontrolle']
+			}
+		],
+		detailTag: 'Digitale Dienstleistung',
+		detailHighlights: 'Was Sie erhalten',
+		detailBack: 'Alle digitalen Dienste',
+		detailInquireHeading: 'Angebot anfordern',
+		detailInquireSub: 'Füllen Sie das Formular unten aus, und unser Team meldet sich mit einem Angebot für diesen Service bei Ihnen.',
+		detailPrefill: 'Ich interessiere mich für den Service: '
 	},
 	news: {
 		label: 'News',
@@ -773,21 +1458,49 @@ const de = {
 		sub: 'Ausschließlich auf Business, Wirtschaft, Investitionen, Technologie, Diaspora und regionale Entwicklung fokussiert.',
 		categories: ['Business', 'Investitionen', 'Technologie', 'Diaspora', 'Logistik', 'Landwirtschaft', 'Immobilien', 'Startups']
 	},
+	events: {
+		label: 'Veranstaltungen',
+		heading: 'Geschäftsveranstaltungen & Treffen',
+		sub: 'Konferenzen, Messen und Geschäftstreffen in Bijeljina, Semberija und der Region.'
+	},
 	companies: {
+		label: 'Verzeichnis',
 		heading: 'Ausgewählte Unternehmen',
 		sub: 'Professionelle Unternehmensprofile aus der regionalen Wirtschaft',
-		viewAll: 'Alle Unternehmen',
+		showMore: 'Mehr anzeigen',
+		viewAll: 'Alle anzeigen',
 		inquire: 'Anfrage senden',
 		featured: 'Empfohlen',
 		localTab: 'Lokale Unternehmen',
 		investorsTab: 'Investoren & Partner',
 		localSub: 'In Bijeljina und Semberija registrierte Unternehmen',
-		investorsSub: 'Unternehmen außerhalb der Region, offen für B2B-Kooperation'
+		investorsSub: 'Unternehmen außerhalb der Region, offen für B2B-Kooperation',
+		visibilityHeading: 'Machen Sie Ihr Unternehmen sichtbar',
+		visibilitySub: 'Registrieren Sie Ihr Unternehmen auf der Plattform und werden Sie von lokalen und regionalen Partnern entdeckt.'
 	},
 	cta: {
 		heading: 'Dem Business-Netzwerk beitreten',
 		sub: 'Teil eines wachsenden Ökosystems werden, das Unternehmen, Investoren und Diaspora verbindet',
 		btn: 'Jetzt starten'
+	},
+	about: {
+		label: 'Über uns',
+		heading: 'Über Semberija.app',
+		sub: 'Ein regionales Business-Ökosystem, das Unternehmen, Investoren und die Diaspora aus Bijeljina und Semberija verbindet.',
+		storyHeading: 'Unsere Geschichte',
+		story: [
+			'Semberija.app wurde geschaffen, um der Geschäftswelt von Bijeljina und Semberija einen einzigen digitalen Raum zur Präsentation, Vernetzung und Weiterentwicklung zu bieten.',
+			'Wir glauben, dass die Region ein enormes Potenzial besitzt — in der Landwirtschaft, Produktion, Logistik und bei digitalen Dienstleistungen — und dass dieses Potenzial eine Plattform verdient, die es lokal wie global sichtbar macht.'
+		],
+		values: [
+			{ title: 'Regionaler Fokus', desc: 'Wir widmen uns ausschließlich der Geschäftswelt von Bijeljina und Semberija.' },
+			{ title: 'Transparenz', desc: 'Klare Informationen über Unternehmen, Möglichkeiten und Investitionen, ohne Vermittler.' },
+			{ title: 'Vernetzung', desc: 'Wir bringen lokale Unternehmen, Investoren und die Diaspora an einem Ort zusammen.' },
+			{ title: 'Digitales Wachstum', desc: 'Wir fördern die Modernisierung und digitale Transformation des regionalen Geschäftslebens.' }
+		],
+		ctaHeading: 'Werden Sie Teil unseres Netzwerks',
+		ctaSub: 'Registrieren Sie Ihr Unternehmen oder kontaktieren Sie uns für weitere Informationen zur Zusammenarbeit.',
+		ctaBtn: 'Kontaktieren Sie uns'
 	},
 	footer: {
 		tagline: 'Regionales Business-Netzwerk.',
@@ -796,7 +1509,7 @@ const de = {
 		colCompany: 'Unternehmen',
 		colContact: 'Kontakt',
 		address: 'Bijeljina, Republika Srpska, BiH',
-		email: 'info@semberija.app',
+		email: 'info@zoemilano.com',
 		copyright: '© 2026 Semberija.app. Alle Rechte vorbehalten.',
 		newsletter: 'Business-News verfolgen'
 	},
@@ -823,8 +1536,10 @@ const de = {
 		investSoonDesc: 'Wir sammeln Investitionsprojekte aus der Region. Kontaktieren Sie uns, wenn Sie ein Projekt haben.',
 		newsSoon: 'News demnächst',
 		newsSoonDesc: 'Wir bauen einen kuratierten Business-News-Feed auf, der sich auf Wirtschaft, Investitionen und regionale Entwicklung konzentriert. Bleiben Sie dran.',
-		joinDiaspora: 'Diaspora-Netzwerk beitreten',
-		joinDiasporaDesc: 'Vernetzen Sie sich mit regionalen Unternehmen, Investitionsmöglichkeiten und der Diaspora-Business-Community.',
+		eventsSoon: 'Veranstaltungen folgen bald',
+		eventsSoonDesc: 'Wir stellen eine Übersicht über Wirtschaftskonferenzen, Messen und regionale Treffen zusammen. Kontaktieren Sie uns, wenn Sie eine Veranstaltung vorstellen möchten.',
+		joinB2b: 'Business-Matching anfragen',
+		joinB2bDesc: 'Sagen Sie uns, was Sie brauchen — einen Partner, Lieferanten, Vertriebspartner oder Investor — und wir verbinden Sie mit den richtigen Kontakten.',
 		contact: {
 			heading: 'Kontaktieren Sie uns',
 			sub: 'Registrieren Sie Ihr Unternehmen, fordern Sie einen Service an oder senden Sie uns eine Nachricht',

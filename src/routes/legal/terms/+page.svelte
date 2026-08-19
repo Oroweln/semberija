@@ -1,8 +1,12 @@
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+</script>
+
 <svelte:head>
 	<title>Terms &amp; Conditions — Semberija.app</title>
 </svelte:head>
 
-<div class="legal-top">
+<div class="legal-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="breadcrumb"><a href="/">Semberija.app</a> / Terms &amp; Conditions</p>
 		<h1>Terms and Conditions</h1>
@@ -10,7 +14,7 @@
 	</div>
 </div>
 
-<div class="legal-body">
+<div class="legal-body reveal-card" use:reveal>
 	<div class="container">
 		<article class="legal-content">
 

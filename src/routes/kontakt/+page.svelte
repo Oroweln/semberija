@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
+	import { reveal } from '$lib/actions/reveal';
 
 	let name = $state('');
 	let email = $state('');
@@ -18,7 +19,8 @@
 	<title>{i18n.t.nav.contact} — Semberija.app</title>
 </svelte:head>
 
-<div class="page-top">
+<div class="page-wrap">
+<div class="page-top reveal-card" use:reveal>
 	<div class="container">
 		<p class="page-label">{i18n.t.nav.contact}</p>
 		<h1>{i18n.t.ui.contact.heading}</h1>
@@ -26,7 +28,7 @@
 	</div>
 </div>
 
-<div class="contact-body">
+<div class="contact-body reveal-card" use:reveal>
 	<div class="container contact-layout">
 
 		<div class="contact-info">
@@ -48,7 +50,7 @@
 			<div class="contact-details">
 				<div class="contact-detail">
 					<span class="detail-label">Email</span>
-					<a href="mailto:info@semberija.app">info@semberija.app</a>
+					<a href="mailto:info@zoemilano.com">info@zoemilano.com</a>
 				</div>
 				<div class="contact-detail">
 					<span class="detail-label">{i18n.t.ui.location}</span>
@@ -57,7 +59,7 @@
 			</div>
 
 			<div class="contact-img-wrap">
-				<img src="/gradska%20kuca%20bijeljina.jpg" alt="Bijeljina" class="contact-img" loading="lazy" />
+				<video src="/kontakt-video.mp4" class="contact-img" autoplay muted loop playsinline></video>
 			</div>
 		</div>
 
@@ -126,13 +128,29 @@
 		</div>
 	</div>
 </div>
+</div>
 
 <style>
+	.page-wrap {
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1rem, 2.5vw, 1.5rem);
+	}
+
 	.page-top {
-		background: var(--navy);
+		background: var(--card-blue);
 		color: white;
-		padding: 8rem var(--section-px) 4rem;
-		border-bottom: 1px solid rgba(255,255,255,0.06);
+		padding: var(--section-py) var(--section-px);
+		border-radius: var(--radius-bento);
+		box-shadow:
+		inset 0 8px 20px -4px rgba(0,0,0,0.4),
+		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
+		inset 8px 0 20px -10px rgba(0,0,0,0.25),
+		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		border: 1px solid rgba(255,255,255,0.05);
 	}
 	.container {
 		max-width: var(--max-w);
@@ -143,7 +161,7 @@
 		font-weight: 700;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--cyan);
+		color: var(--silver);
 		margin-bottom: 1rem;
 		display: block;
 	}
@@ -161,24 +179,26 @@
 	}
 
 	.contact-body {
-		background: var(--soft-white);
-		padding: 4rem var(--section-px) 6rem;
+		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		padding: var(--section-py) var(--section-px);
+		border-radius: var(--radius-bento);
+		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		border: 1px solid rgba(255,255,255,0.4);
 	}
 
 	.contact-layout {
 		display: grid;
-		grid-template-columns: 1fr 1.4fr;
-		gap: 4rem;
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
 		align-items: start;
 	}
 
 	.info-block {
-		background: white;
+		background: var(--soft-white);
 		border-radius: var(--radius-lg);
 		padding: 1.5rem 1.75rem;
 		margin-bottom: 1rem;
-		box-shadow: var(--shadow-sm);
-		border: 1px solid rgba(0,0,0,0.05);
+		border: 1px solid rgba(8,14,26,0.05);
 	}
 
 	.info-block h3 {
@@ -213,7 +233,7 @@
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--cyan);
+		color: var(--silver);
 	}
 
 	.contact-detail a,
@@ -223,27 +243,27 @@
 		text-decoration: none;
 	}
 
-	.contact-detail a:hover { color: var(--blue); }
+	.contact-detail a:hover { color: var(--steel); }
 
 	.contact-img-wrap {
 		margin-top: 1.5rem;
 		border-radius: var(--radius-lg);
 		overflow: hidden;
-		box-shadow: var(--shadow-md);
+		border: 1px solid rgba(8,14,26,0.05);
 	}
 
 	.contact-img {
+		display: block;
 		width: 100%;
 		height: 200px;
 		object-fit: cover;
 	}
 
 	.form-wrap {
-		background: white;
+		background: var(--soft-white);
 		border-radius: var(--radius-xl);
 		padding: 2.5rem;
-		box-shadow: var(--shadow-md);
-		border: 1px solid rgba(0,0,0,0.05);
+		border: 1px solid rgba(8,14,26,0.06);
 	}
 
 	.contact-form h2 {
@@ -264,7 +284,7 @@
 
 	.form-row {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		gap: 1rem;
 	}
 
@@ -289,8 +309,8 @@
 	}
 
 	input:focus, select:focus, textarea:focus {
-		border-color: var(--blue);
-		box-shadow: 0 0 0 3px rgba(26,86,219,0.1);
+		border-color: var(--steel);
+		box-shadow: 0 0 0 3px rgba(36,64,107,0.1);
 	}
 
 	textarea { resize: vertical; min-height: 120px; }
@@ -301,19 +321,19 @@
 		font-size: 0.95rem;
 		font-weight: 600;
 		color: var(--navy);
-		background: linear-gradient(135deg, var(--cyan), var(--blue-light));
+		background: linear-gradient(135deg, var(--platinum), var(--silver));
 		border: none;
 		border-radius: 10px;
 		padding: 0.875rem;
 		cursor: pointer;
 		transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-		box-shadow: 0 0 20px rgba(6,182,212,0.25);
+		box-shadow: 0 5px 20px rgba(5,9,15,0.2);
 	}
 
 	.btn-submit:hover {
 		opacity: 0.9;
 		transform: translateY(-1px);
-		box-shadow: 0 0 28px rgba(6,182,212,0.45);
+		box-shadow: 0 7px 28px rgba(5,9,15,0.36);
 	}
 
 	.success-state {
@@ -343,8 +363,10 @@
 		margin-bottom: 1.75rem;
 	}
 
-	@media (max-width: 768px) {
-		.contact-layout { grid-template-columns: 1fr; }
-		.form-row { grid-template-columns: 1fr; }
+	@media (min-width: 600px) {
+		.form-row { grid-template-columns: 1fr 1fr; }
+	}
+	@media (min-width: 768px) {
+		.contact-layout { grid-template-columns: 1fr 1.4fr; gap: 4rem; }
 	}
 </style>
