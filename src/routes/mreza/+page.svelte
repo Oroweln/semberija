@@ -83,28 +83,24 @@
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
 	.page-top {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 	}
 	.container { max-width: var(--max-w); margin: 0 auto; }
 	.page-tag {
 		display: inline-block;
-		font-size: 0.72rem;
+		font-size: 0.8rem;
 		font-weight: 700;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -122,10 +118,10 @@
 		letter-spacing: -0.04em;
 		margin-bottom: 0.75rem;
 	}
-	.page-sub { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; max-width: 600px; line-height: 1.65; }
+	.page-sub { font-size: 1rem; color: rgba(255,255,255, 0.8); margin-bottom: 2rem; max-width: 600px; line-height: 1.65; }
 
 	.search-wrap { position: relative; max-width: 500px; margin-bottom: 1.5rem; }
-	.search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); }
+	.search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255, 0.8); }
 	.search-input {
 		width: 100%;
 		background: rgba(255,255,255,0.07);
@@ -138,13 +134,13 @@
 		outline: none;
 		transition: border-color 0.2s, background 0.2s;
 	}
-	.search-input::placeholder { color: rgba(255,255,255,0.35); }
+	.search-input::placeholder { color: rgba(255,255,255, 0.8); }
 	.search-input:focus { background: rgba(255,255,255,0.1); border-color: rgba(154,164,178,0.5); }
 
 	.tabs { display: flex; flex-direction: column; gap: 0.5rem; }
 	.tab-btn {
 		font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
-		color: rgba(255,255,255,0.6);
+		color: rgba(255,255,255, 0.8);
 		background: rgba(255,255,255,0.06);
 		border: 1px solid rgba(255,255,255,0.12);
 		border-radius: 50px; padding: 0.5rem 1.25rem; cursor: pointer; transition: all 0.2s;
@@ -153,16 +149,16 @@
 	.tab-btn.active { background: linear-gradient(135deg, var(--platinum), var(--silver)); color: var(--navy); border-color: transparent; }
 
 	.page-body {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 
 	.network-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
 	.network-tag {
-		font-size: 0.78rem; font-weight: 500;
+		font-size: 0.85rem; font-weight: 500;
 		color: var(--steel);
 		background: rgba(36,64,107,0.07);
 		border: 1px solid rgba(36,64,107,0.15);
@@ -186,11 +182,11 @@
 		font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: white; flex-shrink: 0;
 	}
 	.company-meta { display: flex; flex-direction: column; gap: 0.15rem; }
-	.company-category { font-size: 0.7rem; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.05em; }
-	.company-city { font-size: 0.75rem; color: var(--muted); }
+	.company-category { font-size: 0.8rem; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.05em; }
+	.company-city { font-size: 0.85rem; color: var(--muted); }
 	.company-name { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
 	.company-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 1.25rem; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-	.company-btn { display: block; font-size: 0.78rem; font-weight: 600; color: var(--steel); background: rgba(36,64,107,0.06); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; text-align: center; transition: background 0.2s; }
+	.company-btn { display: block; font-size: 0.85rem; font-weight: 600; color: var(--steel); background: rgba(36,64,107,0.06); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; text-align: center; transition: background 0.2s; }
 	.company-btn:hover { background: rgba(36,64,107,0.12); }
 
 	@media (min-width: 480px)  { .tabs { flex-direction: row; } }

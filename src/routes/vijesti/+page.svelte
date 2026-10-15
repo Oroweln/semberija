@@ -62,27 +62,23 @@
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
 	.page-top {
-		background: var(--card-blue); color: white;
+		background: var(--surface-dark); color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 	}
 	.container { max-width: var(--max-w); margin: 0 auto; }
 	.page-tag {
 		display: inline-block;
-		font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+		font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
 		color: var(--silver); background: rgba(154,164,178,0.1); border: 1px solid rgba(154,164,178,0.25);
 		padding: 0.25rem 0.75rem; border-radius: 50px; margin-bottom: 1.25rem;
 	}
@@ -90,7 +86,7 @@
 		font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.5rem);
 		font-weight: 800; letter-spacing: -0.04em; margin-bottom: 0.75rem;
 	}
-	.page-sub { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 600px; line-height: 1.65; margin-bottom: 2rem; }
+	.page-sub { font-size: 1rem; color: rgba(255,255,255, 0.8); max-width: 600px; line-height: 1.65; margin-bottom: 2rem; }
 
 	.cat-carousel {
 		display: flex;
@@ -117,8 +113,8 @@
 		flex-shrink: 0;
 		white-space: nowrap;
 		scroll-snap-align: start;
-		font-family: var(--font-sans); font-size: 0.78rem; font-weight: 500;
-		color: rgba(255,255,255,0.55);
+		font-family: var(--font-sans); font-size: 0.85rem; font-weight: 500;
+		color: rgba(255,255,255, 0.8);
 		background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
 		border-radius: 50px; padding: 0.3rem 0.85rem; cursor: pointer; transition: all 0.2s;
 	}
@@ -132,7 +128,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: rgba(255,255,255,0.7);
+		color: rgba(255,255,255, 0.85);
 		background: rgba(255,255,255,0.08);
 		border: 1px solid rgba(255,255,255,0.16);
 		cursor: pointer;
@@ -149,10 +145,10 @@
 	}
 
 	.page-body {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 

@@ -41,7 +41,7 @@
 
 		<div class="svc-cta">
 			<div class="svc-cta-img">
-				<video src="/usluge.webm" autoplay muted loop playsinline></video>
+				<video src="/usluge.webm" autoplay muted loop playsinline aria-hidden="true"></video>
 			</div>
 			<div class="svc-cta-text">
 				<h2>{i18n.t.ui.transformHeading}</h2>
@@ -57,22 +57,18 @@
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
 	.page-top {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 	}
 	.container {
@@ -80,7 +76,7 @@
 		margin: 0 auto;
 	}
 	.page-label {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -95,13 +91,13 @@
 	}
 	.page-sub {
 		font-size: 1rem;
-		color: rgba(255, 255, 255, 0.7);
+		color: rgba(255, 255, 255, 0.85);
 	}
 	.svc-body {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 	.svc-grid {
@@ -196,12 +192,12 @@
 	.btn-gold {
 		display: inline-block;
 		font-family: var(--font-sans);
-		font-size: 0.9rem;
+		font-size: 1.05rem;
 		font-weight: 600;
-		color: var(--dark);
-		background: var(--silver);
+		color: var(--cta-text);
+		background: var(--cta);
 		text-decoration: none;
-		padding: 0.75rem 1.75rem;
+		padding: 0.95rem 2.1rem;
 		border-radius: var(--radius);
 		align-self: flex-start;
 	}

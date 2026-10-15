@@ -1,48 +1,62 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
-	import { domesticFirms, investors, categories, visibleFirmSlugs } from '$lib/data';
+	import { investors, categories } from '$lib/data';
+	import { visibleDomestic, matches, locationOptions } from '$lib/search';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import { reveal } from '$lib/actions/reveal';
 	import AdPlaceholder from '$lib/components/AdPlaceholder.svelte';
+	import ListingStatus from '$lib/components/ListingStatus.svelte';
+	import { enquiryUrl } from '$lib/enquiry';
 
 	let search = $state('');
 	let activeCategory = $state('');
+	let activeCity = $state('');
+	let activeSector = $state('');
 	let activeTab = $state<'local' | 'investors'>('local');
 
+	// Read filters from the URL (homepage search panel and category links use ?q=&cat=&city=)
 	$effect(() => {
-		const cat = $page.url.searchParams.get('cat');
-		if (cat) activeCategory = cat;
+		const params = $page.url.searchParams;
+		search = params.get('q') ?? '';
+		activeCategory = params.get('cat') ?? '';
+		activeCity = params.get('city') ?? '';
+		activeSector = params.get('sector') ?? '';
+		// Show the tab where the results are
+		const f = { q: search, cat: activeCategory, city: activeCity, sector: activeSector };
+		const local = visibleDomestic.filter((c) => matches(c, f, i18n.lang)).length;
+		const inv = investors.filter((c) => matches(c, f, i18n.lang)).length;
+		activeTab = local === 0 && inv > 0 ? 'investors' : 'local';
+	});
+
+	// "Pretraga" in the nav links to /firme#pretraga: focus the search box
+	let searchInput: HTMLInputElement;
+	$effect(() => {
+		if ($page.url.hash === '#pretraga') searchInput?.focus();
 	});
 
 	function switchTab(tab: 'local' | 'investors') {
 		activeTab = tab;
 		activeCategory = '';
+		activeCity = '';
 		search = '';
+	}
+
+	function clearSector() {
+		goto('/firme', { replaceState: true, noScroll: true, keepFocus: true });
 	}
 
 	const investorCategories = $derived(
 		[...new Set(investors.map(c => i18n.lang === 'sr' ? c.category_sr : c.category_en))].sort()
 	);
 
-	const filteredLocal = $derived(
-		domesticFirms.filter((c) => visibleFirmSlugs.includes(c.slug)).filter((c) => {
-			const name = c.name.toLowerCase();
-			const cat = i18n.lang === 'sr' ? c.category_sr : c.category_en;
-			const matchSearch = !search || name.includes(search.toLowerCase()) || cat.toLowerCase().includes(search.toLowerCase());
-			const matchCat = !activeCategory || (i18n.lang === 'sr' ? c.category_sr : c.category_en) === activeCategory;
-			return matchSearch && matchCat;
-		})
-	);
+	const filters = $derived({ q: search, cat: activeCategory, city: activeCity, sector: activeSector });
+	const anyFilter = $derived(!!(search || activeCategory || activeCity || activeSector));
+	const filteredLocal = $derived(visibleDomestic.filter((c) => matches(c, filters, i18n.lang)));
+	const filteredInvestors = $derived(investors.filter((c) => matches(c, filters, i18n.lang)));
 
-	const filteredInvestors = $derived(
-		investors.filter((c) => {
-			const name = c.name.toLowerCase();
-			const cat = i18n.lang === 'sr' ? c.category_sr : c.category_en;
-			const matchSearch = !search || name.includes(search.toLowerCase()) || cat.toLowerCase().includes(search.toLowerCase());
-			const matchCat = !activeCategory || (i18n.lang === 'sr' ? c.category_sr : c.category_en) === activeCategory;
-			return matchSearch && matchCat;
-		})
-	);
+	// Location options for the current tab, taken from the data
+	const tabLocations = $derived(locationOptions(activeTab === 'local' ? visibleDomestic : investors));
 
 	const filtered = $derived(activeTab === 'local' ? filteredLocal : filteredInvestors);
 	const activeCats = $derived(activeTab === 'local' ? categories.slice(0, 8) : null);
@@ -69,16 +83,26 @@
 				class:active={activeTab === 'local'}
 				onclick={() => switchTab('local')}
 			>
-				{i18n.t.companies.localTab}
+				{i18n.t.companies.localTab}{#if anyFilter}&nbsp;({filteredLocal.length}){/if}
 			</button>
 			<button
 				class="tab-btn"
 				class:active={activeTab === 'investors'}
 				onclick={() => switchTab('investors')}
 			>
-				{i18n.t.companies.investorsTab}
+				{i18n.t.companies.investorsTab}{#if anyFilter}&nbsp;({filteredInvestors.length}){/if}
 			</button>
 		</div>
+
+		{#if activeSector && i18n.t.ecosystem.sectors[activeSector]}
+			<div class="sector-chip">
+				<span>{i18n.t.ecosystem.active}: <strong>{i18n.t.ecosystem.sectors[activeSector]}</strong></span>
+				<button type="button" onclick={clearSector} aria-label={i18n.t.ecosystem.clear}>
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+					{i18n.t.ecosystem.clear}
+				</button>
+			</div>
+		{/if}
 
 		<div class="search-row">
 			<div class="search-wrap">
@@ -86,6 +110,8 @@
 					<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
 				</svg>
 				<input
+					id="pretraga"
+					bind:this={searchInput}
 					type="text"
 					placeholder={i18n.t.ui.searchPlaceholder}
 					bind:value={search}
@@ -112,6 +138,20 @@
 					{/if}
 				</select>
 			</div>
+
+			{#if tabLocations.length > 1}
+				<div class="cat-select-wrap">
+					<svg class="cat-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<polyline points="6 9 12 15 18 9"/>
+					</svg>
+					<select class="cat-select" bind:value={activeCity} aria-label={i18n.t.bizSearch.location}>
+						<option value="">{i18n.t.bizSearch.allLocations}</option>
+						{#each tabLocations as city}
+							<option value={city}>{city}</option>
+						{/each}
+					</select>
+				</div>
+			{/if}
 		</div>
 
 	</div>
@@ -147,11 +187,13 @@
 								<span class="company-city">{company.city}</span>
 							</div>
 						</div>
+						<ListingStatus slug={company.slug} name={company.name} />
 						<h3 class="company-name">{company.name}</h3>
 						<p class="company-desc">
 							{i18n.lang === 'sr' ? company.desc_sr : company.desc_en}
 						</p>
-						<a href="/kontakt" class="company-btn">{i18n.t.companies.inquire}</a>
+						<a href={enquiryUrl('b2b', company.name)} class="company-btn">{i18n.t.companies.inquire}</a>
+						<ListingStatus slug={company.slug} name={company.name} part="claim" />
 					</article>
 				{/each}
 			</div>
@@ -170,22 +212,18 @@
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
 	.page-top {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 	}
 
@@ -195,7 +233,7 @@
 	}
 
 	.page-label {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -213,7 +251,7 @@
 
 	.page-sub {
 		font-size: 1rem;
-		color: rgba(255, 255, 255, 0.65);
+		color: rgba(255, 255, 255, 0.85);
 		margin-bottom: 2rem;
 	}
 
@@ -230,7 +268,7 @@
 		font-size: 0.88rem;
 		font-weight: 600;
 		text-align: center;
-		color: rgba(255, 255, 255, 0.7);
+		color: rgba(255, 255, 255, 0.85);
 		background: rgba(255, 255, 255, 0.08);
 		border: 1.5px solid rgba(255, 255, 255, 0.2);
 		border-radius: 50px;
@@ -252,6 +290,36 @@
 	}
 
 	/* ─── SEARCH ─── */
+	/* Active sector filter (from the homepage ecosystem cards) */
+	.sector-chip {
+		display: inline-flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		padding: 0.5rem 0.6rem 0.5rem 1.1rem;
+		border-radius: 50px;
+		background: rgba(250,249,246,0.12);
+		border: 1px solid rgba(250,249,246,0.3);
+		color: #FAF9F6;
+		font-size: 0.95rem;
+	}
+	.sector-chip button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		border: none;
+		cursor: pointer;
+		font: inherit;
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: #FAF9F6;
+		background: var(--cta);
+		border-radius: 50px;
+		padding: 0.35rem 0.85rem;
+	}
+	.sector-chip button:hover { background: var(--cta-hover); }
+
 	.search-row {
 		display: flex;
 		flex-wrap: wrap;
@@ -270,7 +338,7 @@
 		left: 1rem;
 		top: 50%;
 		transform: translateY(-50%);
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.8);
 	}
 
 	.search-input {
@@ -287,7 +355,7 @@
 	}
 
 	.search-input::placeholder {
-		color: rgba(255, 255, 255, 0.4);
+		color: rgba(255, 255, 255, 0.8);
 	}
 
 	.search-input:focus {
@@ -307,7 +375,7 @@
 		right: 0.9rem;
 		top: 50%;
 		transform: translateY(-50%);
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.8);
 		pointer-events: none;
 	}
 
@@ -334,16 +402,16 @@
 	}
 
 	.cat-select option {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 	}
 
 	/* ─── AD ─── */
 	.ad-section {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: 2rem var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 		display: flex;
 		justify-content: center;
@@ -361,10 +429,10 @@
 
 	/* ─── GRID ─── */
 	.companies-body {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 
@@ -398,7 +466,7 @@
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
-		font-size: 0.68rem;
+		font-size: 0.8rem;
 		font-weight: 600;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -436,13 +504,13 @@
 	}
 
 	.company-category {
-		font-size: 0.72rem;
+		font-size: 0.8rem;
 		font-weight: 600;
 		color: var(--navy-mid);
 	}
 
 	.company-city {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		color: var(--muted);
 	}
 
@@ -487,16 +555,12 @@
 
 	.visibility-box {
 		text-align: center;
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		border-radius: var(--radius-xl);
 		padding: 3.5rem 2rem;
 		margin-top: 3rem;
 		color: white;
-		box-shadow:
-			inset 0 8px 20px -4px rgba(0,0,0,0.4),
-			inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-			inset 8px 0 20px -10px rgba(0,0,0,0.25),
-			inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 	}
 
 	.visibility-box h2 {
@@ -508,7 +572,7 @@
 
 	.visibility-box p {
 		font-size: 0.95rem;
-		color: rgba(255,255,255,0.6);
+		color: rgba(255,255,255, 0.8);
 		margin-bottom: 2rem;
 		max-width: 480px;
 		margin-left: auto;
@@ -521,8 +585,8 @@
 		font-family: var(--font-sans);
 		font-size: 0.9rem;
 		font-weight: 600;
-		color: var(--navy);
-		background: linear-gradient(135deg, var(--platinum), var(--silver));
+		color: var(--cta-text);
+		background: var(--cta);
 		text-decoration: none;
 		padding: 0.75rem 1.75rem;
 		border-radius: 10px;

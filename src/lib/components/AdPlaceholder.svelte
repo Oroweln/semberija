@@ -47,11 +47,13 @@
 		border-radius: var(--radius, 10px);
 		color: var(--muted, #6b7280);
 		max-width: 100%;
+		padding: 1rem;
+		text-align: center;
 	}
 
 	.ad-label {
 		font-family: var(--font-sans, sans-serif);
-		font-size: 0.68rem;
+		font-size: 0.8rem;
 		font-weight: 600;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
@@ -60,7 +62,7 @@
 
 	.ad-dims {
 		font-family: var(--font-sans, sans-serif);
-		font-size: 0.65rem;
+		font-size: 0.8rem;
 		color: var(--muted, #6b7280);
 		opacity: 0.7;
 	}

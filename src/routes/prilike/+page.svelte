@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
 	import { reveal } from '$lib/actions/reveal';
+	import { showSampleContent } from '$lib/data';
+	import { enquiryUrl } from '$lib/enquiry';
 </script>
 
 <svelte:head>
@@ -18,6 +20,7 @@
 
 <div class="opp-body reveal-card" use:reveal>
 	<div class="container">
+		{#if showSampleContent}
 		<div class="opp-grid">
 			{#each ([
 				{ type: i18n.lang === 'sr' ? 'Investicija' : 'Investment', title: i18n.lang === 'sr' ? 'Hladnjača kapaciteta 2000 t' : '2000t Cold Storage Facility', desc: i18n.lang === 'sr' ? 'Tražimo investitora za izgradnju hladnjače u okolini Bijeljine.' : 'Seeking investor for cold storage construction near Bijeljina.', range: '€150.000 – €300.000' },
@@ -31,12 +34,20 @@
 					</div>
 					<h3>{opp.title}</h3>
 					<p>{opp.desc}</p>
-					<a href="/kontakt" class="opp-btn">
+					<a href={enquiryUrl('b2b')} class="opp-btn">
 						{i18n.lang === 'sr' ? 'Zainteresovan sam' : 'I am interested'}
 					</a>
 				</article>
 			{/each}
 		</div>
+
+		{:else}
+			<div class="board-empty">
+				<h3>{i18n.t.board.oppTitle}</h3>
+				<p>{i18n.t.board.oppDesc}</p>
+				<a href={enquiryUrl('b2b')} class="btn-emerald">{i18n.t.board.submitOpp}</a>
+			</div>
+		{/if}
 
 		<div class="post-opp">
 			<div class="post-img">
@@ -54,8 +65,8 @@
 						? 'Objavite investiciju, partnerstvo ili saradnju i povežite se sa pravim partnerima kroz mrežu Semberija.app.'
 						: 'Post an investment, partnership, or collaboration opportunity and connect with the right partners through the Semberija.app network.'}
 				</p>
-				<a href="/kontakt" class="btn-emerald">
-					{i18n.lang === 'sr' ? 'Objavi prilike' : 'Post Opportunity'}
+				<a href={enquiryUrl('b2b')} class="btn-emerald">
+					{i18n.t.board.submitOpp}
 				</a>
 			</div>
 		</div>
@@ -64,25 +75,40 @@
 </div>
 
 <style>
+	/* Honest empty state while no real submissions exist */
+	.board-empty {
+		text-align: center;
+		max-width: 640px;
+		margin: 0 auto 3rem;
+		padding: 3rem 2rem;
+		background: #ffffff;
+		border: 1px dashed rgba(15,23,42,0.18);
+		border-radius: var(--radius-xl);
+	}
+	.board-empty h3 {
+		font-family: var(--font-heading);
+		font-size: 1.4rem;
+		font-weight: 800;
+		color: var(--navy);
+		margin-bottom: 0.75rem;
+	}
+	.board-empty p { color: #4a525e; line-height: 1.65; margin-bottom: 1.75rem; }
+
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
 	.page-top {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 		position: relative;
 		overflow: hidden;
@@ -92,7 +118,7 @@
 		margin: 0 auto;
 	}
 	.page-label {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -107,13 +133,13 @@
 	}
 	.page-sub {
 		font-size: 1rem;
-		color: rgba(255, 255, 255, 0.7);
+		color: rgba(255, 255, 255, 0.85);
 	}
 	.opp-body {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 	.opp-grid {
@@ -142,14 +168,14 @@
 		margin-bottom: 0.75rem;
 	}
 	.opp-type {
-		font-size: 0.7rem;
+		font-size: 0.8rem;
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
 		color: var(--navy-mid);
 	}
 	.opp-range {
-		font-size: 0.78rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 		color: var(--silver);
 	}
@@ -170,18 +196,18 @@
 	.opp-btn {
 		display: block;
 		font-family: var(--font-sans);
-		font-size: 0.85rem;
+		font-size: 1.05rem;
 		font-weight: 600;
-		color: white;
-		background: var(--card-blue);
+		color: var(--cta-text);
+		background: var(--cta);
 		text-decoration: none;
-		padding: 0.65rem 1rem;
+		padding: 0.85rem 1.25rem;
 		border-radius: var(--radius-sm);
 		text-align: center;
 		transition: background 0.2s;
 	}
 	.opp-btn:hover {
-		background: var(--card-blue-light);
+		background: var(--cta-hover);
 	}
 	.post-opp {
 		display: grid;
@@ -202,7 +228,7 @@
 		padding: 2rem;
 	}
 	.post-label {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -225,12 +251,12 @@
 	.btn-emerald {
 		display: inline-block;
 		font-family: var(--font-sans);
-		font-size: 0.9rem;
+		font-size: 1.05rem;
 		font-weight: 600;
-		color: white;
-		background: var(--card-blue);
+		color: var(--cta-text);
+		background: var(--cta);
 		text-decoration: none;
-		padding: 0.75rem 1.75rem;
+		padding: 0.95rem 2.1rem;
 		border-radius: var(--radius);
 	}
 	@media (min-width: 600px) {

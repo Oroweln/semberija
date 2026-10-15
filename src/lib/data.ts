@@ -1,5 +1,13 @@
 export const visibleFirmSlugs = ['orao', 'rtv-bn', 'mlijekoprodukt'];
 
+// Companies that registered on the platform and confirmed their details.
+// All other listings are compiled from publicly available sources.
+export const verifiedFirmSlugs: string[] = [];
+
+// The networking posts below and the sample opportunities on /prilike are
+// placeholders, not real submissions. They stay hidden until real content exists.
+export const showSampleContent = false;
+
 export const domesticFirms = [
 	{
 		id: 1,

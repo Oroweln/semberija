@@ -1,8 +1,13 @@
 <script lang="ts">
+	import { i18n } from '$lib/i18n.svelte';
+
 	let { children } = $props();
 </script>
 
 <div class="page-wrap">
+	{#if i18n.t.legal.langNotice}
+		<p class="lang-notice" lang={i18n.lang}>{i18n.t.legal.langNotice}</p>
+	{/if}
 	{@render children()}
 </div>
 
@@ -10,22 +15,44 @@
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
+	/* Shown when the legal text isn't available in the selected language */
+	.lang-notice {
+		max-width: 900px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0.85rem 1.25rem;
+		border-radius: var(--radius-lg);
+		background: #fff8e6;
+		border: 1px solid #f2c14e;
+		font-size: 0.95rem;
+		color: #3d4450;
+		text-align: center;
+	}
+
+	/* Independent platform statement (disclaimer page) */
+	:global(.statement-box) {
+		margin-bottom: 2rem;
+		padding: 1.25rem 1.5rem;
+		border-left: 4px solid var(--cta);
+		border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+		background: rgba(155,17,30,0.05);
+		font-weight: 600;
+		line-height: 1.65;
+		color: var(--navy);
+	}
+
 	:global(.legal-top) {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 	}
 
@@ -36,12 +63,12 @@
 
 	:global(.legal-top .breadcrumb) {
 		font-size: 0.8rem;
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.8);
 		margin-bottom: 1rem;
 	}
 
 	:global(.legal-top .breadcrumb a) {
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.8);
 		text-decoration: none;
 	}
 
@@ -58,14 +85,14 @@
 
 	:global(.legal-top .updated) {
 		font-size: 0.85rem;
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.8);
 	}
 
 	:global(.legal-body) {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 
@@ -168,7 +195,7 @@
 
 	:global(.legal-nav h4) {
 		font-family: var(--font-sans);
-		font-size: 0.72rem;
+		font-size: 0.8rem;
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;

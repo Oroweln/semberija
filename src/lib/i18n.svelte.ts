@@ -3,7 +3,7 @@ export type Lang = 'sr' | 'en' | 'it' | 'ru' | 'de';
 const sr = {
 	nav: {
 		home: 'Početna',
-		companies: 'Firme',
+		companies: 'Kompanije',
 		investments: 'Investicije',
 		network: 'Mreža',
 		diaspora: 'B2B',
@@ -13,25 +13,307 @@ const sr = {
 		about: 'O nama',
 		contact: 'Kontakt',
 		businessNetwork: 'Poslovna mreža',
-		listCta: 'Pridruži se mreži'
+		listCta: 'Pridruži se platformi',
+		explore: 'Istraži',
+		business: 'Biznis',
+		platform: 'Platforma',
+		industries: 'Djelatnosti',
+		directory: 'Poslovni direktorijum',
+		search: 'Pretraga',
+		b2b: 'B2B povezivanje',
+		international: 'Međunarodna saradnja',
+		enquiries: 'Poslovni upiti',
+		promote: 'Promocija kompanija',
+		opportunities: 'Poslovne prilike',
+		platformOverview: 'Pregled platforme'
 	},
 	hero: {
 		tag: 'Bijeljina · Semberija · Republika Srpska',
-		headline: 'Regionalna poslovna mreža',
-		sub: 'Povezujemo kompanije, investicije, dijasporu i digitalne prilike u jednom ekosistemu.',
+		headline: 'Semberija posluje. Mi povezujemo.',
+		sub: 'Povezujemo kompanije, proizvođače, distributere, investitore i poslovne partnere kroz digitalnu platformu koja otvara nove mogućnosti za saradnju, investicije i međunarodni razvoj.',
 		ctaNetwork: 'Istraži mrežu',
-		ctaCompanies: 'Pregledaj firme',
-		ctaInvest: 'Investiraj u regiju'
+		ctaCompanies: 'Pronađi kompanije',
+		ctaInvest: 'Investiraj u regiju',
+		subheading: 'Regionalna poslovna platforma',
+		ctaPlatform: 'Istraži platformu'
+	},
+	bizSearch: {
+		heading: 'Otkrijte poslovne mogućnosti Bijeljine i Semberije',
+		desc: 'Pronađite kompanije, proizvode, usluge, djelatnosti i potencijalne poslovne partnere na jednom mjestu.',
+		placeholder: 'Pretražite kompanije, proizvode, usluge ili djelatnosti...',
+		industry: 'Djelatnost',
+		location: 'Lokacija',
+		allIndustries: 'Sve djelatnosti',
+		allLocations: 'Sve lokacije',
+		cta: 'Pretraži kompanije',
+		popular: 'Popularni sektori:'
+	},
+	ecosystem: {
+		label: 'Sektori',
+		heading: 'Poslovni ekosistem Bijeljine i Semberije',
+		desc: 'Od poljoprivrede i proizvodnje do trgovine, logistike, tehnologije i profesionalnih usluga — istražite kompanije i sektore koji oblikuju privredu našeg kraja.',
+		companies: 'Kompanije',
+		explore: 'Istraži sektor',
+		active: 'Sektor',
+		clear: 'Ukloni filter',
+		sectors: {
+			'poljoprivreda-hrana': 'Poljoprivreda i prehrambena industrija',
+			'proizvodnja': 'Proizvodnja i industrija',
+			'gradjevina': 'Građevinarstvo i nekretnine',
+			'trgovina': 'Trgovina i distribucija',
+			'transport': 'Transport i logistika',
+			'it': 'IT i digitalne usluge',
+			'usluge': 'Profesionalne usluge',
+			'turizam': 'Turizam i ugostiteljstvo'
+		} as Record<string, string>
+	},
+	platform: {
+		label: 'Platforma',
+		heading: 'Jedna platforma. Više poslovnih mogućnosti.',
+		desc: 'Semberija.app povezuje kompanije iz Bijeljine i Semberije sa poslovnim partnerima, investitorima i međunarodnim tržištima kroz jedinstven digitalni ekosistem.',
+		more: 'Saznaj više o platformi',
+		statusDev: 'U razvoju',
+		statusSoon: 'Uskoro',
+		modulesHeading: 'Poslovni moduli platforme',
+		modules: [
+			{ title: 'Poslovni direktorijum', desc: 'Predstavite kompaniju, proizvode i usluge potencijalnim partnerima.', detail: 'Profil kompanije u direktorijumu prikazuje djelatnost, lokaciju i ponudu, a kompanije se mogu pretraživati po nazivu, djelatnosti i lokaciji.', cta: 'Pregledaj kompanije' },
+			{ title: 'B2B povezivanje', desc: 'Pronađite dobavljače, proizvođače, distributere i poslovne partnere.', detail: 'Opišite koga tražite — partnera, distributera, dobavljača ili investitora — i mi pomažemo da se povežete sa odgovarajućim kompanijama.', cta: 'Pronađi partnera' },
+			{ title: 'Investicije', desc: 'Istražite investicione mogućnosti i razvojni potencijal regije.', detail: 'Pregled investicionih oblasti i projekata u Bijeljini i Semberiji, od poljoprivrede i proizvodnje do energetike i nekretnina.', cta: 'Istraži investicije' },
+			{ title: 'Međunarodna saradnja', desc: 'Povežite se sa poslovnim tržištima Srbije, Italije i šire.', detail: 'Mreža partnera i dijaspore otvara put ka tržištima Srbije, Italije i drugih zemalja, uz podršku pri prvom kontaktu.', cta: 'Zatraži povezivanje' },
+			{ title: 'Poslovni upiti', desc: 'Predstavite ponudu ili potražnju i zatražite poslovno povezivanje.', detail: 'Objavite šta nudite ili tražite — saradnju, distribuciju, investiciju ili uslugu — i pregledajte upite drugih kompanija.', cta: 'Pošalji poslovni upit' },
+			{ title: 'Promocija kompanija', desc: 'Povećajte vidljivost kroz istaknute profile i promotivne pozicije.', detail: 'Istaknuti profili i promotivne pozicije na platformi pomažu da vaša kompanija bude prva koju partneri vide.', cta: 'Promoviši kompaniju' },
+			{ title: 'Digitalne usluge', desc: 'Web razvoj, aplikacije, brendiranje, marketing i poslovna rješenja.', detail: 'Tim za digitalne usluge pomaže kompanijama da unaprijede online prisustvo, prodaju i poslovne procese.', cta: 'Pogledaj usluge' },
+			{ title: 'Mobilna aplikacija', desc: 'Digitalna poslovna platforma u razvoju za mobilne uređaje.', detail: 'Mobilna verzija platforme je u razvoju. Prijavite se za rani pristup i budite među prvima koji će je koristiti.', cta: 'Zatraži rani pristup' }
+		],
+		benefitsLabel: 'Prednosti registracije',
+		benefitsHeading: 'Zašto registrovati kompaniju?',
+		benefitsDesc: 'Registracija na Semberija.app otvara vrata novim poslovnim kontaktima, partnerstvima i tržištima.',
+		benefits: [
+			{ title: 'Profil kompanije', desc: 'Predstavite djelatnost, proizvode i usluge na jednom mjestu.' },
+			{ title: 'Vidljivost za partnere', desc: 'Budite pronađeni od strane domaćih i međunarodnih kompanija.' },
+			{ title: 'Pristup investitorima', desc: 'Predstavite razvojne projekte i potrebe za ulaganjem.' },
+			{ title: 'Poslovni upiti', desc: 'Šaljite i primajte ponude i zahtjeve za saradnju.' },
+			{ title: 'Međunarodna mreža', desc: 'Povežite se sa tržištima Srbije, Italije i dijasporom.' },
+			{ title: 'Digitalna podrška', desc: 'Koristite digitalne usluge za rast i bolju vidljivost.' }
+		],
+		joinHeading: 'Spremni za nove poslovne prilike?',
+		joinDesc: 'Pridružite se platformi i predstavite svoju kompaniju partnerima u regiji i svijetu.'
+	},
+	joinCta: {
+		heading: 'Vaša kompanija zaslužuje veću vidljivost.',
+		desc: 'Predstavite svoje poslovanje, pronađite nove partnere i otvorite vrata regionalnoj i međunarodnoj saradnji.',
+		benefits: ['Predstavite kompaniju', 'Pronađite poslovne partnere', 'Otkrijte nove mogućnosti', 'Proširite poslovanje na nova tržišta'],
+		promote: 'Promoviši kompaniju'
+	},
+	howItWorks: {
+		label: 'Kako funkcioniše',
+		heading: 'Od predstavljanja do poslovne saradnje.',
+		online: 'Dostupno online',
+		manual: 'Putem upita',
+		note: 'Koraci označeni sa „Putem upita“ trenutno se obavljaju uz podršku našeg tima — pošaljete nam podatke ili upit, a mi vas vodimo dalje.',
+		steps: [
+			{ title: 'Registrujte kompaniju', desc: 'Pošaljite osnovne podatke o kompaniji putem kontakt forme. Profil trenutno kreira naš tim — samostalna registracija je u pripremi.', link: 'Pošalji podatke' },
+			{ title: 'Predstavite proizvode, usluge i poslovne potrebe', desc: 'Navedite šta nudite i šta tražite. Na osnovu vaših podataka uređujemo profil kompanije u poslovnom direktorijumu.', link: '' },
+			{ title: 'Pronađite potencijalne partnere', desc: 'Pretražite kompanije po nazivu, djelatnosti i lokaciji ili pregledajte sektore i investitore.', link: 'Pretraži kompanije' },
+			{ title: 'Započnite poslovnu saradnju', desc: 'Pošaljite poslovni upit ili zatražite povezivanje — naš tim posreduje u prvom kontaktu sa kompanijom.', link: 'Pošalji poslovni upit' }
+		]
+	},
+	regions: {
+		label: 'Regionalne platforme',
+		heading: 'Povezujemo regije. Otvaramo nova tržišta.',
+		desc: 'Semberija.app dio je šire vizije kompanije ZOE MILANO, koja kroz razvoj regionalnih digitalnih platformi povezuje kompanije, tržišta i međunarodne poslovne mogućnosti.',
+		cta: 'Posjeti platformu',
+		attribution: 'Digitalne platforme razvija ZOE MILANO.',
+		prev: 'Prethodna platforma',
+		next: 'Sljedeća platforma',
+		newTab: '(otvara se u novom prozoru)',
+		slide: 'Platforma',
+		items: {
+			lombardia: 'Digitalna poslovna platforma za kompanije, investicije i međunarodnu saradnju u Lombardiji.',
+			veneto: 'Regionalna digitalna platforma za poslovno povezivanje i razvoj u italijanskoj regiji Veneto.'
+		} as Record<string, string>
+	},
+	aboutPage: {
+		label: 'O nama',
+		heading: 'Semberija.app — Iz Bijeljine prema svijetu.',
+		intro: [
+			'Semberija.app je regionalna digitalna poslovna platforma posvećena povezivanju kompanija, preduzetnika, investitora i poslovnih partnera iz Bijeljine i Semberije sa regionalnim i međunarodnim tržištima.',
+			'Platforma je nastala iz lične povezanosti sa Bijeljinom i uvjerenja da njen privredni potencijal zaslužuje veću vidljivost.'
+		],
+		platform: {
+			label: 'O platformi',
+			heading: 'Više od poslovnog direktorijuma',
+			body: [
+				'Semberija.app razvija digitalni ekosistem za predstavljanje kompanija, poslovno povezivanje, investicije i međunarodnu saradnju.',
+				'Cilj je da lokalnim preduzećima omogućimo bolju digitalnu vidljivost i lakši pristup novim poslovnim kontaktima i tržištima.'
+			]
+		},
+		vision: {
+			label: 'Naša vizija',
+			heading: 'Lokalni potencijal. Međunarodne mogućnosti.',
+			body: [
+				'Bijeljina i Semberija imaju snažnu tradiciju poljoprivrede, proizvodnje, trgovine i preduzetništva.',
+				'Vjerujemo da kvalitetni proizvodi, znanje i poslovni kapaciteti ovog kraja mogu pronaći svoje mjesto i na širem međunarodnom tržištu.',
+				'Naša vizija je da kroz savremenu tehnologiju, profesionalnu promociju i poslovno povezivanje doprinesemo većoj vidljivosti i razvoju regionalne privrede.'
+			]
+		},
+		offer: {
+			label: 'Platforma',
+			heading: 'Šta omogućava Semberija.app',
+			items: [
+				'Predstavljanje kompanija i usluga',
+				'Poslovno i B2B povezivanje',
+				'Investicione mogućnosti',
+				'Međunarodna saradnja',
+				'Digitalna promocija i razvoj'
+			],
+			closing: 'Semberija.app razvija se kao dugoročna digitalna infrastruktura za povezivanje kompanija, tržišta i poslovnih mogućnosti.'
+		},
+		founder: {
+			label: 'O osnivaču',
+			name: 'Zorana Petrović',
+			role: 'Osnivač Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			places: 'Beograd · Milano · Bijeljina',
+			body: [
+				'Semberija.app nastala je na inicijativu Zorane Petrović, preduzetnice i kreativne strateginje, osnivača i direktora kompanije ZOE MILANO.',
+				'Odrastala je i školovala se u Milanu, a njeno profesionalno iskustvo obuhvata kreativni razvoj, digitalne platforme, marketing i međunarodne projekte.',
+				'Sa Bijeljinom je povezuju porodični korijeni. Njena majka, prof. Zorica Petrović, rođena je u Bijeljini, kao i drugi članovi njene porodice. Porodično nasljeđe uključuje i baku, odlikovanu za hrabrost tokom Drugog svjetskog rata.',
+				'Zorana godinama dolazi u Bijeljinu i kroz lično iskustvo prepoznaje potencijal lokalne proizvodnje, preduzetništva i poslovnog razvoja.',
+				'Upravo iz te povezanosti nastala je ideja da se međunarodno iskustvo, digitalna tehnologija i savremeni marketing iskoriste za bolju promociju Bijeljine i njene privrede.'
+			],
+			quoteLabel: 'Vizija osnivača',
+			quote: '„Bijeljina je grad sa kojim me povezuju porodični korijeni i kojem se godinama vraćam. Vjerujem da kompanije, proizvodi i ljudi ovog kraja zaslužuju veću međunarodnu vidljivost. Semberija.app je nastala sa željom da poveže taj potencijal sa novim tržištima i poslovnim mogućnostima.“',
+			quoteRole: 'Osnivač, Semberija.app'
+		},
+		zoe: {
+			label: 'ZOE MILANO',
+			heading: 'Ideja, kreativnost i tehnologija',
+			body: [
+				'Semberija.app je projekat kompanije ZOE MILANO d.o.o. iz Beograda, koja razvija digitalne platforme, mobilne aplikacije, B2B ekosisteme i međunarodne poslovne projekte.',
+				'Kompanija povezuje kreativnu strategiju, tehnologiju, digitalni marketing i poslovni razvoj, sa ciljem stvaranja savremenih digitalnih rješenja za kompanije i tržišta.'
+			],
+			credits: [
+				{
+					label: 'Ideja i osnivač',
+					value: 'Zorana Petrović'
+				},
+				{
+					label: 'Razvoj platforme',
+					value: 'ZOE MILANO d.o.o.'
+				}
+			],
+			cta: 'Posjetite ZOE MILANO'
+		},
+		future: {
+			label: 'Naša budućnost',
+			heading: 'Iz Bijeljine prema novim tržištima',
+			body: [
+				'Semberija.app nastala je sa ciljem da poveže lokalni poslovni potencijal sa regionalnim i međunarodnim mogućnostima.',
+				'Želimo da kompanijama iz Bijeljine i Semberije pružimo prostor za profesionalno predstavljanje, promociju i uspostavljanje novih poslovnih kontakata.'
+			],
+			closing: 'Ovo je tek početak.'
+		},
+		cta: {
+			heading: 'Budite dio poslovne budućnosti Bijeljine.',
+			desc: 'Predstavite svoju kompaniju, povežite se sa potencijalnim partnerima i istražite nove mogućnosti za razvoj.',
+			contact: 'Kontaktiraj nas'
+		}
+	},
+	enquiry: {
+		typeLabel: 'Vrsta upita',
+		types: {
+			registracija: 'Registracija kompanije',
+			preuzimanje: 'Preuzimanje profila kompanije',
+			b2b: 'B2B povezivanje',
+			oglasavanje: 'Oglašavanje i promocija',
+			medjunarodna: 'Međunarodna saradnja',
+			usluge: 'Digitalne usluge',
+			ostalo: 'Ostalo'
+		},
+		hints: {
+			registracija: 'Pošaljite podatke o kompaniji — naš tim priprema profil u poslovnom direktorijumu.',
+			preuzimanje: 'Vaša kompanija je već na listi? Zatražite preuzimanje profila kako biste potvrdili i dopunili podatke.',
+			b2b: 'Opišite kakvog partnera tražite — dobavljača, distributera, proizvođača ili investitora.',
+			oglasavanje: 'Zatražite ponudu za istaknuti profil, banner oglase ili druge promotivne pozicije.',
+			medjunarodna: 'Recite nam koja tržišta vas zanimaju — Srbija, Italija ili šire.',
+			usluge: 'Web razvoj, aplikacije, brendiranje i marketing — opišite svoju potrebu.',
+			ostalo: 'Pošaljite nam poruku i javićemo vam se.'
+		},
+		companySection: 'Podaci o kompaniji',
+		contactSection: 'Kontakt podaci',
+		industry: 'Djelatnost',
+		industryPlaceholder: 'Izaberite djelatnost',
+		industryOther: 'Druga djelatnost',
+		location: 'Lokacija',
+		locationPlaceholder: 'npr. Bijeljina',
+		website: 'Web stranica',
+		phone: 'Telefon',
+		products: 'Proizvodi i usluge',
+		productsPlaceholder: 'Šta vaša kompanija proizvodi ili nudi?',
+		offers: 'Poslovna ponuda',
+		offersPlaceholder: 'Šta nudite partnerima — kapacitete, saradnju, distribuciju...',
+		interests: 'Partnerski interesi',
+		interestsPlaceholder: 'Kakve partnere ili saradnju tražite?',
+		markets: 'Ciljna tržišta',
+		marketsPlaceholder: 'npr. Srbija, Italija, EU',
+		role: 'Vaša funkcija u kompaniji',
+		rolePlaceholder: 'npr. direktor, vlasnik',
+		optional: 'neobavezno'
+	},
+	listing: {
+		public: 'Javno dostupni podaci',
+		verified: 'Verifikovan član',
+		publicHint: 'Podaci su prikupljeni iz javno dostupnih izvora.',
+		verifiedHint: 'Kompanija je registrovana i potvrdila podatke.',
+		claim: 'Vaša kompanija? Preuzmite profil',
+		inquire: 'Pošalji upit'
+	},
+	promo: {
+		label: 'Promocija',
+		heading: 'Promovišite svoju kompaniju na Semberija.app',
+		desc: 'Povećajte vidljivost svog poslovanja kroz istaknute profile, digitalno oglašavanje i promotivne mogućnosti.',
+		cta: 'Zatraži ponudu'
+	},
+	seo: {
+		homeTitle: 'Semberija.app | Poslovna platforma Bijeljine i Semberije',
+		homeDesc: 'Otkrijte kompanije, poslovne partnere, investicije i mogućnosti saradnje u Bijeljini i Semberiji. Regionalna digitalna B2B platforma.',
+		aboutTitle: 'O nama | Semberija.app — Vizija i osnivač',
+		platformTitle: 'Platforma | Semberija.app — Poslovno povezivanje i investicije'
+	},
+	legal: {
+		statement: 'Semberija.app je nezavisna privatna digitalna poslovna platforma koju razvija ZOE MILANO d.o.o. Nije zvanični portal Grada Bijeljina niti organa javne vlasti.',
+		copyright: '© 2026 Semberija.app — Razvija i upravlja ZOE MILANO d.o.o.',
+		langNotice: 'Pravni dokumenti su trenutno dostupni na engleskom jeziku. Prevod na srpski je u pripremi.',
+		privacy: 'Privatnost',
+		terms: 'Uslovi korišćenja',
+		cookies: 'Kolačići',
+		gdpr: 'GDPR',
+		disclaimer: 'Odricanje odgovornosti'
+	},
+	board: {
+		enqTitle: 'Još nema objavljenih poslovnih upita',
+		enqDesc: 'Budite prvi: pošaljite ponudu ili potražnju i naš tim će je objaviti i povezati vas sa zainteresovanim kompanijama.',
+		oppTitle: 'Prve poslovne prilike su u pripremi',
+		oppDesc: 'Imate investicioni projekat, ponudu za partnerstvo ili saradnju? Pošaljite nam detalje i predstavićemo ga na platformi.',
+		submit: 'Pošalji poslovni upit',
+		submitOpp: 'Predstavi priliku'
+	},
+	formStatus: {
+		notConfigured: 'Slanje putem forme trenutno nije dostupno. Molimo pošaljite nam poruku direktno na email:',
+		sendFailed: 'Poruka nije poslata zbog tehničke greške. Molimo pokušajte ponovo ili nam pišite direktno na email:',
+		invalid: 'Provjerite ime, email adresu i poruku pa pokušajte ponovo.',
+		sending: 'Slanje...'
 	},
 	stats: [
-		{ value: '50+', label: 'Registrovanih firmi' },
-		{ value: '15', label: 'Poslovnih kategorija' },
-		{ value: '8', label: 'Investicionih projekata' },
+		{ value: '', label: 'Kompanija u direktorijumu' },
+		{ value: '', label: 'Poslovnih sektora' },
+		{ value: '', label: 'Investicionih oblasti' },
 		{ value: 'EU', label: 'Izvozna tržišta' }
 	],
 	why: {
 		label: 'Prednosti',
-		heading: 'Zašto Semberija',
+		heading: 'Zašto Bijeljina i Semberija?',
+		sub: 'Bijeljina i Semberija predstavljaju prostor snažne privredne tradicije, proizvodnje, preduzetništva i novih mogućnosti za poslovni razvoj.',
 		items: [
 			{
 				icon: 'location',
@@ -40,7 +322,7 @@ const sr = {
 			},
 			{
 				icon: 'growth',
-				title: 'Poslovni rast',
+				title: 'Poslovni razvoj',
 				desc: 'Rastuće okruženje za proizvodnju, logistiku, usluge i preduzetništvo.'
 			},
 			{
@@ -50,7 +332,7 @@ const sr = {
 			},
 			{
 				icon: 'diaspora',
-				title: 'Dijaspora mreža',
+				title: 'Povezivanje sa dijasporom',
 				desc: 'Povezujemo globalnu dijasporu sa lokalnim kompanijama, kapitalom i prilikama.'
 			},
 			{
@@ -133,8 +415,8 @@ const sr = {
 		items: [
 			{
 				title: 'Pronađite partnera',
-				desc: 'Tražite strateškog poslovnog partnera za zajednički projekat, širenje ili novo tržište? Povezujemo vas sa provjerenim kompanijama.',
-				highlights: ['Provjereni poslovni partneri iz regije', 'Podrška u pregovorima i uspostavljanju saradnje', 'Fokus na dugoročna partnerstva']
+				desc: 'Tražite strateškog poslovnog partnera za zajednički projekat, širenje ili novo tržište? Povezujemo vas sa odgovarajućim kompanijama iz regije.',
+				highlights: ['Poslovni partneri iz Bijeljine i Semberije', 'Podrška u pregovorima i uspostavljanju saradnje', 'Fokus na dugoročna partnerstva']
 			},
 			{
 				title: 'Pronađite distributera',
@@ -144,7 +426,7 @@ const sr = {
 			{
 				title: 'Pronađite dobavljača',
 				desc: 'Povezujemo kompanije sa pouzdanim dobavljačima sirovina, materijala i usluga u Semberiji i regionu.',
-				highlights: ['Pristup provjerenoj bazi dobavljača', 'Poređenje ponuda i uslova', 'Podrška u pregovaranju cijena i rokova']
+				highlights: ['Pristup bazi dobavljača iz regije', 'Poređenje ponuda i uslova', 'Podrška u pregovaranju cijena i rokova']
 			},
 			{
 				title: 'Pronađite investitora',
@@ -239,25 +521,6 @@ const sr = {
 		sub: 'Postanite dio rastućeg ekosistema koji povezuje kompanije, investitore i dijasporu',
 		btn: 'Počni danas'
 	},
-	about: {
-		label: 'O nama',
-		heading: 'O platformi Semberija.app',
-		sub: 'Regionalni poslovni ekosistem koji povezuje kompanije, investitore i dijasporu Bijeljine i Semberije.',
-		storyHeading: 'Naša priča',
-		story: [
-			'Semberija.app je nastala sa ciljem da poslovnoj zajednici Bijeljine i Semberije pruži jedinstven digitalni prostor za predstavljanje, povezivanje i rast.',
-			'Vjerujemo da regija ima ogroman potencijal — u poljoprivredi, proizvodnji, logistici i digitalnim uslugama — i da taj potencijal zaslužuje platformu koja ga čini vidljivim lokalno i globalno.'
-		],
-		values: [
-			{ title: 'Regionalni fokus', desc: 'Posvećeni smo isključivo poslovnoj zajednici Bijeljine i Semberije.' },
-			{ title: 'Transparentnost', desc: 'Jasne informacije o firmama, prilikama i investicijama, bez posrednika.' },
-			{ title: 'Povezivanje', desc: 'Spajamo lokalne kompanije, investitore i dijasporu na jednom mjestu.' },
-			{ title: 'Digitalni rast', desc: 'Podstičemo modernizaciju i digitalnu transformaciju regionalnog biznisa.' }
-		],
-		ctaHeading: 'Postanite dio naše mreže',
-		ctaSub: 'Registrujte svoju firmu ili nas kontaktirajte za više informacija o saradnji.',
-		ctaBtn: 'Kontaktirajte nas'
-	},
 	footer: {
 		tagline: 'Regionalna poslovna mreža.',
 		desc: 'Semberija.app je moderni regionalni poslovni ekosistem koji povezuje kompanije, investicije, dijasporu i digitalne prilike.',
@@ -330,7 +593,7 @@ const en = {
 	nav: {
 		home: 'Home',
 		companies: 'Companies',
-		investments: 'Investments',
+		investments: 'Investment',
 		network: 'Network',
 		diaspora: 'B2B',
 		services: 'Digital Services',
@@ -339,25 +602,307 @@ const en = {
 		about: 'About',
 		contact: 'Contact',
 		businessNetwork: 'Business Network',
-		listCta: 'Join the Network'
+		listCta: 'Join the Platform',
+		explore: 'Explore',
+		business: 'Business',
+		platform: 'Platform',
+		industries: 'Industries',
+		directory: 'Business Directory',
+		search: 'Search',
+		b2b: 'B2B Matchmaking',
+		international: 'International Business',
+		enquiries: 'Business Enquiries',
+		promote: 'Promote Your Business',
+		opportunities: 'Business Opportunities',
+		platformOverview: 'Platform Overview'
 	},
 	hero: {
-		tag: 'Bijeljina · Semberija · Republic of Srpska',
-		headline: 'Regional Business Network',
-		sub: 'Connecting companies, investments, diaspora and digital opportunities across the region.',
+		tag: 'Bijeljina · Semberija · Republika Srpska',
+		headline: 'Where Semberija Does Business. We Connect.',
+		sub: 'Connecting companies, manufacturers, distributors, investors and business partners through a digital platform designed to create new opportunities for collaboration, investment and international growth.',
 		ctaNetwork: 'Explore Network',
-		ctaCompanies: 'View Companies',
-		ctaInvest: 'Invest in the Region'
+		ctaCompanies: 'Find Companies',
+		ctaInvest: 'Invest in the Region',
+		subheading: 'Regional Business Platform',
+		ctaPlatform: 'Explore the Platform'
+	},
+	bizSearch: {
+		heading: 'Discover Business Opportunities in Bijeljina and Semberija',
+		desc: 'Find companies, products, services, industries and potential business partners in one place.',
+		placeholder: 'Search companies, products, services or industries...',
+		industry: 'Industry',
+		location: 'Location',
+		allIndustries: 'All industries',
+		allLocations: 'All locations',
+		cta: 'Search Companies',
+		popular: 'Popular sectors:'
+	},
+	ecosystem: {
+		label: 'Sectors',
+		heading: 'The Business Ecosystem of Bijeljina and Semberija',
+		desc: 'From agriculture and manufacturing to trade, logistics, technology and professional services, explore the companies and industries shaping the region\'s economy.',
+		companies: 'Companies',
+		explore: 'Explore sector',
+		active: 'Sector',
+		clear: 'Clear filter',
+		sectors: {
+			'poljoprivreda-hrana': 'Agriculture & Food Industry',
+			'proizvodnja': 'Manufacturing & Industry',
+			'gradjevina': 'Construction & Real Estate',
+			'trgovina': 'Trade & Distribution',
+			'transport': 'Transport & Logistics',
+			'it': 'IT & Digital Services',
+			'usluge': 'Professional Services',
+			'turizam': 'Tourism & Hospitality'
+		} as Record<string, string>
+	},
+	platform: {
+		label: 'Platform',
+		heading: 'One Platform. More Business Opportunities.',
+		desc: 'Semberija.app connects companies from Bijeljina and the wider Semberija region with business partners, investors and international markets through an integrated digital ecosystem.',
+		more: 'Learn more about the platform',
+		statusDev: 'In development',
+		statusSoon: 'Coming soon',
+		modulesHeading: 'Platform business modules',
+		modules: [
+			{ title: 'Business Directory', desc: 'Showcase your company, products and services to potential partners.', detail: 'A directory profile shows your industry, location and offer, and companies can be searched by name, industry and location.', cta: 'Browse Companies' },
+			{ title: 'B2B Matchmaking', desc: 'Discover suppliers, manufacturers, distributors and business partners.', detail: 'Tell us who you are looking for — a partner, distributor, supplier or investor — and we help you connect with the right companies.', cta: 'Find a Partner' },
+			{ title: 'Investment', desc: 'Explore investment opportunities and regional development potential.', detail: 'An overview of investment areas and projects in Bijeljina and Semberija, from agriculture and manufacturing to energy and real estate.', cta: 'Explore Investment' },
+			{ title: 'International Business', desc: 'Connect with business markets in Serbia, Italy and beyond.', detail: 'Our partner and diaspora network opens the way to markets in Serbia, Italy and other countries, with support for the first contact.', cta: 'Request a Connection' },
+			{ title: 'Business Enquiries', desc: 'Submit an offer or request and seek potential business connections.', detail: 'Publish what you offer or need — cooperation, distribution, investment or a service — and browse enquiries from other companies.', cta: 'Submit a Business Enquiry' },
+			{ title: 'Business Promotion', desc: 'Increase visibility through featured profiles and promotional placements.', detail: 'Featured profiles and promotional placements on the platform help your company be the first one partners see.', cta: 'Promote Your Business' },
+			{ title: 'Digital Services', desc: 'Web development, apps, branding, marketing and business solutions.', detail: 'Our digital services team helps companies improve their online presence, sales and business processes.', cta: 'Explore Services' },
+			{ title: 'Mobile App', desc: 'A mobile business platform currently in development.', detail: 'A mobile version of the platform is in development. Sign up for early access and be among the first to use it.', cta: 'Request Early Access' }
+		],
+		benefitsLabel: 'Registration benefits',
+		benefitsHeading: 'Why register your company?',
+		benefitsDesc: 'Registering on Semberija.app opens the door to new business contacts, partnerships and markets.',
+		benefits: [
+			{ title: 'Company profile', desc: 'Present your industry, products and services in one place.' },
+			{ title: 'Visibility to partners', desc: 'Be found by domestic and international companies.' },
+			{ title: 'Access to investors', desc: 'Present development projects and investment needs.' },
+			{ title: 'Business enquiries', desc: 'Send and receive offers and cooperation requests.' },
+			{ title: 'International network', desc: 'Connect with markets in Serbia, Italy and the diaspora.' },
+			{ title: 'Digital support', desc: 'Use digital services for growth and better visibility.' }
+		],
+		joinHeading: 'Ready for new business opportunities?',
+		joinDesc: 'Join the platform and present your company to partners in the region and worldwide.'
+	},
+	joinCta: {
+		heading: 'Your Business Deserves Greater Visibility.',
+		desc: 'Showcase your business, discover new partners and open the door to regional and international cooperation.',
+		benefits: ['Showcase Your Company', 'Find Business Partners', 'Discover New Opportunities', 'Expand into New Markets'],
+		promote: 'Promote Your Business'
+	},
+	howItWorks: {
+		label: 'How it works',
+		heading: 'From Business Visibility to Collaboration.',
+		online: 'Available online',
+		manual: 'Via enquiry',
+		note: 'Steps marked “Via enquiry” are currently handled with the help of our team — you send us your details or request, and we guide you from there.',
+		steps: [
+			{ title: 'Register Your Company', desc: 'Send your company\'s basic details through the contact form. Profiles are currently set up by our team — self-service registration is in preparation.', link: 'Send Details' },
+			{ title: 'Showcase Your Products, Services and Business Needs', desc: 'Tell us what you offer and what you are looking for. We use your details to prepare your company profile in the business directory.', link: '' },
+			{ title: 'Discover Potential Partners', desc: 'Search companies by name, industry and location, or browse sectors and investors.', link: 'Search Companies' },
+			{ title: 'Start Building Business Relationships', desc: 'Send a business enquiry or request a connection — our team facilitates the first contact with the company.', link: 'Submit a Business Enquiry' }
+		]
+	},
+	regions: {
+		label: 'Regional platforms',
+		heading: 'Connecting Regions. Opening New Markets.',
+		desc: 'Semberija.app is part of ZOE MILANO\'s broader vision of developing regional digital platforms that connect companies, markets and international business opportunities.',
+		cta: 'Visit Platform',
+		attribution: 'Digital platforms developed by ZOE MILANO.',
+		prev: 'Previous platform',
+		next: 'Next platform',
+		newTab: '(opens in a new tab)',
+		slide: 'Platform',
+		items: {
+			lombardia: 'A digital business platform connecting companies, investment and international cooperation across Lombardy.',
+			veneto: 'A regional digital platform supporting business connections and development across Italy\'s Veneto region.'
+		} as Record<string, string>
+	},
+	aboutPage: {
+		label: 'About',
+		heading: 'Semberija.app — From Bijeljina to the World.',
+		intro: [
+			'Semberija.app is a regional digital business platform dedicated to connecting companies, entrepreneurs, investors and business partners from Bijeljina and the wider Semberija region with regional and international markets.',
+			'The platform was born from a personal connection to Bijeljina and the belief that its economic potential deserves greater visibility.'
+		],
+		platform: {
+			label: 'About the Platform',
+			heading: 'More Than a Business Directory',
+			body: [
+				'Semberija.app is developing a digital ecosystem for company visibility, business matchmaking, investment opportunities and international cooperation.',
+				'Our goal is to help local businesses strengthen their digital presence and gain easier access to new business contacts and markets.'
+			]
+		},
+		vision: {
+			label: 'Our Vision',
+			heading: 'Local Potential. International Opportunities.',
+			body: [
+				'Bijeljina and Semberija have a strong tradition of agriculture, manufacturing, trade and entrepreneurship.',
+				'We believe that the region\'s products, expertise and business capabilities have the potential to reach a much wider international market.',
+				'Our vision is to support regional economic development through modern technology, professional promotion and meaningful business connections.'
+			]
+		},
+		offer: {
+			label: 'The Platform',
+			heading: 'What Semberija.app Enables',
+			items: [
+				'Business Profiles and Visibility',
+				'Business and B2B Connections',
+				'Investment Opportunities',
+				'International Cooperation',
+				'Digital Promotion and Development'
+			],
+			closing: 'Semberija.app is being developed as long-term digital infrastructure connecting companies, markets and business opportunities.'
+		},
+		founder: {
+			label: 'About the Founder',
+			name: 'Zorana Petrović',
+			role: 'Founder, Semberija.app | Founder & CEO, ZOE MILANO',
+			places: 'Belgrade · Milan · Bijeljina',
+			body: [
+				'Semberija.app was founded by Zorana Petrović, entrepreneur and creative strategist, and Founder & CEO of ZOE MILANO.',
+				'Having grown up and studied in Milan, her professional background spans creative development, digital platforms, marketing and international projects.',
+				'Her connection to Bijeljina is deeply personal. Her mother, Prof. Zorica Petrović, was born in Bijeljina, as were other members of her family. Her family heritage also includes her grandmother, who received a decoration for bravery during the Second World War.',
+				'Zorana has visited Bijeljina regularly over the years, gaining first-hand insight into the potential of local manufacturing, entrepreneurship and business development.',
+				'This personal connection inspired her to bring together international experience, digital technology and modern marketing to help promote Bijeljina and its business community.'
+			],
+			quoteLabel: 'Founder\'s Vision',
+			quote: '“Bijeljina is a city connected to my family roots and a place I have returned to for many years. I believe that the companies, products and people of this region deserve greater international visibility. Semberija.app was created to help connect that potential with new markets and business opportunities.”',
+			quoteRole: 'Founder, Semberija.app'
+		},
+		zoe: {
+			label: 'ZOE MILANO',
+			heading: 'Ideas, Creativity and Technology',
+			body: [
+				'Semberija.app is a project developed by ZOE MILANO d.o.o., a Belgrade-based company specializing in digital platforms, mobile applications, B2B ecosystems and international business projects.',
+				'The company combines creative strategy, technology, digital marketing and business development to create modern digital solutions for companies and markets.'
+			],
+			credits: [
+				{
+					label: 'Concept and Founder',
+					value: 'Zorana Petrović'
+				},
+				{
+					label: 'Platform Development',
+					value: 'ZOE MILANO d.o.o.'
+				}
+			],
+			cta: 'Visit ZOE MILANO'
+		},
+		future: {
+			label: 'Our Future',
+			heading: 'From Bijeljina to New Markets',
+			body: [
+				'Semberija.app was created to connect local business potential with regional and international opportunities.',
+				'Our ambition is to give companies from Bijeljina and Semberija a professional environment to showcase their businesses, increase visibility and establish new commercial connections.'
+			],
+			closing: 'This is just the beginning.'
+		},
+		cta: {
+			heading: 'Be Part of Bijeljina\'s Business Future.',
+			desc: 'Showcase your company, connect with potential partners and explore new opportunities for growth.',
+			contact: 'Contact Us'
+		}
+	},
+	enquiry: {
+		typeLabel: 'Enquiry type',
+		types: {
+			registracija: 'Company registration',
+			preuzimanje: 'Claim a company profile',
+			b2b: 'B2B connections',
+			oglasavanje: 'Advertising and promotion',
+			medjunarodna: 'International cooperation',
+			usluge: 'Digital services',
+			ostalo: 'Other'
+		},
+		hints: {
+			registracija: 'Send us your company details — our team prepares your profile in the business directory.',
+			preuzimanje: 'Is your company already listed? Request to claim the profile to confirm and complete its details.',
+			b2b: 'Describe the partner you are looking for — a supplier, distributor, manufacturer or investor.',
+			oglasavanje: 'Request an offer for a featured profile, banner ads or other promotional placements.',
+			medjunarodna: 'Tell us which markets interest you — Serbia, Italy or beyond.',
+			usluge: 'Web development, apps, branding and marketing — describe what you need.',
+			ostalo: 'Send us a message and we will get back to you.'
+		},
+		companySection: 'Company details',
+		contactSection: 'Contact details',
+		industry: 'Industry',
+		industryPlaceholder: 'Select an industry',
+		industryOther: 'Other industry',
+		location: 'Location',
+		locationPlaceholder: 'e.g. Bijeljina',
+		website: 'Website',
+		phone: 'Phone',
+		products: 'Products and services',
+		productsPlaceholder: 'What does your company make or offer?',
+		offers: 'Business offers',
+		offersPlaceholder: 'What you offer partners — capacity, cooperation, distribution...',
+		interests: 'Partnership interests',
+		interestsPlaceholder: 'What kind of partners or cooperation are you looking for?',
+		markets: 'Target markets',
+		marketsPlaceholder: 'e.g. Serbia, Italy, EU',
+		role: 'Your role in the company',
+		rolePlaceholder: 'e.g. director, owner',
+		optional: 'optional'
+	},
+	listing: {
+		public: 'Publicly sourced',
+		verified: 'Verified member',
+		publicHint: 'Details were collected from publicly available sources.',
+		verifiedHint: 'The company is registered and has confirmed its details.',
+		claim: 'Your company? Claim this profile',
+		inquire: 'Send Enquiry'
+	},
+	promo: {
+		label: 'Promotion',
+		heading: 'Promote Your Business on Semberija.app',
+		desc: 'Increase your business visibility through featured profiles, digital advertising and promotional opportunities.',
+		cta: 'Request an Offer'
+	},
+	seo: {
+		homeTitle: 'Semberija.app | Bijeljina & Semberija Business Platform',
+		homeDesc: 'Discover companies, business partners, investment opportunities and B2B connections in Bijeljina and the wider Semberija region.',
+		aboutTitle: 'About | Semberija.app — Vision & Founder',
+		platformTitle: 'Platform | Semberija.app — B2B Connections & Investment'
+	},
+	legal: {
+		statement: 'Semberija.app is an independent privately developed digital business platform operated by ZOE MILANO d.o.o. It is not an official website of the City of Bijeljina or any public authority.',
+		copyright: '© 2026 Semberija.app — Developed and operated by ZOE MILANO d.o.o.',
+		langNotice: '',
+		privacy: 'Privacy',
+		terms: 'Terms',
+		cookies: 'Cookies',
+		gdpr: 'GDPR',
+		disclaimer: 'Disclaimer'
+	},
+	board: {
+		enqTitle: 'No business enquiries published yet',
+		enqDesc: 'Be the first: send us an offer or request and our team will publish it and connect you with interested companies.',
+		oppTitle: 'The first business opportunities are being prepared',
+		oppDesc: 'Have an investment project, partnership offer or cooperation idea? Send us the details and we will present it on the platform.',
+		submit: 'Submit a Business Enquiry',
+		submitOpp: 'Present an Opportunity'
+	},
+	formStatus: {
+		notConfigured: 'Sending through the form is currently unavailable. Please email us directly at:',
+		sendFailed: 'Your message was not sent due to a technical error. Please try again or email us directly at:',
+		invalid: 'Please check your name, email address and message, then try again.',
+		sending: 'Sending...'
 	},
 	stats: [
-		{ value: '50+', label: 'Registered Companies' },
-		{ value: '15', label: 'Business Categories' },
-		{ value: '8', label: 'Investment Projects' },
+		{ value: '', label: 'Companies in the Directory' },
+		{ value: '', label: 'Business Sectors' },
+		{ value: '', label: 'Investment Areas' },
 		{ value: 'EU', label: 'Export Markets' }
 	],
 	why: {
 		label: 'Advantages',
-		heading: 'Why Semberija',
+		heading: 'Why Bijeljina and Semberija?',
+		sub: 'Bijeljina and the wider Semberija region offer a strong tradition of enterprise, manufacturing, agriculture and emerging opportunities for business development.',
 		items: [
 			{
 				icon: 'location',
@@ -366,17 +911,17 @@ const en = {
 			},
 			{
 				icon: 'growth',
-				title: 'Business Growth',
+				title: 'Business Development',
 				desc: 'A growing environment for production, logistics, services and entrepreneurship.'
 			},
 			{
 				icon: 'agriculture',
-				title: 'Agriculture & Production',
+				title: 'Agriculture & Manufacturing',
 				desc: 'Strong regional potential in agriculture, food production and processing.'
 			},
 			{
 				icon: 'diaspora',
-				title: 'Diaspora Network',
+				title: 'Diaspora Connections',
 				desc: 'Connecting global diaspora with local companies, capital and opportunities.'
 			},
 			{
@@ -459,8 +1004,8 @@ const en = {
 		items: [
 			{
 				title: 'Find a Partner',
-				desc: 'Looking for a strategic business partner for a joint project, expansion or new market? We connect you with vetted companies.',
-				highlights: ['Vetted business partners from the region', 'Support in negotiations and setting up cooperation', 'Focus on long-term partnerships']
+				desc: 'Looking for a strategic business partner for a joint project, expansion or new market? We connect you with suitable companies from the region.',
+				highlights: ['Business partners from Bijeljina and Semberija', 'Support in negotiations and setting up cooperation', 'Focus on long-term partnerships']
 			},
 			{
 				title: 'Find a Distributor',
@@ -470,7 +1015,7 @@ const en = {
 			{
 				title: 'Find a Supplier',
 				desc: 'We connect companies with reliable suppliers of raw materials, components and services in Semberija and the region.',
-				highlights: ['Access to a vetted supplier base', 'Comparison of offers and terms', 'Support negotiating prices and deadlines']
+				highlights: ['Access to a regional supplier base', 'Comparison of offers and terms', 'Support negotiating prices and deadlines']
 			},
 			{
 				title: 'Find an Investor',
@@ -565,25 +1110,6 @@ const en = {
 		sub: 'Become part of a growing ecosystem connecting companies, investors and diaspora',
 		btn: 'Get Started'
 	},
-	about: {
-		label: 'About Us',
-		heading: 'About Semberija.app',
-		sub: 'A regional business ecosystem connecting companies, investors and diaspora across Bijeljina and Semberija.',
-		storyHeading: 'Our Story',
-		story: [
-			'Semberija.app was created to give the business community of Bijeljina and Semberija a single digital space to present themselves, connect and grow.',
-			'We believe the region holds enormous potential — in agriculture, production, logistics and digital services — and that potential deserves a platform that makes it visible both locally and globally.'
-		],
-		values: [
-			{ title: 'Regional Focus', desc: 'We are dedicated exclusively to the business community of Bijeljina and Semberija.' },
-			{ title: 'Transparency', desc: 'Clear information about companies, opportunities and investments, without middlemen.' },
-			{ title: 'Connection', desc: 'Bringing local companies, investors and diaspora together in one place.' },
-			{ title: 'Digital Growth', desc: 'Encouraging modernization and digital transformation of regional business.' }
-		],
-		ctaHeading: 'Become Part of Our Network',
-		ctaSub: 'Register your company or contact us to learn more about collaboration.',
-		ctaBtn: 'Contact Us'
-	},
 	footer: {
 		tagline: 'Regional Business Network.',
 		desc: 'Semberija.app is a modern regional business ecosystem connecting companies, investments, diaspora and digital opportunities.',
@@ -665,30 +1191,312 @@ const it = {
 		about: 'Chi siamo',
 		contact: 'Contatti',
 		businessNetwork: 'Rete Business',
-		listCta: 'Unisciti alla rete'
+		listCta: 'Unisciti alla piattaforma',
+		explore: 'Esplora',
+		business: 'Business',
+		platform: 'Piattaforma',
+		industries: 'Settori',
+		directory: 'Elenco aziende',
+		search: 'Cerca',
+		b2b: 'Matchmaking B2B',
+		international: 'Business internazionale',
+		enquiries: 'Richieste commerciali',
+		promote: 'Promuovi la tua azienda',
+		opportunities: 'Opportunità di business',
+		platformOverview: 'Panoramica della piattaforma'
 	},
 	hero: {
 		tag: 'Bijeljina · Semberija · Repubblica Srpska',
-		headline: 'Rete Business Regionale',
-		sub: 'Collegare aziende, investimenti, diaspora e opportunità digitali in tutta la regione.',
+		headline: 'Dove la Semberija fa business. Noi connettiamo.',
+		sub: 'Colleghiamo aziende, produttori, distributori, investitori e partner commerciali attraverso una piattaforma digitale che apre nuove opportunità di collaborazione, investimento e crescita internazionale.',
 		ctaNetwork: 'Esplora la rete',
-		ctaCompanies: 'Vedi aziende',
-		ctaInvest: 'Investi nella regione'
+		ctaCompanies: 'Trova aziende',
+		ctaInvest: 'Investi nella regione',
+		subheading: 'Piattaforma business regionale',
+		ctaPlatform: 'Esplora la piattaforma'
+	},
+	bizSearch: {
+		heading: 'Scopri le opportunità di business di Bijeljina e della Semberija',
+		desc: 'Trova aziende, prodotti, servizi, settori e potenziali partner commerciali in un unico posto.',
+		placeholder: 'Cerca aziende, prodotti, servizi o settori...',
+		industry: 'Settore',
+		location: 'Località',
+		allIndustries: 'Tutti i settori',
+		allLocations: 'Tutte le località',
+		cta: 'Cerca aziende',
+		popular: 'Settori più cercati:'
+	},
+	ecosystem: {
+		label: 'Settori',
+		heading: 'L\'ecosistema economico di Bijeljina e della Semberija',
+		desc: 'Dall\'agricoltura e dalla produzione al commercio, alla logistica, alla tecnologia e ai servizi professionali: scopri le aziende e i settori che plasmano l\'economia della regione.',
+		companies: 'Aziende',
+		explore: 'Esplora il settore',
+		active: 'Settore',
+		clear: 'Rimuovi filtro',
+		sectors: {
+			'poljoprivreda-hrana': 'Agricoltura e industria alimentare',
+			'proizvodnja': 'Produzione e industria',
+			'gradjevina': 'Edilizia e immobiliare',
+			'trgovina': 'Commercio e distribuzione',
+			'transport': 'Trasporti e logistica',
+			'it': 'IT e servizi digitali',
+			'usluge': 'Servizi professionali',
+			'turizam': 'Turismo e ospitalità'
+		} as Record<string, string>
+	},
+	platform: {
+		label: 'Piattaforma',
+		heading: 'Una piattaforma. Più opportunità di business.',
+		desc: 'Semberija.app collega le aziende di Bijeljina e della Semberija con partner commerciali, investitori e mercati internazionali attraverso un ecosistema digitale integrato.',
+		more: 'Scopri di più sulla piattaforma',
+		statusDev: 'In sviluppo',
+		statusSoon: 'Prossimamente',
+		modulesHeading: 'Moduli business della piattaforma',
+		modules: [
+			{ title: 'Elenco aziende', desc: 'Presenta la tua azienda, i prodotti e i servizi ai potenziali partner.', detail: 'Il profilo nell\'elenco mostra settore, località e offerta, e le aziende si possono cercare per nome, settore e località.', cta: 'Sfoglia le aziende' },
+			{ title: 'Matchmaking B2B', desc: 'Trova fornitori, produttori, distributori e partner commerciali.', detail: 'Dicci chi stai cercando — un partner, un distributore, un fornitore o un investitore — e ti aiutiamo a entrare in contatto con le aziende giuste.', cta: 'Trova un partner' },
+			{ title: 'Investimenti', desc: 'Esplora le opportunità di investimento e il potenziale di sviluppo della regione.', detail: 'Una panoramica delle aree e dei progetti di investimento a Bijeljina e nella Semberija, dall\'agricoltura e dalla produzione all\'energia e all\'immobiliare.', cta: 'Esplora gli investimenti' },
+			{ title: 'Business internazionale', desc: 'Entra in contatto con i mercati di Serbia, Italia e oltre.', detail: 'La nostra rete di partner e della diaspora apre la strada ai mercati di Serbia, Italia e altri paesi, con supporto per il primo contatto.', cta: 'Richiedi un contatto' },
+			{ title: 'Richieste commerciali', desc: 'Presenta un\'offerta o una richiesta e cerca nuovi contatti commerciali.', detail: 'Pubblica ciò che offri o cerchi — collaborazione, distribuzione, investimento o servizio — e consulta le richieste di altre aziende.', cta: 'Invia una richiesta' },
+			{ title: 'Promozione aziende', desc: 'Aumenta la visibilità con profili in evidenza e spazi promozionali.', detail: 'Profili in evidenza e spazi promozionali sulla piattaforma aiutano la tua azienda a essere la prima che i partner vedono.', cta: 'Promuovi la tua azienda' },
+			{ title: 'Servizi digitali', desc: 'Sviluppo web, app, branding, marketing e soluzioni aziendali.', detail: 'Il nostro team di servizi digitali aiuta le aziende a migliorare presenza online, vendite e processi aziendali.', cta: 'Scopri i servizi' },
+			{ title: 'App mobile', desc: 'Una piattaforma business mobile in fase di sviluppo.', detail: 'La versione mobile della piattaforma è in sviluppo. Registrati per l\'accesso anticipato e sii tra i primi a usarla.', cta: 'Richiedi l\'accesso anticipato' }
+		],
+		benefitsLabel: 'Vantaggi della registrazione',
+		benefitsHeading: 'Perché registrare la tua azienda?',
+		benefitsDesc: 'La registrazione su Semberija.app apre la porta a nuovi contatti commerciali, partnership e mercati.',
+		benefits: [
+			{ title: 'Profilo aziendale', desc: 'Presenta settore, prodotti e servizi in un unico posto.' },
+			{ title: 'Visibilità per i partner', desc: 'Fatti trovare da aziende nazionali e internazionali.' },
+			{ title: 'Accesso agli investitori', desc: 'Presenta progetti di sviluppo ed esigenze di investimento.' },
+			{ title: 'Richieste commerciali', desc: 'Invia e ricevi offerte e richieste di collaborazione.' },
+			{ title: 'Rete internazionale', desc: 'Entra in contatto con i mercati di Serbia, Italia e la diaspora.' },
+			{ title: 'Supporto digitale', desc: 'Usa i servizi digitali per crescere e migliorare la visibilità.' }
+		],
+		joinHeading: 'Pronto per nuove opportunità di business?',
+		joinDesc: 'Unisciti alla piattaforma e presenta la tua azienda ai partner nella regione e nel mondo.'
+	},
+	joinCta: {
+		heading: 'La tua azienda merita più visibilità.',
+		desc: 'Presenta la tua attività, trova nuovi partner e apri le porte alla collaborazione regionale e internazionale.',
+		benefits: ['Presenta la tua azienda', 'Trova partner commerciali', 'Scopri nuove opportunità', 'Espanditi su nuovi mercati'],
+		promote: 'Promuovi la tua azienda'
+	},
+	howItWorks: {
+		label: 'Come funziona',
+		heading: 'Dalla visibilità alla collaborazione.',
+		online: 'Disponibile online',
+		manual: 'Su richiesta',
+		note: 'I passaggi contrassegnati con «Su richiesta» sono attualmente gestiti con il supporto del nostro team: ci invii i tuoi dati o la tua richiesta e ti guidiamo noi.',
+		steps: [
+			{ title: 'Registra la tua azienda', desc: 'Invia i dati di base della tua azienda tramite il modulo di contatto. Al momento i profili vengono creati dal nostro team: la registrazione autonoma è in preparazione.', link: 'Invia i dati' },
+			{ title: 'Presenta prodotti, servizi ed esigenze aziendali', desc: 'Indica cosa offri e cosa cerchi. Con i tuoi dati prepariamo il profilo aziendale nell\'elenco aziende.', link: '' },
+			{ title: 'Trova potenziali partner', desc: 'Cerca aziende per nome, settore e località, oppure esplora settori e investitori.', link: 'Cerca aziende' },
+			{ title: 'Avvia una collaborazione', desc: 'Invia una richiesta commerciale o chiedi un contatto: il nostro team facilita il primo contatto con l\'azienda.', link: 'Invia una richiesta' }
+		]
+	},
+	regions: {
+		label: 'Piattaforme regionali',
+		heading: 'Colleghiamo le regioni. Apriamo nuovi mercati.',
+		desc: 'Semberija.app fa parte della visione più ampia di ZOE MILANO, che sviluppa piattaforme digitali regionali per collegare aziende, mercati e opportunità di business internazionali.',
+		cta: 'Visita la piattaforma',
+		attribution: 'Piattaforme digitali sviluppate da ZOE MILANO.',
+		prev: 'Piattaforma precedente',
+		next: 'Piattaforma successiva',
+		newTab: '(si apre in una nuova scheda)',
+		slide: 'Piattaforma',
+		items: {
+			lombardia: 'Piattaforma digitale per aziende, investimenti e cooperazione internazionale in Lombardia.',
+			veneto: 'Piattaforma digitale regionale per le connessioni e lo sviluppo del business in Veneto.'
+		} as Record<string, string>
+	},
+	aboutPage: {
+		label: 'Chi siamo',
+		heading: 'Semberija.app — Da Bijeljina verso il mondo.',
+		intro: [
+			'Semberija.app è una piattaforma digitale regionale dedicata a collegare aziende, imprenditori, investitori e partner commerciali di Bijeljina e della Semberija con i mercati regionali e internazionali.',
+			'La piattaforma nasce da un legame personale con Bijeljina e dalla convinzione che il suo potenziale economico meriti maggiore visibilità.'
+		],
+		platform: {
+			label: 'La piattaforma',
+			heading: 'Più di un elenco aziendale',
+			body: [
+				'Semberija.app sviluppa un ecosistema digitale per la presentazione delle aziende, i contatti commerciali, gli investimenti e la cooperazione internazionale.',
+				'L\'obiettivo è offrire alle imprese locali una migliore visibilità digitale e un accesso più semplice a nuovi contatti commerciali e mercati.'
+			]
+		},
+		vision: {
+			label: 'La nostra visione',
+			heading: 'Potenziale locale. Opportunità internazionali.',
+			body: [
+				'Bijeljina e la Semberija hanno una forte tradizione nell\'agricoltura, nella produzione, nel commercio e nell\'imprenditoria.',
+				'Crediamo che i prodotti di qualità, le competenze e le capacità imprenditoriali di questo territorio possano trovare spazio anche sul mercato internazionale.',
+				'La nostra visione è contribuire a una maggiore visibilità e crescita dell\'economia regionale attraverso tecnologie moderne, promozione professionale e contatti commerciali.'
+			]
+		},
+		offer: {
+			label: 'Cosa offriamo',
+			heading: 'Cosa offre Semberija.app',
+			items: [
+				'Presentazione di aziende e servizi',
+				'Contatti commerciali e B2B',
+				'Opportunità di investimento',
+				'Cooperazione internazionale',
+				'Promozione e sviluppo digitale'
+			],
+			closing: 'Semberija.app si sviluppa come un\'infrastruttura digitale a lungo termine per collegare aziende, mercati e opportunità di business.'
+		},
+		founder: {
+			label: 'La fondatrice',
+			name: 'Zorana Petrović',
+			role: 'Fondatrice di Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			places: 'Belgrado · Milano · Bijeljina',
+			body: [
+				'Semberija.app nasce su iniziativa di Zorana Petrović, imprenditrice e strategist creativa, fondatrice e direttrice di ZOE MILANO.',
+				'È cresciuta e ha studiato a Milano; la sua esperienza professionale comprende sviluppo creativo, piattaforme digitali, marketing e progetti internazionali.',
+				'È legata a Bijeljina dalle sue radici familiari. Sua madre, la prof.ssa Zorica Petrović, è nata a Bijeljina, così come altri membri della famiglia. L\'eredità familiare comprende anche la nonna, decorata al valore durante la Seconda guerra mondiale.',
+				'Da anni Zorana torna a Bijeljina e, per esperienza diretta, riconosce il potenziale della produzione locale, dell\'imprenditoria e dello sviluppo economico.',
+				'Proprio da questo legame è nata l\'idea di mettere l\'esperienza internazionale, la tecnologia digitale e il marketing moderno al servizio della promozione di Bijeljina e della sua economia.'
+			],
+			quoteLabel: 'La visione della fondatrice',
+			quote: '«Bijeljina è una città a cui mi legano le radici familiari e in cui torno da anni. Credo che le aziende, i prodotti e le persone di questo territorio meritino una maggiore visibilità internazionale. Semberija.app è nata dal desiderio di collegare questo potenziale con nuovi mercati e opportunità di business.»',
+			quoteRole: 'Fondatrice, Semberija.app'
+		},
+		zoe: {
+			label: 'ZOE MILANO',
+			heading: 'Idee, creatività e tecnologia',
+			body: [
+				'Semberija.app è un progetto di ZOE MILANO d.o.o. di Belgrado, azienda che sviluppa piattaforme digitali, app mobili, ecosistemi B2B e progetti di business internazionali.',
+				'L\'azienda unisce strategia creativa, tecnologia, marketing digitale e sviluppo del business per creare soluzioni digitali moderne per aziende e mercati.'
+			],
+			credits: [
+				{
+					label: 'Idea e fondatrice',
+					value: 'Zorana Petrović'
+				},
+				{
+					label: 'Sviluppo della piattaforma',
+					value: 'ZOE MILANO d.o.o.'
+				}
+			],
+			cta: 'Visita ZOE MILANO'
+		},
+		future: {
+			label: 'Il nostro futuro',
+			heading: 'Da Bijeljina verso nuovi mercati',
+			body: [
+				'Semberija.app nasce per collegare il potenziale economico locale con le opportunità regionali e internazionali.',
+				'Vogliamo offrire alle aziende di Bijeljina e della Semberija uno spazio per presentarsi in modo professionale, promuoversi e stabilire nuovi contatti commerciali.'
+			],
+			closing: 'Questo è solo l\'inizio.'
+		},
+		cta: {
+			heading: 'Fai parte del futuro economico di Bijeljina.',
+			desc: 'Presenta la tua azienda, entra in contatto con potenziali partner ed esplora nuove opportunità di crescita.',
+			contact: 'Contattaci'
+		}
+	},
+	enquiry: {
+		typeLabel: 'Tipo di richiesta',
+		types: {
+			registracija: 'Registrazione azienda',
+			preuzimanje: 'Rivendica un profilo aziendale',
+			b2b: 'Contatti B2B',
+			oglasavanje: 'Pubblicità e promozione',
+			medjunarodna: 'Cooperazione internazionale',
+			usluge: 'Servizi digitali',
+			ostalo: 'Altro'
+		},
+		hints: {
+			registracija: 'Inviaci i dati della tua azienda: il nostro team preparerà il profilo nell\'elenco aziende.',
+			preuzimanje: 'La tua azienda è già presente? Richiedi il profilo per confermare e completare i dati.',
+			b2b: 'Descrivi il partner che cerchi: fornitore, distributore, produttore o investitore.',
+			oglasavanje: 'Richiedi un\'offerta per un profilo in evidenza, banner o altri spazi promozionali.',
+			medjunarodna: 'Indicaci quali mercati ti interessano: Serbia, Italia o altri.',
+			usluge: 'Sviluppo web, app, branding e marketing: descrivi la tua esigenza.',
+			ostalo: 'Inviaci un messaggio e ti risponderemo.'
+		},
+		companySection: 'Dati dell\'azienda',
+		contactSection: 'Dati di contatto',
+		industry: 'Settore',
+		industryPlaceholder: 'Seleziona un settore',
+		industryOther: 'Altro settore',
+		location: 'Località',
+		locationPlaceholder: 'es. Bijeljina',
+		website: 'Sito web',
+		phone: 'Telefono',
+		products: 'Prodotti e servizi',
+		productsPlaceholder: 'Cosa produce o offre la tua azienda?',
+		offers: 'Offerta commerciale',
+		offersPlaceholder: 'Cosa offri ai partner: capacità, collaborazione, distribuzione...',
+		interests: 'Interessi di partnership',
+		interestsPlaceholder: 'Che tipo di partner o collaborazione cerchi?',
+		markets: 'Mercati di riferimento',
+		marketsPlaceholder: 'es. Serbia, Italia, UE',
+		role: 'Il tuo ruolo nell\'azienda',
+		rolePlaceholder: 'es. direttore, titolare',
+		optional: 'facoltativo'
+	},
+	listing: {
+		public: 'Fonti pubbliche',
+		verified: 'Membro verificato',
+		publicHint: 'I dati provengono da fonti pubblicamente disponibili.',
+		verifiedHint: 'L\'azienda è registrata e ha confermato i dati.',
+		claim: 'È la tua azienda? Rivendica il profilo',
+		inquire: 'Invia richiesta'
+	},
+	promo: {
+		label: 'Promozione',
+		heading: 'Promuovi la tua azienda su Semberija.app',
+		desc: 'Aumenta la visibilità della tua attività con profili in evidenza, pubblicità digitale e opportunità promozionali.',
+		cta: 'Richiedi un\'offerta'
+	},
+	seo: {
+		homeTitle: 'Semberija.app | Piattaforma business di Bijeljina e Semberija',
+		homeDesc: 'Scopri aziende, partner commerciali, opportunità di investimento e contatti B2B a Bijeljina e nella regione della Semberija.',
+		aboutTitle: 'Chi siamo | Semberija.app — Visione e fondatrice',
+		platformTitle: 'Piattaforma | Semberija.app — Contatti B2B e investimenti'
+	},
+	legal: {
+		statement: 'Semberija.app è una piattaforma digitale indipendente e privata, gestita da ZOE MILANO d.o.o. Non è il sito ufficiale della Città di Bijeljina né di alcuna autorità pubblica.',
+		copyright: '© 2026 Semberija.app — Sviluppata e gestita da ZOE MILANO d.o.o.',
+		langNotice: 'I documenti legali sono attualmente disponibili in inglese.',
+		privacy: 'Privacy',
+		terms: 'Termini',
+		cookies: 'Cookie',
+		gdpr: 'GDPR',
+		disclaimer: 'Esclusione di responsabilità'
+	},
+	board: {
+		enqTitle: 'Nessuna richiesta commerciale pubblicata',
+		enqDesc: 'Sii il primo: inviaci un\'offerta o una richiesta, il nostro team la pubblicherà e ti metterà in contatto con le aziende interessate.',
+		oppTitle: 'Le prime opportunità sono in preparazione',
+		oppDesc: 'Hai un progetto d\'investimento, una proposta di partnership o di collaborazione? Inviaci i dettagli e lo presenteremo sulla piattaforma.',
+		submit: 'Invia una richiesta',
+		submitOpp: 'Presenta un\'opportunità'
+	},
+	formStatus: {
+		notConfigured: 'L\'invio tramite modulo non è al momento disponibile. Scrivici direttamente a:',
+		sendFailed: 'Il messaggio non è stato inviato per un errore tecnico. Riprova o scrivici direttamente a:',
+		invalid: 'Controlla nome, indirizzo email e messaggio, poi riprova.',
+		sending: 'Invio...'
 	},
 	stats: [
-		{ value: '50+', label: 'Aziende registrate' },
-		{ value: '15', label: 'Categorie business' },
-		{ value: '8', label: 'Progetti di investimento' },
+		{ value: '', label: 'Aziende nell\'elenco' },
+		{ value: '', label: 'Settori economici' },
+		{ value: '', label: 'Aree d\'investimento' },
 		{ value: 'UE', label: 'Mercati di esportazione' }
 	],
 	why: {
 		label: 'Vantaggi',
-		heading: 'Perché Semberija',
+		heading: 'Perché Bijeljina e la Semberija?',
+		sub: 'Bijeljina e la più ampia regione della Semberija offrono una forte tradizione imprenditoriale, manifatturiera e agricola e nuove opportunità di sviluppo del business.',
 		items: [
 			{ icon: 'location', title: 'Posizione strategica', desc: 'Una regione posizionata tra i principali mercati balcanici e le rotte commerciali europee.' },
-			{ icon: 'growth', title: 'Crescita aziendale', desc: 'Un ambiente in crescita per produzione, logistica, servizi e imprenditoria.' },
-			{ icon: 'agriculture', title: 'Agricoltura e produzione', desc: 'Forte potenziale regionale in agricoltura, produzione alimentare e trasformazione.' },
-			{ icon: 'diaspora', title: 'Rete diaspora', desc: 'Collegare la diaspora globale con aziende locali, capitali e opportunità.' },
+			{ icon: 'growth', title: 'Sviluppo del business', desc: 'Un ambiente in crescita per produzione, logistica, servizi e imprenditoria.' },
+			{ icon: 'agriculture', title: 'Agricoltura e manifattura', desc: 'Forte potenziale regionale in agricoltura, produzione alimentare e trasformazione.' },
+			{ icon: 'diaspora', title: 'Legami con la diaspora', desc: 'Collegare la diaspora globale con aziende locali, capitali e opportunità.' },
 			{ icon: 'digital', title: 'Sviluppo digitale', desc: 'Supporto alla tecnologia, ai servizi digitali e alla trasformazione aziendale moderna.' }
 		]
 	},
@@ -765,8 +1573,8 @@ const it = {
 		items: [
 			{
 				title: 'Trova un partner',
-				desc: 'Cerchi un partner commerciale strategico per un progetto congiunto, un\'espansione o un nuovo mercato? Ti mettiamo in contatto con aziende verificate.',
-				highlights: ['Partner commerciali verificati nella regione', 'Supporto nelle trattative e nell\'avvio della collaborazione', 'Focus su partnership di lungo termine']
+				desc: 'Cerchi un partner commerciale strategico per un progetto congiunto, un\'espansione o un nuovo mercato? Ti mettiamo in contatto con aziende adatte della regione.',
+				highlights: ['Partner commerciali di Bijeljina e della Semberija', 'Supporto nelle trattative e nell\'avvio della collaborazione', 'Focus su partnership di lungo termine']
 			},
 			{
 				title: 'Trova un distributore',
@@ -776,7 +1584,7 @@ const it = {
 			{
 				title: 'Trova un fornitore',
 				desc: 'Colleghiamo le aziende con fornitori affidabili di materie prime, componenti e servizi a Semberija e nella regione.',
-				highlights: ['Accesso a una base di fornitori verificati', 'Confronto di offerte e condizioni', 'Supporto nella negoziazione di prezzi e tempistiche']
+				highlights: ['Accesso a una base di fornitori della regione', 'Confronto di offerte e condizioni', 'Supporto nella negoziazione di prezzi e tempistiche']
 			},
 			{
 				title: 'Trova un investitore',
@@ -871,25 +1679,6 @@ const it = {
 		sub: 'Diventa parte di un ecosistema in crescita che collega aziende, investitori e diaspora',
 		btn: 'Inizia ora'
 	},
-	about: {
-		label: 'Chi siamo',
-		heading: 'Chi è Semberija.app',
-		sub: 'Un ecosistema commerciale regionale che collega aziende, investitori e la diaspora di Bijeljina e Semberija.',
-		storyHeading: 'La nostra storia',
-		story: [
-			'Semberija.app è nata per offrire alla comunità imprenditoriale di Bijeljina e Semberija uno spazio digitale unico per presentarsi, connettersi e crescere.',
-			'Crediamo che la regione abbia un enorme potenziale — nell\'agricoltura, nella produzione, nella logistica e nei servizi digitali — un potenziale che merita una piattaforma capace di renderlo visibile a livello locale e globale.'
-		],
-		values: [
-			{ title: 'Focus regionale', desc: 'Ci dedichiamo esclusivamente alla comunità imprenditoriale di Bijeljina e Semberija.' },
-			{ title: 'Trasparenza', desc: 'Informazioni chiare su aziende, opportunità e investimenti, senza intermediari.' },
-			{ title: 'Connessione', desc: 'Uniamo aziende locali, investitori e diaspora in un unico luogo.' },
-			{ title: 'Crescita digitale', desc: 'Promuoviamo la modernizzazione e la trasformazione digitale del business regionale.' }
-		],
-		ctaHeading: 'Entra a far parte della nostra rete',
-		ctaSub: 'Registra la tua azienda o contattaci per saperne di più sulla collaborazione.',
-		ctaBtn: 'Contattaci'
-	},
 	footer: {
 		tagline: 'Rete Business Regionale.',
 		desc: 'Semberija.app è un moderno ecosistema aziendale regionale che collega aziende, investimenti, diaspora e opportunità digitali.',
@@ -971,30 +1760,312 @@ const ru = {
 		about: 'О нас',
 		contact: 'Контакт',
 		businessNetwork: 'Бизнес-сеть',
-		listCta: 'Присоединиться к сети'
+		listCta: 'Присоединиться к платформе',
+		explore: 'Обзор',
+		business: 'Бизнес',
+		platform: 'Платформа',
+		industries: 'Отрасли',
+		directory: 'Бизнес-каталог',
+		search: 'Поиск',
+		b2b: 'B2B-подбор партнёров',
+		international: 'Международное сотрудничество',
+		enquiries: 'Деловые запросы',
+		promote: 'Продвижение компании',
+		opportunities: 'Деловые возможности',
+		platformOverview: 'Обзор платформы'
 	},
 	hero: {
 		tag: 'Биелина · Семберия · Республика Сербская',
-		headline: 'Региональная бизнес-сеть',
-		sub: 'Объединяем компании, инвестиции, диаспору и цифровые возможности в одной экосистеме.',
+		headline: 'Семберия ведёт бизнес. Мы соединяем.',
+		sub: 'Мы объединяем компании, производителей, дистрибьюторов, инвесторов и деловых партнёров на цифровой платформе, открывающей новые возможности для сотрудничества, инвестиций и международного развития.',
 		ctaNetwork: 'Исследовать сеть',
-		ctaCompanies: 'Смотреть компании',
-		ctaInvest: 'Инвестировать в регион'
+		ctaCompanies: 'Найти компании',
+		ctaInvest: 'Инвестировать в регион',
+		subheading: 'Региональная бизнес-платформа',
+		ctaPlatform: 'Изучить платформу'
+	},
+	bizSearch: {
+		heading: 'Откройте деловые возможности Биелины и Семберии',
+		desc: 'Находите компании, продукты, услуги, отрасли и потенциальных деловых партнёров в одном месте.',
+		placeholder: 'Ищите компании, продукты, услуги или отрасли...',
+		industry: 'Отрасль',
+		location: 'Местоположение',
+		allIndustries: 'Все отрасли',
+		allLocations: 'Все местоположения',
+		cta: 'Найти компании',
+		popular: 'Популярные секторы:'
+	},
+	ecosystem: {
+		label: 'Сектора',
+		heading: 'Деловая экосистема Биелины и Семберии',
+		desc: 'От сельского хозяйства и производства до торговли, логистики, технологий и профессиональных услуг — откройте для себя компании и отрасли, формирующие экономику региона.',
+		companies: 'Компании',
+		explore: 'Смотреть сектор',
+		active: 'Сектор',
+		clear: 'Сбросить фильтр',
+		sectors: {
+			'poljoprivreda-hrana': 'Сельское хозяйство и пищевая промышленность',
+			'proizvodnja': 'Производство и промышленность',
+			'gradjevina': 'Строительство и недвижимость',
+			'trgovina': 'Торговля и дистрибуция',
+			'transport': 'Транспорт и логистика',
+			'it': 'IT и цифровые услуги',
+			'usluge': 'Профессиональные услуги',
+			'turizam': 'Туризм и гостеприимство'
+		} as Record<string, string>
+	},
+	platform: {
+		label: 'Платформа',
+		heading: 'Одна платформа. Больше деловых возможностей.',
+		desc: 'Semberija.app связывает компании Биелины и Семберии с деловыми партнёрами, инвесторами и международными рынками в единой цифровой экосистеме.',
+		more: 'Подробнее о платформе',
+		statusDev: 'В разработке',
+		statusSoon: 'Скоро',
+		modulesHeading: 'Бизнес-модули платформы',
+		modules: [
+			{ title: 'Бизнес-каталог', desc: 'Представьте компанию, продукты и услуги потенциальным партнёрам.', detail: 'Профиль в каталоге показывает отрасль, местоположение и предложение; компании можно искать по названию, отрасли и местоположению.', cta: 'Смотреть компании' },
+			{ title: 'B2B-подбор партнёров', desc: 'Находите поставщиков, производителей, дистрибьюторов и деловых партнёров.', detail: 'Расскажите, кого вы ищете — партнёра, дистрибьютора, поставщика или инвестора, — и мы поможем связаться с подходящими компаниями.', cta: 'Найти партнёра' },
+			{ title: 'Инвестиции', desc: 'Изучайте инвестиционные возможности и потенциал развития региона.', detail: 'Обзор инвестиционных направлений и проектов в Биелине и Семберии — от сельского хозяйства и производства до энергетики и недвижимости.', cta: 'Смотреть инвестиции' },
+			{ title: 'Международное сотрудничество', desc: 'Выходите на рынки Сербии, Италии и других стран.', detail: 'Сеть партнёров и диаспоры открывает путь на рынки Сербии, Италии и других стран, с поддержкой при первом контакте.', cta: 'Запросить контакт' },
+			{ title: 'Деловые запросы', desc: 'Разместите предложение или запрос и найдите деловых партнёров.', detail: 'Опубликуйте, что вы предлагаете или ищете — сотрудничество, дистрибуцию, инвестиции или услугу, — и просматривайте запросы других компаний.', cta: 'Отправить деловой запрос' },
+			{ title: 'Продвижение компаний', desc: 'Повышайте узнаваемость с помощью избранных профилей и рекламных мест.', detail: 'Избранные профили и рекламные места на платформе помогают вашей компании первой попадать в поле зрения партнёров.', cta: 'Продвигать компанию' },
+			{ title: 'Цифровые услуги', desc: 'Веб-разработка, приложения, брендинг, маркетинг и бизнес-решения.', detail: 'Наша команда цифровых услуг помогает компаниям улучшить онлайн-присутствие, продажи и бизнес-процессы.', cta: 'Смотреть услуги' },
+			{ title: 'Мобильное приложение', desc: 'Мобильная бизнес-платформа в разработке.', detail: 'Мобильная версия платформы находится в разработке. Запишитесь на ранний доступ и станьте одним из первых пользователей.', cta: 'Запросить ранний доступ' }
+		],
+		benefitsLabel: 'Преимущества регистрации',
+		benefitsHeading: 'Зачем регистрировать компанию?',
+		benefitsDesc: 'Регистрация на Semberija.app открывает путь к новым деловым контактам, партнёрствам и рынкам.',
+		benefits: [
+			{ title: 'Профиль компании', desc: 'Представьте отрасль, продукты и услуги в одном месте.' },
+			{ title: 'Видимость для партнёров', desc: 'Вас найдут отечественные и международные компании.' },
+			{ title: 'Доступ к инвесторам', desc: 'Представляйте проекты развития и потребности в инвестициях.' },
+			{ title: 'Деловые запросы', desc: 'Отправляйте и получайте предложения и запросы о сотрудничестве.' },
+			{ title: 'Международная сеть', desc: 'Выходите на рынки Сербии, Италии и к диаспоре.' },
+			{ title: 'Цифровая поддержка', desc: 'Используйте цифровые услуги для роста и лучшей видимости.' }
+		],
+		joinHeading: 'Готовы к новым деловым возможностям?',
+		joinDesc: 'Присоединяйтесь к платформе и представьте свою компанию партнёрам в регионе и по всему миру.'
+	},
+	joinCta: {
+		heading: 'Ваша компания заслуживает большей известности.',
+		desc: 'Представьте свой бизнес, найдите новых партнёров и откройте путь к региональному и международному сотрудничеству.',
+		benefits: ['Представьте компанию', 'Найдите деловых партнёров', 'Откройте новые возможности', 'Выходите на новые рынки'],
+		promote: 'Продвигать компанию'
+	},
+	howItWorks: {
+		label: 'Как это работает',
+		heading: 'От представления к деловому сотрудничеству.',
+		online: 'Доступно онлайн',
+		manual: 'По запросу',
+		note: 'Шаги с отметкой «По запросу» сейчас выполняются при поддержке нашей команды: вы отправляете нам данные или запрос, а мы помогаем дальше.',
+		steps: [
+			{ title: 'Зарегистрируйте компанию', desc: 'Отправьте основные данные о компании через контактную форму. Сейчас профили создаёт наша команда — самостоятельная регистрация в подготовке.', link: 'Отправить данные' },
+			{ title: 'Представьте продукты, услуги и деловые потребности', desc: 'Расскажите, что вы предлагаете и что ищете. На основе ваших данных мы подготовим профиль компании в бизнес-каталоге.', link: '' },
+			{ title: 'Найдите потенциальных партнёров', desc: 'Ищите компании по названию, отрасли и местоположению или просматривайте сектора и инвесторов.', link: 'Найти компании' },
+			{ title: 'Начните деловое сотрудничество', desc: 'Отправьте деловой запрос или запросите контакт — наша команда поможет установить первый контакт с компанией.', link: 'Отправить деловой запрос' }
+		]
+	},
+	regions: {
+		label: 'Региональные платформы',
+		heading: 'Соединяем регионы. Открываем новые рынки.',
+		desc: 'Semberija.app — часть более широкой стратегии компании ZOE MILANO, которая развивает региональные цифровые платформы, связывающие компании, рынки и международные деловые возможности.',
+		cta: 'Перейти на платформу',
+		attribution: 'Цифровые платформы разработаны ZOE MILANO.',
+		prev: 'Предыдущая платформа',
+		next: 'Следующая платформа',
+		newTab: '(откроется в новой вкладке)',
+		slide: 'Платформа',
+		items: {
+			lombardia: 'Цифровая бизнес-платформа для компаний, инвестиций и международного сотрудничества в Ломбардии.',
+			veneto: 'Региональная цифровая платформа для деловых связей и развития в итальянском регионе Венето.'
+		} as Record<string, string>
+	},
+	aboutPage: {
+		label: 'О нас',
+		heading: 'Semberija.app — из Биелины в мир.',
+		intro: [
+			'Semberija.app — региональная цифровая бизнес-платформа, которая связывает компании, предпринимателей, инвесторов и деловых партнёров из Биелины и Семберии с региональными и международными рынками.',
+			'Платформа появилась благодаря личной связи с Биелиной и убеждению, что её экономический потенциал заслуживает большей известности.'
+		],
+		platform: {
+			label: 'О платформе',
+			heading: 'Больше, чем бизнес-каталог',
+			body: [
+				'Semberija.app развивает цифровую экосистему для представления компаний, деловых связей, инвестиций и международного сотрудничества.',
+				'Наша цель — обеспечить местным компаниям лучшую цифровую видимость и более простой доступ к новым деловым контактам и рынкам.'
+			]
+		},
+		vision: {
+			label: 'Наше видение',
+			heading: 'Местный потенциал. Международные возможности.',
+			body: [
+				'Биелина и Семберия обладают сильными традициями сельского хозяйства, производства, торговли и предпринимательства.',
+				'Мы уверены, что качественные продукты, знания и деловой потенциал этого края могут найти своё место и на более широком международном рынке.',
+				'Наше видение — способствовать большей известности и развитию региональной экономики с помощью современных технологий, профессионального продвижения и деловых связей.'
+			]
+		},
+		offer: {
+			label: 'Платформа',
+			heading: 'Что даёт Semberija.app',
+			items: [
+				'Представление компаний и услуг',
+				'Деловые и B2B-связи',
+				'Инвестиционные возможности',
+				'Международное сотрудничество',
+				'Цифровое продвижение и развитие'
+			],
+			closing: 'Semberija.app развивается как долгосрочная цифровая инфраструктура, связывающая компании, рынки и деловые возможности.'
+		},
+		founder: {
+			label: 'Об основательнице',
+			name: 'Zorana Petrović',
+			role: 'Основательница Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			places: 'Белград · Милан · Биелина',
+			body: [
+				'Semberija.app создана по инициативе Зораны Петрович — предпринимателя и креативного стратега, основательницы и директора компании ZOE MILANO.',
+				'Она выросла и получила образование в Милане; её профессиональный опыт охватывает креативную разработку, цифровые платформы, маркетинг и международные проекты.',
+				'С Биелиной её связывают семейные корни. Её мать, профессор Зорица Петрович, родилась в Биелине, как и другие члены её семьи. Семейное наследие включает и бабушку, награждённую за храбрость во время Второй мировой войны.',
+				'Зорана уже много лет приезжает в Биелину и на собственном опыте видит потенциал местного производства, предпринимательства и развития бизнеса.',
+				'Именно из этой связи родилась идея использовать международный опыт, цифровые технологии и современный маркетинг для лучшего продвижения Биелины и её экономики.'
+			],
+			quoteLabel: 'Видение основательницы',
+			quote: '«Биелина — город, с которым меня связывают семейные корни и в который я возвращаюсь уже много лет. Я верю, что компании, продукты и люди этого края заслуживают большей международной известности. Semberija.app создана, чтобы связать этот потенциал с новыми рынками и деловыми возможностями».',
+			quoteRole: 'Основательница, Semberija.app'
+		},
+		zoe: {
+			label: 'ZOE MILANO',
+			heading: 'Идея, креативность и технологии',
+			body: [
+				'Semberija.app — проект компании ZOE MILANO d.o.o. из Белграда, которая разрабатывает цифровые платформы, мобильные приложения, B2B-экосистемы и международные бизнес-проекты.',
+				'Компания объединяет креативную стратегию, технологии, цифровой маркетинг и развитие бизнеса, создавая современные цифровые решения для компаний и рынков.'
+			],
+			credits: [
+				{
+					label: 'Идея и основательница',
+					value: 'Zorana Petrović'
+				},
+				{
+					label: 'Разработка платформы',
+					value: 'ZOE MILANO d.o.o.'
+				}
+			],
+			cta: 'Посетить ZOE MILANO'
+		},
+		future: {
+			label: 'Наше будущее',
+			heading: 'Из Биелины на новые рынки',
+			body: [
+				'Semberija.app создана, чтобы связать местный деловой потенциал с региональными и международными возможностями.',
+				'Мы хотим дать компаниям из Биелины и Семберии пространство для профессионального представления, продвижения и новых деловых контактов.'
+			],
+			closing: 'Это только начало.'
+		},
+		cta: {
+			heading: 'Станьте частью делового будущего Биелины.',
+			desc: 'Представьте свою компанию, установите связи с потенциальными партнёрами и откройте новые возможности для развития.',
+			contact: 'Связаться с нами'
+		}
+	},
+	enquiry: {
+		typeLabel: 'Тип запроса',
+		types: {
+			registracija: 'Регистрация компании',
+			preuzimanje: 'Подтверждение профиля компании',
+			b2b: 'B2B-связи',
+			oglasavanje: 'Реклама и продвижение',
+			medjunarodna: 'Международное сотрудничество',
+			usluge: 'Цифровые услуги',
+			ostalo: 'Другое'
+		},
+		hints: {
+			registracija: 'Отправьте данные о компании — наша команда подготовит профиль в бизнес-каталоге.',
+			preuzimanje: 'Ваша компания уже в списке? Запросите профиль, чтобы подтвердить и дополнить данные.',
+			b2b: 'Опишите, какого партнёра вы ищете — поставщика, дистрибьютора, производителя или инвестора.',
+			oglasavanje: 'Запросите предложение по избранному профилю, баннерам или другим рекламным местам.',
+			medjunarodna: 'Расскажите, какие рынки вас интересуют — Сербия, Италия или другие.',
+			usluge: 'Веб-разработка, приложения, брендинг и маркетинг — опишите вашу задачу.',
+			ostalo: 'Отправьте нам сообщение, и мы свяжемся с вами.'
+		},
+		companySection: 'Данные компании',
+		contactSection: 'Контактные данные',
+		industry: 'Отрасль',
+		industryPlaceholder: 'Выберите отрасль',
+		industryOther: 'Другая отрасль',
+		location: 'Местоположение',
+		locationPlaceholder: 'напр. Биелина',
+		website: 'Веб-сайт',
+		phone: 'Телефон',
+		products: 'Продукты и услуги',
+		productsPlaceholder: 'Что производит или предлагает ваша компания?',
+		offers: 'Деловое предложение',
+		offersPlaceholder: 'Что вы предлагаете партнёрам — мощности, сотрудничество, дистрибуцию...',
+		interests: 'Партнёрские интересы',
+		interestsPlaceholder: 'Каких партнёров или какое сотрудничество вы ищете?',
+		markets: 'Целевые рынки',
+		marketsPlaceholder: 'напр. Сербия, Италия, ЕС',
+		role: 'Ваша должность в компании',
+		rolePlaceholder: 'напр. директор, владелец',
+		optional: 'необязательно'
+	},
+	listing: {
+		public: 'Открытые источники',
+		verified: 'Проверенный участник',
+		publicHint: 'Данные собраны из общедоступных источников.',
+		verifiedHint: 'Компания зарегистрирована и подтвердила данные.',
+		claim: 'Ваша компания? Подтвердите профиль',
+		inquire: 'Отправить запрос'
+	},
+	promo: {
+		label: 'Продвижение',
+		heading: 'Продвигайте свою компанию на Semberija.app',
+		desc: 'Повышайте известность своего бизнеса с помощью избранных профилей, цифровой рекламы и рекламных возможностей.',
+		cta: 'Запросить предложение'
+	},
+	seo: {
+		homeTitle: 'Semberija.app | Бизнес-платформа Биелины и Семберии',
+		homeDesc: 'Компании, деловые партнёры, инвестиционные возможности и B2B-связи в Биелине и регионе Семберия.',
+		aboutTitle: 'О нас | Semberija.app — Видение и основательница',
+		platformTitle: 'Платформа | Semberija.app — B2B-связи и инвестиции'
+	},
+	legal: {
+		statement: 'Semberija.app — независимая частная цифровая бизнес-платформа, которой управляет ZOE MILANO d.o.o. Она не является официальным сайтом города Биелина или какого-либо органа власти.',
+		copyright: '© 2026 Semberija.app — Разработка и управление: ZOE MILANO d.o.o.',
+		langNotice: 'Юридические документы в настоящее время доступны на английском языке.',
+		privacy: 'Конфиденциальность',
+		terms: 'Условия',
+		cookies: 'Cookie',
+		gdpr: 'GDPR',
+		disclaimer: 'Отказ от ответственности'
+	},
+	board: {
+		enqTitle: 'Деловых запросов пока нет',
+		enqDesc: 'Будьте первыми: отправьте предложение или запрос — наша команда опубликует его и свяжет вас с заинтересованными компаниями.',
+		oppTitle: 'Первые деловые возможности готовятся',
+		oppDesc: 'Есть инвестиционный проект, предложение о партнёрстве или сотрудничестве? Пришлите детали, и мы представим его на платформе.',
+		submit: 'Отправить деловой запрос',
+		submitOpp: 'Представить возможность'
+	},
+	formStatus: {
+		notConfigured: 'Отправка через форму сейчас недоступна. Пожалуйста, напишите нам напрямую:',
+		sendFailed: 'Сообщение не отправлено из-за технической ошибки. Попробуйте ещё раз или напишите нам напрямую:',
+		invalid: 'Проверьте имя, адрес электронной почты и сообщение и попробуйте ещё раз.',
+		sending: 'Отправка...'
 	},
 	stats: [
-		{ value: '50+', label: 'Зарегистрированных компаний' },
-		{ value: '15', label: 'Бизнес-категорий' },
-		{ value: '8', label: 'Инвестиционных проектов' },
+		{ value: '', label: 'Компаний в каталоге' },
+		{ value: '', label: 'Секторов экономики' },
+		{ value: '', label: 'Инвестиционных направлений' },
 		{ value: 'ЕС', label: 'Экспортные рынки' }
 	],
 	why: {
 		label: 'Преимущества',
-		heading: 'Почему Семберия',
+		heading: 'Почему Биелина и Семберия?',
+		sub: 'Биелина и регион Семберия — это сильные традиции предпринимательства, производства и сельского хозяйства, а также новые возможности для развития бизнеса.',
 		items: [
 			{ icon: 'location', title: 'Стратегическое расположение', desc: 'Регион между ключевыми балканскими рынками и европейскими деловыми маршрутами.' },
-			{ icon: 'growth', title: 'Деловой рост', desc: 'Растущая среда для производства, логистики, услуг и предпринимательства.' },
+			{ icon: 'growth', title: 'Развитие бизнеса', desc: 'Растущая среда для производства, логистики, услуг и предпринимательства.' },
 			{ icon: 'agriculture', title: 'Сельское хозяйство и производство', desc: 'Сильный региональный потенциал в сельском хозяйстве, пищевой промышленности и переработке.' },
-			{ icon: 'diaspora', title: 'Сеть диаспоры', desc: 'Соединяем глобальную диаспору с местными компаниями, капиталом и возможностями.' },
+			{ icon: 'diaspora', title: 'Связи с диаспорой', desc: 'Соединяем глобальную диаспору с местными компаниями, капиталом и возможностями.' },
 			{ icon: 'digital', title: 'Цифровое развитие', desc: 'Поддержка технологий, цифровых услуг и современной бизнес-трансформации.' }
 		]
 	},
@@ -1071,8 +2142,8 @@ const ru = {
 		items: [
 			{
 				title: 'Найти партнёра',
-				desc: 'Ищете стратегического бизнес-партнёра для совместного проекта, расширения или нового рынка? Мы свяжем вас с проверенными компаниями.',
-				highlights: ['Проверенные бизнес-партнёры из региона', 'Поддержка в переговорах и организации сотрудничества', 'Фокус на долгосрочные партнёрства']
+				desc: 'Ищете стратегического бизнес-партнёра для совместного проекта, расширения или нового рынка? Мы свяжем вас с подходящими компаниями региона.',
+				highlights: ['Бизнес-партнёры из Биелины и Семберии', 'Поддержка в переговорах и организации сотрудничества', 'Фокус на долгосрочные партнёрства']
 			},
 			{
 				title: 'Найти дистрибьютора',
@@ -1082,7 +2153,7 @@ const ru = {
 			{
 				title: 'Найти поставщика',
 				desc: 'Соединяем компании с надёжными поставщиками сырья, комплектующих и услуг в Семберии и регионе.',
-				highlights: ['Доступ к проверенной базе поставщиков', 'Сравнение предложений и условий', 'Поддержка в переговорах о ценах и сроках']
+				highlights: ['Доступ к базе поставщиков региона', 'Сравнение предложений и условий', 'Поддержка в переговорах о ценах и сроках']
 			},
 			{
 				title: 'Найти инвестора',
@@ -1177,25 +2248,6 @@ const ru = {
 		sub: 'Станьте частью растущей экосистемы, объединяющей компании, инвесторов и диаспору',
 		btn: 'Начать'
 	},
-	about: {
-		label: 'О нас',
-		heading: 'О платформе Semberija.app',
-		sub: 'Региональная бизнес-экосистема, объединяющая компании, инвесторов и диаспору Биелины и Семберии.',
-		storyHeading: 'Наша история',
-		story: [
-			'Semberija.app была создана, чтобы дать деловому сообществу Биелины и Семберии единое цифровое пространство для представления, взаимодействия и роста.',
-			'Мы верим, что регион обладает огромным потенциалом — в сельском хозяйстве, производстве, логистике и цифровых услугах — и этот потенциал заслуживает платформы, которая сделает его видимым как локально, так и на мировом уровне.'
-		],
-		values: [
-			{ title: 'Региональный фокус', desc: 'Мы работаем исключительно с деловым сообществом Биелины и Семберии.' },
-			{ title: 'Прозрачность', desc: 'Понятная информация о компаниях, возможностях и инвестициях без посредников.' },
-			{ title: 'Связь', desc: 'Объединяем местные компании, инвесторов и диаспору в одном месте.' },
-			{ title: 'Цифровой рост', desc: 'Поддерживаем модернизацию и цифровую трансформацию регионального бизнеса.' }
-		],
-		ctaHeading: 'Станьте частью нашей сети',
-		ctaSub: 'Зарегистрируйте свою компанию или свяжитесь с нами, чтобы узнать больше о сотрудничестве.',
-		ctaBtn: 'Связаться с нами'
-	},
 	footer: {
 		tagline: 'Региональная бизнес-сеть.',
 		desc: 'Semberija.app — современная региональная бизнес-экосистема, объединяющая компании, инвестиции, диаспору и цифровые возможности.',
@@ -1277,30 +2329,312 @@ const de = {
 		about: 'Über uns',
 		contact: 'Kontakt',
 		businessNetwork: 'Business-Netzwerk',
-		listCta: 'Netzwerk beitreten'
+		listCta: 'Plattform beitreten',
+		explore: 'Entdecken',
+		business: 'Business',
+		platform: 'Plattform',
+		industries: 'Branchen',
+		directory: 'Firmenverzeichnis',
+		search: 'Suche',
+		b2b: 'B2B-Matchmaking',
+		international: 'Internationale Zusammenarbeit',
+		enquiries: 'Geschäftsanfragen',
+		promote: 'Unternehmen bewerben',
+		opportunities: 'Geschäftschancen',
+		platformOverview: 'Plattform-Überblick'
 	},
 	hero: {
 		tag: 'Bijeljina · Semberija · Republika Srpska',
-		headline: 'Regionales Business-Netzwerk',
-		sub: 'Wir verbinden Unternehmen, Investitionen, Diaspora und digitale Chancen in einer Region.',
+		headline: 'Wo Semberija Geschäfte macht. Wir verbinden.',
+		sub: 'Wir verbinden Unternehmen, Hersteller, Händler, Investoren und Geschäftspartner über eine digitale Plattform, die neue Möglichkeiten für Zusammenarbeit, Investitionen und internationales Wachstum eröffnet.',
 		ctaNetwork: 'Netzwerk erkunden',
-		ctaCompanies: 'Unternehmen ansehen',
-		ctaInvest: 'In die Region investieren'
+		ctaCompanies: 'Unternehmen finden',
+		ctaInvest: 'In die Region investieren',
+		subheading: 'Regionale Business-Plattform',
+		ctaPlatform: 'Plattform entdecken'
+	},
+	bizSearch: {
+		heading: 'Entdecken Sie Geschäftschancen in Bijeljina und Semberija',
+		desc: 'Finden Sie Unternehmen, Produkte, Dienstleistungen, Branchen und potenzielle Geschäftspartner an einem Ort.',
+		placeholder: 'Unternehmen, Produkte, Dienstleistungen oder Branchen suchen...',
+		industry: 'Branche',
+		location: 'Standort',
+		allIndustries: 'Alle Branchen',
+		allLocations: 'Alle Standorte',
+		cta: 'Unternehmen suchen',
+		popular: 'Beliebte Branchen:'
+	},
+	ecosystem: {
+		label: 'Branchen',
+		heading: 'Das Wirtschaftsökosystem von Bijeljina und Semberija',
+		desc: 'Von Landwirtschaft und Produktion bis zu Handel, Logistik, Technologie und professionellen Dienstleistungen – entdecken Sie die Unternehmen und Branchen, die die Wirtschaft der Region prägen.',
+		companies: 'Unternehmen',
+		explore: 'Branche entdecken',
+		active: 'Branche',
+		clear: 'Filter entfernen',
+		sectors: {
+			'poljoprivreda-hrana': 'Landwirtschaft & Lebensmittelindustrie',
+			'proizvodnja': 'Produktion & Industrie',
+			'gradjevina': 'Bau & Immobilien',
+			'trgovina': 'Handel & Vertrieb',
+			'transport': 'Transport & Logistik',
+			'it': 'IT & digitale Dienste',
+			'usluge': 'Professionelle Dienstleistungen',
+			'turizam': 'Tourismus & Gastgewerbe'
+		} as Record<string, string>
+	},
+	platform: {
+		label: 'Plattform',
+		heading: 'Eine Plattform. Mehr Geschäftschancen.',
+		desc: 'Semberija.app verbindet Unternehmen aus Bijeljina und der Region Semberija mit Geschäftspartnern, Investoren und internationalen Märkten in einem integrierten digitalen Ökosystem.',
+		more: 'Mehr über die Plattform',
+		statusDev: 'In Entwicklung',
+		statusSoon: 'Demnächst',
+		modulesHeading: 'Business-Module der Plattform',
+		modules: [
+			{ title: 'Firmenverzeichnis', desc: 'Präsentieren Sie Ihr Unternehmen, Ihre Produkte und Dienstleistungen potenziellen Partnern.', detail: 'Das Profil im Verzeichnis zeigt Branche, Standort und Angebot; Unternehmen lassen sich nach Name, Branche und Standort suchen.', cta: 'Unternehmen ansehen' },
+			{ title: 'B2B-Matchmaking', desc: 'Finden Sie Lieferanten, Hersteller, Händler und Geschäftspartner.', detail: 'Sagen Sie uns, wen Sie suchen — Partner, Händler, Lieferanten oder Investoren — und wir helfen Ihnen, die passenden Unternehmen zu finden.', cta: 'Partner finden' },
+			{ title: 'Investitionen', desc: 'Entdecken Sie Investitionsmöglichkeiten und das Entwicklungspotenzial der Region.', detail: 'Ein Überblick über Investitionsbereiche und Projekte in Bijeljina und Semberija, von Landwirtschaft und Produktion bis zu Energie und Immobilien.', cta: 'Investitionen entdecken' },
+			{ title: 'Internationale Zusammenarbeit', desc: 'Verbinden Sie sich mit Märkten in Serbien, Italien und darüber hinaus.', detail: 'Unser Partner- und Diaspora-Netzwerk öffnet den Weg zu Märkten in Serbien, Italien und weiteren Ländern, mit Unterstützung beim ersten Kontakt.', cta: 'Kontakt anfragen' },
+			{ title: 'Geschäftsanfragen', desc: 'Stellen Sie ein Angebot oder eine Anfrage ein und finden Sie Geschäftskontakte.', detail: 'Veröffentlichen Sie, was Sie anbieten oder suchen — Zusammenarbeit, Vertrieb, Investition oder Dienstleistung — und sehen Sie Anfragen anderer Unternehmen.', cta: 'Geschäftsanfrage senden' },
+			{ title: 'Unternehmenswerbung', desc: 'Steigern Sie Ihre Sichtbarkeit mit hervorgehobenen Profilen und Werbeplätzen.', detail: 'Hervorgehobene Profile und Werbeplätze auf der Plattform sorgen dafür, dass Partner Ihr Unternehmen zuerst sehen.', cta: 'Unternehmen bewerben' },
+			{ title: 'Digitale Dienste', desc: 'Webentwicklung, Apps, Branding, Marketing und Business-Lösungen.', detail: 'Unser Team für digitale Dienste hilft Unternehmen, Online-Präsenz, Vertrieb und Geschäftsprozesse zu verbessern.', cta: 'Dienste ansehen' },
+			{ title: 'Mobile App', desc: 'Eine mobile Business-Plattform in Entwicklung.', detail: 'Eine mobile Version der Plattform ist in Entwicklung. Melden Sie sich für den frühen Zugang an und gehören Sie zu den Ersten.', cta: 'Frühen Zugang anfragen' }
+		],
+		benefitsLabel: 'Vorteile der Registrierung',
+		benefitsHeading: 'Warum Ihr Unternehmen registrieren?',
+		benefitsDesc: 'Die Registrierung bei Semberija.app öffnet die Tür zu neuen Geschäftskontakten, Partnerschaften und Märkten.',
+		benefits: [
+			{ title: 'Unternehmensprofil', desc: 'Präsentieren Sie Branche, Produkte und Dienstleistungen an einem Ort.' },
+			{ title: 'Sichtbarkeit für Partner', desc: 'Werden Sie von nationalen und internationalen Unternehmen gefunden.' },
+			{ title: 'Zugang zu Investoren', desc: 'Präsentieren Sie Entwicklungsprojekte und Investitionsbedarf.' },
+			{ title: 'Geschäftsanfragen', desc: 'Senden und empfangen Sie Angebote und Kooperationsanfragen.' },
+			{ title: 'Internationales Netzwerk', desc: 'Verbinden Sie sich mit Märkten in Serbien, Italien und der Diaspora.' },
+			{ title: 'Digitale Unterstützung', desc: 'Nutzen Sie digitale Dienste für Wachstum und bessere Sichtbarkeit.' }
+		],
+		joinHeading: 'Bereit für neue Geschäftschancen?',
+		joinDesc: 'Treten Sie der Plattform bei und präsentieren Sie Ihr Unternehmen Partnern in der Region und weltweit.'
+	},
+	joinCta: {
+		heading: 'Ihr Unternehmen verdient mehr Sichtbarkeit.',
+		desc: 'Präsentieren Sie Ihr Unternehmen, finden Sie neue Partner und öffnen Sie die Tür zu regionaler und internationaler Zusammenarbeit.',
+		benefits: ['Unternehmen präsentieren', 'Geschäftspartner finden', 'Neue Chancen entdecken', 'In neue Märkte expandieren'],
+		promote: 'Unternehmen bewerben'
+	},
+	howItWorks: {
+		label: 'So funktioniert\'s',
+		heading: 'Von der Sichtbarkeit zur Zusammenarbeit.',
+		online: 'Online verfügbar',
+		manual: 'Auf Anfrage',
+		note: 'Mit „Auf Anfrage“ markierte Schritte werden derzeit mit Unterstützung unseres Teams erledigt — Sie senden uns Ihre Angaben oder Anfrage, und wir begleiten Sie weiter.',
+		steps: [
+			{ title: 'Unternehmen registrieren', desc: 'Senden Sie die wichtigsten Angaben zu Ihrem Unternehmen über das Kontaktformular. Profile werden derzeit von unserem Team angelegt — die Selbstregistrierung ist in Vorbereitung.', link: 'Angaben senden' },
+			{ title: 'Produkte, Dienstleistungen und Geschäftsbedarf präsentieren', desc: 'Teilen Sie uns mit, was Sie anbieten und suchen. Auf Basis Ihrer Angaben erstellen wir Ihr Profil im Firmenverzeichnis.', link: '' },
+			{ title: 'Potenzielle Partner finden', desc: 'Suchen Sie Unternehmen nach Name, Branche und Standort oder entdecken Sie Branchen und Investoren.', link: 'Unternehmen suchen' },
+			{ title: 'Geschäftliche Zusammenarbeit starten', desc: 'Senden Sie eine Geschäftsanfrage oder fragen Sie einen Kontakt an — unser Team begleitet den ersten Kontakt mit dem Unternehmen.', link: 'Geschäftsanfrage senden' }
+		]
+	},
+	regions: {
+		label: 'Regionale Plattformen',
+		heading: 'Wir verbinden Regionen. Wir öffnen neue Märkte.',
+		desc: 'Semberija.app ist Teil der umfassenderen Vision von ZOE MILANO, regionale digitale Plattformen zu entwickeln, die Unternehmen, Märkte und internationale Geschäftschancen verbinden.',
+		cta: 'Plattform besuchen',
+		attribution: 'Digitale Plattformen entwickelt von ZOE MILANO.',
+		prev: 'Vorherige Plattform',
+		next: 'Nächste Plattform',
+		newTab: '(öffnet in neuem Tab)',
+		slide: 'Plattform',
+		items: {
+			lombardia: 'Eine digitale Business-Plattform für Unternehmen, Investitionen und internationale Zusammenarbeit in der Lombardei.',
+			veneto: 'Eine regionale digitale Plattform für Geschäftskontakte und Entwicklung in der italienischen Region Venetien.'
+		} as Record<string, string>
+	},
+	aboutPage: {
+		label: 'Über uns',
+		heading: 'Semberija.app — Von Bijeljina in die Welt.',
+		intro: [
+			'Semberija.app ist eine regionale digitale Business-Plattform, die Unternehmen, Unternehmer, Investoren und Geschäftspartner aus Bijeljina und Semberija mit regionalen und internationalen Märkten verbindet.',
+			'Die Plattform entstand aus einer persönlichen Verbundenheit mit Bijeljina und der Überzeugung, dass ihr wirtschaftliches Potenzial mehr Sichtbarkeit verdient.'
+		],
+		platform: {
+			label: 'Über die Plattform',
+			heading: 'Mehr als ein Firmenverzeichnis',
+			body: [
+				'Semberija.app entwickelt ein digitales Ökosystem für Unternehmenspräsentation, Geschäftskontakte, Investitionen und internationale Zusammenarbeit.',
+				'Unser Ziel ist es, lokalen Unternehmen mehr digitale Sichtbarkeit und einen leichteren Zugang zu neuen Geschäftskontakten und Märkten zu ermöglichen.'
+			]
+		},
+		vision: {
+			label: 'Unsere Vision',
+			heading: 'Lokales Potenzial. Internationale Chancen.',
+			body: [
+				'Bijeljina und Semberija verfügen über eine starke Tradition in Landwirtschaft, Produktion, Handel und Unternehmertum.',
+				'Wir sind überzeugt, dass die hochwertigen Produkte, das Wissen und die wirtschaftlichen Kapazitäten dieser Region auch auf dem internationalen Markt ihren Platz finden können.',
+				'Unsere Vision ist es, durch moderne Technologie, professionelle Vermarktung und Geschäftsvernetzung zu mehr Sichtbarkeit und Entwicklung der regionalen Wirtschaft beizutragen.'
+			]
+		},
+		offer: {
+			label: 'Die Plattform',
+			heading: 'Was Semberija.app bietet',
+			items: [
+				'Präsentation von Unternehmen und Dienstleistungen',
+				'Geschäfts- und B2B-Vernetzung',
+				'Investitionsmöglichkeiten',
+				'Internationale Zusammenarbeit',
+				'Digitale Vermarktung und Entwicklung'
+			],
+			closing: 'Semberija.app entsteht als langfristige digitale Infrastruktur, die Unternehmen, Märkte und Geschäftschancen verbindet.'
+		},
+		founder: {
+			label: 'Über die Gründerin',
+			name: 'Zorana Petrović',
+			role: 'Gründerin von Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			places: 'Belgrad · Mailand · Bijeljina',
+			body: [
+				'Semberija.app entstand auf Initiative von Zorana Petrović, Unternehmerin und Kreativstrategin, Gründerin und Geschäftsführerin von ZOE MILANO.',
+				'Sie ist in Mailand aufgewachsen und hat dort ihre Ausbildung erhalten; ihre berufliche Erfahrung umfasst kreative Entwicklung, digitale Plattformen, Marketing und internationale Projekte.',
+				'Mit Bijeljina verbinden sie familiäre Wurzeln. Ihre Mutter, Prof. Zorica Petrović, wurde in Bijeljina geboren, ebenso wie weitere Mitglieder ihrer Familie. Zum Familienerbe gehört auch ihre Großmutter, die im Zweiten Weltkrieg für ihre Tapferkeit ausgezeichnet wurde.',
+				'Zorana kommt seit Jahren nach Bijeljina und erkennt aus eigener Erfahrung das Potenzial der lokalen Produktion, des Unternehmertums und der wirtschaftlichen Entwicklung.',
+				'Aus dieser Verbundenheit entstand die Idee, internationale Erfahrung, digitale Technologie und modernes Marketing für eine bessere Präsentation Bijeljinas und seiner Wirtschaft zu nutzen.'
+			],
+			quoteLabel: 'Die Vision der Gründerin',
+			quote: '„Bijeljina ist eine Stadt, mit der mich familiäre Wurzeln verbinden und in die ich seit Jahren zurückkehre. Ich bin überzeugt, dass die Unternehmen, Produkte und Menschen dieser Region mehr internationale Sichtbarkeit verdienen. Semberija.app ist aus dem Wunsch entstanden, dieses Potenzial mit neuen Märkten und Geschäftschancen zu verbinden.“',
+			quoteRole: 'Gründerin, Semberija.app'
+		},
+		zoe: {
+			label: 'ZOE MILANO',
+			heading: 'Idee, Kreativität und Technologie',
+			body: [
+				'Semberija.app ist ein Projekt der ZOE MILANO d.o.o. aus Belgrad, die digitale Plattformen, mobile Apps, B2B-Ökosysteme und internationale Geschäftsprojekte entwickelt.',
+				'Das Unternehmen verbindet kreative Strategie, Technologie, digitales Marketing und Geschäftsentwicklung, um moderne digitale Lösungen für Unternehmen und Märkte zu schaffen.'
+			],
+			credits: [
+				{
+					label: 'Idee und Gründerin',
+					value: 'Zorana Petrović'
+				},
+				{
+					label: 'Entwicklung der Plattform',
+					value: 'ZOE MILANO d.o.o.'
+				}
+			],
+			cta: 'ZOE MILANO besuchen'
+		},
+		future: {
+			label: 'Unsere Zukunft',
+			heading: 'Von Bijeljina zu neuen Märkten',
+			body: [
+				'Semberija.app wurde geschaffen, um das lokale wirtschaftliche Potenzial mit regionalen und internationalen Chancen zu verbinden.',
+				'Wir möchten Unternehmen aus Bijeljina und Semberija einen Raum für professionelle Präsentation, Vermarktung und neue Geschäftskontakte bieten.'
+			],
+			closing: 'Das ist erst der Anfang.'
+		},
+		cta: {
+			heading: 'Werden Sie Teil der wirtschaftlichen Zukunft Bijeljinas.',
+			desc: 'Präsentieren Sie Ihr Unternehmen, vernetzen Sie sich mit potenziellen Partnern und entdecken Sie neue Chancen für Wachstum.',
+			contact: 'Kontaktieren Sie uns'
+		}
+	},
+	enquiry: {
+		typeLabel: 'Art der Anfrage',
+		types: {
+			registracija: 'Unternehmensregistrierung',
+			preuzimanje: 'Unternehmensprofil beanspruchen',
+			b2b: 'B2B-Kontakte',
+			oglasavanje: 'Werbung und Promotion',
+			medjunarodna: 'Internationale Zusammenarbeit',
+			usluge: 'Digitale Dienste',
+			ostalo: 'Sonstiges'
+		},
+		hints: {
+			registracija: 'Senden Sie uns Ihre Unternehmensdaten — unser Team erstellt Ihr Profil im Firmenverzeichnis.',
+			preuzimanje: 'Ist Ihr Unternehmen bereits gelistet? Beanspruchen Sie das Profil, um die Angaben zu bestätigen und zu ergänzen.',
+			b2b: 'Beschreiben Sie, welchen Partner Sie suchen — Lieferant, Händler, Hersteller oder Investor.',
+			oglasavanje: 'Fordern Sie ein Angebot für ein hervorgehobenes Profil, Banner oder andere Werbeplätze an.',
+			medjunarodna: 'Sagen Sie uns, welche Märkte Sie interessieren — Serbien, Italien oder darüber hinaus.',
+			usluge: 'Webentwicklung, Apps, Branding und Marketing — beschreiben Sie Ihren Bedarf.',
+			ostalo: 'Senden Sie uns eine Nachricht, wir melden uns bei Ihnen.'
+		},
+		companySection: 'Unternehmensdaten',
+		contactSection: 'Kontaktdaten',
+		industry: 'Branche',
+		industryPlaceholder: 'Branche auswählen',
+		industryOther: 'Andere Branche',
+		location: 'Standort',
+		locationPlaceholder: 'z. B. Bijeljina',
+		website: 'Website',
+		phone: 'Telefon',
+		products: 'Produkte und Dienstleistungen',
+		productsPlaceholder: 'Was stellt Ihr Unternehmen her oder bietet es an?',
+		offers: 'Geschäftsangebot',
+		offersPlaceholder: 'Was Sie Partnern bieten — Kapazitäten, Kooperation, Vertrieb...',
+		interests: 'Partnerschaftsinteressen',
+		interestsPlaceholder: 'Welche Partner oder Zusammenarbeit suchen Sie?',
+		markets: 'Zielmärkte',
+		marketsPlaceholder: 'z. B. Serbien, Italien, EU',
+		role: 'Ihre Funktion im Unternehmen',
+		rolePlaceholder: 'z. B. Geschäftsführer, Inhaber',
+		optional: 'optional'
+	},
+	listing: {
+		public: 'Öffentliche Quellen',
+		verified: 'Verifiziertes Mitglied',
+		publicHint: 'Die Angaben stammen aus öffentlich zugänglichen Quellen.',
+		verifiedHint: 'Das Unternehmen ist registriert und hat seine Angaben bestätigt.',
+		claim: 'Ihr Unternehmen? Profil beanspruchen',
+		inquire: 'Anfrage senden'
+	},
+	promo: {
+		label: 'Promotion',
+		heading: 'Bewerben Sie Ihr Unternehmen auf Semberija.app',
+		desc: 'Steigern Sie die Sichtbarkeit Ihres Unternehmens mit hervorgehobenen Profilen, digitaler Werbung und Werbemöglichkeiten.',
+		cta: 'Angebot anfordern'
+	},
+	seo: {
+		homeTitle: 'Semberija.app | Business-Plattform für Bijeljina & Semberija',
+		homeDesc: 'Entdecken Sie Unternehmen, Geschäftspartner, Investitionsmöglichkeiten und B2B-Kontakte in Bijeljina und der Region Semberija.',
+		aboutTitle: 'Über uns | Semberija.app — Vision & Gründerin',
+		platformTitle: 'Plattform | Semberija.app — B2B-Kontakte & Investitionen'
+	},
+	legal: {
+		statement: 'Semberija.app ist eine unabhängige, privat entwickelte digitale Business-Plattform, betrieben von ZOE MILANO d.o.o. Sie ist keine offizielle Website der Stadt Bijeljina oder einer Behörde.',
+		copyright: '© 2026 Semberija.app — Entwickelt und betrieben von ZOE MILANO d.o.o.',
+		langNotice: 'Die rechtlichen Dokumente sind derzeit auf Englisch verfügbar.',
+		privacy: 'Datenschutz',
+		terms: 'Nutzungsbedingungen',
+		cookies: 'Cookies',
+		gdpr: 'DSGVO',
+		disclaimer: 'Haftungsausschluss'
+	},
+	board: {
+		enqTitle: 'Noch keine Geschäftsanfragen veröffentlicht',
+		enqDesc: 'Seien Sie der Erste: Senden Sie uns ein Angebot oder eine Anfrage — unser Team veröffentlicht sie und verbindet Sie mit interessierten Unternehmen.',
+		oppTitle: 'Die ersten Geschäftschancen werden vorbereitet',
+		oppDesc: 'Sie haben ein Investitionsprojekt, ein Partnerschafts- oder Kooperationsangebot? Senden Sie uns die Details, wir präsentieren es auf der Plattform.',
+		submit: 'Geschäftsanfrage senden',
+		submitOpp: 'Chance präsentieren'
+	},
+	formStatus: {
+		notConfigured: 'Das Senden über das Formular ist derzeit nicht verfügbar. Bitte schreiben Sie uns direkt an:',
+		sendFailed: 'Ihre Nachricht wurde wegen eines technischen Fehlers nicht gesendet. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an:',
+		invalid: 'Bitte prüfen Sie Name, E-Mail-Adresse und Nachricht und versuchen Sie es erneut.',
+		sending: 'Wird gesendet...'
 	},
 	stats: [
-		{ value: '50+', label: 'Registrierte Unternehmen' },
-		{ value: '15', label: 'Business-Kategorien' },
-		{ value: '8', label: 'Investitionsprojekte' },
+		{ value: '', label: 'Unternehmen im Verzeichnis' },
+		{ value: '', label: 'Wirtschaftssektoren' },
+		{ value: '', label: 'Investitionsbereiche' },
 		{ value: 'EU', label: 'Exportmärkte' }
 	],
 	why: {
 		label: 'Vorteile',
-		heading: 'Warum Semberija',
+		heading: 'Warum Bijeljina und Semberija?',
+		sub: 'Bijeljina und die Region Semberija stehen für eine starke Tradition in Unternehmertum, Produktion und Landwirtschaft sowie für neue Chancen der Geschäftsentwicklung.',
 		items: [
 			{ icon: 'location', title: 'Strategische Lage', desc: 'Eine Region zwischen den wichtigsten Balkanmärkten und europäischen Geschäftsrouten.' },
-			{ icon: 'growth', title: 'Unternehmenswachstum', desc: 'Ein wachsendes Umfeld für Produktion, Logistik, Dienstleistungen und Unternehmertum.' },
+			{ icon: 'growth', title: 'Geschäftsentwicklung', desc: 'Ein wachsendes Umfeld für Produktion, Logistik, Dienstleistungen und Unternehmertum.' },
 			{ icon: 'agriculture', title: 'Landwirtschaft & Produktion', desc: 'Starkes regionales Potenzial in Landwirtschaft, Lebensmittelproduktion und Verarbeitung.' },
-			{ icon: 'diaspora', title: 'Diaspora-Netzwerk', desc: 'Verbindung der globalen Diaspora mit lokalen Unternehmen, Kapital und Chancen.' },
+			{ icon: 'diaspora', title: 'Diaspora-Verbindungen', desc: 'Verbindung der globalen Diaspora mit lokalen Unternehmen, Kapital und Chancen.' },
 			{ icon: 'digital', title: 'Digitale Entwicklung', desc: 'Unterstützung von Technologie, digitalen Diensten und moderner Unternehmenstransformation.' }
 		]
 	},
@@ -1377,8 +2711,8 @@ const de = {
 		items: [
 			{
 				title: 'Partner finden',
-				desc: 'Suchen Sie einen strategischen Geschäftspartner für ein gemeinsames Projekt, eine Expansion oder einen neuen Markt? Wir verbinden Sie mit geprüften Unternehmen.',
-				highlights: ['Geprüfte Geschäftspartner aus der Region', 'Unterstützung bei Verhandlungen und beim Aufbau der Zusammenarbeit', 'Fokus auf langfristige Partnerschaften']
+				desc: 'Suchen Sie einen strategischen Geschäftspartner für ein gemeinsames Projekt, eine Expansion oder einen neuen Markt? Wir verbinden Sie mit passenden Unternehmen aus der Region.',
+				highlights: ['Geschäftspartner aus Bijeljina und Semberija', 'Unterstützung bei Verhandlungen und beim Aufbau der Zusammenarbeit', 'Fokus auf langfristige Partnerschaften']
 			},
 			{
 				title: 'Vertriebspartner finden',
@@ -1388,7 +2722,7 @@ const de = {
 			{
 				title: 'Lieferanten finden',
 				desc: 'Wir verbinden Unternehmen mit zuverlässigen Lieferanten für Rohstoffe, Komponenten und Dienstleistungen in Semberija und der Region.',
-				highlights: ['Zugang zu einer geprüften Lieferantenbasis', 'Vergleich von Angeboten und Konditionen', 'Unterstützung bei Preis- und Terminverhandlungen']
+				highlights: ['Zugang zu einer regionalen Lieferantenbasis', 'Vergleich von Angeboten und Konditionen', 'Unterstützung bei Preis- und Terminverhandlungen']
 			},
 			{
 				title: 'Investor finden',
@@ -1482,25 +2816,6 @@ const de = {
 		heading: 'Dem Business-Netzwerk beitreten',
 		sub: 'Teil eines wachsenden Ökosystems werden, das Unternehmen, Investoren und Diaspora verbindet',
 		btn: 'Jetzt starten'
-	},
-	about: {
-		label: 'Über uns',
-		heading: 'Über Semberija.app',
-		sub: 'Ein regionales Business-Ökosystem, das Unternehmen, Investoren und die Diaspora aus Bijeljina und Semberija verbindet.',
-		storyHeading: 'Unsere Geschichte',
-		story: [
-			'Semberija.app wurde geschaffen, um der Geschäftswelt von Bijeljina und Semberija einen einzigen digitalen Raum zur Präsentation, Vernetzung und Weiterentwicklung zu bieten.',
-			'Wir glauben, dass die Region ein enormes Potenzial besitzt — in der Landwirtschaft, Produktion, Logistik und bei digitalen Dienstleistungen — und dass dieses Potenzial eine Plattform verdient, die es lokal wie global sichtbar macht.'
-		],
-		values: [
-			{ title: 'Regionaler Fokus', desc: 'Wir widmen uns ausschließlich der Geschäftswelt von Bijeljina und Semberija.' },
-			{ title: 'Transparenz', desc: 'Klare Informationen über Unternehmen, Möglichkeiten und Investitionen, ohne Vermittler.' },
-			{ title: 'Vernetzung', desc: 'Wir bringen lokale Unternehmen, Investoren und die Diaspora an einem Ort zusammen.' },
-			{ title: 'Digitales Wachstum', desc: 'Wir fördern die Modernisierung und digitale Transformation des regionalen Geschäftslebens.' }
-		],
-		ctaHeading: 'Werden Sie Teil unseres Netzwerks',
-		ctaSub: 'Registrieren Sie Ihr Unternehmen oder kontaktieren Sie uns für weitere Informationen zur Zusammenarbeit.',
-		ctaBtn: 'Kontaktieren Sie uns'
 	},
 	footer: {
 		tagline: 'Regionales Business-Netzwerk.',

@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
-	import { networkingPosts } from '$lib/data';
+	import { networkingPosts, showSampleContent } from '$lib/data';
+	import { enquiryUrl } from '$lib/enquiry';
+
+	const posts = showSampleContent ? networkingPosts : [];
 	import { reveal } from '$lib/actions/reveal';
 
 	const types_sr = ['Svi', 'Partnerstvo', 'Investicija', 'Saradnja'];
@@ -9,7 +12,7 @@
 	let search = $state('');
 
 	const filteredPosts = $derived(
-		networkingPosts.filter((post) => {
+		posts.filter((post) => {
 			const type = i18n.lang === 'sr' ? post.type_sr : post.type_en;
 			const title = (i18n.lang === 'sr' ? post.title_sr : post.title_en).toLowerCase();
 			const desc = (i18n.lang === 'sr' ? post.desc_sr : post.desc_en).toLowerCase();
@@ -67,7 +70,13 @@
 
 <div class="net-body reveal-card" use:reveal>
 	<div class="container">
-		{#if filteredPosts.length === 0}
+		{#if posts.length === 0}
+			<div class="board-empty">
+				<h3>{i18n.t.board.enqTitle}</h3>
+				<p>{i18n.t.board.enqDesc}</p>
+				<a href={enquiryUrl('b2b')} class="btn-emerald">{i18n.t.board.submit}</a>
+			</div>
+		{:else if filteredPosts.length === 0}
 			<div class="empty">
 				<p>{i18n.t.ui.noResults}</p>
 			</div>
@@ -85,7 +94,7 @@
 								<div class="net-avatar">{post.company.charAt(0)}</div>
 								<span>{post.company}</span>
 							</div>
-							<a href="/kontakt" class="net-btn">
+							<a href={enquiryUrl('b2b', post.company)} class="net-btn">
 								{i18n.lang === 'sr' ? 'Kontaktiraj' : 'Contact'}
 							</a>
 						</div>
@@ -105,8 +114,8 @@
 					? 'Objavite vašu poslovnu ideju ili potrebu i povežite se sa pravim partnerima.'
 					: 'Post your business idea or need and connect with the right partners.'}
 			</p>
-			<a href="/kontakt" class="btn-emerald">
-				{i18n.lang === 'sr' ? 'Objavi post' : 'Post Now'}
+			<a href={enquiryUrl('b2b')} class="btn-emerald">
+				{i18n.t.board.submit}
 			</a>
 		</div>
 	</div>
@@ -114,25 +123,40 @@
 </div>
 
 <style>
+	/* Honest empty state while no real submissions exist */
+	.board-empty {
+		text-align: center;
+		max-width: 640px;
+		margin: 0 auto 3rem;
+		padding: 3rem 2rem;
+		background: #ffffff;
+		border: 1px dashed rgba(15,23,42,0.18);
+		border-radius: var(--radius-xl);
+	}
+	.board-empty h3 {
+		font-family: var(--font-heading);
+		font-size: 1.4rem;
+		font-weight: 800;
+		color: var(--navy);
+		margin-bottom: 0.75rem;
+	}
+	.board-empty p { color: #4a525e; line-height: 1.65; margin-bottom: 1.75rem; }
+
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
 	.page-top {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 	}
 	.container {
@@ -140,7 +164,7 @@
 		margin: 0 auto;
 	}
 	.page-label {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -155,7 +179,7 @@
 	}
 	.page-sub {
 		font-size: 1rem;
-		color: rgba(255, 255, 255, 0.7);
+		color: rgba(255, 255, 255, 0.85);
 		margin-bottom: 2rem;
 	}
 	.filter-row {
@@ -175,7 +199,7 @@
 		left: 1rem;
 		top: 50%;
 		transform: translateY(-50%);
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.8);
 	}
 
 	.search-input {
@@ -192,7 +216,7 @@
 	}
 
 	.search-input::placeholder {
-		color: rgba(255, 255, 255, 0.4);
+		color: rgba(255, 255, 255, 0.8);
 	}
 
 	.search-input:focus {
@@ -211,7 +235,7 @@
 		right: 0.9rem;
 		top: 50%;
 		transform: translateY(-50%);
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.8);
 		pointer-events: none;
 	}
 
@@ -238,7 +262,7 @@
 	}
 
 	.type-select option {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 	}
 
@@ -249,10 +273,10 @@
 		color: var(--muted);
 	}
 	.net-body {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 	.net-grid {
@@ -272,7 +296,7 @@
 	}
 	.net-card:hover { background: white; }
 	.net-type {
-		font-size: 0.7rem;
+		font-size: 0.8rem;
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
@@ -310,13 +334,13 @@
 	.net-avatar {
 		width: 28px;
 		height: 28px;
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		font-family: var(--font-serif);
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		font-weight: 700;
 		color: white;
 		flex-shrink: 0;
@@ -336,16 +360,12 @@
 		background: rgba(15, 61, 62, 0.12);
 	}
 	.post-cta {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		border-radius: var(--radius-xl);
 		padding: 3rem;
 		color: white;
 		text-align: center;
-		box-shadow:
-			inset 0 8px 20px -4px rgba(0,0,0,0.4),
-			inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-			inset 8px 0 20px -10px rgba(0,0,0,0.25),
-			inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 	}
 	.post-cta h3 {
 		font-family: var(--font-serif);
@@ -355,18 +375,18 @@
 	}
 	.post-cta p {
 		font-size: 1rem;
-		color: rgba(255, 255, 255, 0.7);
+		color: rgba(255, 255, 255, 0.85);
 		margin-bottom: 2rem;
 	}
 	.btn-emerald {
 		display: inline-block;
 		font-family: var(--font-sans);
-		font-size: 0.9rem;
+		font-size: 1.05rem;
 		font-weight: 600;
-		color: var(--dark);
-		background: var(--silver);
+		color: var(--cta-text);
+		background: var(--cta);
 		text-decoration: none;
-		padding: 0.75rem 1.75rem;
+		padding: 0.95rem 2.1rem;
 		border-radius: var(--radius);
 	}
 	@media (min-width: 600px) {

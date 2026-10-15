@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { reveal } from '$lib/actions/reveal';
+	import { i18n } from '$lib/i18n.svelte';
 </script>
 
 <svelte:head>
@@ -17,6 +18,8 @@
 <div class="legal-body reveal-card" use:reveal>
 	<div class="container">
 		<article class="legal-content">
+
+			<p class="statement-box" lang={i18n.lang}>{i18n.t.legal.statement}</p>
 
 			<p class="lead">Semberija.app acts as a digital platform that connects businesses and professionals. The platform strives to maintain accurate and up-to-date information, but certain limitations apply.</p>
 

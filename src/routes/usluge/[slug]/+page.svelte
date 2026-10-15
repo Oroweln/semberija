@@ -3,6 +3,9 @@
 	import { i18n } from '$lib/i18n.svelte';
 	import { serviceSlugs } from '$lib/data';
 	import { reveal } from '$lib/actions/reveal';
+	import { enhance } from '$app/forms';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import FormError from '$lib/components/FormError.svelte';
 
 	const index = $derived((serviceSlugs as readonly string[]).indexOf($page.params.slug ?? ''));
 	const service = $derived(index >= 0 ? i18n.t.services.items[index] : null);
@@ -21,13 +24,28 @@
 		}
 	});
 
-	function handleSubmit(e: Event) {
-		e.preventDefault();
-		submitted = true;
-	}
+	// Real submission via the server action; failures keep the form and show an honest message
+	let sending = $state(false);
+	let error = $state<string | null>(null);
+
+	const submit: SubmitFunction = () => {
+		sending = true;
+		error = null;
+		return async ({ result }) => {
+			sending = false;
+			if (result.type === 'success') submitted = true;
+			else if (result.type === 'failure') error = (result.data?.error as string) ?? 'send-failed';
+			else error = 'send-failed';
+		};
+	};
+
+	const mailto = $derived(
+		`mailto:info@zoemilano.com?subject=${encodeURIComponent('Semberija.app — ' + (service?.title ?? ''))}&body=${encodeURIComponent(message)}`
+	);
 
 	function resetForm() {
 		submitted = false;
+		error = null;
 		name = '';
 		email = '';
 		company = '';
@@ -83,38 +101,42 @@
 						</button>
 					</div>
 				{:else}
-					<form onsubmit={handleSubmit} class="inquiry-form">
+					<form use:enhance={submit} class="inquiry-form" method="POST">
+						<input type="hidden" name="topic" value={service.title} />
+						<input type="text" name="website_hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 						<h2>{i18n.t.services.detailInquireHeading}</h2>
 						<p class="form-sub">{i18n.t.services.detailInquireSub}</p>
 
 						<div class="form-row">
 							<div class="form-group">
 								<label for="name">{i18n.t.ui.contact.fullName} *</label>
-								<input id="name" type="text" bind:value={name} required placeholder={i18n.t.ui.contact.namePlaceholder} />
+								<input id="name" name="name" type="text" bind:value={name} required placeholder={i18n.t.ui.contact.namePlaceholder} />
 							</div>
 							<div class="form-group">
 								<label for="email">Email *</label>
-								<input id="email" type="email" bind:value={email} required placeholder={i18n.t.ui.contact.emailPlaceholder} />
+								<input id="email" name="email" type="email" bind:value={email} required placeholder={i18n.t.ui.contact.emailPlaceholder} />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="company">{i18n.t.ui.contact.companyName}</label>
-							<input id="company" type="text" bind:value={company} placeholder={i18n.t.ui.contact.companyPlaceholder} />
+							<input id="company" name="company" type="text" bind:value={company} placeholder={i18n.t.ui.contact.companyPlaceholder} />
 						</div>
 
 						<div class="form-group">
 							<label for="message">{i18n.t.ui.contact.message} *</label>
 							<textarea
-								id="message"
+								id="message" name="message"
 								bind:value={message}
 								required
 								rows="5"
 							></textarea>
 						</div>
 
-						<button type="submit" class="btn-submit">
-							{i18n.t.ui.contact.send}
+						<FormError {error} {mailto} />
+
+						<button type="submit" class="btn-submit" disabled={sending}>
+							{sending ? i18n.t.formStatus.sending : i18n.t.ui.contact.send}
 						</button>
 					</form>
 				{/if}
@@ -133,25 +155,24 @@
 </div>
 
 <style>
+	.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+	.btn-submit:disabled { opacity: 0.7; cursor: wait; }
+
 	.page-wrap {
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: calc(92px + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
+		padding: calc(var(--nav-h) + 1.25rem) clamp(1rem, 3vw, 2rem) 3rem;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 	}
 
 	.page-top {
-		background: var(--card-blue);
+		background: var(--surface-dark);
 		color: white;
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow:
-		inset 0 8px 20px -4px rgba(0,0,0,0.4),
-		inset 0 -2px 6px -2px rgba(255,255,255,0.05),
-		inset 8px 0 20px -10px rgba(0,0,0,0.25),
-		inset -8px 0 20px -10px rgba(0,0,0,0.25);
+		box-shadow: var(--shadow-dark-raised);
 		border: 1px solid rgba(255,255,255,0.05);
 	}
 	.container { max-width: var(--max-w); margin: 0 auto; }
@@ -160,7 +181,7 @@
 		display: inline-block;
 		font-size: 0.82rem;
 		font-weight: 600;
-		color: rgba(255,255,255,0.55);
+		color: rgba(255,255,255, 0.8);
 		text-decoration: none;
 		margin-bottom: 1.5rem;
 		transition: color 0.2s;
@@ -170,7 +191,7 @@
 
 	.page-tag {
 		display: inline-block;
-		font-size: 0.72rem;
+		font-size: 0.8rem;
 		font-weight: 700;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -188,13 +209,13 @@
 		letter-spacing: -0.04em;
 		margin-bottom: 0.75rem;
 	}
-	.page-sub { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 600px; line-height: 1.65; }
+	.page-sub { font-size: 1rem; color: rgba(255,255,255, 0.8); max-width: 600px; line-height: 1.65; }
 
 	.page-body {
-		background: radial-gradient(140% 140% at 25% 15%, #ffffff 0%, #f2f3f6 100%);
+		background: var(--surface-light);
 		padding: var(--section-py) var(--section-px);
 		border-radius: var(--radius-bento);
-		box-shadow: var(--shadow-bento), inset 0 1px 2px rgba(255,255,255,0.9), inset 0 -16px 30px -20px rgba(15,23,42,0.14);
+		box-shadow: var(--shadow-light-raised);
 		border: 1px solid rgba(255,255,255,0.4);
 	}
 
@@ -306,10 +327,10 @@
 	.btn-submit {
 		width: 100%;
 		font-family: var(--font-sans);
-		font-size: 0.95rem;
+		font-size: 1.05rem;
 		font-weight: 600;
-		color: var(--navy);
-		background: linear-gradient(135deg, var(--platinum), var(--silver));
+		color: var(--cta-text);
+		background: var(--cta);
 		border: none;
 		border-radius: 10px;
 		padding: 0.875rem;
