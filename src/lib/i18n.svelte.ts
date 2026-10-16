@@ -67,6 +67,46 @@ const sr = {
 			'turizam': 'Turizam i ugostiteljstvo'
 		} as Record<string, string>
 	},
+	funding: {
+		label: 'Platforma',
+		heading: 'Fondovi i podsticaji',
+		desc: 'Istražite javne pozive, bespovratna sredstva, subvencije, digitalne vaučere i programe podrške za kompanije i preduzetnike iz Bijeljine, Republike Srpske i Bosne i Hercegovine.',
+		cta: 'Istraži podsticaje',
+		formCta: 'Pošaljite upit',
+		overviewHeading: 'Vrste finansiranja i podrške',
+		instruments: [
+			{ title: 'Javni pozivi', desc: 'Pozivi institucija i programa za dodjelu sredstava kompanijama, preduzetnicima i organizacijama.' },
+			{ title: 'Bespovratna sredstva', desc: 'Finansijska podrška koja se ne vraća, uz ispunjavanje uslova i namjensko korištenje sredstava.' },
+			{ title: 'Subvencije', desc: 'Podsticaji za zapošljavanje, proizvodnju, poljoprivredu, izvoz ili investicije, prema važećim programima.' },
+			{ title: 'Digitalni vaučeri', desc: 'Potencijalni instrument za sufinansiranje digitalizacije. Dostupnost zavisi od aktuelnih poziva i uslova.' },
+			{ title: 'Programi podrške', desc: 'Savjetodavna, obrazovna i razvojna podrška za mala i srednja preduzeća i preduzetnike.' }
+		],
+		statusHeading: 'Trenutno stanje',
+		statusDesc: 'Na platformi trenutno ne objavljujemo pojedinačne pozive. Kada budu dodati, svaki će sadržati zvanični izvor, uslove za učešće, rok i datum posljednje provjere.',
+		disclaimerHeading: 'Važno',
+		disclaimer: 'Semberija.app i ZOE MILANO nisu institucija koja dodjeljuje sredstva i ne garantuju odobrenje. Uslove i rokove uvijek provjerite kod zvaničnog izvora poziva.',
+		zoeHeading: 'Digitalizacija uz ZOE MILANO',
+		zoeDesc: 'Za projekte digitalizacije koji ispunjavaju uslove poziva, ZOE MILANO može pružiti relevantne usluge digitalnog razvoja — web, aplikacije, automatizaciju i sisteme.',
+		zoeCta: 'Digitalne usluge',
+		premiumTag: 'Premium · BandiHub',
+		premiumNote: 'Detaljne informacije o fondovima, javnim pozivima i digitalnim vaučerima biće dostupne Premium članovima, uz mogućnost pristupa putem mobilne aplikacije.',
+		soon: 'U pripremi',
+		formHeading: 'Upit za finansiranje',
+		formSub: 'Opišite kompaniju i projekat, a mi ćemo vam se javiti sa informacijama o mogućim izvorima podrške.',
+		prefill: 'Zainteresovan/a sam za mogućnosti finansiranja i podsticaja za: '
+	},
+	premium: {
+		label: 'Članstvo',
+		heading: 'Otkrijte Premium pogodnosti',
+		desc: 'Registracija je dovoljna za korištenje platforme. Premium članstvo donosi dodatne pogodnosti — bez obaveze.',
+		items: [
+			{ title: 'BandiHub', desc: 'Detaljne informacije o fondovima, javnim pozivima i digitalnim vaučerima.' },
+			{ title: 'Napredne funkcije', desc: 'Prošireni pristup informacijama i alatima platforme.' },
+			{ title: 'Mobilna aplikacija', desc: 'Pristup Premium sadržaju putem planirane mobilne aplikacije.' }
+		],
+		optional: 'Premium nije uslov za registraciju.',
+		more: 'Saznaj više'
+	},
 	platform: {
 		label: 'Platforma',
 		heading: 'Jedna platforma. Više poslovnih mogućnosti.',
@@ -79,6 +119,7 @@ const sr = {
 			{ title: 'Poslovni direktorijum', desc: 'Predstavite kompaniju, proizvode i usluge potencijalnim partnerima.', detail: 'Profil kompanije u direktorijumu prikazuje djelatnost, lokaciju i ponudu, a kompanije se mogu pretraživati po nazivu, djelatnosti i lokaciji.', cta: 'Pregledaj kompanije' },
 			{ title: 'B2B povezivanje', desc: 'Pronađite dobavljače, proizvođače, distributere i poslovne partnere.', detail: 'Opišite koga tražite — partnera, distributera, dobavljača ili investitora — i mi pomažemo da se povežete sa odgovarajućim kompanijama.', cta: 'Pronađi partnera' },
 			{ title: 'Investicije', desc: 'Istražite investicione mogućnosti i razvojni potencijal regije.', detail: 'Pregled investicionih oblasti i projekata u Bijeljini i Semberiji, od poljoprivrede i proizvodnje do energetike i nekretnina.', cta: 'Istraži investicije' },
+			{ title: 'Fondovi i podsticaji', desc: 'Istražite javne pozive, bespovratna sredstva, subvencije, digitalne vaučere i programe podrške za kompanije i preduzetnike iz Bijeljine, Republike Srpske i Bosne i Hercegovine.', detail: 'Pregled vrsta javnog finansiranja i programa podrške, uz mogućnost da nam pošaljete upit za vašu kompaniju. Odvojeno od privatnih investicionih prilika.', cta: 'Istraži podsticaje' },
 			{ title: 'Međunarodna saradnja', desc: 'Povežite se sa poslovnim tržištima Srbije, Italije i šire.', detail: 'Mreža partnera i dijaspore otvara put ka tržištima Srbije, Italije i drugih zemalja, uz podršku pri prvom kontaktu.', cta: 'Zatraži povezivanje' },
 			{ title: 'Poslovni upiti', desc: 'Predstavite ponudu ili potražnju i zatražite poslovno povezivanje.', detail: 'Objavite šta nudite ili tražite — saradnju, distribuciju, investiciju ili uslugu — i pregledajte upite drugih kompanija.', cta: 'Pošalji poslovni upit' },
 			{ title: 'Promocija kompanija', desc: 'Povećajte vidljivost kroz istaknute profile i promotivne pozicije.', detail: 'Istaknuti profili i promotivne pozicije na platformi pomažu da vaša kompanija bude prva koju partneri vide.', cta: 'Promoviši kompaniju' },
@@ -130,7 +171,12 @@ const sr = {
 		slide: 'Platforma',
 		items: {
 			lombardia: 'Digitalna poslovna platforma za kompanije, investicije i međunarodnu saradnju u Lombardiji.',
-			veneto: 'Regionalna digitalna platforma za poslovno povezivanje i razvoj u italijanskoj regiji Veneto.'
+			veneto: 'Regionalna digitalna platforma za poslovno povezivanje i razvoj u italijanskoj regiji Veneto.',
+			ibiza: 'Digitalna platforma za Ibizu koja povezuje lokalne kompanije, usluge i poslovne prilike na ostrvu.',
+			liguria: 'Regionalna digitalna platforma za kompanije, turizam i poslovnu saradnju u Liguriji.',
+			montalcino: 'Digitalna platforma za Montalcino i Toskanu — vinarstvo, lokalna proizvodnja i poslovne veze.',
+			sannio: 'Regionalna platforma za Sannio u Kampaniji, posvećena lokalnim kompanijama i razvoju područja.',
+			fvgitalia: 'Digitalna poslovna platforma za regiju Friuli Venezia Giulia i njene kompanije, tržišta i partnerstva.'
 		} as Record<string, string>
 	},
 	aboutPage: {
@@ -268,6 +314,19 @@ const sr = {
 		claim: 'Vaša kompanija? Preuzmite profil',
 		inquire: 'Pošalji upit'
 	},
+	advertising: {
+		title: 'Oglasi',
+		formatsHeading: 'Oglasni formati',
+		options: [
+			{ title: 'Slider na početnoj', desc: 'Vaš vizual i poruka na vrhu početne stranice — vidljivo svim posjetiocima odmah pri dolasku.' },
+			{ title: 'Istaknuti profil', desc: 'Vaša firma prioritetno prikazana u pretragama, kategorijama i preporukama platforme.' },
+			{ title: 'Banner oglasi', desc: 'Statični ili animirani baneri na ključnim mjestima platforme sa visokom vidljivošću.' },
+			{ title: 'Sponzorisana kategorija', desc: 'Brendirajte čitavu kategoriju i budite dominantni izbor za klijente u tom sektoru.' }
+		],
+		audienceHeading: 'Dosegnite pravu poslovnu publiku',
+		audienceDesc: 'Semberija.app je platforma koju koriste vlasnici firmi, menadžeri i donosioci odluka u regionu. Vaše oglašavanje dostiže upravo tu publiku — lokalno, precizno, poslovno.',
+		benefits: ['Ciljana B2B publika', 'Profesionalni kontekst', 'Regionalna prepoznatljivost', 'Fleksibilni formati i pozicije']
+	},
 	promo: {
 		label: 'Promocija',
 		heading: 'Promovišite svoju kompaniju na Semberija.app',
@@ -289,6 +348,28 @@ const sr = {
 		cookies: 'Kolačići',
 		gdpr: 'GDPR',
 		disclaimer: 'Odricanje odgovornosti'
+	},
+	networking: {
+		heading: 'B2B umrežavanje',
+		sub: 'Povežite se sa partnerima, investitorima i saradnicima u regionu.',
+		types: ['Svi', 'Partnerstvo', 'Investicija', 'Saradnja'],
+		contact: 'Kontaktiraj',
+		proposalHeading: 'Imate poslovni prijedlog?',
+		proposalDesc: 'Objavite vašu poslovnu ideju ili potrebu i povežite se sa pravim partnerima.',
+		kindsHeading: 'Šta možete objaviti'
+	},
+	opportunities: {
+		sub: 'Investicije, partnerstva i saradnje iz Bijeljine i Semberije na jednom mjestu.',
+		kindsHeading: 'Vrste prilika',
+		kinds: [
+			{ title: 'Investicija', desc: 'Projekti kojima je potreban kapital — od proizvodnje i poljoprivrede do nekretnina i energetike.' },
+			{ title: 'Partnerstvo', desc: 'Prilike za zajedničke projekte, distribuciju i ulazak na nova tržišta.' },
+			{ title: 'Saradnja', desc: 'Dugoročna poslovna saradnja, usluge i outsourcing između kompanija.' }
+		],
+		postLabel: 'Objavi svoju',
+		postHeading: 'Imate poslovnu priliku ili ideju?',
+		postDesc: 'Objavite investiciju, partnerstvo ili saradnju i povežite se sa pravim partnerima kroz mrežu Semberija.app.',
+		interested: 'Zainteresovan/a sam'
 	},
 	board: {
 		enqTitle: 'Još nema objavljenih poslovnih upita',
@@ -444,7 +525,14 @@ const sr = {
 		detailBack: 'Sve matchmaking usluge',
 		detailInquireHeading: 'Zatražite povezivanje',
 		detailInquireSub: 'Opišite šta tražite i naš tim će vam pronaći odgovarajuće poslovne kontakte.',
-		detailPrefill: 'Zainteresovan/a sam za: '
+		detailPrefill: 'Zainteresovan/a sam za: ',
+		processHeading: 'Kako izgleda povezivanje',
+		privacyNote: 'Vaši podaci koriste se samo za odgovor na ovaj upit.',
+		process: [
+			{ title: 'Pošaljite upit', desc: 'Opišite šta tražite: vrstu partnera, tržište i obim saradnje.' },
+			{ title: 'Biramo odgovarajuće kontakte', desc: 'Naš tim pregleda upit i bira kompanije iz regije i dijaspore koje odgovaraju vašim potrebama.' },
+			{ title: 'Povezujemo vas', desc: 'Posredujemo u prvom kontaktu i pomažemo da saradnja krene u pravom smjeru.' }
+		]
 	},
 	services: {
 		label: 'Digitalne usluge',
@@ -499,7 +587,9 @@ const sr = {
 	events: {
 		label: 'Događaji',
 		heading: 'Poslovni događaji i okupljanja',
-		sub: 'Konferencije, sajmovi i poslovna okupljanja u Bijeljini, Semberiji i regionu.'
+		sub: 'Konferencije, sajmovi i poslovna okupljanja u Bijeljini, Semberiji i regionu.',
+		typesLabel: 'Šta ćemo pratiti',
+		types: ['Konferencije', 'Sajmovi', 'B2B susreti', 'Radionice i edukacije', 'Networking okupljanja', 'Investicioni forumi']
 	},
 	companies: {
 		label: 'Direktorijum',
@@ -532,6 +622,14 @@ const sr = {
 		copyright: '© 2026 Semberija.app. Sva prava zadržana.',
 		newsletter: 'Pratite poslovne vijesti'
 	},
+	adSlot: {
+		tag: 'Oglasni prostor',
+		available: 'Slobodno',
+		title: 'Vaš brend ovdje',
+		desc: 'Predstavite svoju firmu posjetiocima koji traže poslovne partnere u Semberiji.',
+		cta: 'Rezervišite prostor',
+		format: 'Format'
+	},
 	ui: {
 		explore: 'Istraži',
 		searchPlaceholder: 'Pretraži...',
@@ -562,6 +660,12 @@ const sr = {
 		contact: {
 			heading: 'Kontaktirajte nas',
 			sub: 'Registrujte firmu, zatražite uslugu ili nam pošaljite poruku',
+			processLabel: 'Kako obrađujemo upit',
+			process: [
+				{ title: 'Pošaljete upit', desc: 'Izaberete vrstu upita i popunite samo polja koja su za nju potrebna.' },
+				{ title: 'Pregledamo podatke', desc: 'Naš tim pregleda upit i, po potrebi, traži dodatne informacije.' },
+				{ title: 'Javljamo se email-om', desc: 'Odgovor i prijedlog sljedećih koraka šaljemo na adresu koju ste naveli.' }
+			],
 			regTitle: 'Registracija firme',
 			regDesc: 'Registrujte svoju firmu na platformi i povećajte vidljivost. Popunite formular i kontaktiramo vas u roku od 24h.',
 			digitalTitle: 'Digitalne usluge',
@@ -656,6 +760,46 @@ const en = {
 			'turizam': 'Tourism & Hospitality'
 		} as Record<string, string>
 	},
+	funding: {
+		label: 'Platform',
+		heading: 'Funding & Incentives',
+		desc: 'Explore public funding calls, grants, subsidies, digital vouchers and business support programmes relevant to companies and entrepreneurs in Bijeljina, Republika Srpska and Bosnia and Herzegovina.',
+		cta: 'Explore funding',
+		formCta: 'Send an enquiry',
+		overviewHeading: 'Types of funding and support',
+		instruments: [
+			{ title: 'Public calls', desc: 'Calls from institutions and programmes awarding funds to companies, entrepreneurs and organisations.' },
+			{ title: 'Grants', desc: 'Non-repayable financial support, subject to eligibility and use for the stated purpose.' },
+			{ title: 'Subsidies', desc: 'Incentives for employment, production, agriculture, exports or investment under current programmes.' },
+			{ title: 'Digital vouchers', desc: 'A potential instrument for co-financing digitalisation. Availability depends on current calls and conditions.' },
+			{ title: 'Support programmes', desc: 'Advisory, training and development support for SMEs and entrepreneurs.' }
+		],
+		statusHeading: 'Current status',
+		statusDesc: 'We do not currently publish individual calls on the platform. When they are added, each will include the official source, eligibility requirements, the deadline and the date it was last verified.',
+		disclaimerHeading: 'Important',
+		disclaimer: 'Semberija.app and ZOE MILANO are not a funding authority and do not guarantee approval. Always check conditions and deadlines with the official source of the call.',
+		zoeHeading: 'Digitalisation with ZOE MILANO',
+		zoeDesc: 'For digitalisation projects that meet a call\'s conditions, ZOE MILANO can provide relevant digital development services — websites, apps, automation and systems.',
+		zoeCta: 'Digital services',
+		premiumTag: 'Premium · BandiHub',
+		premiumNote: 'Detailed funding opportunities, grant calls and digital vouchers will be available to Premium members, with access also planned through the mobile app.',
+		soon: 'In preparation',
+		formHeading: 'Funding enquiry',
+		formSub: 'Describe your company and project, and we will get back to you with information on possible sources of support.',
+		prefill: 'I am interested in funding and incentive opportunities for: '
+	},
+	premium: {
+		label: 'Membership',
+		heading: 'Discover Premium benefits',
+		desc: 'Registration is all you need to use the platform. Premium membership adds extra benefits — with no obligation.',
+		items: [
+			{ title: 'BandiHub', desc: 'Detailed information on funding, grant calls and digital vouchers.' },
+			{ title: 'Advanced features', desc: 'Extended access to platform information and tools.' },
+			{ title: 'Mobile app', desc: 'Access to Premium content through the planned mobile app.' }
+		],
+		optional: 'Premium is not required to register.',
+		more: 'Learn more'
+	},
 	platform: {
 		label: 'Platform',
 		heading: 'One Platform. More Business Opportunities.',
@@ -668,6 +812,7 @@ const en = {
 			{ title: 'Business Directory', desc: 'Showcase your company, products and services to potential partners.', detail: 'A directory profile shows your industry, location and offer, and companies can be searched by name, industry and location.', cta: 'Browse Companies' },
 			{ title: 'B2B Matchmaking', desc: 'Discover suppliers, manufacturers, distributors and business partners.', detail: 'Tell us who you are looking for — a partner, distributor, supplier or investor — and we help you connect with the right companies.', cta: 'Find a Partner' },
 			{ title: 'Investment', desc: 'Explore investment opportunities and regional development potential.', detail: 'An overview of investment areas and projects in Bijeljina and Semberija, from agriculture and manufacturing to energy and real estate.', cta: 'Explore Investment' },
+			{ title: 'Funding & Incentives', desc: 'Explore public funding calls, grants, subsidies, digital vouchers and business support programmes relevant to companies and entrepreneurs in Bijeljina, Republika Srpska and Bosnia and Herzegovina.', detail: 'An overview of public funding instruments and support programmes, with an enquiry form for your company. Separate from private investment opportunities.', cta: 'Explore funding' },
 			{ title: 'International Business', desc: 'Connect with business markets in Serbia, Italy and beyond.', detail: 'Our partner and diaspora network opens the way to markets in Serbia, Italy and other countries, with support for the first contact.', cta: 'Request a Connection' },
 			{ title: 'Business Enquiries', desc: 'Submit an offer or request and seek potential business connections.', detail: 'Publish what you offer or need — cooperation, distribution, investment or a service — and browse enquiries from other companies.', cta: 'Submit a Business Enquiry' },
 			{ title: 'Business Promotion', desc: 'Increase visibility through featured profiles and promotional placements.', detail: 'Featured profiles and promotional placements on the platform help your company be the first one partners see.', cta: 'Promote Your Business' },
@@ -719,7 +864,12 @@ const en = {
 		slide: 'Platform',
 		items: {
 			lombardia: 'A digital business platform connecting companies, investment and international cooperation across Lombardy.',
-			veneto: 'A regional digital platform supporting business connections and development across Italy\'s Veneto region.'
+			veneto: 'A regional digital platform supporting business connections and development across Italy\'s Veneto region.',
+			ibiza: 'A digital platform for Ibiza connecting local businesses, services and opportunities across the island.',
+			liguria: 'A regional digital platform for companies, tourism and business cooperation in Liguria.',
+			montalcino: 'A digital platform for Montalcino and Tuscany: wine making, local production and business connections.',
+			sannio: 'A regional platform for Sannio in Campania, dedicated to local companies and the area\'s development.',
+			fvgitalia: 'A digital business platform for Friuli Venezia Giulia and its companies, markets and partnerships.'
 		} as Record<string, string>
 	},
 	aboutPage: {
@@ -857,6 +1007,19 @@ const en = {
 		claim: 'Your company? Claim this profile',
 		inquire: 'Send Enquiry'
 	},
+	advertising: {
+		title: 'Advertising',
+		formatsHeading: 'Advertising formats',
+		options: [
+			{ title: 'Homepage slider', desc: 'Your visual and message at the top of the homepage — visible to every visitor right on arrival.' },
+			{ title: 'Featured listing', desc: 'Your company prioritised in searches, categories and platform recommendations.' },
+			{ title: 'Banner ads', desc: 'Static or animated banners in high-visibility positions across the platform.' },
+			{ title: 'Sponsored category', desc: 'Brand an entire category and be the dominant choice for clients in that sector.' }
+		],
+		audienceHeading: 'Reach the right business audience',
+		audienceDesc: 'Semberija.app is used by business owners, managers and decision-makers in the region. Your advertising reaches exactly that audience — locally, precisely, professionally.',
+		benefits: ['Targeted B2B audience', 'Professional context', 'Regional brand recognition', 'Flexible formats and positions']
+	},
 	promo: {
 		label: 'Promotion',
 		heading: 'Promote Your Business on Semberija.app',
@@ -878,6 +1041,28 @@ const en = {
 		cookies: 'Cookies',
 		gdpr: 'GDPR',
 		disclaimer: 'Disclaimer'
+	},
+	networking: {
+		heading: 'B2B Networking',
+		sub: 'Connect with partners, investors and collaborators in the region.',
+		types: ['All', 'Partnership', 'Investment', 'Collaboration'],
+		contact: 'Contact',
+		proposalHeading: 'Have a business proposal?',
+		proposalDesc: 'Post your business idea or need and connect with the right partners.',
+		kindsHeading: 'What you can post'
+	},
+	opportunities: {
+		sub: 'Investments, partnerships and collaborations from Bijeljina and Semberija in one place.',
+		kindsHeading: 'Types of opportunities',
+		kinds: [
+			{ title: 'Investment', desc: 'Projects that need capital — from manufacturing and agriculture to real estate and energy.' },
+			{ title: 'Partnership', desc: 'Opportunities for joint projects, distribution and entering new markets.' },
+			{ title: 'Collaboration', desc: 'Long-term business cooperation, services and outsourcing between companies.' }
+		],
+		postLabel: 'Post your own',
+		postHeading: 'Have a business opportunity or idea?',
+		postDesc: 'Post an investment, partnership or collaboration opportunity and connect with the right partners through the Semberija.app network.',
+		interested: 'I am interested'
 	},
 	board: {
 		enqTitle: 'No business enquiries published yet',
@@ -1033,7 +1218,14 @@ const en = {
 		detailBack: 'All Matchmaking Services',
 		detailInquireHeading: 'Request a Match',
 		detailInquireSub: 'Describe what you\'re looking for and our team will find you the right business contacts.',
-		detailPrefill: 'I am interested in: '
+		detailPrefill: 'I am interested in: ',
+		processHeading: 'How the connection works',
+		privacyNote: 'Your details are used only to reply to this enquiry.',
+		process: [
+			{ title: 'Send an enquiry', desc: 'Describe what you are looking for: the type of partner, the market and the scope of cooperation.' },
+			{ title: 'We select the right contacts', desc: 'Our team reviews your enquiry and selects companies from the region and the diaspora that fit your needs.' },
+			{ title: 'We connect you', desc: 'We facilitate the first contact and help the cooperation start in the right direction.' }
+		]
 	},
 	services: {
 		label: 'Digital Services',
@@ -1088,7 +1280,9 @@ const en = {
 	events: {
 		label: 'Events',
 		heading: 'Business Events & Gatherings',
-		sub: 'Conferences, fairs and business gatherings in Bijeljina, Semberija and the region.'
+		sub: 'Conferences, fairs and business gatherings in Bijeljina, Semberija and the region.',
+		typesLabel: 'What we will cover',
+		types: ['Conferences', 'Trade fairs', 'B2B meetings', 'Workshops & training', 'Networking meetups', 'Investment forums']
 	},
 	companies: {
 		label: 'Directory',
@@ -1121,6 +1315,14 @@ const en = {
 		copyright: '© 2026 Semberija.app. All rights reserved.',
 		newsletter: 'Follow business news'
 	},
+	adSlot: {
+		tag: 'Advertising space',
+		available: 'Available',
+		title: 'Your brand here',
+		desc: 'Put your business in front of visitors looking for partners in Semberija.',
+		cta: 'Reserve this space',
+		format: 'Format'
+	},
 	ui: {
 		explore: 'Explore',
 		searchPlaceholder: 'Search...',
@@ -1151,6 +1353,12 @@ const en = {
 		contact: {
 			heading: 'Get in Touch',
 			sub: 'Register your company, request a service, or send us a message',
+			processLabel: 'How we handle your enquiry',
+			process: [
+				{ title: 'You send an enquiry', desc: 'Choose the enquiry type and fill in only the fields it needs.' },
+				{ title: 'We review the details', desc: 'Our team reviews your enquiry and asks for more information if needed.' },
+				{ title: 'We reply by email', desc: 'We send our reply and suggested next steps to the address you provided.' }
+			],
 			regTitle: 'Company Registration',
 			regDesc: 'Register your company on the platform and increase visibility. Fill in the form and we will contact you within 24 hours.',
 			digitalTitle: 'Digital Services',
@@ -1245,6 +1453,46 @@ const it = {
 			'turizam': 'Turismo e ospitalità'
 		} as Record<string, string>
 	},
+	funding: {
+		label: 'Piattaforma',
+		heading: 'Fondi e incentivi',
+		desc: 'Scopri bandi pubblici, contributi a fondo perduto, sovvenzioni, voucher digitali e programmi di sostegno per aziende e imprenditori di Bijeljina, della Republika Srpska e della Bosnia ed Erzegovina.',
+		cta: 'Esplora gli incentivi',
+		formCta: 'Invia una richiesta',
+		overviewHeading: 'Tipi di finanziamento e sostegno',
+		instruments: [
+			{ title: 'Bandi pubblici', desc: 'Bandi di istituzioni e programmi che assegnano fondi ad aziende, imprenditori e organizzazioni.' },
+			{ title: 'Contributi a fondo perduto', desc: 'Sostegno finanziario non rimborsabile, subordinato ai requisiti e all\'uso previsto.' },
+			{ title: 'Sovvenzioni', desc: 'Incentivi per occupazione, produzione, agricoltura, export o investimenti secondo i programmi in vigore.' },
+			{ title: 'Voucher digitali', desc: 'Possibile strumento di cofinanziamento della digitalizzazione. La disponibilità dipende dai bandi e dalle condizioni attuali.' },
+			{ title: 'Programmi di sostegno', desc: 'Supporto consulenziale, formativo e di sviluppo per PMI e imprenditori.' }
+		],
+		statusHeading: 'Stato attuale',
+		statusDesc: 'Al momento non pubblichiamo singoli bandi sulla piattaforma. Quando verranno aggiunti, ciascuno riporterà la fonte ufficiale, i requisiti, la scadenza e la data dell\'ultima verifica.',
+		disclaimerHeading: 'Importante',
+		disclaimer: 'Semberija.app e ZOE MILANO non sono un ente erogatore e non garantiscono l\'approvazione. Verifica sempre condizioni e scadenze presso la fonte ufficiale del bando.',
+		zoeHeading: 'Digitalizzazione con ZOE MILANO',
+		zoeDesc: 'Per i progetti di digitalizzazione che soddisfano le condizioni di un bando, ZOE MILANO può fornire servizi di sviluppo digitale pertinenti — siti web, app, automazione e sistemi.',
+		zoeCta: 'Servizi digitali',
+		premiumTag: 'Premium · BandiHub',
+		premiumNote: 'Le informazioni dettagliate su fondi, bandi pubblici e voucher digitali saranno disponibili per i membri Premium, con accesso previsto anche tramite l\'app mobile.',
+		soon: 'In preparazione',
+		formHeading: 'Richiesta di finanziamento',
+		formSub: 'Descrivi la tua azienda e il progetto: ti risponderemo con informazioni sulle possibili fonti di sostegno.',
+		prefill: 'Sono interessato/a alle opportunità di finanziamento e incentivi per: '
+	},
+	premium: {
+		label: 'Iscrizione',
+		heading: 'Scopri i vantaggi Premium',
+		desc: 'La registrazione basta per usare la piattaforma. L\'iscrizione Premium aggiunge vantaggi extra — senza alcun obbligo.',
+		items: [
+			{ title: 'BandiHub', desc: 'Informazioni dettagliate su fondi, bandi pubblici e voucher digitali.' },
+			{ title: 'Funzioni avanzate', desc: 'Accesso esteso alle informazioni e agli strumenti della piattaforma.' },
+			{ title: 'App mobile', desc: 'Accesso ai contenuti Premium tramite l\'app mobile prevista.' }
+		],
+		optional: 'Premium non è necessario per registrarsi.',
+		more: 'Scopri di più'
+	},
 	platform: {
 		label: 'Piattaforma',
 		heading: 'Una piattaforma. Più opportunità di business.',
@@ -1257,6 +1505,7 @@ const it = {
 			{ title: 'Elenco aziende', desc: 'Presenta la tua azienda, i prodotti e i servizi ai potenziali partner.', detail: 'Il profilo nell\'elenco mostra settore, località e offerta, e le aziende si possono cercare per nome, settore e località.', cta: 'Sfoglia le aziende' },
 			{ title: 'Matchmaking B2B', desc: 'Trova fornitori, produttori, distributori e partner commerciali.', detail: 'Dicci chi stai cercando — un partner, un distributore, un fornitore o un investitore — e ti aiutiamo a entrare in contatto con le aziende giuste.', cta: 'Trova un partner' },
 			{ title: 'Investimenti', desc: 'Esplora le opportunità di investimento e il potenziale di sviluppo della regione.', detail: 'Una panoramica delle aree e dei progetti di investimento a Bijeljina e nella Semberija, dall\'agricoltura e dalla produzione all\'energia e all\'immobiliare.', cta: 'Esplora gli investimenti' },
+			{ title: 'Fondi e incentivi', desc: 'Scopri bandi pubblici, contributi a fondo perduto, sovvenzioni, voucher digitali e programmi di sostegno per aziende e imprenditori di Bijeljina, della Republika Srpska e della Bosnia ed Erzegovina.', detail: 'Una panoramica degli strumenti di finanziamento pubblico e dei programmi di sostegno, con un modulo di richiesta per la tua azienda. Separato dalle opportunità di investimento private.', cta: 'Esplora gli incentivi' },
 			{ title: 'Business internazionale', desc: 'Entra in contatto con i mercati di Serbia, Italia e oltre.', detail: 'La nostra rete di partner e della diaspora apre la strada ai mercati di Serbia, Italia e altri paesi, con supporto per il primo contatto.', cta: 'Richiedi un contatto' },
 			{ title: 'Richieste commerciali', desc: 'Presenta un\'offerta o una richiesta e cerca nuovi contatti commerciali.', detail: 'Pubblica ciò che offri o cerchi — collaborazione, distribuzione, investimento o servizio — e consulta le richieste di altre aziende.', cta: 'Invia una richiesta' },
 			{ title: 'Promozione aziende', desc: 'Aumenta la visibilità con profili in evidenza e spazi promozionali.', detail: 'Profili in evidenza e spazi promozionali sulla piattaforma aiutano la tua azienda a essere la prima che i partner vedono.', cta: 'Promuovi la tua azienda' },
@@ -1308,7 +1557,12 @@ const it = {
 		slide: 'Piattaforma',
 		items: {
 			lombardia: 'Piattaforma digitale per aziende, investimenti e cooperazione internazionale in Lombardia.',
-			veneto: 'Piattaforma digitale regionale per le connessioni e lo sviluppo del business in Veneto.'
+			veneto: 'Piattaforma digitale regionale per le connessioni e lo sviluppo del business in Veneto.',
+			ibiza: 'Piattaforma digitale per Ibiza che collega aziende, servizi e opportunità dell\'isola.',
+			liguria: 'Piattaforma digitale regionale per aziende, turismo e cooperazione d\'impresa in Liguria.',
+			montalcino: 'Piattaforma digitale per Montalcino e la Toscana: vino, produzioni locali e connessioni d\'impresa.',
+			sannio: 'Piattaforma regionale per il Sannio, in Campania, dedicata alle aziende locali e allo sviluppo del territorio.',
+			fvgitalia: 'Piattaforma digitale per il Friuli Venezia Giulia, le sue aziende, i mercati e le partnership.'
 		} as Record<string, string>
 	},
 	aboutPage: {
@@ -1446,6 +1700,19 @@ const it = {
 		claim: 'È la tua azienda? Rivendica il profilo',
 		inquire: 'Invia richiesta'
 	},
+	advertising: {
+		title: 'Pubblicità',
+		formatsHeading: 'Formati pubblicitari',
+		options: [
+			{ title: 'Slider in homepage', desc: 'Il tuo visual e il tuo messaggio in cima alla homepage — visibili a ogni visitatore appena arriva.' },
+			{ title: 'Profilo in evidenza', desc: 'La tua azienda in primo piano nelle ricerche, nelle categorie e nei suggerimenti della piattaforma.' },
+			{ title: 'Banner pubblicitari', desc: 'Banner statici o animati nelle posizioni più visibili della piattaforma.' },
+			{ title: 'Categoria sponsorizzata', desc: 'Brandizza un\'intera categoria e diventa la scelta di riferimento per i clienti di quel settore.' }
+		],
+		audienceHeading: 'Raggiungi il pubblico business giusto',
+		audienceDesc: 'Semberija.app è usata da imprenditori, manager e decisori della regione. La tua pubblicità raggiunge proprio questo pubblico — in modo locale, preciso e professionale.',
+		benefits: ['Pubblico B2B mirato', 'Contesto professionale', 'Visibilità regionale del marchio', 'Formati e posizioni flessibili']
+	},
 	promo: {
 		label: 'Promozione',
 		heading: 'Promuovi la tua azienda su Semberija.app',
@@ -1467,6 +1734,28 @@ const it = {
 		cookies: 'Cookie',
 		gdpr: 'GDPR',
 		disclaimer: 'Esclusione di responsabilità'
+	},
+	networking: {
+		heading: 'Networking B2B',
+		sub: 'Entra in contatto con partner, investitori e collaboratori della regione.',
+		types: ['Tutti', 'Partnership', 'Investimento', 'Collaborazione'],
+		contact: 'Contatta',
+		proposalHeading: 'Hai una proposta commerciale?',
+		proposalDesc: 'Pubblica la tua idea o esigenza commerciale e trova i partner giusti.',
+		kindsHeading: 'Cosa puoi pubblicare'
+	},
+	opportunities: {
+		sub: 'Investimenti, partnership e collaborazioni da Bijeljina e Semberija in un unico posto.',
+		kindsHeading: 'Tipi di opportunità',
+		kinds: [
+			{ title: 'Investimento', desc: 'Progetti che richiedono capitale — dalla produzione e agricoltura agli immobili e all\'energia.' },
+			{ title: 'Partnership', desc: 'Opportunità per progetti comuni, distribuzione e ingresso in nuovi mercati.' },
+			{ title: 'Collaborazione', desc: 'Collaborazione commerciale a lungo termine, servizi e outsourcing tra aziende.' }
+		],
+		postLabel: 'Pubblica la tua',
+		postHeading: 'Hai un\'opportunità o un\'idea di business?',
+		postDesc: 'Pubblica un investimento, una partnership o una collaborazione e trova i partner giusti attraverso la rete Semberija.app.',
+		interested: 'Sono interessato/a'
 	},
 	board: {
 		enqTitle: 'Nessuna richiesta commerciale pubblicata',
@@ -1602,7 +1891,14 @@ const it = {
 		detailBack: 'Tutti i servizi di matchmaking',
 		detailInquireHeading: 'Richiedi un abbinamento',
 		detailInquireSub: 'Descrivi cosa stai cercando e il nostro team troverà i contatti commerciali giusti per te.',
-		detailPrefill: 'Sono interessato/a a: '
+		detailPrefill: 'Sono interessato/a a: ',
+		processHeading: 'Come funziona il collegamento',
+		privacyNote: 'I tuoi dati vengono usati solo per rispondere a questa richiesta.',
+		process: [
+			{ title: 'Invia una richiesta', desc: 'Descrivi cosa cerchi: il tipo di partner, il mercato e la portata della collaborazione.' },
+			{ title: 'Selezioniamo i contatti giusti', desc: 'Il nostro team esamina la richiesta e seleziona aziende della regione e della diaspora adatte alle tue esigenze.' },
+			{ title: 'Ti mettiamo in contatto', desc: 'Facilitiamo il primo contatto e aiutiamo la collaborazione a partire nella giusta direzione.' }
+		]
 	},
 	services: {
 		label: 'Servizi digitali',
@@ -1657,7 +1953,9 @@ const it = {
 	events: {
 		label: 'Eventi',
 		heading: 'Eventi e incontri di business',
-		sub: 'Conferenze, fiere e incontri aziendali a Bijeljina, Semberija e nella regione.'
+		sub: 'Conferenze, fiere e incontri aziendali a Bijeljina, Semberija e nella regione.',
+		typesLabel: 'Cosa seguiremo',
+		types: ['Conferenze', 'Fiere', 'Incontri B2B', 'Workshop e formazione', 'Incontri di networking', 'Forum sugli investimenti']
 	},
 	companies: {
 		label: 'Elenco',
@@ -1690,6 +1988,14 @@ const it = {
 		copyright: '© 2026 Semberija.app. Tutti i diritti riservati.',
 		newsletter: 'Segui le news aziendali'
 	},
+	adSlot: {
+		tag: 'Spazio pubblicitario',
+		available: 'Disponibile',
+		title: 'Il tuo marchio qui',
+		desc: 'Presenta la tua azienda ai visitatori che cercano partner in Semberija.',
+		cta: 'Prenota lo spazio',
+		format: 'Formato'
+	},
 	ui: {
 		explore: 'Esplora',
 		searchPlaceholder: 'Cerca...',
@@ -1720,6 +2026,12 @@ const it = {
 		contact: {
 			heading: 'Contattaci',
 			sub: 'Registra la tua azienda, richiedi un servizio o inviaci un messaggio',
+			processLabel: 'Come gestiamo la tua richiesta',
+			process: [
+				{ title: 'Invii la richiesta', desc: 'Scegli il tipo di richiesta e compila solo i campi necessari.' },
+				{ title: 'Esaminiamo i dettagli', desc: 'Il nostro team esamina la richiesta e, se necessario, chiede ulteriori informazioni.' },
+				{ title: 'Rispondiamo via email', desc: 'Inviamo la risposta e i prossimi passi suggeriti all\'indirizzo indicato.' }
+			],
 			regTitle: 'Registrazione azienda',
 			regDesc: 'Registra la tua azienda sulla piattaforma e aumenta la visibilità. Compila il modulo e ti contatteremo entro 24 ore.',
 			digitalTitle: 'Servizi digitali',
@@ -1814,6 +2126,46 @@ const ru = {
 			'turizam': 'Туризм и гостеприимство'
 		} as Record<string, string>
 	},
+	funding: {
+		label: 'Платформа',
+		heading: 'Фонды и стимулы',
+		desc: 'Изучите открытые конкурсы, безвозвратные гранты, субсидии, цифровые ваучеры и программы поддержки для компаний и предпринимателей Биелины, Республики Сербской и Боснии и Герцеговины.',
+		cta: 'Изучить стимулы',
+		formCta: 'Отправить запрос',
+		overviewHeading: 'Виды финансирования и поддержки',
+		instruments: [
+			{ title: 'Открытые конкурсы', desc: 'Конкурсы учреждений и программ, распределяющих средства между компаниями, предпринимателями и организациями.' },
+			{ title: 'Безвозвратные гранты', desc: 'Финансовая поддержка без возврата при соблюдении условий и целевом использовании средств.' },
+			{ title: 'Субсидии', desc: 'Стимулы для занятости, производства, сельского хозяйства, экспорта или инвестиций по действующим программам.' },
+			{ title: 'Цифровые ваучеры', desc: 'Возможный инструмент софинансирования цифровизации. Доступность зависит от текущих конкурсов и условий.' },
+			{ title: 'Программы поддержки', desc: 'Консультационная, образовательная и развивающая поддержка малого и среднего бизнеса и предпринимателей.' }
+		],
+		statusHeading: 'Текущее состояние',
+		statusDesc: 'Сейчас мы не публикуем на платформе отдельные конкурсы. Когда они появятся, у каждого будут указаны официальный источник, условия участия, срок и дата последней проверки.',
+		disclaimerHeading: 'Важно',
+		disclaimer: 'Semberija.app и ZOE MILANO не являются органом, распределяющим средства, и не гарантируют одобрение. Всегда проверяйте условия и сроки у официального источника конкурса.',
+		zoeHeading: 'Цифровизация с ZOE MILANO',
+		zoeDesc: 'Для проектов цифровизации, соответствующих условиям конкурса, ZOE MILANO может предоставить соответствующие услуги цифровой разработки — сайты, приложения, автоматизацию и системы.',
+		zoeCta: 'Цифровые услуги',
+		premiumTag: 'Premium · BandiHub',
+		premiumNote: 'Подробная информация о фондах, открытых конкурсах и цифровых ваучерах будет доступна участникам Premium, с планируемым доступом через мобильное приложение.',
+		soon: 'В подготовке',
+		formHeading: 'Запрос о финансировании',
+		formSub: 'Опишите компанию и проект, и мы свяжемся с вами с информацией о возможных источниках поддержки.',
+		prefill: 'Меня интересуют возможности финансирования и стимулы для: '
+	},
+	premium: {
+		label: 'Членство',
+		heading: 'Откройте преимущества Premium',
+		desc: 'Для пользования платформой достаточно регистрации. Членство Premium даёт дополнительные преимущества — без обязательств.',
+		items: [
+			{ title: 'BandiHub', desc: 'Подробная информация о фондах, конкурсах и цифровых ваучерах.' },
+			{ title: 'Расширенные функции', desc: 'Расширенный доступ к информации и инструментам платформы.' },
+			{ title: 'Мобильное приложение', desc: 'Доступ к контенту Premium через планируемое мобильное приложение.' }
+		],
+		optional: 'Premium не требуется для регистрации.',
+		more: 'Подробнее'
+	},
 	platform: {
 		label: 'Платформа',
 		heading: 'Одна платформа. Больше деловых возможностей.',
@@ -1826,6 +2178,7 @@ const ru = {
 			{ title: 'Бизнес-каталог', desc: 'Представьте компанию, продукты и услуги потенциальным партнёрам.', detail: 'Профиль в каталоге показывает отрасль, местоположение и предложение; компании можно искать по названию, отрасли и местоположению.', cta: 'Смотреть компании' },
 			{ title: 'B2B-подбор партнёров', desc: 'Находите поставщиков, производителей, дистрибьюторов и деловых партнёров.', detail: 'Расскажите, кого вы ищете — партнёра, дистрибьютора, поставщика или инвестора, — и мы поможем связаться с подходящими компаниями.', cta: 'Найти партнёра' },
 			{ title: 'Инвестиции', desc: 'Изучайте инвестиционные возможности и потенциал развития региона.', detail: 'Обзор инвестиционных направлений и проектов в Биелине и Семберии — от сельского хозяйства и производства до энергетики и недвижимости.', cta: 'Смотреть инвестиции' },
+			{ title: 'Фонды и стимулы', desc: 'Изучите открытые конкурсы, безвозвратные гранты, субсидии, цифровые ваучеры и программы поддержки для компаний и предпринимателей Биелины, Республики Сербской и Боснии и Герцеговины.', detail: 'Обзор инструментов государственного финансирования и программ поддержки, а также форма запроса для вашей компании. Отдельно от частных инвестиционных возможностей.', cta: 'Изучить стимулы' },
 			{ title: 'Международное сотрудничество', desc: 'Выходите на рынки Сербии, Италии и других стран.', detail: 'Сеть партнёров и диаспоры открывает путь на рынки Сербии, Италии и других стран, с поддержкой при первом контакте.', cta: 'Запросить контакт' },
 			{ title: 'Деловые запросы', desc: 'Разместите предложение или запрос и найдите деловых партнёров.', detail: 'Опубликуйте, что вы предлагаете или ищете — сотрудничество, дистрибуцию, инвестиции или услугу, — и просматривайте запросы других компаний.', cta: 'Отправить деловой запрос' },
 			{ title: 'Продвижение компаний', desc: 'Повышайте узнаваемость с помощью избранных профилей и рекламных мест.', detail: 'Избранные профили и рекламные места на платформе помогают вашей компании первой попадать в поле зрения партнёров.', cta: 'Продвигать компанию' },
@@ -1877,7 +2230,12 @@ const ru = {
 		slide: 'Платформа',
 		items: {
 			lombardia: 'Цифровая бизнес-платформа для компаний, инвестиций и международного сотрудничества в Ломбардии.',
-			veneto: 'Региональная цифровая платформа для деловых связей и развития в итальянском регионе Венето.'
+			veneto: 'Региональная цифровая платформа для деловых связей и развития в итальянском регионе Венето.',
+			ibiza: 'Цифровая платформа Ибицы, объединяющая местные компании, услуги и деловые возможности острова.',
+			liguria: 'Региональная цифровая платформа для компаний, туризма и делового сотрудничества в Лигурии.',
+			montalcino: 'Цифровая платформа Монтальчино и Тосканы: виноделие, местное производство и деловые связи.',
+			sannio: 'Региональная платформа Саннио в Кампании для местных компаний и развития территории.',
+			fvgitalia: 'Цифровая бизнес-платформа региона Фриули-Венеция-Джулия, его компаний, рынков и партнёрств.'
 		} as Record<string, string>
 	},
 	aboutPage: {
@@ -2015,6 +2373,19 @@ const ru = {
 		claim: 'Ваша компания? Подтвердите профиль',
 		inquire: 'Отправить запрос'
 	},
+	advertising: {
+		title: 'Реклама',
+		formatsHeading: 'Рекламные форматы',
+		options: [
+			{ title: 'Слайдер на главной', desc: 'Ваш визуал и сообщение в верхней части главной страницы — их видит каждый посетитель сразу при входе.' },
+			{ title: 'Выделенный профиль', desc: 'Ваша компания в приоритете в поиске, категориях и рекомендациях платформы.' },
+			{ title: 'Баннерная реклама', desc: 'Статичные или анимированные баннеры на самых заметных местах платформы.' },
+			{ title: 'Спонсорская категория', desc: 'Брендируйте целую категорию и станьте главным выбором клиентов в этом секторе.' }
+		],
+		audienceHeading: 'Достигайте нужной деловой аудитории',
+		audienceDesc: 'Semberija.app пользуются владельцы компаний, менеджеры и лица, принимающие решения в регионе. Ваша реклама доходит именно до этой аудитории — локально, точно, профессионально.',
+		benefits: ['Целевая B2B-аудитория', 'Профессиональный контекст', 'Узнаваемость бренда в регионе', 'Гибкие форматы и размещения']
+	},
 	promo: {
 		label: 'Продвижение',
 		heading: 'Продвигайте свою компанию на Semberija.app',
@@ -2036,6 +2407,28 @@ const ru = {
 		cookies: 'Cookie',
 		gdpr: 'GDPR',
 		disclaimer: 'Отказ от ответственности'
+	},
+	networking: {
+		heading: 'B2B-нетворкинг',
+		sub: 'Находите партнёров, инвесторов и коллег по бизнесу в регионе.',
+		types: ['Все', 'Партнёрство', 'Инвестиции', 'Сотрудничество'],
+		contact: 'Связаться',
+		proposalHeading: 'Есть деловое предложение?',
+		proposalDesc: 'Опубликуйте свою бизнес-идею или запрос и найдите подходящих партнёров.',
+		kindsHeading: 'Что можно опубликовать'
+	},
+	opportunities: {
+		sub: 'Инвестиции, партнёрства и сотрудничество из Биелины и Семберии в одном месте.',
+		kindsHeading: 'Виды возможностей',
+		kinds: [
+			{ title: 'Инвестиции', desc: 'Проекты, которым нужен капитал, — от производства и сельского хозяйства до недвижимости и энергетики.' },
+			{ title: 'Партнёрство', desc: 'Возможности для совместных проектов, дистрибуции и выхода на новые рынки.' },
+			{ title: 'Сотрудничество', desc: 'Долгосрочное деловое сотрудничество, услуги и аутсорсинг между компаниями.' }
+		],
+		postLabel: 'Опубликуйте свою',
+		postHeading: 'Есть деловая возможность или идея?',
+		postDesc: 'Опубликуйте инвестиционный проект, партнёрство или сотрудничество и найдите подходящих партнёров через сеть Semberija.app.',
+		interested: 'Мне интересно'
 	},
 	board: {
 		enqTitle: 'Деловых запросов пока нет',
@@ -2171,7 +2564,14 @@ const ru = {
 		detailBack: 'Все услуги мэтчмейкинга',
 		detailInquireHeading: 'Запросить подбор',
 		detailInquireSub: 'Опишите, что вы ищете, и наша команда найдёт для вас подходящие бизнес-контакты.',
-		detailPrefill: 'Меня интересует: '
+		detailPrefill: 'Меня интересует: ',
+		processHeading: 'Как проходит знакомство',
+		privacyNote: 'Ваши данные используются только для ответа на этот запрос.',
+		process: [
+			{ title: 'Отправьте запрос', desc: 'Опишите, что вы ищете: тип партнёра, рынок и масштаб сотрудничества.' },
+			{ title: 'Подбираем подходящие контакты', desc: 'Наша команда изучает запрос и подбирает компании из региона и диаспоры, которые соответствуют вашим задачам.' },
+			{ title: 'Знакомим вас', desc: 'Мы организуем первый контакт и помогаем сотрудничеству начаться в правильном направлении.' }
+		]
 	},
 	services: {
 		label: 'Цифровые услуги',
@@ -2226,7 +2626,9 @@ const ru = {
 	events: {
 		label: 'События',
 		heading: 'Деловые события и встречи',
-		sub: 'Конференции, выставки и деловые встречи в Биелине, Семберии и регионе.'
+		sub: 'Конференции, выставки и деловые встречи в Биелине, Семберии и регионе.',
+		typesLabel: 'Что мы будем освещать',
+		types: ['Конференции', 'Ярмарки', 'B2B-встречи', 'Семинары и обучение', 'Нетворкинг-встречи', 'Инвестиционные форумы']
 	},
 	companies: {
 		label: 'Каталог',
@@ -2259,6 +2661,14 @@ const ru = {
 		copyright: '© 2026 Semberija.app. Все права защищены.',
 		newsletter: 'Следите за деловыми новостями'
 	},
+	adSlot: {
+		tag: 'Рекламное место',
+		available: 'Свободно',
+		title: 'Ваш бренд здесь',
+		desc: 'Представьте свою компанию посетителям, которые ищут партнёров в Семберии.',
+		cta: 'Забронировать место',
+		format: 'Формат'
+	},
 	ui: {
 		explore: 'Исследовать',
 		searchPlaceholder: 'Поиск...',
@@ -2289,6 +2699,12 @@ const ru = {
 		contact: {
 			heading: 'Свяжитесь с нами',
 			sub: 'Зарегистрируйте компанию, запросите услугу или отправьте нам сообщение',
+			processLabel: 'Как мы обрабатываем запрос',
+			process: [
+				{ title: 'Вы отправляете запрос', desc: 'Выберите тип запроса и заполните только необходимые поля.' },
+				{ title: 'Мы изучаем данные', desc: 'Наша команда рассматривает запрос и при необходимости запрашивает дополнительную информацию.' },
+				{ title: 'Отвечаем по email', desc: 'Ответ и предлагаемые следующие шаги мы отправим на указанный вами адрес.' }
+			],
 			regTitle: 'Регистрация компании',
 			regDesc: 'Зарегистрируйте компанию на платформе и увеличьте видимость. Заполните форму, и мы свяжемся с вами в течение 24 часов.',
 			digitalTitle: 'Цифровые услуги',
@@ -2383,6 +2799,46 @@ const de = {
 			'turizam': 'Tourismus & Gastgewerbe'
 		} as Record<string, string>
 	},
+	funding: {
+		label: 'Plattform',
+		heading: 'Förderungen & Anreize',
+		desc: 'Entdecken Sie öffentliche Ausschreibungen, Zuschüsse, Subventionen, digitale Gutscheine und Förderprogramme für Unternehmen und Gründer in Bijeljina, der Republika Srpska und Bosnien und Herzegowina.',
+		cta: 'Förderungen entdecken',
+		formCta: 'Anfrage senden',
+		overviewHeading: 'Arten von Förderung und Unterstützung',
+		instruments: [
+			{ title: 'Öffentliche Ausschreibungen', desc: 'Ausschreibungen von Institutionen und Programmen, die Mittel an Unternehmen, Gründer und Organisationen vergeben.' },
+			{ title: 'Zuschüsse', desc: 'Nicht rückzahlbare finanzielle Unterstützung, abhängig von den Voraussetzungen und der zweckgebundenen Verwendung.' },
+			{ title: 'Subventionen', desc: 'Anreize für Beschäftigung, Produktion, Landwirtschaft, Export oder Investitionen im Rahmen geltender Programme.' },
+			{ title: 'Digitale Gutscheine', desc: 'Ein mögliches Instrument zur Kofinanzierung der Digitalisierung. Die Verfügbarkeit hängt von aktuellen Ausschreibungen und Bedingungen ab.' },
+			{ title: 'Förderprogramme', desc: 'Beratungs-, Schulungs- und Entwicklungsunterstützung für KMU und Gründer.' }
+		],
+		statusHeading: 'Aktueller Stand',
+		statusDesc: 'Derzeit veröffentlichen wir keine einzelnen Ausschreibungen auf der Plattform. Sobald sie hinzugefügt werden, enthält jede die offizielle Quelle, die Teilnahmevoraussetzungen, die Frist und das Datum der letzten Überprüfung.',
+		disclaimerHeading: 'Wichtig',
+		disclaimer: 'Semberija.app und ZOE MILANO sind keine Fördereinrichtung und garantieren keine Bewilligung. Prüfen Sie Bedingungen und Fristen immer bei der offiziellen Quelle der Ausschreibung.',
+		zoeHeading: 'Digitalisierung mit ZOE MILANO',
+		zoeDesc: 'Für Digitalisierungsprojekte, die die Bedingungen einer Ausschreibung erfüllen, kann ZOE MILANO passende digitale Entwicklungsleistungen erbringen — Websites, Apps, Automatisierung und Systeme.',
+		zoeCta: 'Digitale Dienste',
+		premiumTag: 'Premium · BandiHub',
+		premiumNote: 'Detaillierte Informationen zu Förderungen, Ausschreibungen und digitalen Gutscheinen werden Premium-Mitgliedern zur Verfügung stehen, mit geplantem Zugang auch über die mobile App.',
+		soon: 'In Vorbereitung',
+		formHeading: 'Förderanfrage',
+		formSub: 'Beschreiben Sie Ihr Unternehmen und Ihr Projekt — wir melden uns mit Informationen zu möglichen Förderquellen.',
+		prefill: 'Ich interessiere mich für Förder- und Anreizmöglichkeiten für: '
+	},
+	premium: {
+		label: 'Mitgliedschaft',
+		heading: 'Premium-Vorteile entdecken',
+		desc: 'Für die Nutzung der Plattform genügt die Registrierung. Die Premium-Mitgliedschaft bietet zusätzliche Vorteile — ohne Verpflichtung.',
+		items: [
+			{ title: 'BandiHub', desc: 'Detaillierte Informationen zu Förderungen, Ausschreibungen und digitalen Gutscheinen.' },
+			{ title: 'Erweiterte Funktionen', desc: 'Erweiterter Zugang zu Informationen und Werkzeugen der Plattform.' },
+			{ title: 'Mobile App', desc: 'Zugang zu Premium-Inhalten über die geplante mobile App.' }
+		],
+		optional: 'Premium ist für die Registrierung nicht erforderlich.',
+		more: 'Mehr erfahren'
+	},
 	platform: {
 		label: 'Plattform',
 		heading: 'Eine Plattform. Mehr Geschäftschancen.',
@@ -2395,6 +2851,7 @@ const de = {
 			{ title: 'Firmenverzeichnis', desc: 'Präsentieren Sie Ihr Unternehmen, Ihre Produkte und Dienstleistungen potenziellen Partnern.', detail: 'Das Profil im Verzeichnis zeigt Branche, Standort und Angebot; Unternehmen lassen sich nach Name, Branche und Standort suchen.', cta: 'Unternehmen ansehen' },
 			{ title: 'B2B-Matchmaking', desc: 'Finden Sie Lieferanten, Hersteller, Händler und Geschäftspartner.', detail: 'Sagen Sie uns, wen Sie suchen — Partner, Händler, Lieferanten oder Investoren — und wir helfen Ihnen, die passenden Unternehmen zu finden.', cta: 'Partner finden' },
 			{ title: 'Investitionen', desc: 'Entdecken Sie Investitionsmöglichkeiten und das Entwicklungspotenzial der Region.', detail: 'Ein Überblick über Investitionsbereiche und Projekte in Bijeljina und Semberija, von Landwirtschaft und Produktion bis zu Energie und Immobilien.', cta: 'Investitionen entdecken' },
+			{ title: 'Förderungen & Anreize', desc: 'Entdecken Sie öffentliche Ausschreibungen, Zuschüsse, Subventionen, digitale Gutscheine und Förderprogramme für Unternehmen und Gründer in Bijeljina, der Republika Srpska und Bosnien und Herzegowina.', detail: 'Ein Überblick über öffentliche Förderinstrumente und Unterstützungsprogramme, mit Anfrageformular für Ihr Unternehmen. Getrennt von privaten Investitionsmöglichkeiten.', cta: 'Förderungen entdecken' },
 			{ title: 'Internationale Zusammenarbeit', desc: 'Verbinden Sie sich mit Märkten in Serbien, Italien und darüber hinaus.', detail: 'Unser Partner- und Diaspora-Netzwerk öffnet den Weg zu Märkten in Serbien, Italien und weiteren Ländern, mit Unterstützung beim ersten Kontakt.', cta: 'Kontakt anfragen' },
 			{ title: 'Geschäftsanfragen', desc: 'Stellen Sie ein Angebot oder eine Anfrage ein und finden Sie Geschäftskontakte.', detail: 'Veröffentlichen Sie, was Sie anbieten oder suchen — Zusammenarbeit, Vertrieb, Investition oder Dienstleistung — und sehen Sie Anfragen anderer Unternehmen.', cta: 'Geschäftsanfrage senden' },
 			{ title: 'Unternehmenswerbung', desc: 'Steigern Sie Ihre Sichtbarkeit mit hervorgehobenen Profilen und Werbeplätzen.', detail: 'Hervorgehobene Profile und Werbeplätze auf der Plattform sorgen dafür, dass Partner Ihr Unternehmen zuerst sehen.', cta: 'Unternehmen bewerben' },
@@ -2446,7 +2903,12 @@ const de = {
 		slide: 'Plattform',
 		items: {
 			lombardia: 'Eine digitale Business-Plattform für Unternehmen, Investitionen und internationale Zusammenarbeit in der Lombardei.',
-			veneto: 'Eine regionale digitale Plattform für Geschäftskontakte und Entwicklung in der italienischen Region Venetien.'
+			veneto: 'Eine regionale digitale Plattform für Geschäftskontakte und Entwicklung in der italienischen Region Venetien.',
+			ibiza: 'Eine digitale Plattform für Ibiza, die lokale Unternehmen, Dienstleistungen und Chancen auf der Insel verbindet.',
+			liguria: 'Eine regionale digitale Plattform für Unternehmen, Tourismus und Zusammenarbeit in Ligurien.',
+			montalcino: 'Eine digitale Plattform für Montalcino und die Toskana: Weinbau, lokale Produktion und Geschäftskontakte.',
+			sannio: 'Eine regionale Plattform für Sannio in Kampanien, für lokale Unternehmen und die Entwicklung der Region.',
+			fvgitalia: 'Eine digitale Business-Plattform für Friaul-Julisch Venetien und seine Unternehmen, Märkte und Partnerschaften.'
 		} as Record<string, string>
 	},
 	aboutPage: {
@@ -2584,6 +3046,19 @@ const de = {
 		claim: 'Ihr Unternehmen? Profil beanspruchen',
 		inquire: 'Anfrage senden'
 	},
+	advertising: {
+		title: 'Werbung',
+		formatsHeading: 'Werbeformate',
+		options: [
+			{ title: 'Slider auf der Startseite', desc: 'Ihr Visual und Ihre Botschaft ganz oben auf der Startseite — für jeden Besucher sofort sichtbar.' },
+			{ title: 'Hervorgehobenes Profil', desc: 'Ihr Unternehmen erscheint bevorzugt in Suchen, Kategorien und Empfehlungen der Plattform.' },
+			{ title: 'Bannerwerbung', desc: 'Statische oder animierte Banner an gut sichtbaren Stellen der Plattform.' },
+			{ title: 'Gesponserte Kategorie', desc: 'Branden Sie eine ganze Kategorie und werden Sie die erste Wahl der Kunden in dieser Branche.' }
+		],
+		audienceHeading: 'Erreichen Sie das richtige Business-Publikum',
+		audienceDesc: 'Semberija.app wird von Unternehmern, Managern und Entscheidern in der Region genutzt. Ihre Werbung erreicht genau dieses Publikum — lokal, präzise, professionell.',
+		benefits: ['Gezieltes B2B-Publikum', 'Professioneller Kontext', 'Regionale Markenbekanntheit', 'Flexible Formate und Platzierungen']
+	},
 	promo: {
 		label: 'Promotion',
 		heading: 'Bewerben Sie Ihr Unternehmen auf Semberija.app',
@@ -2605,6 +3080,28 @@ const de = {
 		cookies: 'Cookies',
 		gdpr: 'DSGVO',
 		disclaimer: 'Haftungsausschluss'
+	},
+	networking: {
+		heading: 'B2B-Networking',
+		sub: 'Vernetzen Sie sich mit Partnern, Investoren und Kooperationspartnern in der Region.',
+		types: ['Alle', 'Partnerschaft', 'Investition', 'Zusammenarbeit'],
+		contact: 'Kontaktieren',
+		proposalHeading: 'Haben Sie einen Geschäftsvorschlag?',
+		proposalDesc: 'Veröffentlichen Sie Ihre Geschäftsidee oder Ihren Bedarf und finden Sie die richtigen Partner.',
+		kindsHeading: 'Was Sie veröffentlichen können'
+	},
+	opportunities: {
+		sub: 'Investitionen, Partnerschaften und Kooperationen aus Bijeljina und Semberija an einem Ort.',
+		kindsHeading: 'Arten von Chancen',
+		kinds: [
+			{ title: 'Investition', desc: 'Projekte mit Kapitalbedarf — von Produktion und Landwirtschaft bis Immobilien und Energie.' },
+			{ title: 'Partnerschaft', desc: 'Chancen für gemeinsame Projekte, Vertrieb und den Eintritt in neue Märkte.' },
+			{ title: 'Zusammenarbeit', desc: 'Langfristige Geschäftsbeziehungen, Dienstleistungen und Outsourcing zwischen Unternehmen.' }
+		],
+		postLabel: 'Eigene veröffentlichen',
+		postHeading: 'Haben Sie eine Geschäftschance oder Idee?',
+		postDesc: 'Veröffentlichen Sie eine Investition, Partnerschaft oder Kooperation und finden Sie über das Semberija.app-Netzwerk die richtigen Partner.',
+		interested: 'Ich bin interessiert'
 	},
 	board: {
 		enqTitle: 'Noch keine Geschäftsanfragen veröffentlicht',
@@ -2740,7 +3237,14 @@ const de = {
 		detailBack: 'Alle Matchmaking-Services',
 		detailInquireHeading: 'Matching anfragen',
 		detailInquireSub: 'Beschreiben Sie, wonach Sie suchen, und unser Team findet die passenden Geschäftskontakte für Sie.',
-		detailPrefill: 'Ich interessiere mich für: '
+		detailPrefill: 'Ich interessiere mich für: ',
+		processHeading: 'So funktioniert die Vermittlung',
+		privacyNote: 'Ihre Daten werden nur zur Beantwortung dieser Anfrage verwendet.',
+		process: [
+			{ title: 'Anfrage senden', desc: 'Beschreiben Sie, was Sie suchen: Art des Partners, Markt und Umfang der Zusammenarbeit.' },
+			{ title: 'Wir wählen passende Kontakte', desc: 'Unser Team prüft die Anfrage und wählt Unternehmen aus der Region und der Diaspora, die zu Ihren Anforderungen passen.' },
+			{ title: 'Wir bringen Sie zusammen', desc: 'Wir vermitteln den ersten Kontakt und helfen, dass die Zusammenarbeit in die richtige Richtung startet.' }
+		]
 	},
 	services: {
 		label: 'Digitale Dienste',
@@ -2795,7 +3299,9 @@ const de = {
 	events: {
 		label: 'Veranstaltungen',
 		heading: 'Geschäftsveranstaltungen & Treffen',
-		sub: 'Konferenzen, Messen und Geschäftstreffen in Bijeljina, Semberija und der Region.'
+		sub: 'Konferenzen, Messen und Geschäftstreffen in Bijeljina, Semberija und der Region.',
+		typesLabel: 'Was wir abdecken',
+		types: ['Konferenzen', 'Messen', 'B2B-Treffen', 'Workshops & Schulungen', 'Networking-Treffen', 'Investitionsforen']
 	},
 	companies: {
 		label: 'Verzeichnis',
@@ -2828,6 +3334,14 @@ const de = {
 		copyright: '© 2026 Semberija.app. Alle Rechte vorbehalten.',
 		newsletter: 'Business-News verfolgen'
 	},
+	adSlot: {
+		tag: 'Werbefläche',
+		available: 'Verfügbar',
+		title: 'Ihre Marke hier',
+		desc: 'Präsentieren Sie Ihr Unternehmen Besuchern, die Partner in Semberija suchen.',
+		cta: 'Fläche reservieren',
+		format: 'Format'
+	},
 	ui: {
 		explore: 'Erkunden',
 		searchPlaceholder: 'Suchen...',
@@ -2858,6 +3372,12 @@ const de = {
 		contact: {
 			heading: 'Kontaktieren Sie uns',
 			sub: 'Registrieren Sie Ihr Unternehmen, fordern Sie einen Service an oder senden Sie uns eine Nachricht',
+			processLabel: 'So bearbeiten wir Ihre Anfrage',
+			process: [
+				{ title: 'Sie senden eine Anfrage', desc: 'Wählen Sie die Art der Anfrage und füllen Sie nur die nötigen Felder aus.' },
+				{ title: 'Wir prüfen die Angaben', desc: 'Unser Team prüft Ihre Anfrage und fragt bei Bedarf nach weiteren Informationen.' },
+				{ title: 'Wir antworten per E-Mail', desc: 'Antwort und vorgeschlagene nächste Schritte senden wir an die angegebene Adresse.' }
+			],
 			regTitle: 'Unternehmensregistrierung',
 			regDesc: 'Registrieren Sie Ihr Unternehmen auf der Plattform und erhöhen Sie die Sichtbarkeit. Füllen Sie das Formular aus und wir kontaktieren Sie innerhalb von 24 Stunden.',
 			digitalTitle: 'Digitale Dienste',

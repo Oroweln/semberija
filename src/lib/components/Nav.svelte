@@ -37,6 +37,7 @@
 	}
 
 	const langs = Object.entries(langMeta) as [Lang, { label: string }][];
+	const langTitle: Record<string, string> = { sr: 'Jezik', en: 'Language', it: 'Lingua', ru: 'Язык', de: 'Sprache' };
 
 	$effect(() => {
 		const handler = () => { scrolled = window.scrollY > 60; };
@@ -135,7 +136,7 @@
 	<div class="nav-inner">
 		<a href="/" class="logo">
 			<img src={faviconUrl} alt="Semberija.app" class="logo-icon" />
-			<img src="/Semberija%20app.png" alt="Semberija.app" class="logo-wordmark" />
+			<img src="/semberija-wordmark-svetlo.svg" alt="Semberija.app" class="logo-wordmark" />
 		</a>
 
 		<ul class="nav-links">
@@ -239,28 +240,6 @@
 		</div>
 
 		<div class="mobile-right">
-			<div class="lang-select" class:open={langOpen}>
-				<button class="lang-toggle" onclick={() => (langOpen = !langOpen)} aria-label="Switch language" aria-expanded={langOpen}>
-					{i18n.lang.toUpperCase()}
-				</button>
-				{#if langOpen}
-					<!-- svelte-ignore a11y_no_static_element_interactions -->
-					<!-- svelte-ignore a11y_click_events_have_key_events -->
-					<div class="lang-backdrop" onclick={() => (langOpen = false)}></div>
-					<div class="lang-dropdown">
-						{#each langs as [code, meta]}
-							<button
-								class="lang-option"
-								class:active={i18n.lang === code}
-								onclick={() => { i18n.setLang(code); langOpen = false; }}
-							>
-								<span class="lang-code">{code.toUpperCase()}</span>
-								<span class="lang-label">{meta.label}</span>
-							</button>
-						{/each}
-					</div>
-				{/if}
-			</div>
 			<button
 				class="hamburger"
 				class:open={mobileOpen}
@@ -304,6 +283,24 @@
 				{/each}
 			</div>
 
+			<div class="mobile-langs">
+				<p class="mobile-group-title" id="mobile-lang-title">{langTitle[i18n.lang] ?? langTitle.en}</p>
+				<div class="mobile-lang-row" role="group" aria-labelledby="mobile-lang-title">
+					{#each langs as [code, meta]}
+						<button
+							type="button"
+							class="mobile-lang"
+							class:active={i18n.lang === code}
+							aria-pressed={i18n.lang === code}
+							title={meta.label}
+							onclick={() => i18n.setLang(code)}
+						>
+							{code.toUpperCase()}
+						</button>
+					{/each}
+				</div>
+			</div>
+
 			<a href="/kontakt?tip=registracija" class="mobile-cta">{i18n.t.nav.listCta}</a>
 		</div>
 	{/if}
@@ -322,7 +319,21 @@
 		box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4);
 	}
 
+	/* Deeper pool of shade behind the logo, fading into the bar grey */
+	.nav::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: var(--nav-h);
+		width: min(560px, 75%);
+		background:
+			radial-gradient(ellipse 70% 160% at 12% 50%, rgba(12,15,19,0.78) 0%, rgba(18,22,26,0.45) 45%, transparent 78%);
+		pointer-events: none;
+	}
+
 	.nav-inner {
+		position: relative;
 		padding: 0 clamp(1.5rem, 3.5vw, 4rem);
 		height: var(--nav-h);
 		display: flex;
@@ -347,24 +358,26 @@
 		width: auto;
 		display: block;
 		transform: translateY(14px);
-		filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
+		filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45)) drop-shadow(0 0 10px rgba(255,255,255,0.08));
 		transition: transform 0.2s, filter 0.2s;
 	}
 
 	.logo:hover .logo-icon {
 		transform: translateY(12px);
-		filter: drop-shadow(0 10px 18px rgba(0,0,0,0.5));
+		filter: drop-shadow(0 10px 18px rgba(0,0,0,0.5)) drop-shadow(0 0 14px rgba(255,255,255,0.14));
 	}
 
 	.logo-wordmark {
 		height: 22px;
 		width: auto;
 		display: block;
-		transition: opacity 0.2s;
+		/* Crisp edge + soft halo so the light wordmark lifts off the bar */
+		filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55)) drop-shadow(0 0 12px rgba(255,255,255,0.14));
+		transition: filter 0.3s ease;
 	}
 
 	.logo:hover .logo-wordmark {
-		opacity: 0.85;
+		filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55)) drop-shadow(0 0 16px rgba(255,255,255,0.26));
 	}
 
 	@media (min-width: 480px) {
@@ -579,7 +592,52 @@
 		align-items: center;
 		gap: 0.75rem;
 		margin-left: auto;
+		flex-shrink: 0;
 	}
+
+	/* Phones: logo scales with the screen so the hamburger always fits */
+	@media (max-width: 479px) {
+		.nav-inner { padding: 0 1rem; gap: 0.75rem; }
+		.logo { gap: 0.6rem; margin-right: 0; min-width: 0; }
+		.logo-icon { --icon-h: clamp(80px, 25vw, 104px); height: var(--icon-h); transform: translateY(calc(var(--icon-h) / 2 - 38px)); }
+		.logo:hover .logo-icon { transform: translateY(calc(var(--icon-h) / 2 - 40px)); }
+		.logo-wordmark { height: clamp(16px, 6.8vw, 30px); }
+		.mobile-right .hamburger { padding: 12px 6px; width: 40px; height: 44px; box-sizing: border-box; }
+	}
+
+	/* Tablets and small laptops (hamburger layout): larger logo */
+	@media (min-width: 480px) and (max-width: 1479px) {
+		.logo-icon { height: 112px; transform: translateY(18px); }
+		.logo:hover .logo-icon { transform: translateY(16px); }
+		.logo-wordmark { height: 34px; }
+	}
+
+	/* Language switcher in the mobile menu */
+	.mobile-langs { padding: 0.9rem 0 0.25rem; }
+	.mobile-lang-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+	.mobile-lang {
+		min-width: 52px;
+		min-height: 44px;
+		padding: 0 0.9rem;
+		border: 0;
+		border-radius: 50px;
+		font-family: var(--font-sans);
+		font-size: 15px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: rgba(250,249,246,0.8);
+		background: rgba(255,255,255,0.06);
+		box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14);
+		cursor: pointer;
+		transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+	}
+	.mobile-lang:hover { color: #FAF9F6; background: rgba(255,255,255,0.12); }
+	.mobile-lang.active {
+		color: #FAF9F6;
+		background: linear-gradient(160deg, #c42a38, var(--cta));
+		box-shadow: 0 10px 22px -10px rgba(155,17,30,0.85), inset 0 1px 0 rgba(255,255,255,0.22);
+	}
+	.mobile-lang:focus-visible { outline: 2px solid #FAF9F6; outline-offset: 2px; }
 
 	.hamburger {
 		display: flex;
@@ -774,9 +832,12 @@
 		position: absolute;
 		left: 0; right: 0; bottom: 0;
 		height: 1px;
-		background: linear-gradient(90deg, transparent 0%, rgba(155,17,30,0.0) 8%, rgba(224,65,79,0.75) 50%, rgba(155,17,30,0.0) 92%, transparent 100%);
+		/* Starts after the logo area so no red line shows behind the logo */
+		background: linear-gradient(90deg, transparent 0%, transparent 32%, rgba(224,65,79,0.75) 62%, rgba(155,17,30,0.0) 94%, transparent 100%);
 		pointer-events: none;
 	}
+	/* Logo and links paint above the hairline */
+	.nav-inner { z-index: 1; }
 	.nav.scrolled {
 		background: rgba(52,58,64,0.94);
 		backdrop-filter: saturate(140%) blur(14px);

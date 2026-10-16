@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import faviconUrl from '$lib/assets/favicon.svg';
 	import { i18n } from '$lib/i18n.svelte';
 
 	let { children } = $props();
@@ -13,7 +12,11 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={faviconUrl} type="image/svg+xml" />
+	<!-- Favicon set generated from static/Semberija fav.svg -->
+	<link rel="icon" href="/favicon.ico" sizes="48x48" />
+	<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+	<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 </svelte:head>
 
 <Nav />
@@ -110,6 +113,12 @@
 	@media (min-width: 1480px) {
 		:global(:root) { --nav-h: 112px; }
 	}
+
+	/* Pill buttons (red main CTA + ghost) never grow wider than their container on phones;
+	   long labels wrap inside the pill instead of pushing the arrow out of the card. */
+	:global(.btn-main), :global(.btn-ghost) { max-width: 100%; }
+	:global(.btn-main > span:first-child) { min-width: 0; }
+	:global(.btn-main-arrow) { flex-shrink: 0; }
 
 	/* Base text size: 18px. All rem-based text and spacing scale from this. */
 	:global(html) {

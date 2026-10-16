@@ -98,12 +98,23 @@
 			ring.rotation.x = Math.PI / 2;
 			orbit.add(ring);
 
+			// Fit the camera to the scene's real extents: the orbit is wide (radius R plus half the crest)
+			// but shallow (map height, slight ring tilt), so width and height are fitted separately.
+			// A wide canvas therefore lets the models render larger without clipping the crest.
+			const EXT_X = R + 0.55;
+			const EXT_Y = 1.45;
+			const tanV = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
 			function resize() {
 				const w = host.clientWidth;
 				const h = host.clientHeight;
+				if (!w || !h) return;
 				renderer.setSize(w, h, false);
 				camera.aspect = w / h;
+				const d = Math.max(EXT_X / (tanV * camera.aspect), EXT_Y / tanV) + R * 0.35;
+				camera.position.set(0, d * 0.083, d);
+				camera.lookAt(0, 0, 0);
 				camera.updateProjectionMatrix();
+				if (reduceMotion) renderer.render(scene, camera);
 			}
 			resize();
 			const ro = new ResizeObserver(resize);

@@ -3,15 +3,21 @@
 // status: 'dev' = in development, 'soon' = coming soon, undefined = available.
 export type ModuleStatus = 'dev' | 'soon' | undefined;
 
-export const platformModules: { href: string; status?: ModuleStatus }[] = [
-	{ href: '/firme' },                  // 01 Business Directory
-	{ href: '/b2b' },                    // 02 B2B Matchmaking
-	{ href: '/investicije' },            // 03 Investment
-	{ href: '/b2b/dijaspora-mreza' },    // 04 International Business
-	{ href: '/umrezavanje' },            // 05 Business Enquiries
-	{ href: '/oglasi' },                 // 06 (promotion page; offers via ?tip=oglasavanje) Business Promotion
-	{ href: '/usluge' },                 // 07 Digital Services
-	{ href: '/kontakt?tip=ostalo', status: 'dev' }  // 08 Mobile App (early access request)
+// id: stable key (icons are chosen by id, so modules can be reordered safely).
+export type ModuleId =
+	| 'directory' | 'b2b' | 'investments' | 'funding' | 'international'
+	| 'enquiries' | 'promotion' | 'services' | 'app';
+
+export const platformModules: { id: ModuleId; href: string; status?: ModuleStatus }[] = [
+	{ id: 'directory', href: '/firme' },                     // 01 Business Directory
+	{ id: 'b2b', href: '/b2b' },                             // 02 B2B Matchmaking
+	{ id: 'investments', href: '/investicije' },             // 03 Investment (private investment opportunities)
+	{ id: 'funding', href: '/fondovi' },                     // 04 Funding & Incentives (public funding; separate from Investment)
+	{ id: 'international', href: '/b2b/dijaspora-mreza' },   // 05 International Business
+	{ id: 'enquiries', href: '/umrezavanje' },               // 06 Business Enquiries
+	{ id: 'promotion', href: '/oglasi' },                    // 07 (promotion page; offers via ?tip=oglasavanje) Business Promotion
+	{ id: 'services', href: '/usluge' },                     // 08 Digital Services
+	{ id: 'app', href: '/kontakt?tip=ostalo', status: 'dev' } // 09 Mobile App (early access request)
 ];
 
 // "How it works" steps, in the same order as i18n.t.howItWorks.steps.
