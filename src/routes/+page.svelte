@@ -153,6 +153,7 @@
 		<span class="hero-corner bl" aria-hidden="true"></span>
 		<span class="hero-corner br" aria-hidden="true"></span>
 		<span class="hero-coords" aria-hidden="true">44.76° N · 19.21° E</span>
+		<span class="ai-note">{i18n.t.aiVideo}</span>
 
 		<div class="hero-content">
 			<span class="hero-tag"><span class="hero-tag-dot"></span>{i18n.t.hero.tag}</span>
@@ -1139,7 +1140,22 @@
 		pointer-events: none;
 		display: none;
 	}
+	/* AI disclosure: bottom-right, mirrors the coordinates */
+	.ai-note {
+		position: absolute;
+		right: 1.25rem;
+		bottom: 0.6rem;
+		z-index: 2;
+		font-family: var(--font-sans);
+		font-size: 0.62rem;
+		font-weight: 500;
+		letter-spacing: 0.06em;
+		color: rgba(250,249,246,0.6);
+		text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+		pointer-events: none;
+	}
 	@media (min-width: 900px) {
+		.ai-note { right: calc(2rem + 52px); bottom: 2.1rem; font-size: 0.7rem; }
 		.hero-coords { display: block; }
 		.hero-corner { width: 36px; height: 36px; }
 		.hero-corner.tl, .hero-corner.tr { top: 2rem; }

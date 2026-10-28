@@ -61,11 +61,12 @@
 		</div>
 
 		<!-- Showreel in a browser frame -->
-		<div class="reel" aria-hidden="true">
-			<div class="reel-bar"><span></span><span></span><span></span><i>semberija.app / usluge</i></div>
-			<div class="reel-screen">
+		<div class="reel">
+			<div class="reel-bar" aria-hidden="true"><span></span><span></span><span></span><i>semberija.app / usluge</i></div>
+			<div class="reel-screen" aria-hidden="true">
 				<video src="/usluge.webm" autoplay muted loop playsinline></video>
 			</div>
+			<p class="reel-note">{i18n.t.aiVideo}</p>
 		</div>
 	</div>
 </section>
@@ -338,6 +339,16 @@
 	}
 	.reel-screen { aspect-ratio: 16 / 10; background: #0b1a33; }
 	.reel-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+	.reel-note {
+		margin: 0;
+		padding: 0.45rem 0.8rem;
+		border-top: 1px solid rgba(255,255,255,0.08);
+		font-size: 0.66rem;
+		font-weight: 500;
+		letter-spacing: 0.06em;
+		text-align: right;
+		color: rgba(255,255,255,0.5);
+	}
 
 	/* ─── SERVICES ─── */
 	.svc-body {

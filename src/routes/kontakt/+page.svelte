@@ -213,6 +213,7 @@
 						></video>
 						<span class="media-shade" aria-hidden="true"></span>
 						<span class="media-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+						<span class="media-ai">{i18n.t.aiVideo}</span>
 						<button
 							type="button"
 							class="media-toggle"
@@ -696,6 +697,17 @@
 		-webkit-backdrop-filter: blur(10px);
 		cursor: pointer;
 		transition: background 0.3s ease, color 0.3s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+	}
+	.media-ai {
+		position: absolute;
+		left: 44px;
+		bottom: 16px;
+		font-size: 0.66rem;
+		font-weight: 500;
+		letter-spacing: 0.06em;
+		color: rgba(250,249,246,0.7);
+		text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+		pointer-events: none;
 	}
 	.media-toggle:hover { color: var(--cta); background: #FAF9F6; transform: scale(1.06); }
 	.media-toggle:focus-visible { outline: 2px solid #FAF9F6; outline-offset: 3px; }

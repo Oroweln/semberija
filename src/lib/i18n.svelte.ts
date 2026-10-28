@@ -1,6 +1,7 @@
 export type Lang = 'sr' | 'en' | 'it' | 'ru' | 'de';
 
 const sr = {
+	aiVideo: 'Video generisan pomoću AI',
 	nav: {
 		home: 'Početna',
 		companies: 'Kompanije',
@@ -694,6 +695,7 @@ const sr = {
 };
 
 const en = {
+	aiVideo: 'AI-generated video',
 	nav: {
 		home: 'Home',
 		companies: 'Companies',
@@ -1387,6 +1389,7 @@ const en = {
 };
 
 const it = {
+	aiVideo: 'Video generato con IA',
 	nav: {
 		home: 'Home',
 		companies: 'Aziende',
@@ -2060,6 +2063,7 @@ const it = {
 };
 
 const ru = {
+	aiVideo: 'Видео создано с помощью ИИ',
 	nav: {
 		home: 'Главная',
 		companies: 'Компании',
@@ -2733,6 +2737,7 @@ const ru = {
 };
 
 const de = {
+	aiVideo: 'KI-generiertes Video',
 	nav: {
 		home: 'Startseite',
 		companies: 'Unternehmen',
