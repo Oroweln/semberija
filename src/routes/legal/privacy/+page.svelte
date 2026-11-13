@@ -24,13 +24,13 @@
 			<p>Semberija.app is a digital business platform designed to connect companies, services, and opportunities within the Semberija region and the city of Bijeljina.</p>
 			<p>The platform is owned and operated by:</p>
 			<div class="company-block">
-				<strong>ZOE MILANO d.o.o.</strong><br />
+				<strong>ZOE&nbsp;MILANO&nbsp;d.o.o.</strong><br />
 				Belgrade, Serbia<br />
 				Tax ID: 110155135<br />
 				Company Registration Number: 21307548<br />
 				Established: 26.07.2017
 			</div>
-			<p>ZOE MILANO d.o.o. is responsible for the operation and management of the platform and ensures that personal data is handled in accordance with applicable privacy regulations.</p>
+			<p>ZOE&nbsp;MILANO&nbsp;d.o.o. is responsible for the operation and management of the platform and ensures that personal data is handled in accordance with applicable privacy regulations.</p>
 
 			<h2>2. Information We Collect</h2>
 			<p>When users interact with the platform we may collect the following information.</p>

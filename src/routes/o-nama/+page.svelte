@@ -210,7 +210,7 @@
 							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
 						</span>
 					</a>
-					<a href="/oglasi" class="btn-ghost">{i18n.t.joinCta.promote}</a>
+					<a href="/promocija-kompanija" class="btn-ghost">{i18n.t.joinCta.promote}</a>
 					<a href="/kontakt" class="btn-ghost">{a.cta.contact}</a>
 				</div>
 			</div>

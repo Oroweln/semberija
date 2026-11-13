@@ -89,7 +89,7 @@
 {/snippet}
 
 {#snippet backLink()}
-	<a href="/usluge" class="back-link">
+	<a href="/digitalne-usluge" class="back-link">
 		<span class="back-arrow" aria-hidden="true">
 			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
 		</span>
@@ -155,7 +155,7 @@
 				<span class="section-kicker others-kicker">{i18n.t.services.label}</span>
 				<nav class="others" aria-label={i18n.t.services.label}>
 					{#each others as o (o.slug)}
-						<a href="/usluge/{o.slug}" class="other">
+						<a href="/digitalne-usluge/{o.slug}" class="other">
 							<span class="other-icon">{@render svcIcon(o.i, 16)}</span>
 							<span class="other-name">{o.name}</span>
 						</a>

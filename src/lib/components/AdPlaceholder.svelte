@@ -10,7 +10,7 @@
 		href?: string;
 	}
 
-	let { width, height, label, variant = 'banner', tone = 'light', href = '/oglasi' }: Props = $props();
+	let { width, height, label, variant = 'banner', tone = 'light', href = '/promocija-kompanija' }: Props = $props();
 
 	// Standard IAB formats shown on the chip; min-heights keep the slot proportions on screen
 	const formats: Record<string, { dims: string; minH: string }> = {

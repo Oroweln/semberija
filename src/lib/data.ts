@@ -4,9 +4,13 @@ export const visibleFirmSlugs = ['orao', 'rtv-bn', 'mlijekoprodukt'];
 // All other listings are compiled from publicly available sources.
 export const verifiedFirmSlugs: string[] = [];
 
-// The networking posts below and the sample opportunities on /prilike are
+// The networking posts below and the sample opportunities on /poslovne-prilike are
 // placeholders, not real submissions. They stay hidden until real content exists.
 export const showSampleContent = false;
+
+// /poslovni-direktorijum: real company listings stay hidden (the data below is kept) and
+// sample profile cards show how listings will look. Set to true to show the companies again.
+export const showDirectoryCompanies = false;
 
 export const domesticFirms = [
 	{
@@ -2154,7 +2158,7 @@ export const b2bItemSlugs = [
 	'pronadjite-distributera',
 	'pronadjite-dobavljaca',
 	'pronadjite-investitora',
-	'dijaspora-mreza'
+	'medjunarodna-saradnja'
 ] as const;
 
 export const networkingPosts = [

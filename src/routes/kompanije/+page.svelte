@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
-	import { investors, categories } from '$lib/data';
-	import { visibleDomestic, matches, locationOptions, sectors, sectorCount } from '$lib/search';
+	import { investors } from '$lib/data';
+	import { visibleDomestic, matches, industryOptions, locationOptions, sectors, sectorCount } from '$lib/search';
+	import FilterSelect from '$lib/components/FilterSelect.svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { reveal } from '$lib/actions/reveal';
@@ -11,25 +12,27 @@
 
 	let search = $state('');
 	let activeCategory = $state('');
-	let activeCity = $state('');
+	let activeCity = $state(''); // exact city, from older ?city= links
+	let activeLoc = $state('');
 	let activeSector = $state('');
 	let activeTab = $state<'local' | 'investors'>('local');
 
-	// Read filters from the URL (homepage search panel and category links use ?q=&cat=&city=)
+	// Read filters from the URL (homepage search panel uses ?q=&cat=&loc=; category links use ?cat=<category>)
 	$effect(() => {
 		const params = $page.url.searchParams;
 		search = params.get('q') ?? '';
 		activeCategory = params.get('cat') ?? '';
 		activeCity = params.get('city') ?? '';
+		activeLoc = params.get('loc') ?? '';
 		activeSector = params.get('sector') ?? '';
 		// Show the tab where the results are
-		const f = { q: search, cat: activeCategory, city: activeCity, sector: activeSector };
+		const f = { q: search, cat: activeCategory, city: activeCity, loc: activeLoc, sector: activeSector };
 		const local = visibleDomestic.filter((c) => matches(c, f, i18n.lang)).length;
 		const inv = investors.filter((c) => matches(c, f, i18n.lang)).length;
 		activeTab = local === 0 && inv > 0 ? 'investors' : 'local';
 	});
 
-	// "Pretraga" in the nav links to /firme#pretraga: bring the search bar into view below the
+	// "Pretraga" in the nav links to /kompanije#pretraga: bring the search bar into view below the
 	// fixed nav, focus it and briefly highlight it
 	let searchInput: HTMLInputElement;
 	let filterBar: HTMLDivElement;
@@ -57,11 +60,12 @@
 		activeTab = tab;
 		activeCategory = '';
 		activeCity = '';
+		activeLoc = '';
 		search = '';
 	}
 
 	function clearSector() {
-		goto('/firme', { replaceState: true, noScroll: true, keepFocus: true });
+		goto('/kompanije', { replaceState: true, noScroll: true, keepFocus: true });
 	}
 
 	// Reset every filter; drop URL params too so a reload doesn't bring them back
@@ -69,23 +73,21 @@
 		search = '';
 		activeCategory = '';
 		activeCity = '';
-		if ($page.url.search) goto('/firme', { replaceState: true, noScroll: true, keepFocus: true });
+		activeLoc = '';
+		if ($page.url.search) goto('/kompanije', { replaceState: true, noScroll: true, keepFocus: true });
 	}
 
-	const investorCategories = $derived(
-		[...new Set(investors.map(c => i18n.lang === 'sr' ? c.category_sr : c.category_en))].sort()
-	);
-
-	const filters = $derived({ q: search, cat: activeCategory, city: activeCity, sector: activeSector });
-	const anyFilter = $derived(!!(search || activeCategory || activeCity || activeSector));
+	const filters = $derived({ q: search, cat: activeCategory, city: activeCity, loc: activeLoc, sector: activeSector });
+	const anyFilter = $derived(!!(search || activeCategory || activeCity || activeLoc || activeSector));
 	const filteredLocal = $derived(visibleDomestic.filter((c) => matches(c, filters, i18n.lang)));
 	const filteredInvestors = $derived(investors.filter((c) => matches(c, filters, i18n.lang)));
 
-	// Location options for the current tab, taken from the data
-	const tabLocations = $derived(locationOptions(activeTab === 'local' ? visibleDomestic : investors));
+	// Industry and location options for the current tab (only those with companies)
+	const tabList = $derived(activeTab === 'local' ? visibleDomestic : investors);
+	const tabIndustries = $derived(industryOptions(i18n.lang, tabList));
+	const tabLocations = $derived(locationOptions(i18n.lang, tabList));
 
 	const filtered = $derived(activeTab === 'local' ? filteredLocal : filteredInvestors);
-	const activeCats = $derived(activeTab === 'local' ? categories.slice(0, 8) : null);
 </script>
 
 <svelte:head>
@@ -148,44 +150,20 @@
 				/>
 			</div>
 
-			<div class="fb-field fb-select">
+			<div class="fb-field fb-select" data-fs-anchor>
 				<span class="fb-tile" aria-hidden="true">
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
 				</span>
-				<div class="fb-select-body">
-					<label for="f-cat">{i18n.t.bizSearch.industry}</label>
-					<select id="f-cat" bind:value={activeCategory}>
-						<option value="">{i18n.t.bizSearch.allIndustries}</option>
-						{#if activeTab === 'local' && activeCats}
-							{#each activeCats as cat}
-								<option value={i18n.lang === 'sr' ? cat.name_sr : cat.name_en}>
-									{i18n.lang === 'sr' ? cat.name_sr : cat.name_en}
-								</option>
-							{/each}
-						{:else}
-							{#each investorCategories as cat}
-								<option value={cat}>{cat}</option>
-							{/each}
-						{/if}
-					</select>
-				</div>
+				<FilterSelect id="f-cat" label={i18n.t.bizSearch.industry} allLabel={i18n.t.bizSearch.allIndustries} options={tabIndustries} bind:value={activeCategory} />
 				<svg class="fb-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 			</div>
 
 			{#if tabLocations.length > 1}
-				<div class="fb-field fb-select">
+				<div class="fb-field fb-select" data-fs-anchor>
 					<span class="fb-tile" aria-hidden="true">
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 					</span>
-					<div class="fb-select-body">
-						<label for="f-city">{i18n.t.bizSearch.location}</label>
-						<select id="f-city" bind:value={activeCity}>
-							<option value="">{i18n.t.bizSearch.allLocations}</option>
-							{#each tabLocations as city}
-								<option value={city}>{city}</option>
-							{/each}
-						</select>
-					</div>
+					<FilterSelect id="f-loc" label={i18n.t.bizSearch.location} allLabel={i18n.t.bizSearch.allLocations} options={tabLocations} bind:value={activeLoc} />
 					<svg class="fb-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 				</div>
 			{/if}
@@ -195,7 +173,7 @@
 			<div class="quick">
 				<span class="quick-label">{i18n.t.bizSearch.popular}</span>
 				{#each quickSectors as sector (sector.id)}
-					<a href="/firme?sector={sector.id}" class="quick-chip">
+					<a href="/kompanije?sector={sector.id}" class="quick-chip">
 						{i18n.t.ecosystem.sectors[sector.id]}
 						<span class="quick-count">{sector.count}</span>
 					</a>
@@ -251,6 +229,13 @@
 				{/if}
 			</div>
 		{:else}
+			{#if activeTab === 'local'}
+				<!-- These cards show how profiles look; they are not confirmed registered members -->
+				<p class="companies-examples">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></svg>
+					{i18n.t.companies.examplesLabel}
+				</p>
+			{/if}
 			<div class="companies-grid">
 				{#each filtered as company (company.slug)}
 					<article class="company-card" style="--brand: {company.color}">
@@ -307,7 +292,7 @@
 						<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
 					</span>
 				</a>
-				<a href="/kontakt" class="vb-ghost">{i18n.t.ui.contactUs}</a>
+				<a href="/b2b-povezivanje" class="vb-ghost">{i18n.t.companies.visibilityExplore}</a>
 			</div>
 		</div>
 	</div>
@@ -517,30 +502,8 @@
 		color: #FAF9F6;
 		background: linear-gradient(150deg, #1c5aa8 0%, #0b3466 100%);
 	}
-	.fb-select-body { position: relative; display: flex; flex-direction: column; flex: 1; min-width: 0; }
-	.fb-select-body label {
-		font-size: 0.66rem;
-		font-weight: 700;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: #8a919c;
-	}
-	.fb-select-body select {
-		width: 100%;
-		min-width: 0;
-		appearance: none;
-		-webkit-appearance: none;
-		border: 0;
-		outline: none;
-		background: transparent;
-		font: inherit;
-		font-size: 0.98rem;
-		font-weight: 600;
-		color: var(--navy);
-		cursor: pointer;
-		padding: 0.1rem 1.5rem 0.1rem 0;
-	}
-	.fb-chevron { position: absolute; right: 1rem; color: #8a919c; pointer-events: none; }
+	.fb-chevron { position: absolute; right: 1rem; color: #8a919c; pointer-events: none; transition: transform 0.2s ease; }
+	.fb-select:has(:global([aria-expanded='true'])) .fb-chevron { transform: rotate(180deg); }
 
 	/* Arrival from the nav "Pretraga" link: a soft red ring pulses around the bar */
 	.filter-bar.spotlight { animation: bar-spotlight 1.3s ease-out 2; }
@@ -716,6 +679,24 @@
 		font-variant-numeric: tabular-nums;
 	}
 	.results-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(11,52,102,0.18), transparent); }
+
+	.companies-examples {
+		position: relative;
+		display: flex;
+		width: fit-content;
+		align-items: center;
+		gap: 0.45rem;
+		margin: 0 0 1rem;
+		padding: 0.35rem 0.85rem;
+		border-radius: 50px;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--steel);
+		background: rgba(11,52,102,0.06);
+		box-shadow: inset 0 0 0 1px rgba(11,52,102,0.1);
+	}
 
 	.companies-grid {
 		display: grid;

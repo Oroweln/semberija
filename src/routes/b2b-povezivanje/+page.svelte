@@ -72,7 +72,7 @@
 			</span>
 			{#each items as item, i (item.slug)}
 				<a
-					href="/b2b/{item.slug}"
+					href="/b2b-povezivanje/{item.slug}"
 					class="net-node"
 					class:active={hovered === i}
 					style="left:{nodes[i].x}%; top:{nodes[i].y}%"
@@ -95,7 +95,7 @@
 		<div class="items-grid">
 			{#each items as item, i (item.slug)}
 				<a
-					href="/b2b/{item.slug}"
+					href="/b2b-povezivanje/{item.slug}"
 					class="item-card"
 					class:featured={i === 0}
 					onmouseenter={() => (hovered = i)}

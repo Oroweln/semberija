@@ -81,7 +81,7 @@
 						<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
 					</span>
 				</a>
-				<a href="/b2b" class="btn-ghost">{i18n.t.nav.b2b}</a>
+				<a href="/b2b-povezivanje" class="btn-ghost">{i18n.t.nav.b2b}</a>
 			</div>
 		{/if}
 	</div>
@@ -328,7 +328,7 @@
 	.btn-ghost:hover { background: rgba(255,255,255,0.1); box-shadow: inset 0 0 0 1px #FAF9F6; }
 	.btn-ghost:focus-visible { outline: 2px solid #FAF9F6; outline-offset: 3px; }
 
-	/* Filter bar (same look as /firme) */
+	/* Filter bar (same look as /kompanije) */
 	.filter-bar {
 		max-width: 640px;
 		padding: 0.5rem;

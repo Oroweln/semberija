@@ -159,8 +159,8 @@
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
 					</span>
 					<span class="board-text">
-						<span class="board-k">{i18n.t.ui.location}</span>
-						<span class="board-v">Bijeljina, Republika Srpska, BiH</span>
+						<span class="board-k">{i18n.t.ui.headquarters}</span>
+						<span class="board-v">{i18n.t.ui.headquartersCity}</span>
 					</span>
 				</div>
 				<div class="board-tags">

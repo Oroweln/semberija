@@ -1,10 +1,14 @@
-// Shared company search used by the homepage search panel and /firme.
+// Shared company search used by the homepage search panel and /kompanije.
 // Only companies already shown on the site are searchable: the approved
 // domestic firms (visibleFirmSlugs) and all investors/partners.
 import { domesticFirms, investors, visibleFirmSlugs } from '$lib/data';
+import type { Lang } from '$lib/i18n.svelte';
+import { industries, industryById, industryOfCategory, locations, inLocation } from '$lib/taxonomy';
 
 export type Company = (typeof domesticFirms)[number];
-export type SearchFilters = { q: string; cat: string; city: string; sector?: string };
+// cat: main industry id (see taxonomy.ts), or an original category name (subcategory links)
+// loc: location id (country / Republika Srpska / Semberija); city: exact city (older links)
+export type SearchFilters = { q: string; cat: string; city: string; loc?: string; sector?: string };
 
 export const visibleDomestic: Company[] = domesticFirms.filter((c) => visibleFirmSlugs.includes(c.slug));
 
@@ -42,37 +46,55 @@ function descOf(c: Company, lang: string) {
 	return lang === 'sr' ? c.desc_sr : c.desc_en;
 }
 
-// Text search covers name, industry and description (where products and services are described).
+// Text search covers name, industry (main and original) and description (where products and services are described).
 export function matches(c: Company, f: SearchFilters, lang: string) {
 	const q = f.q.trim().toLowerCase();
+	const main = industryOfCategory(c.category_sr)?.label[lang as Lang];
 	const matchText =
 		!q ||
 		c.name.toLowerCase().includes(q) ||
 		categoryOf(c, lang).toLowerCase().includes(q) ||
+		(!!main && main.toLowerCase().includes(q)) ||
 		descOf(c, lang).toLowerCase().includes(q);
-	const matchCat = !f.cat || categoryOf(c, lang) === f.cat;
-	const matchCity = !f.city || c.city === f.city;
-	const matchSector = !f.sector || inSector(c, f.sector);
-	return matchText && matchCat && matchCity && matchSector;
+	return matchText && matchesCategory(c, f.cat) && (!f.city || c.city === f.city) && (!f.loc || inLocation(c.city, f.loc)) && (!f.sector || inSector(c, f.sector));
 }
 
-const sortedUnique = (values: string[]) => [...new Set(values)].sort((a, b) => a.localeCompare(b));
-
-// Filter options come straight from the data, so only real values are offered.
-export function industryOptions(lang: string, list: Company[] = [...visibleDomestic, ...investors]) {
-	return sortedUnique(list.map((c) => categoryOf(c, lang)));
+export function matchesCategory(c: Company, cat: string) {
+	if (!cat) return true;
+	const ind = industryById(cat);
+	return ind ? ind.cats.includes(c.category_sr) : c.category_sr === cat || c.category_en === cat;
 }
 
-export function locationOptions(list: Company[] = [...visibleDomestic, ...investors]) {
-	return sortedUnique(list.map((c) => c.city));
+export type FilterOption = { value: string; label: string; count: number; keywords?: string };
+
+const allCompanies = () => [...visibleDomestic, ...investors];
+
+// Main industries in their fixed order, only those with companies in `list`.
+// `keywords` holds the original categories so the dropdown search also finds subcategories.
+export function industryOptions(lang: string, list: Company[] = allCompanies()): FilterOption[] {
+	return industries
+		.map((ind) => {
+			const members = list.filter((c) => ind.cats.includes(c.category_sr));
+			const keywords = [...new Set(members.flatMap((c) => [c.category_sr, c.category_en]))].join(' ');
+			return { value: ind.id, label: ind.label[lang as Lang], count: members.length, keywords };
+		})
+		.filter((o) => o.count > 0);
 }
 
-// Build the /firme URL for a search.
+// Locations in their fixed order, only those with companies in `list`.
+export function locationOptions(lang: string, list: Company[] = allCompanies()): FilterOption[] {
+	return locations
+		.map((loc) => ({ value: loc.id, label: loc.label[lang as Lang], count: list.filter((c) => inLocation(c.city, loc.id)).length }))
+		.filter((o) => o.count > 0);
+}
+
+// Build the /kompanije URL for a search.
 export function searchUrl(f: SearchFilters) {
 	const params = new URLSearchParams();
 	if (f.q.trim()) params.set('q', f.q.trim());
 	if (f.cat) params.set('cat', f.cat);
+	if (f.loc) params.set('loc', f.loc);
 	if (f.city) params.set('city', f.city);
 	const qs = params.toString();
-	return '/firme' + (qs ? '?' + qs : '');
+	return '/kompanije' + (qs ? '?' + qs : '');
 }

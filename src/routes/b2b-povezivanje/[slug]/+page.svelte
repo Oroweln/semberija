@@ -10,7 +10,7 @@
 
 	const index = $derived((b2bItemSlugs as readonly string[]).indexOf($page.params.slug ?? ''));
 	// The diaspora page shows the 3D Semberija scene in the hero instead of the number badge
-	const withScene = $derived($page.params.slug === 'dijaspora-mreza');
+	const withScene = $derived($page.params.slug === 'medjunarodna-saradnja');
 	const item = $derived(index >= 0 ? i18n.t.b2b.items[index] : null);
 	// The other services, for the "more services" list
 	const others = $derived(
@@ -113,7 +113,7 @@
 		<span class="top-watermark" class:left={withScene} aria-hidden="true">{@render b2bIcon(index, 420)}</span>
 		<div class="container hero-grid" class:with-scene={withScene}>
 			<div>
-				<a href="/b2b" class="back-link">
+				<a href="/b2b-povezivanje" class="back-link">
 					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
 					{i18n.t.b2b.detailBack}
 				</a>
@@ -200,7 +200,7 @@
 				<span class="section-kicker">{i18n.t.b2b.label}</span>
 				<nav class="others" aria-label={i18n.t.b2b.label}>
 					{#each others as o (o.slug)}
-						<a href="/b2b/{o.slug}" class="other">
+						<a href="/b2b-povezivanje/{o.slug}" class="other">
 							<span class="other-icon">{@render b2bIcon(o.i, 18)}</span>
 							<span class="other-title">{o.title}</span>
 							<span class="other-arrow" aria-hidden="true">
@@ -291,7 +291,7 @@
 		<div class="container">
 			<span class="page-label"><span class="page-label-dot"></span>{i18n.t.b2b.label}</span>
 			<h1>{i18n.t.ui.noResultsShort}</h1>
-			<a href="/b2b" class="back-link">
+			<a href="/b2b-povezivanje" class="back-link">
 				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
 				{i18n.t.b2b.detailBack}
 			</a>

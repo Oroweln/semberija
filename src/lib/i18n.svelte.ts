@@ -47,11 +47,13 @@ const sr = {
 		allIndustries: 'Sve djelatnosti',
 		allLocations: 'Sve lokacije',
 		cta: 'Pretraži kompanije',
-		popular: 'Popularni sektori:'
+		popular: 'Popularni sektori:',
+		filterSearch: 'Pretražite listu…',
+		noOptions: 'Nema rezultata'
 	},
 	ecosystem: {
 		label: 'Sektori',
-		heading: 'Poslovni ekosistem Bijeljine i Semberije',
+		heading: 'Poslovni ekosistem',
 		desc: 'Od poljoprivrede i proizvodnje do trgovine, logistike, tehnologije i profesionalnih usluga — istražite kompanije i sektore koji oblikuju privredu našeg kraja.',
 		companies: 'Kompanije',
 		explore: 'Istraži sektor',
@@ -85,9 +87,9 @@ const sr = {
 		statusHeading: 'Trenutno stanje',
 		statusDesc: 'Na platformi trenutno ne objavljujemo pojedinačne pozive. Kada budu dodati, svaki će sadržati zvanični izvor, uslove za učešće, rok i datum posljednje provjere.',
 		disclaimerHeading: 'Važno',
-		disclaimer: 'Semberija.app i ZOE MILANO nisu institucija koja dodjeljuje sredstva i ne garantuju odobrenje. Uslove i rokove uvijek provjerite kod zvaničnog izvora poziva.',
-		zoeHeading: 'Digitalizacija uz ZOE MILANO',
-		zoeDesc: 'Za projekte digitalizacije koji ispunjavaju uslove poziva, ZOE MILANO može pružiti relevantne usluge digitalnog razvoja — web, aplikacije, automatizaciju i sisteme.',
+		disclaimer: 'Semberija.app i ZOE MILANO nisu institucija koja dodjeljuje sredstva i ne garantuju odobrenje. Uslove i rokove uvijek provjerite kod zvaničnog izvora poziva.',
+		zoeHeading: 'Digitalizacija uz ZOE MILANO',
+		zoeDesc: 'Za projekte digitalizacije koji ispunjavaju uslove poziva, ZOE MILANO može pružiti relevantne usluge digitalnog razvoja — web, aplikacije, automatizaciju i sisteme.',
 		zoeCta: 'Digitalne usluge',
 		premiumTag: 'Premium · BandiHub',
 		premiumNote: 'Detaljne informacije o fondovima, javnim pozivima i digitalnim vaučerima biće dostupne Premium članovima, uz mogućnost pristupa putem mobilne aplikacije.',
@@ -111,7 +113,7 @@ const sr = {
 	platform: {
 		label: 'Platforma',
 		heading: 'Jedna platforma. Više poslovnih mogućnosti.',
-		desc: 'Semberija.app povezuje kompanije iz Bijeljine i Semberije sa poslovnim partnerima, investitorima i međunarodnim tržištima kroz jedinstven digitalni ekosistem.',
+		desc: 'Semberija.app povezuje kompanije iz Republike Srpske sa poslovnim partnerima, investitorima i međunarodnim tržištima kroz jedinstven digitalni ekosistem.',
 		more: 'Saznaj više o platformi',
 		statusDev: 'U razvoju',
 		statusSoon: 'Uskoro',
@@ -163,9 +165,9 @@ const sr = {
 	regions: {
 		label: 'Regionalne platforme',
 		heading: 'Povezujemo regije. Otvaramo nova tržišta.',
-		desc: 'Semberija.app dio je šire vizije kompanije ZOE MILANO, koja kroz razvoj regionalnih digitalnih platformi povezuje kompanije, tržišta i međunarodne poslovne mogućnosti.',
+		desc: 'Semberija.app dio je šire vizije kompanije ZOE MILANO, koja kroz razvoj regionalnih digitalnih platformi povezuje kompanije, tržišta i međunarodne poslovne mogućnosti.',
 		cta: 'Posjeti platformu',
-		attribution: 'Digitalne platforme razvija ZOE MILANO.',
+		attribution: 'Digitalne platforme razvija ZOE MILANO.',
 		prev: 'Prethodna platforma',
 		next: 'Sljedeća platforma',
 		newTab: '(otvara se u novom prozoru)',
@@ -219,10 +221,10 @@ const sr = {
 		founder: {
 			label: 'O osnivaču',
 			name: 'Zorana Petrović',
-			role: 'Osnivač Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			role: 'Osnivač Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
 			places: 'Beograd · Milano · Bijeljina',
 			body: [
-				'Semberija.app nastala je na inicijativu Zorane Petrović, preduzetnice i kreativne strateginje, osnivača i direktora kompanije ZOE MILANO.',
+				'Semberija.app nastala je na inicijativu Zorane Petrović, preduzetnice i kreativne strateginje, osnivača i direktora kompanije ZOE MILANO.',
 				'Odrastala je i školovala se u Milanu, a njeno profesionalno iskustvo obuhvata kreativni razvoj, digitalne platforme, marketing i međunarodne projekte.',
 				'Sa Bijeljinom je povezuju porodični korijeni. Njena majka, prof. Zorica Petrović, rođena je u Bijeljini, kao i drugi članovi njene porodice. Porodično nasljeđe uključuje i baku, odlikovanu za hrabrost tokom Drugog svjetskog rata.',
 				'Zorana godinama dolazi u Bijeljinu i kroz lično iskustvo prepoznaje potencijal lokalne proizvodnje, preduzetništva i poslovnog razvoja.',
@@ -233,10 +235,10 @@ const sr = {
 			quoteRole: 'Osnivač, Semberija.app'
 		},
 		zoe: {
-			label: 'ZOE MILANO',
+			label: 'ZOE MILANO',
 			heading: 'Ideja, kreativnost i tehnologija',
 			body: [
-				'Semberija.app je projekat kompanije ZOE MILANO d.o.o. iz Beograda, koja razvija digitalne platforme, mobilne aplikacije, B2B ekosisteme i međunarodne poslovne projekte.',
+				'Semberija.app je projekat kompanije ZOE MILANO d.o.o. iz Beograda, koja razvija digitalne platforme, mobilne aplikacije, B2B ekosisteme i međunarodne poslovne projekte.',
 				'Kompanija povezuje kreativnu strategiju, tehnologiju, digitalni marketing i poslovni razvoj, sa ciljem stvaranja savremenih digitalnih rješenja za kompanije i tržišta.'
 			],
 			credits: [
@@ -246,10 +248,10 @@ const sr = {
 				},
 				{
 					label: 'Razvoj platforme',
-					value: 'ZOE MILANO d.o.o.'
+					value: 'ZOE MILANO d.o.o.'
 				}
 			],
-			cta: 'Posjetite ZOE MILANO'
+			cta: 'Posjetite ZOE MILANO'
 		},
 		future: {
 			label: 'Naša budućnost',
@@ -341,8 +343,8 @@ const sr = {
 		platformTitle: 'Platforma | Semberija.app — Poslovno povezivanje i investicije'
 	},
 	legal: {
-		statement: 'Semberija.app je nezavisna privatna digitalna poslovna platforma koju razvija ZOE MILANO d.o.o. Nije zvanični portal Grada Bijeljina niti organa javne vlasti.',
-		copyright: '© 2026 Semberija.app — Razvija i upravlja ZOE MILANO d.o.o.',
+		statement: 'Semberija.app je nezavisna privatna digitalna poslovna platforma koju razvija ZOE MILANO d.o.o. Nije zvanični portal Grada Bijeljina niti organa javne vlasti.',
+		copyright: '© 2026 Semberija.app — Razvoj i upravljanje: ZOE MILANO d.o.o.',
 		langNotice: 'Pravni dokumenti su trenutno dostupni na engleskom jeziku. Prevod na srpski je u pripremi.',
 		privacy: 'Privatnost',
 		terms: 'Uslovi korišćenja',
@@ -603,9 +605,15 @@ const sr = {
 		localTab: 'Domaće firme',
 		investorsTab: 'Investitori i partneri',
 		localSub: 'Kompanije registrovane u Bijeljini i Semberiji',
+		examplesLabel: 'Primjeri profila',
+		previewName: 'Naziv kompanije',
+		previewCity: 'Grad, država',
+		previewDesc: 'Kratak opis kompanije — djelatnost, ključni proizvodi i usluge, godina osnivanja, broj zaposlenih, sertifikati i tržišta na kojima posluje.',
+		previewNote: 'Profili kompanija biće uskoro objavljeni. Ovako će izgledati kartica vaše kompanije u direktorijumu.',
 		investorsSub: 'Kompanije van regije otvorene za B2B saradnju',
-		visibilityHeading: 'Učinite svoju firmu vidljivom',
-		visibilitySub: 'Registrujte svoju firmu na platformi i budite vidljivi lokalnim i regionalnim partnerima.'
+		visibilityHeading: 'Povezujemo kompanije. Otvaramo nove mogućnosti.',
+		visibilitySub: 'Kroz B2B matchmaking, digitalne inovacije i međunarodnu saradnju povezujemo kompanije iz Bijeljine i Semberije sa poslovnim partnerima i novim tržištima.',
+		visibilityExplore: 'Istraži mogućnosti'
 	},
 	cta: {
 		heading: 'Pridruži se poslovnoj mreži',
@@ -614,7 +622,7 @@ const sr = {
 	},
 	footer: {
 		tagline: 'Regionalna poslovna mreža.',
-		desc: 'Semberija.app je moderni regionalni poslovni ekosistem koji povezuje kompanije, investicije, dijasporu i digitalne prilike.',
+		desc: 'Semberija.app je regionalna digitalna poslovna platforma koja povezuje kompanije, investitore i dijasporu, podstiče B2B saradnju i otvara mogućnosti za međunarodno poslovanje.',
 		colPlatform: 'Platforma',
 		colCompany: 'Kompanija',
 		colContact: 'Kontakt',
@@ -643,6 +651,8 @@ const sr = {
 		requestQuote: 'Zatraži ponudu',
 		freeConsult: 'Besplatna konsultacija',
 		location: 'Lokacija',
+		headquarters: 'Sjedište kompanije',
+		headquartersCity: 'Beograd, Srbija',
 		categories: 'Kategorije djelatnosti',
 		categoriesSub: 'Pronađite firme prema sektoru i vrsti djelatnosti',
 		companiesLocal: 'Firme u Bijeljini i Semberiji',
@@ -741,11 +751,13 @@ const en = {
 		allIndustries: 'All industries',
 		allLocations: 'All locations',
 		cta: 'Search Companies',
-		popular: 'Popular sectors:'
+		popular: 'Popular sectors:',
+		filterSearch: 'Search the list…',
+		noOptions: 'No matches'
 	},
 	ecosystem: {
 		label: 'Sectors',
-		heading: 'The Business Ecosystem of Bijeljina and Semberija',
+		heading: 'Business Ecosystem',
 		desc: 'From agriculture and manufacturing to trade, logistics, technology and professional services, explore the companies and industries shaping the region\'s economy.',
 		companies: 'Companies',
 		explore: 'Explore sector',
@@ -779,9 +791,9 @@ const en = {
 		statusHeading: 'Current status',
 		statusDesc: 'We do not currently publish individual calls on the platform. When they are added, each will include the official source, eligibility requirements, the deadline and the date it was last verified.',
 		disclaimerHeading: 'Important',
-		disclaimer: 'Semberija.app and ZOE MILANO are not a funding authority and do not guarantee approval. Always check conditions and deadlines with the official source of the call.',
-		zoeHeading: 'Digitalisation with ZOE MILANO',
-		zoeDesc: 'For digitalisation projects that meet a call\'s conditions, ZOE MILANO can provide relevant digital development services — websites, apps, automation and systems.',
+		disclaimer: 'Semberija.app and ZOE MILANO are not a funding authority and do not guarantee approval. Always check conditions and deadlines with the official source of the call.',
+		zoeHeading: 'Digitalisation with ZOE MILANO',
+		zoeDesc: 'For digitalisation projects that meet a call\'s conditions, ZOE MILANO can provide relevant digital development services — websites, apps, automation and systems.',
 		zoeCta: 'Digital services',
 		premiumTag: 'Premium · BandiHub',
 		premiumNote: 'Detailed funding opportunities, grant calls and digital vouchers will be available to Premium members, with access also planned through the mobile app.',
@@ -805,7 +817,7 @@ const en = {
 	platform: {
 		label: 'Platform',
 		heading: 'One Platform. More Business Opportunities.',
-		desc: 'Semberija.app connects companies from Bijeljina and the wider Semberija region with business partners, investors and international markets through an integrated digital ecosystem.',
+		desc: 'Semberija.app connects companies from Republika Srpska with business partners, investors and international markets through an integrated digital ecosystem.',
 		more: 'Learn more about the platform',
 		statusDev: 'In development',
 		statusSoon: 'Coming soon',
@@ -857,9 +869,9 @@ const en = {
 	regions: {
 		label: 'Regional platforms',
 		heading: 'Connecting Regions. Opening New Markets.',
-		desc: 'Semberija.app is part of ZOE MILANO\'s broader vision of developing regional digital platforms that connect companies, markets and international business opportunities.',
+		desc: 'Semberija.app is part of ZOE MILANO\'s broader vision of developing regional digital platforms that connect companies, markets and international business opportunities.',
 		cta: 'Visit Platform',
-		attribution: 'Digital platforms developed by ZOE MILANO.',
+		attribution: 'Digital platforms developed by ZOE MILANO.',
 		prev: 'Previous platform',
 		next: 'Next platform',
 		newTab: '(opens in a new tab)',
@@ -913,10 +925,10 @@ const en = {
 		founder: {
 			label: 'About the Founder',
 			name: 'Zorana Petrović',
-			role: 'Founder, Semberija.app | Founder & CEO, ZOE MILANO',
+			role: 'Founder, Semberija.app | Founder & CEO, ZOE MILANO',
 			places: 'Belgrade · Milan · Bijeljina',
 			body: [
-				'Semberija.app was founded by Zorana Petrović, entrepreneur and creative strategist, and Founder & CEO of ZOE MILANO.',
+				'Semberija.app was founded by Zorana Petrović, entrepreneur and creative strategist, and Founder & CEO of ZOE MILANO.',
 				'Having grown up and studied in Milan, her professional background spans creative development, digital platforms, marketing and international projects.',
 				'Her connection to Bijeljina is deeply personal. Her mother, Prof. Zorica Petrović, was born in Bijeljina, as were other members of her family. Her family heritage also includes her grandmother, who received a decoration for bravery during the Second World War.',
 				'Zorana has visited Bijeljina regularly over the years, gaining first-hand insight into the potential of local manufacturing, entrepreneurship and business development.',
@@ -927,10 +939,10 @@ const en = {
 			quoteRole: 'Founder, Semberija.app'
 		},
 		zoe: {
-			label: 'ZOE MILANO',
+			label: 'ZOE MILANO',
 			heading: 'Ideas, Creativity and Technology',
 			body: [
-				'Semberija.app is a project developed by ZOE MILANO d.o.o., a Belgrade-based company specializing in digital platforms, mobile applications, B2B ecosystems and international business projects.',
+				'Semberija.app is a project developed by ZOE MILANO d.o.o., a Belgrade-based company specializing in digital platforms, mobile applications, B2B ecosystems and international business projects.',
 				'The company combines creative strategy, technology, digital marketing and business development to create modern digital solutions for companies and markets.'
 			],
 			credits: [
@@ -940,10 +952,10 @@ const en = {
 				},
 				{
 					label: 'Platform Development',
-					value: 'ZOE MILANO d.o.o.'
+					value: 'ZOE MILANO d.o.o.'
 				}
 			],
-			cta: 'Visit ZOE MILANO'
+			cta: 'Visit ZOE MILANO'
 		},
 		future: {
 			label: 'Our Future',
@@ -1035,8 +1047,8 @@ const en = {
 		platformTitle: 'Platform | Semberija.app — B2B Connections & Investment'
 	},
 	legal: {
-		statement: 'Semberija.app is an independent privately developed digital business platform operated by ZOE MILANO d.o.o. It is not an official website of the City of Bijeljina or any public authority.',
-		copyright: '© 2026 Semberija.app — Developed and operated by ZOE MILANO d.o.o.',
+		statement: 'Semberija.app is an independent privately developed digital business platform operated by ZOE MILANO d.o.o. It is not an official website of the City of Bijeljina or any public authority.',
+		copyright: '© 2026 Semberija.app — Development and management: ZOE MILANO d.o.o.',
 		langNotice: '',
 		privacy: 'Privacy',
 		terms: 'Terms',
@@ -1297,9 +1309,15 @@ const en = {
 		localTab: 'Local Businesses',
 		investorsTab: 'Investors & Partners',
 		localSub: 'Companies registered in Bijeljina and Semberija',
+		examplesLabel: 'Profile examples',
+		previewName: 'Company name',
+		previewCity: 'City, country',
+		previewDesc: 'Short company description — industry, key products and services, year founded, number of employees, certifications and the markets it serves.',
+		previewNote: 'Company profiles will be published soon. This is how your company\'s card will look in the directory.',
 		investorsSub: 'Companies outside the region open to B2B cooperation',
-		visibilityHeading: 'Make Your Company Visible',
-		visibilitySub: 'Register your company on the platform and get discovered by local and regional partners.'
+		visibilityHeading: 'Connecting companies. Opening new opportunities.',
+		visibilitySub: 'Through B2B matchmaking, digital innovation and international cooperation, we connect companies from Bijeljina and Semberija with business partners and new markets.',
+		visibilityExplore: 'Explore opportunities'
 	},
 	cta: {
 		heading: 'Join the Business Network',
@@ -1308,7 +1326,7 @@ const en = {
 	},
 	footer: {
 		tagline: 'Regional Business Network.',
-		desc: 'Semberija.app is a modern regional business ecosystem connecting companies, investments, diaspora and digital opportunities.',
+		desc: 'Semberija.app is a regional digital business platform that connects companies, investors and the diaspora, fosters B2B cooperation and opens up opportunities for international business.',
 		colPlatform: 'Platform',
 		colCompany: 'Company',
 		colContact: 'Contact',
@@ -1337,6 +1355,8 @@ const en = {
 		requestQuote: 'Request Quote',
 		freeConsult: 'Free Consultation',
 		location: 'Location',
+		headquarters: 'Company headquarters',
+		headquartersCity: 'Belgrade, Serbia',
 		categories: 'Business Categories',
 		categoriesSub: 'Find companies by sector and type of activity',
 		companiesLocal: 'Companies in Bijeljina & Semberija',
@@ -1435,11 +1455,13 @@ const it = {
 		allIndustries: 'Tutti i settori',
 		allLocations: 'Tutte le località',
 		cta: 'Cerca aziende',
-		popular: 'Settori più cercati:'
+		popular: 'Settori più cercati:',
+		filterSearch: 'Cerca nell\'elenco…',
+		noOptions: 'Nessun risultato'
 	},
 	ecosystem: {
 		label: 'Settori',
-		heading: 'L\'ecosistema economico di Bijeljina e della Semberija',
+		heading: 'Ecosistema economico',
 		desc: 'Dall\'agricoltura e dalla produzione al commercio, alla logistica, alla tecnologia e ai servizi professionali: scopri le aziende e i settori che plasmano l\'economia della regione.',
 		companies: 'Aziende',
 		explore: 'Esplora il settore',
@@ -1473,9 +1495,9 @@ const it = {
 		statusHeading: 'Stato attuale',
 		statusDesc: 'Al momento non pubblichiamo singoli bandi sulla piattaforma. Quando verranno aggiunti, ciascuno riporterà la fonte ufficiale, i requisiti, la scadenza e la data dell\'ultima verifica.',
 		disclaimerHeading: 'Importante',
-		disclaimer: 'Semberija.app e ZOE MILANO non sono un ente erogatore e non garantiscono l\'approvazione. Verifica sempre condizioni e scadenze presso la fonte ufficiale del bando.',
-		zoeHeading: 'Digitalizzazione con ZOE MILANO',
-		zoeDesc: 'Per i progetti di digitalizzazione che soddisfano le condizioni di un bando, ZOE MILANO può fornire servizi di sviluppo digitale pertinenti — siti web, app, automazione e sistemi.',
+		disclaimer: 'Semberija.app e ZOE MILANO non sono un ente erogatore e non garantiscono l\'approvazione. Verifica sempre condizioni e scadenze presso la fonte ufficiale del bando.',
+		zoeHeading: 'Digitalizzazione con ZOE MILANO',
+		zoeDesc: 'Per i progetti di digitalizzazione che soddisfano le condizioni di un bando, ZOE MILANO può fornire servizi di sviluppo digitale pertinenti — siti web, app, automazione e sistemi.',
 		zoeCta: 'Servizi digitali',
 		premiumTag: 'Premium · BandiHub',
 		premiumNote: 'Le informazioni dettagliate su fondi, bandi pubblici e voucher digitali saranno disponibili per i membri Premium, con accesso previsto anche tramite l\'app mobile.',
@@ -1499,7 +1521,7 @@ const it = {
 	platform: {
 		label: 'Piattaforma',
 		heading: 'Una piattaforma. Più opportunità di business.',
-		desc: 'Semberija.app collega le aziende di Bijeljina e della Semberija con partner commerciali, investitori e mercati internazionali attraverso un ecosistema digitale integrato.',
+		desc: 'Semberija.app collega le aziende della Republika Srpska con partner commerciali, investitori e mercati internazionali attraverso un ecosistema digitale integrato.',
 		more: 'Scopri di più sulla piattaforma',
 		statusDev: 'In sviluppo',
 		statusSoon: 'Prossimamente',
@@ -1551,9 +1573,9 @@ const it = {
 	regions: {
 		label: 'Piattaforme regionali',
 		heading: 'Colleghiamo le regioni. Apriamo nuovi mercati.',
-		desc: 'Semberija.app fa parte della visione più ampia di ZOE MILANO, che sviluppa piattaforme digitali regionali per collegare aziende, mercati e opportunità di business internazionali.',
+		desc: 'Semberija.app fa parte della visione più ampia di ZOE MILANO, che sviluppa piattaforme digitali regionali per collegare aziende, mercati e opportunità di business internazionali.',
 		cta: 'Visita la piattaforma',
-		attribution: 'Piattaforme digitali sviluppate da ZOE MILANO.',
+		attribution: 'Piattaforme digitali sviluppate da ZOE MILANO.',
 		prev: 'Piattaforma precedente',
 		next: 'Piattaforma successiva',
 		newTab: '(si apre in una nuova scheda)',
@@ -1607,10 +1629,10 @@ const it = {
 		founder: {
 			label: 'La fondatrice',
 			name: 'Zorana Petrović',
-			role: 'Fondatrice di Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			role: 'Fondatrice di Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
 			places: 'Belgrado · Milano · Bijeljina',
 			body: [
-				'Semberija.app nasce su iniziativa di Zorana Petrović, imprenditrice e strategist creativa, fondatrice e direttrice di ZOE MILANO.',
+				'Semberija.app nasce su iniziativa di Zorana Petrović, imprenditrice e strategist creativa, fondatrice e direttrice di ZOE MILANO.',
 				'È cresciuta e ha studiato a Milano; la sua esperienza professionale comprende sviluppo creativo, piattaforme digitali, marketing e progetti internazionali.',
 				'È legata a Bijeljina dalle sue radici familiari. Sua madre, la prof.ssa Zorica Petrović, è nata a Bijeljina, così come altri membri della famiglia. L\'eredità familiare comprende anche la nonna, decorata al valore durante la Seconda guerra mondiale.',
 				'Da anni Zorana torna a Bijeljina e, per esperienza diretta, riconosce il potenziale della produzione locale, dell\'imprenditoria e dello sviluppo economico.',
@@ -1621,10 +1643,10 @@ const it = {
 			quoteRole: 'Fondatrice, Semberija.app'
 		},
 		zoe: {
-			label: 'ZOE MILANO',
+			label: 'ZOE MILANO',
 			heading: 'Idee, creatività e tecnologia',
 			body: [
-				'Semberija.app è un progetto di ZOE MILANO d.o.o. di Belgrado, azienda che sviluppa piattaforme digitali, app mobili, ecosistemi B2B e progetti di business internazionali.',
+				'Semberija.app è un progetto di ZOE MILANO d.o.o. di Belgrado, azienda che sviluppa piattaforme digitali, app mobili, ecosistemi B2B e progetti di business internazionali.',
 				'L\'azienda unisce strategia creativa, tecnologia, marketing digitale e sviluppo del business per creare soluzioni digitali moderne per aziende e mercati.'
 			],
 			credits: [
@@ -1634,10 +1656,10 @@ const it = {
 				},
 				{
 					label: 'Sviluppo della piattaforma',
-					value: 'ZOE MILANO d.o.o.'
+					value: 'ZOE MILANO d.o.o.'
 				}
 			],
-			cta: 'Visita ZOE MILANO'
+			cta: 'Visita ZOE MILANO'
 		},
 		future: {
 			label: 'Il nostro futuro',
@@ -1729,8 +1751,8 @@ const it = {
 		platformTitle: 'Piattaforma | Semberija.app — Contatti B2B e investimenti'
 	},
 	legal: {
-		statement: 'Semberija.app è una piattaforma digitale indipendente e privata, gestita da ZOE MILANO d.o.o. Non è il sito ufficiale della Città di Bijeljina né di alcuna autorità pubblica.',
-		copyright: '© 2026 Semberija.app — Sviluppata e gestita da ZOE MILANO d.o.o.',
+		statement: 'Semberija.app è una piattaforma digitale indipendente e privata, gestita da ZOE MILANO d.o.o. Non è il sito ufficiale della Città di Bijeljina né di alcuna autorità pubblica.',
+		copyright: '© 2026 Semberija.app — Sviluppo e gestione: ZOE MILANO d.o.o.',
 		langNotice: 'I documenti legali sono attualmente disponibili in inglese.',
 		privacy: 'Privacy',
 		terms: 'Termini',
@@ -1971,9 +1993,15 @@ const it = {
 		localTab: 'Aziende locali',
 		investorsTab: 'Investitori e partner',
 		localSub: 'Aziende registrate a Bijeljina e Semberija',
+		examplesLabel: 'Esempi di profilo',
+		previewName: 'Nome dell\'azienda',
+		previewCity: 'Città, Paese',
+		previewDesc: 'Breve descrizione dell\'azienda — settore, principali prodotti e servizi, anno di fondazione, numero di dipendenti, certificazioni e mercati serviti.',
+		previewNote: 'I profili aziendali saranno pubblicati a breve. Ecco come apparirà la scheda della tua azienda nella directory.',
 		investorsSub: 'Aziende esterne alla regione aperte alla cooperazione B2B',
-		visibilityHeading: 'Rendi visibile la tua azienda',
-		visibilitySub: 'Registra la tua azienda sulla piattaforma e fatti scoprire da partner locali e regionali.'
+		visibilityHeading: 'Colleghiamo le aziende. Apriamo nuove opportunità.',
+		visibilitySub: 'Attraverso il B2B matchmaking, l\'innovazione digitale e la cooperazione internazionale, colleghiamo le aziende di Bijeljina e della Semberija con partner commerciali e nuovi mercati.',
+		visibilityExplore: 'Scopri le opportunità'
 	},
 	cta: {
 		heading: 'Unisciti alla rete aziendale',
@@ -1982,7 +2010,7 @@ const it = {
 	},
 	footer: {
 		tagline: 'Rete Business Regionale.',
-		desc: 'Semberija.app è un moderno ecosistema aziendale regionale che collega aziende, investimenti, diaspora e opportunità digitali.',
+		desc: 'Semberija.app è una piattaforma digitale regionale per il business che collega aziende, investitori e diaspora, promuove la cooperazione B2B e apre opportunità di business internazionale.',
 		colPlatform: 'Piattaforma',
 		colCompany: 'Azienda',
 		colContact: 'Contatto',
@@ -2011,6 +2039,8 @@ const it = {
 		requestQuote: 'Richiedi preventivo',
 		freeConsult: 'Consulenza gratuita',
 		location: 'Posizione',
+		headquarters: 'Sede aziendale',
+		headquartersCity: 'Belgrado, Serbia',
 		categories: 'Categorie di attività',
 		categoriesSub: 'Trova aziende per settore e tipo di attività',
 		companiesLocal: 'Aziende a Bijeljina e Semberija',
@@ -2109,11 +2139,13 @@ const ru = {
 		allIndustries: 'Все отрасли',
 		allLocations: 'Все местоположения',
 		cta: 'Найти компании',
-		popular: 'Популярные секторы:'
+		popular: 'Популярные секторы:',
+		filterSearch: 'Поиск по списку…',
+		noOptions: 'Ничего не найдено'
 	},
 	ecosystem: {
 		label: 'Сектора',
-		heading: 'Деловая экосистема Биелины и Семберии',
+		heading: 'Деловая экосистема',
 		desc: 'От сельского хозяйства и производства до торговли, логистики, технологий и профессиональных услуг — откройте для себя компании и отрасли, формирующие экономику региона.',
 		companies: 'Компании',
 		explore: 'Смотреть сектор',
@@ -2147,9 +2179,9 @@ const ru = {
 		statusHeading: 'Текущее состояние',
 		statusDesc: 'Сейчас мы не публикуем на платформе отдельные конкурсы. Когда они появятся, у каждого будут указаны официальный источник, условия участия, срок и дата последней проверки.',
 		disclaimerHeading: 'Важно',
-		disclaimer: 'Semberija.app и ZOE MILANO не являются органом, распределяющим средства, и не гарантируют одобрение. Всегда проверяйте условия и сроки у официального источника конкурса.',
-		zoeHeading: 'Цифровизация с ZOE MILANO',
-		zoeDesc: 'Для проектов цифровизации, соответствующих условиям конкурса, ZOE MILANO может предоставить соответствующие услуги цифровой разработки — сайты, приложения, автоматизацию и системы.',
+		disclaimer: 'Semberija.app и ZOE MILANO не являются органом, распределяющим средства, и не гарантируют одобрение. Всегда проверяйте условия и сроки у официального источника конкурса.',
+		zoeHeading: 'Цифровизация с ZOE MILANO',
+		zoeDesc: 'Для проектов цифровизации, соответствующих условиям конкурса, ZOE MILANO может предоставить соответствующие услуги цифровой разработки — сайты, приложения, автоматизацию и системы.',
 		zoeCta: 'Цифровые услуги',
 		premiumTag: 'Premium · BandiHub',
 		premiumNote: 'Подробная информация о фондах, открытых конкурсах и цифровых ваучерах будет доступна участникам Premium, с планируемым доступом через мобильное приложение.',
@@ -2173,7 +2205,7 @@ const ru = {
 	platform: {
 		label: 'Платформа',
 		heading: 'Одна платформа. Больше деловых возможностей.',
-		desc: 'Semberija.app связывает компании Биелины и Семберии с деловыми партнёрами, инвесторами и международными рынками в единой цифровой экосистеме.',
+		desc: 'Semberija.app связывает компании Республики Сербской с деловыми партнёрами, инвесторами и международными рынками в единой цифровой экосистеме.',
 		more: 'Подробнее о платформе',
 		statusDev: 'В разработке',
 		statusSoon: 'Скоро',
@@ -2225,9 +2257,9 @@ const ru = {
 	regions: {
 		label: 'Региональные платформы',
 		heading: 'Соединяем регионы. Открываем новые рынки.',
-		desc: 'Semberija.app — часть более широкой стратегии компании ZOE MILANO, которая развивает региональные цифровые платформы, связывающие компании, рынки и международные деловые возможности.',
+		desc: 'Semberija.app — часть более широкой стратегии компании ZOE MILANO, которая развивает региональные цифровые платформы, связывающие компании, рынки и международные деловые возможности.',
 		cta: 'Перейти на платформу',
-		attribution: 'Цифровые платформы разработаны ZOE MILANO.',
+		attribution: 'Цифровые платформы разработаны ZOE MILANO.',
 		prev: 'Предыдущая платформа',
 		next: 'Следующая платформа',
 		newTab: '(откроется в новой вкладке)',
@@ -2281,10 +2313,10 @@ const ru = {
 		founder: {
 			label: 'Об основательнице',
 			name: 'Zorana Petrović',
-			role: 'Основательница Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			role: 'Основательница Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
 			places: 'Белград · Милан · Биелина',
 			body: [
-				'Semberija.app создана по инициативе Зораны Петрович — предпринимателя и креативного стратега, основательницы и директора компании ZOE MILANO.',
+				'Semberija.app создана по инициативе Зораны Петрович — предпринимателя и креативного стратега, основательницы и директора компании ZOE MILANO.',
 				'Она выросла и получила образование в Милане; её профессиональный опыт охватывает креативную разработку, цифровые платформы, маркетинг и международные проекты.',
 				'С Биелиной её связывают семейные корни. Её мать, профессор Зорица Петрович, родилась в Биелине, как и другие члены её семьи. Семейное наследие включает и бабушку, награждённую за храбрость во время Второй мировой войны.',
 				'Зорана уже много лет приезжает в Биелину и на собственном опыте видит потенциал местного производства, предпринимательства и развития бизнеса.',
@@ -2295,10 +2327,10 @@ const ru = {
 			quoteRole: 'Основательница, Semberija.app'
 		},
 		zoe: {
-			label: 'ZOE MILANO',
+			label: 'ZOE MILANO',
 			heading: 'Идея, креативность и технологии',
 			body: [
-				'Semberija.app — проект компании ZOE MILANO d.o.o. из Белграда, которая разрабатывает цифровые платформы, мобильные приложения, B2B-экосистемы и международные бизнес-проекты.',
+				'Semberija.app — проект компании ZOE MILANO d.o.o. из Белграда, которая разрабатывает цифровые платформы, мобильные приложения, B2B-экосистемы и международные бизнес-проекты.',
 				'Компания объединяет креативную стратегию, технологии, цифровой маркетинг и развитие бизнеса, создавая современные цифровые решения для компаний и рынков.'
 			],
 			credits: [
@@ -2308,10 +2340,10 @@ const ru = {
 				},
 				{
 					label: 'Разработка платформы',
-					value: 'ZOE MILANO d.o.o.'
+					value: 'ZOE MILANO d.o.o.'
 				}
 			],
-			cta: 'Посетить ZOE MILANO'
+			cta: 'Посетить ZOE MILANO'
 		},
 		future: {
 			label: 'Наше будущее',
@@ -2403,8 +2435,8 @@ const ru = {
 		platformTitle: 'Платформа | Semberija.app — B2B-связи и инвестиции'
 	},
 	legal: {
-		statement: 'Semberija.app — независимая частная цифровая бизнес-платформа, которой управляет ZOE MILANO d.o.o. Она не является официальным сайтом города Биелина или какого-либо органа власти.',
-		copyright: '© 2026 Semberija.app — Разработка и управление: ZOE MILANO d.o.o.',
+		statement: 'Semberija.app — независимая частная цифровая бизнес-платформа, которой управляет ZOE MILANO d.o.o. Она не является официальным сайтом города Биелина или какого-либо органа власти.',
+		copyright: '© 2026 Semberija.app — Разработка и управление: ZOE MILANO d.o.o.',
 		langNotice: 'Юридические документы в настоящее время доступны на английском языке.',
 		privacy: 'Конфиденциальность',
 		terms: 'Условия',
@@ -2645,9 +2677,15 @@ const ru = {
 		localTab: 'Местные компании',
 		investorsTab: 'Инвесторы и партнёры',
 		localSub: 'Компании, зарегистрированные в Биелине и Семберии',
+		examplesLabel: 'Примеры профилей',
+		previewName: 'Название компании',
+		previewCity: 'Город, страна',
+		previewDesc: 'Краткое описание компании — отрасль, основные продукты и услуги, год основания, число сотрудников, сертификаты и рынки сбыта.',
+		previewNote: 'Профили компаний скоро будут опубликованы. Так будет выглядеть карточка вашей компании в каталоге.',
 		investorsSub: 'Компании за пределами региона, открытые для B2B-сотрудничества',
-		visibilityHeading: 'Сделайте вашу компанию видимой',
-		visibilitySub: 'Зарегистрируйте свою компанию на платформе, и вас найдут местные и региональные партнёры.'
+		visibilityHeading: 'Объединяем компании. Открываем новые возможности.',
+		visibilitySub: 'С помощью B2B-матчмейкинга, цифровых инноваций и международного сотрудничества мы связываем компании Биелины и Семберии с деловыми партнёрами и новыми рынками.',
+		visibilityExplore: 'Узнать о возможностях'
 	},
 	cta: {
 		heading: 'Присоединяйтесь к бизнес-сети',
@@ -2656,7 +2694,7 @@ const ru = {
 	},
 	footer: {
 		tagline: 'Региональная бизнес-сеть.',
-		desc: 'Semberija.app — современная региональная бизнес-экосистема, объединяющая компании, инвестиции, диаспору и цифровые возможности.',
+		desc: 'Semberija.app — региональная цифровая бизнес-платформа, которая объединяет компании, инвесторов и диаспору, развивает B2B-сотрудничество и открывает возможности для международного бизнеса.',
 		colPlatform: 'Платформа',
 		colCompany: 'Компания',
 		colContact: 'Контакт',
@@ -2685,6 +2723,8 @@ const ru = {
 		requestQuote: 'Запросить коммерческое предложение',
 		freeConsult: 'Бесплатная консультация',
 		location: 'Местоположение',
+		headquarters: 'Штаб-квартира компании',
+		headquartersCity: 'Белград, Сербия',
 		categories: 'Категории деятельности',
 		categoriesSub: 'Найдите компании по сектору и виду деятельности',
 		companiesLocal: 'Компании в Биелине и Семберии',
@@ -2783,11 +2823,13 @@ const de = {
 		allIndustries: 'Alle Branchen',
 		allLocations: 'Alle Standorte',
 		cta: 'Unternehmen suchen',
-		popular: 'Beliebte Branchen:'
+		popular: 'Beliebte Branchen:',
+		filterSearch: 'Liste durchsuchen…',
+		noOptions: 'Keine Treffer'
 	},
 	ecosystem: {
 		label: 'Branchen',
-		heading: 'Das Wirtschaftsökosystem von Bijeljina und Semberija',
+		heading: 'Wirtschaftsökosystem',
 		desc: 'Von Landwirtschaft und Produktion bis zu Handel, Logistik, Technologie und professionellen Dienstleistungen – entdecken Sie die Unternehmen und Branchen, die die Wirtschaft der Region prägen.',
 		companies: 'Unternehmen',
 		explore: 'Branche entdecken',
@@ -2821,9 +2863,9 @@ const de = {
 		statusHeading: 'Aktueller Stand',
 		statusDesc: 'Derzeit veröffentlichen wir keine einzelnen Ausschreibungen auf der Plattform. Sobald sie hinzugefügt werden, enthält jede die offizielle Quelle, die Teilnahmevoraussetzungen, die Frist und das Datum der letzten Überprüfung.',
 		disclaimerHeading: 'Wichtig',
-		disclaimer: 'Semberija.app und ZOE MILANO sind keine Fördereinrichtung und garantieren keine Bewilligung. Prüfen Sie Bedingungen und Fristen immer bei der offiziellen Quelle der Ausschreibung.',
-		zoeHeading: 'Digitalisierung mit ZOE MILANO',
-		zoeDesc: 'Für Digitalisierungsprojekte, die die Bedingungen einer Ausschreibung erfüllen, kann ZOE MILANO passende digitale Entwicklungsleistungen erbringen — Websites, Apps, Automatisierung und Systeme.',
+		disclaimer: 'Semberija.app und ZOE MILANO sind keine Fördereinrichtung und garantieren keine Bewilligung. Prüfen Sie Bedingungen und Fristen immer bei der offiziellen Quelle der Ausschreibung.',
+		zoeHeading: 'Digitalisierung mit ZOE MILANO',
+		zoeDesc: 'Für Digitalisierungsprojekte, die die Bedingungen einer Ausschreibung erfüllen, kann ZOE MILANO passende digitale Entwicklungsleistungen erbringen — Websites, Apps, Automatisierung und Systeme.',
 		zoeCta: 'Digitale Dienste',
 		premiumTag: 'Premium · BandiHub',
 		premiumNote: 'Detaillierte Informationen zu Förderungen, Ausschreibungen und digitalen Gutscheinen werden Premium-Mitgliedern zur Verfügung stehen, mit geplantem Zugang auch über die mobile App.',
@@ -2847,7 +2889,7 @@ const de = {
 	platform: {
 		label: 'Plattform',
 		heading: 'Eine Plattform. Mehr Geschäftschancen.',
-		desc: 'Semberija.app verbindet Unternehmen aus Bijeljina und der Region Semberija mit Geschäftspartnern, Investoren und internationalen Märkten in einem integrierten digitalen Ökosystem.',
+		desc: 'Semberija.app verbindet Unternehmen aus der Republika Srpska mit Geschäftspartnern, Investoren und internationalen Märkten in einem integrierten digitalen Ökosystem.',
 		more: 'Mehr über die Plattform',
 		statusDev: 'In Entwicklung',
 		statusSoon: 'Demnächst',
@@ -2899,9 +2941,9 @@ const de = {
 	regions: {
 		label: 'Regionale Plattformen',
 		heading: 'Wir verbinden Regionen. Wir öffnen neue Märkte.',
-		desc: 'Semberija.app ist Teil der umfassenderen Vision von ZOE MILANO, regionale digitale Plattformen zu entwickeln, die Unternehmen, Märkte und internationale Geschäftschancen verbinden.',
+		desc: 'Semberija.app ist Teil der umfassenderen Vision von ZOE MILANO, regionale digitale Plattformen zu entwickeln, die Unternehmen, Märkte und internationale Geschäftschancen verbinden.',
 		cta: 'Plattform besuchen',
-		attribution: 'Digitale Plattformen entwickelt von ZOE MILANO.',
+		attribution: 'Digitale Plattformen entwickelt von ZOE MILANO.',
 		prev: 'Vorherige Plattform',
 		next: 'Nächste Plattform',
 		newTab: '(öffnet in neuem Tab)',
@@ -2955,10 +2997,10 @@ const de = {
 		founder: {
 			label: 'Über die Gründerin',
 			name: 'Zorana Petrović',
-			role: 'Gründerin von Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
+			role: 'Gründerin von Semberija.app | Founder & CEO, ZOE MILANO d.o.o.',
 			places: 'Belgrad · Mailand · Bijeljina',
 			body: [
-				'Semberija.app entstand auf Initiative von Zorana Petrović, Unternehmerin und Kreativstrategin, Gründerin und Geschäftsführerin von ZOE MILANO.',
+				'Semberija.app entstand auf Initiative von Zorana Petrović, Unternehmerin und Kreativstrategin, Gründerin und Geschäftsführerin von ZOE MILANO.',
 				'Sie ist in Mailand aufgewachsen und hat dort ihre Ausbildung erhalten; ihre berufliche Erfahrung umfasst kreative Entwicklung, digitale Plattformen, Marketing und internationale Projekte.',
 				'Mit Bijeljina verbinden sie familiäre Wurzeln. Ihre Mutter, Prof. Zorica Petrović, wurde in Bijeljina geboren, ebenso wie weitere Mitglieder ihrer Familie. Zum Familienerbe gehört auch ihre Großmutter, die im Zweiten Weltkrieg für ihre Tapferkeit ausgezeichnet wurde.',
 				'Zorana kommt seit Jahren nach Bijeljina und erkennt aus eigener Erfahrung das Potenzial der lokalen Produktion, des Unternehmertums und der wirtschaftlichen Entwicklung.',
@@ -2969,10 +3011,10 @@ const de = {
 			quoteRole: 'Gründerin, Semberija.app'
 		},
 		zoe: {
-			label: 'ZOE MILANO',
+			label: 'ZOE MILANO',
 			heading: 'Idee, Kreativität und Technologie',
 			body: [
-				'Semberija.app ist ein Projekt der ZOE MILANO d.o.o. aus Belgrad, die digitale Plattformen, mobile Apps, B2B-Ökosysteme und internationale Geschäftsprojekte entwickelt.',
+				'Semberija.app ist ein Projekt der ZOE MILANO d.o.o. aus Belgrad, die digitale Plattformen, mobile Apps, B2B-Ökosysteme und internationale Geschäftsprojekte entwickelt.',
 				'Das Unternehmen verbindet kreative Strategie, Technologie, digitales Marketing und Geschäftsentwicklung, um moderne digitale Lösungen für Unternehmen und Märkte zu schaffen.'
 			],
 			credits: [
@@ -2982,10 +3024,10 @@ const de = {
 				},
 				{
 					label: 'Entwicklung der Plattform',
-					value: 'ZOE MILANO d.o.o.'
+					value: 'ZOE MILANO d.o.o.'
 				}
 			],
-			cta: 'ZOE MILANO besuchen'
+			cta: 'ZOE MILANO besuchen'
 		},
 		future: {
 			label: 'Unsere Zukunft',
@@ -3077,8 +3119,8 @@ const de = {
 		platformTitle: 'Plattform | Semberija.app — B2B-Kontakte & Investitionen'
 	},
 	legal: {
-		statement: 'Semberija.app ist eine unabhängige, privat entwickelte digitale Business-Plattform, betrieben von ZOE MILANO d.o.o. Sie ist keine offizielle Website der Stadt Bijeljina oder einer Behörde.',
-		copyright: '© 2026 Semberija.app — Entwickelt und betrieben von ZOE MILANO d.o.o.',
+		statement: 'Semberija.app ist eine unabhängige, privat entwickelte digitale Business-Plattform, betrieben von ZOE MILANO d.o.o. Sie ist keine offizielle Website der Stadt Bijeljina oder einer Behörde.',
+		copyright: '© 2026 Semberija.app — Entwicklung und Betrieb: ZOE MILANO d.o.o.',
 		langNotice: 'Die rechtlichen Dokumente sind derzeit auf Englisch verfügbar.',
 		privacy: 'Datenschutz',
 		terms: 'Nutzungsbedingungen',
@@ -3319,9 +3361,15 @@ const de = {
 		localTab: 'Lokale Unternehmen',
 		investorsTab: 'Investoren & Partner',
 		localSub: 'In Bijeljina und Semberija registrierte Unternehmen',
+		examplesLabel: 'Profilbeispiele',
+		previewName: 'Name des Unternehmens',
+		previewCity: 'Stadt, Land',
+		previewDesc: 'Kurzbeschreibung des Unternehmens — Branche, wichtigste Produkte und Leistungen, Gründungsjahr, Mitarbeiterzahl, Zertifizierungen und Absatzmärkte.',
+		previewNote: 'Unternehmensprofile werden in Kürze veröffentlicht. So wird die Karte Ihres Unternehmens im Verzeichnis aussehen.',
 		investorsSub: 'Unternehmen außerhalb der Region, offen für B2B-Kooperation',
-		visibilityHeading: 'Machen Sie Ihr Unternehmen sichtbar',
-		visibilitySub: 'Registrieren Sie Ihr Unternehmen auf der Plattform und werden Sie von lokalen und regionalen Partnern entdeckt.'
+		visibilityHeading: 'Wir verbinden Unternehmen. Wir eröffnen neue Chancen.',
+		visibilitySub: 'Durch B2B-Matchmaking, digitale Innovation und internationale Zusammenarbeit verbinden wir Unternehmen aus Bijeljina und Semberija mit Geschäftspartnern und neuen Märkten.',
+		visibilityExplore: 'Chancen entdecken'
 	},
 	cta: {
 		heading: 'Dem Business-Netzwerk beitreten',
@@ -3330,7 +3378,7 @@ const de = {
 	},
 	footer: {
 		tagline: 'Regionales Business-Netzwerk.',
-		desc: 'Semberija.app ist ein modernes regionales Business-Ökosystem, das Unternehmen, Investitionen, Diaspora und digitale Chancen verbindet.',
+		desc: 'Semberija.app ist eine regionale digitale Business-Plattform, die Unternehmen, Investoren und die Diaspora vernetzt, die B2B-Zusammenarbeit fördert und Chancen für internationale Geschäfte eröffnet.',
 		colPlatform: 'Plattform',
 		colCompany: 'Unternehmen',
 		colContact: 'Kontakt',
@@ -3359,6 +3407,8 @@ const de = {
 		requestQuote: 'Angebot anfordern',
 		freeConsult: 'Kostenlose Beratung',
 		location: 'Standort',
+		headquarters: 'Firmensitz',
+		headquartersCity: 'Belgrad, Serbien',
 		categories: 'Geschäftskategorien',
 		categoriesSub: 'Finden Sie Unternehmen nach Sektor und Tätigkeitsart',
 		companiesLocal: 'Unternehmen in Bijeljina & Semberija',

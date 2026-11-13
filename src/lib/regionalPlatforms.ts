@@ -26,3 +26,13 @@ export const regionalPlatforms = [
 	{ id: 'sannio', name: 'Sannio.app', url: 'https://sannio.app/', region: 'Campania, Italia', hue: 140 },
 	{ id: 'fvgitalia', name: 'FVGItalia.app', url: 'https://fvgitalia.app/it', region: 'Friuli Venezia Giulia, Italia', hue: 262 }
 ].map((p) => ({ ...p, logo: findAsset(p.id, 'logo'), screenshot: findAsset(p.id, 'screenshot') }));
+
+// Footer "Regionalne platforme": Italian platforms only, in this fixed order.
+// LazioItalia.app is listed here only (it has no carousel card yet).
+const footerOnly = [
+	{ id: 'lazioitalia', name: 'LazioItalia.app', url: 'https://lazioitalia.app/', region: 'Lazio, Italia', hue: 32 }
+];
+const footerOrder = ['lombardia', 'lazioitalia', 'veneto', 'fvgitalia', 'liguria', 'sannio', 'montalcino'];
+export const footerPlatforms = footerOrder.map(
+	(id) => [...regionalPlatforms, ...footerOnly].find((p) => p.id === id)!
+);

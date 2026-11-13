@@ -28,17 +28,17 @@
 			<p>Users are responsible for conducting their own due diligence before entering into any business relationship.</p>
 
 			<h2>No Endorsement</h2>
-			<p>The presence of a business on Semberija.app does not constitute an endorsement or recommendation by ZOE MILANO d.o.o. or by the platform itself.</p>
+			<p>The presence of a business on Semberija.app does not constitute an endorsement or recommendation by ZOE&nbsp;MILANO&nbsp;d.o.o. or by the platform itself.</p>
 			<p>All business relationships and transactions between users of the platform are solely the responsibility of the parties involved.</p>
 
 			<h2>External Links</h2>
-			<p>The platform may contain links to external websites. ZOE MILANO d.o.o. is not responsible for the content or privacy practices of those external sites.</p>
+			<p>The platform may contain links to external websites. ZOE&nbsp;MILANO&nbsp;d.o.o. is not responsible for the content or privacy practices of those external sites.</p>
 
 			<h2>No Financial Advice</h2>
 			<p>Nothing on the platform constitutes financial, legal, or business advice. Information presented regarding investment opportunities, partnerships, or business listings is for informational purposes only.</p>
 
 			<h2>Limitation of Liability</h2>
-			<p>To the maximum extent permitted by applicable law, ZOE MILANO d.o.o. shall not be liable for any indirect, incidental, special, or consequential damages arising from:</p>
+			<p>To the maximum extent permitted by applicable law, ZOE&nbsp;MILANO&nbsp;d.o.o. shall not be liable for any indirect, incidental, special, or consequential damages arising from:</p>
 			<ul>
 				<li>Use of or inability to use the platform</li>
 				<li>Errors or omissions in platform content</li>
@@ -49,7 +49,7 @@
 			<h2>Platform Ownership</h2>
 			<p>Semberija.app is a proprietary digital platform owned and operated by:</p>
 			<div class="company-block">
-				<strong>ZOE MILANO d.o.o.</strong><br />
+				<strong>ZOE&nbsp;MILANO&nbsp;d.o.o.</strong><br />
 				Belgrade, Serbia<br />
 				Tax ID: 110155135<br />
 				Company Registration Number: 21307548

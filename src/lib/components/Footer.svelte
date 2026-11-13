@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { i18n, langMeta, type Lang } from '$lib/i18n.svelte';
-	import { regionalPlatforms } from '$lib/regionalPlatforms';
+	import { footerPlatforms } from '$lib/regionalPlatforms';
 	import faviconUrl from '$lib/assets/favicon.svg';
 	import FooterCrest from '$lib/components/FooterCrest.svelte';
 
@@ -87,7 +87,7 @@
 			</div>
 			<a href="https://zoemilano.rs/" class="dev-link" target="_blank" rel="noopener">
 				<span class="dev-label">{devLabel[i18n.lang] ?? devLabel.en}</span>
-				<span class="dev-name">ZOE MILANO</span>
+				<span class="dev-name">ZOE&nbsp;MILANO</span>
 				<span class="dev-url">zoemilano.rs</span>
 				<span class="dev-arrow" aria-hidden="true">
 					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
@@ -100,22 +100,22 @@
 			<h4>{i18n.t.footer.colPlatform}</h4>
 			<nav class="footer-nav" aria-label={i18n.t.footer.colPlatform}>
 				<a href="/platforma"><span>{i18n.t.nav.platformOverview}</span>{@render arrow()}</a>
-				<a href="/firme"><span>{i18n.t.nav.companies}</span>{@render arrow()}</a>
+				<a href="/kompanije"><span>{i18n.t.nav.companies}</span>{@render arrow()}</a>
 				<a href="/investicije"><span>{i18n.t.nav.investments}</span>{@render arrow()}</a>
 				<a href="/fondovi"><span>{i18n.t.funding.heading}</span>{@render arrow()}</a>
-				<a href="/b2b"><span>{i18n.t.nav.b2b}</span>{@render arrow()}</a>
-				<a href="/usluge"><span>{i18n.t.nav.services}</span>{@render arrow()}</a>
+				<a href="/b2b-povezivanje"><span>{i18n.t.nav.b2b}</span>{@render arrow()}</a>
+				<a href="/digitalne-usluge"><span>{i18n.t.nav.services}</span>{@render arrow()}</a>
 			</nav>
 		</div>
 
 		<div class="footer-col">
 			<h4>{i18n.t.nav.network}</h4>
 			<nav class="footer-nav" aria-label={i18n.t.nav.network}>
-				<a href="/umrezavanje"><span>{i18n.t.nav.enquiries}</span>{@render arrow()}</a>
-				<a href="/prilike"><span>{i18n.t.nav.opportunities}</span>{@render arrow()}</a>
+				<a href="/poslovni-upiti"><span>{i18n.t.nav.enquiries}</span>{@render arrow()}</a>
+				<a href="/poslovne-prilike"><span>{i18n.t.nav.opportunities}</span>{@render arrow()}</a>
 				<a href="/vijesti"><span>{i18n.t.nav.news}</span>{@render arrow()}</a>
 				<a href="/dogadjaji"><span>{i18n.t.nav.events}</span>{@render arrow()}</a>
-				<a href="/oglasi"><span>{i18n.t.nav.promote}</span>{@render arrow()}</a>
+				<a href="/promocija-kompanija"><span>{i18n.t.nav.promote}</span>{@render arrow()}</a>
 				<a href="/o-nama"><span>{i18n.t.nav.about}</span>{@render arrow()}</a>
 			</nav>
 		</div>
@@ -123,7 +123,7 @@
 		<div class="footer-col">
 			<h4>{i18n.t.regions.label}</h4>
 			<nav class="footer-nav" aria-label={i18n.t.regions.label}>
-				{#each regionalPlatforms as p (p.id)}
+				{#each footerPlatforms as p (p.id)}
 					<a href={p.url} target="_blank" rel="noopener">
 						<span class="fl-dot" style="--h:{p.hue}" aria-hidden="true"></span>
 						<span>{p.name}</span>{@render arrow()}
@@ -159,11 +159,6 @@
 				{/each}
 			</div>
 			<div class="footer-end">
-				<span class="footer-made">
-					<span class="footer-made-dot" aria-hidden="true"></span>
-					Made in Bijeljina
-					<span class="footer-coords" aria-hidden="true">44.76° N · 19.21° E</span>
-				</span>
 				<button class="to-top" onclick={toTop} aria-label={toTopLabel[i18n.lang] ?? toTopLabel.en}>
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 				</button>
@@ -571,30 +566,7 @@
 	.lang-btn:hover { color: #FAF9F6; }
 	.lang-btn.active { color: var(--navy); background: #FAF9F6; }
 
-	.footer-end { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-	.footer-made {
-		display: inline-flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		font-size: 0.82rem;
-		font-weight: 600;
-		color: rgba(250,249,246,0.75);
-	}
-	.footer-made-dot {
-		width: 7px;
-		height: 7px;
-		border-radius: 50%;
-		background: #f06a75;
-		box-shadow: 0 0 0 3px rgba(240,106,117,0.2);
-	}
-	.footer-coords {
-		font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-		font-size: 0.72rem;
-		font-weight: 400;
-		letter-spacing: 0.06em;
-		color: rgba(250,249,246,0.45);
-	}
+	.footer-end { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; }
 	.to-top {
 		display: grid;
 		place-items: center;

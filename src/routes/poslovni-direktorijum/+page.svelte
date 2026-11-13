@@ -1,12 +1,26 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
-	import { domesticFirms, investors } from '$lib/data';
+	import { domesticFirms, investors, showDirectoryCompanies } from '$lib/data';
+	import { industries as mainIndustries } from '$lib/taxonomy';
+	import type { Lang } from '$lib/i18n.svelte';
 	import { reveal } from '$lib/actions/reveal';
 	import { enquiryUrl } from '$lib/enquiry';
 	import { matches, industryOptions, locationOptions, sectors, inSector } from '$lib/search';
 	import DirectoryFilters from '$lib/components/DirectoryFilters.svelte';
 
 	const PAGE = 24;
+
+	// While showDirectoryCompanies is off, real listings stay hidden and these sample
+	// profile cards show how a listing looks (industry labels come from the taxonomy).
+	const previewCards = [
+		{ industry: 'proizvodnja', color: '#1a3a5c' },
+		{ industry: 'prehrambena', color: '#1d5c3a' },
+		{ industry: 'it', color: '#3b2f6b' },
+		{ industry: 'transport', color: '#7a1f2b' },
+		{ industry: 'poljoprivreda', color: '#4d5a1e' },
+		{ industry: 'poslovne-usluge', color: '#24406b' }
+	];
+	const industryLabel = (id: string) => mainIndustries.find((i) => i.id === id)?.label[i18n.lang as Lang] ?? '';
 
 	let search = $state('');
 	let activeTab = $state<'local' | 'investors'>('local');
@@ -16,7 +30,7 @@
 	let location = $state('');
 	let sector = $state('');
 
-	const filters = $derived({ q: search, cat: industry, city: location, sector });
+	const filters = $derived({ q: search, cat: industry, city: '', loc: location, sector });
 	const tabList = $derived(activeTab === 'local' ? domesticFirms : investors);
 	const localCount = $derived(domesticFirms.filter((c) => matches(c, filters, i18n.lang)).length);
 	const investorCount = $derived(investors.filter((c) => matches(c, filters, i18n.lang)).length);
@@ -25,7 +39,7 @@
 
 	// Filter options and quick sector picks come from the current tab's companies
 	const industries = $derived({ options: industryOptions(i18n.lang, tabList) });
-	const locations = $derived({ options: locationOptions(tabList) });
+	const locations = $derived({ options: locationOptions(i18n.lang, tabList) });
 	const quick = $derived(
 		sectors
 			.map((s) => ({
@@ -95,15 +109,16 @@
 			<button type="button" role="tab" aria-selected={activeTab === 'local'} class="tab-btn" class:active={activeTab === 'local'} onclick={() => setTab('local')}>
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M10 21v-3h4v3"/></svg>
 				<span class="tab-label">{i18n.t.companies.localTab}</span>
-				<span class="tab-count">{localCount}</span>
+				{#if showDirectoryCompanies}<span class="tab-count">{localCount}</span>{/if}
 			</button>
 			<button type="button" role="tab" aria-selected={activeTab === 'investors'} class="tab-btn" class:active={activeTab === 'investors'} onclick={() => setTab('investors')}>
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg>
 				<span class="tab-label">{i18n.t.companies.investorsTab}</span>
-				<span class="tab-count">{investorCount}</span>
+				{#if showDirectoryCompanies}<span class="tab-count">{investorCount}</span>{/if}
 			</button>
 		</div>
 
+		{#if showDirectoryCompanies}
 		<DirectoryFilters
 			bind:query={search}
 			bind:industry
@@ -116,6 +131,7 @@
 			{chips}
 			onClear={clearAll}
 		/>
+		{/if}
 
 		<!-- What the network does -->
 		<div class="pillars">
@@ -136,6 +152,48 @@
 <section class="page-body reveal-card" use:reveal>
 	<div class="body-backdrop" aria-hidden="true"></div>
 	<div class="container">
+		{#if !showDirectoryCompanies}
+			<!-- Sample profiles: real listings are hidden until published -->
+			<div class="body-head">
+				<span class="preview-label">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></svg>
+					{i18n.t.companies.examplesLabel}
+				</span>
+				<div class="network-tags">
+					{#each i18n.t.ui.networkTypes as label}
+						<span class="network-tag"><span class="network-tag-dot" aria-hidden="true"></span>{label}</span>
+					{/each}
+				</div>
+			</div>
+			<p class="preview-note">{i18n.t.companies.previewNote}</p>
+			<div class="companies-grid">
+				{#each previewCards as card (card.industry)}
+					<article class="company-card is-preview" style="--brand: {card.color}">
+						<span class="company-edge" aria-hidden="true"></span>
+						<div class="company-top">
+							<div class="company-avatar" aria-hidden="true">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M10 21v-3h4v3"/></svg>
+							</div>
+							<div class="company-meta">
+								<span class="company-category">{industryLabel(card.industry)}</span>
+								<span class="company-city">
+									<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+									{i18n.t.companies.previewCity}
+								</span>
+							</div>
+						</div>
+						<h3 class="company-name">{i18n.t.companies.previewName}</h3>
+						<p class="company-desc">{i18n.t.companies.previewDesc}</p>
+						<span class="company-btn" aria-hidden="true">
+							<span>{i18n.t.companies.inquire}</span>
+							<span class="company-btn-arrow">
+								<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+							</span>
+						</span>
+					</article>
+				{/each}
+			</div>
+		{:else}
 		<div class="body-head">
 			<span class="results-count" aria-live="polite">
 				<strong>{filtered.length}</strong>
@@ -197,6 +255,7 @@
 					</button>
 				</div>
 			{/if}
+		{/if}
 		{/if}
 	</div>
 </section>
@@ -460,6 +519,35 @@
 		box-shadow: inset 0 0 0 1px rgba(11,52,102,0.12), 0 4px 10px -8px rgba(15,23,42,0.3);
 	}
 	.network-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cta); }
+
+	.preview-label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.85rem;
+		border-radius: 50px;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		color: var(--steel);
+		background: rgba(11,52,102,0.06);
+		box-shadow: inset 0 0 0 1px rgba(11,52,102,0.1);
+	}
+	.preview-note {
+		position: relative;
+		max-width: 680px;
+		margin: -0.5rem 0 1.5rem;
+		font-size: 0.98rem;
+		line-height: 1.6;
+		color: #4a525e;
+	}
+	.preview-label { align-self: flex-start; width: fit-content; }
+	/* Sample cards: show the full description and industry name; the button is decorative */
+	.company-card.is-preview .company-desc { display: block; -webkit-line-clamp: unset; line-clamp: unset; overflow: visible; }
+	.company-card.is-preview .company-category { white-space: normal; overflow: visible; }
+	.company-card.is-preview .company-btn { cursor: default; }
 
 	.companies-grid {
 		display: grid;

@@ -9,14 +9,14 @@ export type ModuleId =
 	| 'enquiries' | 'promotion' | 'services' | 'app';
 
 export const platformModules: { id: ModuleId; href: string; status?: ModuleStatus }[] = [
-	{ id: 'directory', href: '/firme' },                     // 01 Business Directory
-	{ id: 'b2b', href: '/b2b' },                             // 02 B2B Matchmaking
+	{ id: 'directory', href: '/kompanije' },                     // 01 Business Directory
+	{ id: 'b2b', href: '/b2b-povezivanje' },                             // 02 B2B Matchmaking
 	{ id: 'investments', href: '/investicije' },             // 03 Investment (private investment opportunities)
 	{ id: 'funding', href: '/fondovi' },                     // 04 Funding & Incentives (public funding; separate from Investment)
-	{ id: 'international', href: '/b2b/dijaspora-mreza' },   // 05 International Business
-	{ id: 'enquiries', href: '/umrezavanje' },               // 06 Business Enquiries
-	{ id: 'promotion', href: '/oglasi' },                    // 07 (promotion page; offers via ?tip=oglasavanje) Business Promotion
-	{ id: 'services', href: '/usluge' },                     // 08 Digital Services
+	{ id: 'international', href: '/b2b-povezivanje/medjunarodna-saradnja' },   // 05 International Business
+	{ id: 'enquiries', href: '/poslovni-upiti' },               // 06 Business Enquiries
+	{ id: 'promotion', href: '/promocija-kompanija' },                    // 07 (promotion page; offers via ?tip=oglasavanje) Business Promotion
+	{ id: 'services', href: '/digitalne-usluge' },                     // 08 Digital Services
 	{ id: 'app', href: '/kontakt?tip=ostalo', status: 'dev' } // 09 Mobile App (early access request)
 ];
 
@@ -25,6 +25,6 @@ export const platformModules: { id: ModuleId; href: string; status?: ModuleStatu
 export const howSteps: { href?: string; mode: 'online' | 'manual' }[] = [
 	{ href: '/kontakt?tip=registracija', mode: 'manual' }, // 01 Register (no self-service sign-up yet)
 	{ mode: 'manual' },                        // 02 Profile content prepared by the team
-	{ href: '/firme', mode: 'online' },        // 03 Search the directory
-	{ href: '/umrezavanje', mode: 'manual' }   // 04 Business enquiry, team facilitates contact
+	{ href: '/kompanije', mode: 'online' },        // 03 Search the directory
+	{ href: '/poslovni-upiti', mode: 'manual' }   // 04 Business enquiry, team facilitates contact
 ];

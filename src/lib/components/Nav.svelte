@@ -58,21 +58,21 @@
 			id: 'explore',
 			label: i18n.t.nav.explore,
 			items: [
-				{ href: '/firme',          label: i18n.t.nav.companies },
-				{ href: '/kategorije',     label: i18n.t.nav.industries },
-				{ href: '/mreza',          label: i18n.t.nav.directory },
-				{ href: '/firme#pretraga', label: i18n.t.nav.search }
+				{ href: '/kompanije',          label: i18n.t.nav.companies },
+				{ href: '/djelatnosti',     label: i18n.t.nav.industries },
+				{ href: '/poslovni-direktorijum',          label: i18n.t.nav.directory },
+				{ href: '/kompanije#pretraga', label: i18n.t.nav.search }
 			]
 		},
 		{
 			id: 'business',
 			label: i18n.t.nav.business,
 			items: [
-				{ href: '/b2b',                  label: i18n.t.nav.b2b },
+				{ href: '/b2b-povezivanje',                  label: i18n.t.nav.b2b },
 				{ href: '/investicije',          label: i18n.t.nav.investments },
-				{ href: '/b2b/dijaspora-mreza',  label: i18n.t.nav.international },
-				{ href: '/umrezavanje',          label: i18n.t.nav.enquiries },
-				{ href: '/oglasi',               label: i18n.t.nav.promote }
+				{ href: '/b2b-povezivanje/medjunarodna-saradnja',  label: i18n.t.nav.international },
+				{ href: '/poslovni-upiti',          label: i18n.t.nav.enquiries },
+				{ href: '/promocija-kompanija',               label: i18n.t.nav.promote }
 			]
 		},
 		{
@@ -81,8 +81,8 @@
 			href: '/platforma',
 			items: [
 				{ href: '/platforma', label: i18n.t.nav.platformOverview },
-				{ href: '/usluge',  label: i18n.t.nav.services },
-				{ href: '/prilike', label: i18n.t.nav.opportunities }
+				{ href: '/digitalne-usluge',  label: i18n.t.nav.services },
+				{ href: '/poslovne-prilike', label: i18n.t.nav.opportunities }
 			]
 		},
 		{
@@ -100,18 +100,18 @@
 
 	// Line icons (feather-style) for dropdown and mobile links, keyed by href
 	const icons: Record<string, string> = {
-		'/firme': '<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/>',
-		'/kategorije': '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
-		'/mreza': '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
-		'/firme#pretraga': '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>',
-		'/b2b': '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/>',
+		'/kompanije': '<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/>',
+		'/djelatnosti': '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+		'/poslovni-direktorijum': '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
+		'/kompanije#pretraga': '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>',
+		'/b2b-povezivanje': '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/>',
 		'/investicije': '<path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/>',
-		'/b2b/dijaspora-mreza': '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',
-		'/umrezavanje': '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-		'/oglasi': '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>',
+		'/b2b-povezivanje/medjunarodna-saradnja': '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',
+		'/poslovni-upiti': '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+		'/promocija-kompanija': '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>',
 		'/platforma': '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>',
-		'/usluge': '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
-		'/prilike': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+		'/digitalne-usluge': '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+		'/poslovne-prilike': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
 		'/o-nama': '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
 		'/vijesti': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/>',
 		'/dogadjaji': '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',

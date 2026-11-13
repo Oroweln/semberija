@@ -5,10 +5,10 @@
 	import { sectors, sectorCount } from '$lib/search';
 	import DirectoryFilters from '$lib/components/DirectoryFilters.svelte';
 
-	// Quick picks: sectors with companies on /firme, largest first
+	// Quick picks: sectors with companies on /kompanije, largest first
 	const quick = $derived(
 		sectors
-			.map((s) => ({ id: s.id, label: i18n.t.ecosystem.sectors[s.id], count: sectorCount(s.id), href: `/firme?sector=${s.id}` }))
+			.map((s) => ({ id: s.id, label: i18n.t.ecosystem.sectors[s.id], count: sectorCount(s.id), href: `/kompanije?sector=${s.id}` }))
 			.filter((s) => s.count > 0)
 			.sort((a, b) => b.count - a.count)
 			.slice(0, 6)
@@ -171,7 +171,7 @@
 				{#each visible as cat, i (cat.name_sr)}
 					{@const rank = categoryStats.indexOf(cat)}
 					<a
-						href="/firme?cat={encodeURIComponent(nameOf(cat))}"
+						href="/kompanije?cat={encodeURIComponent(nameOf(cat))}"
 						class="cat-card"
 						class:top={rank < 3 && !query}
 						style="--i:{Math.min(i, 12)}"

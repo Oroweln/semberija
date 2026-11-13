@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { i18n } from '$lib/i18n.svelte';
+	import type { FilterOption } from '$lib/search';
+	import FilterSelect from '$lib/components/FilterSelect.svelte';
 
-	// Directory search panel in the /firme style, for dark hero sections:
+	// Directory search panel in the /kompanije style, for dark hero sections:
 	// one white bar split into segments (text search + optional industry/location selects),
 	// "popular" quick picks under it, and an active-filter row with a clear button.
-	type Select = { options: string[] };
+	type Select = { options: FilterOption[] };
 	type Quick = { id: string; label: string; count: number; href?: string };
 	type Chip = { label: string; value: string; onRemove: () => void };
 
@@ -32,7 +34,6 @@
 		onClear?: () => void;
 	} = $props();
 
-	const uid = Math.random().toString(36).slice(2, 8);
 	const anyFilter = $derived(!!(query || industry || location || chips.length));
 </script>
 
@@ -45,37 +46,21 @@
 	</div>
 
 	{#if industries && industries.options.length > 1}
-		<div class="fb-field fb-select">
+		<div class="fb-field fb-select" data-fs-anchor>
 			<span class="fb-tile" aria-hidden="true">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
 			</span>
-			<div class="fb-select-body">
-				<label for="df-cat-{uid}">{i18n.t.bizSearch.industry}</label>
-				<select id="df-cat-{uid}" bind:value={industry}>
-					<option value="">{i18n.t.bizSearch.allIndustries}</option>
-					{#each industries.options as opt}
-						<option value={opt}>{opt}</option>
-					{/each}
-				</select>
-			</div>
+			<FilterSelect label={i18n.t.bizSearch.industry} allLabel={i18n.t.bizSearch.allIndustries} options={industries.options} bind:value={industry} />
 			<svg class="fb-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 		</div>
 	{/if}
 
 	{#if locations && locations.options.length > 1}
-		<div class="fb-field fb-select">
+		<div class="fb-field fb-select" data-fs-anchor>
 			<span class="fb-tile" aria-hidden="true">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 			</span>
-			<div class="fb-select-body">
-				<label for="df-city-{uid}">{i18n.t.bizSearch.location}</label>
-				<select id="df-city-{uid}" bind:value={location}>
-					<option value="">{i18n.t.bizSearch.allLocations}</option>
-					{#each locations.options as opt}
-						<option value={opt}>{opt}</option>
-					{/each}
-				</select>
-			</div>
+			<FilterSelect label={i18n.t.bizSearch.location} allLabel={i18n.t.bizSearch.allLocations} options={locations.options} bind:value={location} />
 			<svg class="fb-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 		</div>
 	{/if}
@@ -159,31 +144,8 @@
 		color: #FAF9F6;
 		background: linear-gradient(150deg, #1c5aa8 0%, #0b3466 100%);
 	}
-	.fb-select-body { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-	.fb-select-body label {
-		font-size: 0.66rem;
-		font-weight: 700;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: #8a919c;
-	}
-	.fb-select-body select {
-		width: 100%;
-		min-width: 0;
-		appearance: none;
-		-webkit-appearance: none;
-		border: 0;
-		outline: none;
-		background: transparent;
-		font: inherit;
-		font-size: 0.98rem;
-		font-weight: 600;
-		color: var(--navy);
-		cursor: pointer;
-		padding: 0.1rem 1.5rem 0.1rem 0;
-		text-overflow: ellipsis;
-	}
-	.fb-chevron { position: absolute; right: 1rem; color: #8a919c; pointer-events: none; }
+	.fb-chevron { position: absolute; right: 1rem; color: #8a919c; pointer-events: none; transition: transform 0.2s ease; }
+	.fb-select:has(:global([aria-expanded='true'])) .fb-chevron { transform: rotate(180deg); }
 
 	/* Quick picks */
 	.quick {

@@ -56,12 +56,12 @@
 			<p>Advertising must comply with platform standards and policies.</p>
 
 			<h2>5. Intellectual Property</h2>
-			<p>All platform content including design, software, structure, and branding are the intellectual property of ZOE MILANO d.o.o.</p>
+			<p>All platform content including design, software, structure, and branding are the intellectual property of ZOE&nbsp;MILANO&nbsp;d.o.o.</p>
 			<p>Unauthorized reproduction or distribution is prohibited.</p>
 
 			<h2>6. Limitation of Liability</h2>
 			<p>The platform is provided on an "as-is" basis.</p>
-			<p>ZOE MILANO d.o.o. is not responsible for:</p>
+			<p>ZOE&nbsp;MILANO&nbsp;d.o.o. is not responsible for:</p>
 			<ul>
 				<li>Disputes between users</li>
 				<li>Business transactions outside the platform</li>
@@ -75,12 +75,12 @@
 			<h2>Platform Ownership</h2>
 			<p>Semberija.app is a proprietary digital platform owned and operated by:</p>
 			<div class="company-block">
-				<strong>ZOE MILANO d.o.o.</strong><br />
+				<strong>ZOE&nbsp;MILANO&nbsp;d.o.o.</strong><br />
 				Belgrade, Serbia<br />
 				Tax ID: 110155135<br />
 				Company Registration Number: 21307548
 			</div>
-			<p>All intellectual property rights related to the platform including software, design, branding, and structure belong to ZOE MILANO d.o.o.</p>
+			<p>All intellectual property rights related to the platform including software, design, branding, and structure belong to ZOE&nbsp;MILANO&nbsp;d.o.o.</p>
 
 		</article>
 

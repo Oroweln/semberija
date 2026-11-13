@@ -12,6 +12,7 @@
 	import PlatformCarousel from '$lib/components/PlatformCarousel.svelte';
 	import ListingStatus from '$lib/components/ListingStatus.svelte';
 	import { enquiryUrl } from '$lib/enquiry';
+	import FilterSelect from '$lib/components/FilterSelect.svelte';
 
 	// Business ecosystem: only sectors with visible companies in the directory
 	const ecoSectors = sectors
@@ -19,9 +20,11 @@
 		.filter((s) => s.count > 0);
 	const ecoMax = Math.max(1, ...ecoSectors.map((s) => s.count));
 
-	// Options for the business search panel come from the company data
+	// Options for the business search panel: main industries and locations that have companies
 	const searchIndustries = $derived(industryOptions(i18n.lang));
-	const searchLocations = locationOptions();
+	const searchLocations = $derived(locationOptions(i18n.lang));
+	let searchCat = $state('');
+	let searchLoc = $state('');
 
 	const investCats = $derived(
 		i18n.t.investments.categories.map((cat, i) => ({ ...cat, slug: investmentCategorySlugs[i] }))
@@ -165,7 +168,7 @@
 					{i18n.t.hero.ctaPlatform}
 					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 				</a>
-				<a href="/firme" class="btn-ghost">{i18n.t.hero.ctaCompanies}</a>
+				<a href="/kompanije" class="btn-ghost">{i18n.t.hero.ctaCompanies}</a>
 				<a href="/kontakt?tip=registracija" class="btn-ghost">{i18n.t.nav.listCta}</a>
 			</div>
 		</div>
@@ -179,7 +182,7 @@
 		</button>
 	</section>
 
-	<!-- ─── BUSINESS SEARCH (submits to /firme as ?q=&cat=&city=) ─── -->
+	<!-- ─── BUSINESS SEARCH (submits to /kompanije as ?q=&cat=&loc=) ─── -->
 	<section class="bento search-bento reveal-card" use:reveal aria-labelledby="biz-search-title">
 		<div class="search-glow" aria-hidden="true"></div>
 		<div class="search-inner">
@@ -187,7 +190,7 @@
 			<h2 id="biz-search-title" class="search-title">{i18n.t.bizSearch.heading}</h2>
 			<p class="search-desc">{i18n.t.bizSearch.desc}</p>
 
-			<form class="biz-search" action="/firme" method="get" role="search">
+			<form class="biz-search" action="/kompanije" method="get" role="search">
 				<div class="bs-field bs-query">
 					<svg class="bs-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 						<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -200,34 +203,18 @@
 						autocomplete="off"
 					/>
 				</div>
-				<div class="bs-field bs-select">
+				<div class="bs-field bs-select" data-fs-anchor>
 					<span class="bs-tile" aria-hidden="true">
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
 					</span>
-					<div class="bs-select-body">
-						<label for="bs-cat">{i18n.t.bizSearch.industry}</label>
-						<select id="bs-cat" name="cat">
-							<option value="">{i18n.t.bizSearch.allIndustries}</option>
-							{#each searchIndustries as cat}
-								<option value={cat}>{cat}</option>
-							{/each}
-						</select>
-					</div>
+					<FilterSelect id="bs-cat" name="cat" label={i18n.t.bizSearch.industry} allLabel={i18n.t.bizSearch.allIndustries} options={searchIndustries} bind:value={searchCat} />
 					<svg class="bs-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 				</div>
-				<div class="bs-field bs-select">
+				<div class="bs-field bs-select" data-fs-anchor>
 					<span class="bs-tile" aria-hidden="true">
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 					</span>
-					<div class="bs-select-body">
-						<label for="bs-city">{i18n.t.bizSearch.location}</label>
-						<select id="bs-city" name="city">
-							<option value="">{i18n.t.bizSearch.allLocations}</option>
-							{#each searchLocations as city}
-								<option value={city}>{city}</option>
-							{/each}
-						</select>
-					</div>
+					<FilterSelect id="bs-loc" name="loc" label={i18n.t.bizSearch.location} allLabel={i18n.t.bizSearch.allLocations} options={searchLocations} bind:value={searchLoc} />
 					<svg class="bs-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 				</div>
 				<button type="submit" class="btn-primary bs-submit">
@@ -242,7 +229,7 @@
 			<div class="bs-chips">
 				<span class="bs-chips-label">{i18n.t.bizSearch.popular}</span>
 				{#each [...ecoSectors].sort((a, b) => b.count - a.count).slice(0, 5) as sector (sector.id)}
-					<a href="/firme?sector={sector.id}" class="bs-chip">
+					<a href="/kompanije?sector={sector.id}" class="bs-chip">
 						{i18n.t.ecosystem.sectors[sector.id]}
 						<span class="bs-chip-count">{sector.count}</span>
 					</a>
@@ -445,7 +432,7 @@
 			</div>
 			<div class="eco-grid">
 				{#each ecoSectors as sector, i (sector.id)}
-					<a href="/firme?sector={sector.id}" class="eco-card">
+					<a href="/kompanije?sector={sector.id}" class="eco-card">
 						<span class="eco-watermark" aria-hidden="true">{@render sectorIcon(sector.id, 150, 1)}</span>
 						<span class="eco-top">
 							<span class="eco-icon" aria-hidden="true">{@render sectorIcon(sector.id, 24, 1.8)}</span>
@@ -484,6 +471,11 @@
 				<h2>{i18n.t.companies.heading}</h2>
 				<p class="section-sub">{i18n.t.companies.sub}</p>
 			</div>
+			<!-- These cards show how profiles look; they are not confirmed registered members -->
+			<p class="companies-examples">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></svg>
+				{i18n.t.companies.examplesLabel}
+			</p>
 			<div class="companies-grid">
 				{#each visibleCompanies as company}
 					<article class="company-card" style="--brand: {company.color}">
@@ -515,7 +507,7 @@
 				{/each}
 			</div>
 			<div class="section-cta">
-				<a href="/firme" class="btn-outline">{i18n.t.companies.viewAll}</a>
+				<a href="/kompanije" class="btn-outline">{i18n.t.companies.viewAll}</a>
 			</div>
 		</div>
 	</section>
@@ -656,7 +648,7 @@
 					{#each b2bItems as item, i (item.slug)}
 						<li>
 							<a
-								href="/b2b/{item.slug}"
+								href="/b2b-povezivanje/{item.slug}"
 								class="b2b-row"
 								class:active={activeB2b === i}
 								onmouseenter={() => { b2bHover = true; activeB2b = i; }}
@@ -675,7 +667,7 @@
 						</li>
 					{/each}
 				</ul>
-				<a href="/b2b" class="btn-primary">{i18n.t.b2b.cta}</a>
+				<a href="/b2b-povezivanje" class="btn-primary">{i18n.t.b2b.cta}</a>
 			</div>
 
 			<div class="diaspora-visual" aria-hidden="true">
@@ -750,7 +742,7 @@
 			<div class="services-grid">
 				{#each i18n.t.services.items as svc, i}
 					{@const wide = i === 0 || i === i18n.t.services.items.length - 1}
-					<a href="/usluge/{serviceSlugs[i]}" class="service-card" class:wide onpointermove={trackSpotlight}>
+					<a href="/digitalne-usluge/{serviceSlugs[i]}" class="service-card" class:wide onpointermove={trackSpotlight}>
 						<span class="svc-spot" aria-hidden="true"></span>
 						<div class="svc-main">
 							<div class="svc-top">
@@ -804,7 +796,7 @@
 				{/each}
 			</div>
 			<div class="section-cta">
-				<a href="/usluge" class="btn-primary">{i18n.t.services.cta}</a>
+				<a href="/digitalne-usluge" class="btn-primary">{i18n.t.services.cta}</a>
 			</div>
 		</div>
 	</section>
@@ -839,7 +831,7 @@
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
 						</span>
 					</a>
-					<a href="/oglasi" class="btn-cta-ghost">{i18n.t.joinCta.promote}</a>
+					<a href="/promocija-kompanija" class="btn-cta-ghost">{i18n.t.joinCta.promote}</a>
 				</div>
 			</div>
 
@@ -1489,23 +1481,12 @@
 		padding: 0.5rem 0;
 	}
 	.bs-query input::placeholder { color: #6b7380; }
-	.bs-select label {
-		font-size: 0.8rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--steel);
-	}
-	.bs-select select {
-		border: none;
-		background: transparent;
-		font: inherit;
-		font-size: 1rem;
-		font-weight: 600;
-		color: var(--dark);
-		outline: none;
-		padding: 0.15rem 0;
-		cursor: pointer;
+	.bs-select {
+		--fs-label-size: 0.8rem;
+		--fs-label-spacing: 0.1em;
+		--fs-label-color: var(--steel);
+		--fs-value-size: 1rem;
+		--fs-value-color: var(--dark);
 	}
 	.bs-submit {
 		gap: 0.6rem;
@@ -1642,19 +1623,6 @@
 		border-color: var(--cta);
 		color: #FAF9F6;
 	}
-	.bs-select-body {
-		flex: 1;
-		min-width: 0;
-		display: flex;
-		flex-direction: column;
-	}
-	.bs-select select {
-		appearance: none;
-		-webkit-appearance: none;
-		width: 100%;
-		padding-right: 1.5rem;
-		text-overflow: ellipsis;
-	}
 	.bs-chevron {
 		flex-shrink: 0;
 		margin-left: -1.75rem;
@@ -1662,7 +1630,8 @@
 		pointer-events: none;
 		transition: transform 0.2s, color 0.2s;
 	}
-	.bs-select:focus-within .bs-chevron { color: var(--cta); transform: rotate(180deg); }
+	.bs-select:focus-within .bs-chevron { color: var(--cta); }
+	.bs-select:has(:global([aria-expanded='true'])) .bs-chevron { transform: rotate(180deg); }
 
 	.bs-submit {
 		position: relative;
@@ -1739,8 +1708,7 @@
 	.bs-chip:hover .bs-chip-count { background: var(--cta); color: #FAF9F6; }
 
 	/* Phones: keep every field, chip and the button inside the card */
-	.search-inner, .biz-search, .bs-field, .bs-select-body { min-width: 0; }
-	.bs-select select { min-width: 0; max-width: 100%; }
+	.search-inner, .biz-search, .bs-field { min-width: 0; }
 	.bs-submit { min-width: 0; white-space: normal; }
 	.bs-chip { max-width: 100%; }
 	@media (max-width: 480px) {
@@ -2531,6 +2499,24 @@
 		-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 40%, #000 75%, transparent 100%);
 		mask-image: linear-gradient(180deg, transparent 0%, #000 40%, #000 75%, transparent 100%);
 		pointer-events: none;
+	}
+
+	.companies-examples {
+		position: relative;
+		display: flex;
+		width: fit-content;
+		align-items: center;
+		gap: 0.45rem;
+		margin: 0 0 1rem;
+		padding: 0.35rem 0.85rem;
+		border-radius: 50px;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--steel);
+		background: rgba(11,52,102,0.06);
+		box-shadow: inset 0 0 0 1px rgba(11,52,102,0.1);
 	}
 
 	.companies-grid {

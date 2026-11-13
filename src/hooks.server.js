@@ -1,5 +1,37 @@
+// Pages were renamed to match the navbar labels. Old URLs (and their sub-pages and
+// query strings) permanently redirect to the new ones so links and bookmarks keep working.
+// Exact paths first, then prefixes.
+/** @type {Record<string, string>} */
+const renamedExact = {
+	'/b2b/dijaspora-mreza': '/b2b-povezivanje/medjunarodna-saradnja'
+};
+const renamedPrefix = {
+	'/firme': '/kompanije',
+	'/kategorije': '/djelatnosti',
+	'/mreza': '/poslovni-direktorijum',
+	'/b2b': '/b2b-povezivanje',
+	'/umrezavanje': '/poslovni-upiti',
+	'/oglasi': '/promocija-kompanija',
+	'/usluge': '/digitalne-usluge',
+	'/prilike': '/poslovne-prilike'
+};
+
+/** @param {string} path */
+function renamedPath(path) {
+	if (renamedExact[path]) return renamedExact[path];
+	for (const [from, to] of Object.entries(renamedPrefix)) {
+		if (path === from || path.startsWith(from + '/')) return to + path.slice(from.length);
+	}
+	return null;
+}
+
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
+	const moved = renamedPath(event.url.pathname);
+	if (moved) {
+		return new Response(null, { status: 301, headers: { Location: moved + event.url.search } });
+	}
+
 	const response = await resolve(event);
 
 	// HTTP Strict Transport Security

@@ -28,7 +28,7 @@ This is a **SvelteKit 2 + Svelte 5** app using `@sveltejs/adapter-node` for Node
 
 **CSS design system**: All design tokens (colors, fonts, spacing, shadows, border radii) are CSS custom properties defined globally in `src/routes/+layout.svelte` under `:global(:root)`. Key tokens: `--emerald: #0f3d3e`, `--gold: #c8a96a`, `--beige: #f4f1ec`, `--dark: #1a1a1a`, `--font-serif: 'Playfair Display'`, `--font-sans: 'Inter'`, `--max-w: 1280px`. Fonts are loaded from Google Fonts in `src/app.html`.
 
-**Route structure**: All routes use Serbian-language slugs — `/firme` (companies), `/kategorije` (categories), `/umrezavanje` (networking), `/prilike` (opportunities), `/usluge` (digital services), `/oglasi` (advertising), `/kontakt` (contact), `/legal/*` (privacy, terms, cookies, GDPR, disclaimer). `+layout.svelte` wraps all routes with `<Nav>`, `<main>`, and `<Footer>`.
+**Route structure**: All routes use Serbian-language slugs — `/kompanije` (companies), `/djelatnosti` (categories), `/poslovni-upiti` (networking), `/poslovne-prilike` (opportunities), `/digitalne-usluge` (digital services), `/promocija-kompanija` (advertising), `/kontakt` (contact), `/legal/*` (privacy, terms, cookies, GDPR, disclaimer). `+layout.svelte` wraps all routes with `<Nav>`, `<main>`, and `<Footer>`.
 
 **Contact form**: The form in `src/routes/kontakt/+page.svelte` is frontend-only — submission sets a `submitted` flag locally and shows a success state. There is no `+page.server.js` action yet. Email sending (nodemailer) is configured in `src/lib/config.server.js` but not yet wired to any route handler.
 

@@ -86,7 +86,7 @@
 		<div class="svc-grid">
 			{#each services as svc, i (svc.slug)}
 				{@const wide = i === 0 || i === services.length - 1}
-				<a href="/usluge/{svc.slug}" class="svc-card" class:wide onpointermove={trackSpotlight}>
+				<a href="/digitalne-usluge/{svc.slug}" class="svc-card" class:wide onpointermove={trackSpotlight}>
 					<span class="svc-spot" aria-hidden="true"></span>
 					<div class="svc-main">
 						<div class="svc-top">

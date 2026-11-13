@@ -172,10 +172,10 @@
 		<div class="body-backdrop" aria-hidden="true"></div>
 		<div class="container detail-layout">
 			<div class="zoe">
-				<span class="section-kicker">ZOE MILANO</span>
+				<span class="section-kicker">ZOE&nbsp;MILANO</span>
 				<h2>{f.zoeHeading}</h2>
 				<p>{f.zoeDesc}</p>
-				<a href="/usluge" class="zoe-link">
+				<a href="/digitalne-usluge" class="zoe-link">
 					<span class="zoe-icon" aria-hidden="true">
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M10 13l-2 2 2 2M14 13l2 2-2 2"/></svg>
 					</span>
